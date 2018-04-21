@@ -6,11 +6,21 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\editor_wall</sprite>
-    <sprite>sprites\editor_player</sprite>
-    <sprite>sprites\editor_table</sprite>
-    <sprite>sprites\editor_zombie</sprite>
-    <sprite>sprites\editor_client</sprite>
+    <sprite>sprites\wall</sprite>
+    <sprite>sprites\player</sprite>
+    <sprite>sprites\meat</sprite>
+    <sprite>sprites\grill</sprite>
+    <sprite>sprites\gunitem</sprite>
+    <sprite>sprites\floortiles</sprite>
+    <sprite>sprites\spatula</sprite>
+    <sprite>sprites\downbread</sprite>
+    <sprite>sprites\gunshot</sprite>
+    <sprite>sprites\burgersbox</sprite>
+    <sprite>sprites\topbread</sprite>
+    <sprite>sprites\lettuce</sprite>
+    <sprite>sprites\table</sprite>
+    <sprite>sprites\zombie</sprite>
+    <sprite>sprites\client</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -24,6 +34,7 @@
     <object>objects\wall_obj</object>
     <object>objects\player_obj</object>
     <object>objects\table_obj</object>
+    <object>objects\floor_obj</object>
     <object>objects\grill_st_obj</object>
     <object>objects\mount_st_obj</object>
     <object>objects\zombie_obj</object>
