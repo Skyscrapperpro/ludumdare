@@ -11,7 +11,7 @@
     <sprite>sprites\meat</sprite>
     <sprite>sprites\grill</sprite>
     <sprite>sprites\gunitem</sprite>
-    <sprite>sprites\sprite14</sprite>
+    <sprite>sprites\floortiles</sprite>
     <sprite>sprites\spatula</sprite>
     <sprite>sprites\downbread</sprite>
     <sprite>sprites\gunshot</sprite>
@@ -34,6 +34,7 @@
     <object>objects\wall_obj</object>
     <object>objects\player_obj</object>
     <object>objects\table_obj</object>
+    <object>objects\floor_obj</object>
     <object>objects\grill_st_obj</object>
     <object>objects\mount_st_obj</object>
     <object>objects\zombie_obj</object>
