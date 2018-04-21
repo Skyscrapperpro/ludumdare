@@ -26,8 +26,35 @@
           <argument>
             <kind>1</kind>
             <string>///Create camera data
+zangle = 0;
 angle = 0;
 z = 0;
+global.mouse_active = true;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set camera
+xf = x + cos(degtorad(angle));
+yf = y - sin(degtorad(angle));
+zf = z - sin(degtorad(zangle));
 
 </string>
           </argument>
@@ -51,11 +78,139 @@ z = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set rotation
+            <string>///Check mouse active
+if (mouse_check_button_pressed(mb_right))
+{ global.mouse_active = !global.mouse_active; }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Get rotation
+mspeed = GETXCAMSPD;
+if ((angle + mspeed) &gt; 360) { angle = angle + mspeed - 360; }
+else angle += mspeed;
+
+mvspeed = GETYCAMSPD;
+//if ((zangle + mvspeed) &lt; -90) { zangle = -90; }
+//else if ((zangle + mvspeed) &gt; 90) { zangle = 90; }
+//else zangle += mvspeed;
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Get position
+if (FORWARD)
+{
+    var xsonic = lengthdir_x(CHARSPD, angle);
+    var ysonic = lengthdir_y(CHARSPD, angle);
+    x += xsonic;
+    y += ysonic;
+}
+else if (BACKWARDS)
+{
+    var xsonic = lengthdir_x(CHARSPD, angle);
+    var ysonic = lengthdir_y(CHARSPD, angle);
+    x -= xsonic;
+    y -= ysonic;
+}
+
+if (LEFT)
+{
+    var xsonicside = lengthdir_x(CHARSPD, angle + 90);
+    var ysonicside = lengthdir_y(CHARSPD, angle + 90);
+    x += xsonicside;
+    y += ysonicside;
+}
+else if (RIGHT)
+{
+    var xsonicside = lengthdir_x(CHARSPD, angle + 90);
+    var ysonicside = lengthdir_y(CHARSPD, angle + 90);
+    x -= xsonicside;
+    y -= ysonicside;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set camera
 xf = x + cos(degtorad(angle));
 yf = y - sin(degtorad(angle));
-zf = z;
-//if (angle + mouse_)
+zf = z - sin(degtorad(zangle));
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Reset mouse position
+if (global.mouse_active) { window_mouse_set(view_wport/2, view_hport/2); }
 
 </string>
           </argument>
@@ -80,7 +235,7 @@ zf = z;
           <argument>
             <kind>1</kind>
             <string>///Draw camera
-d3d_set_projection(x, y, z, xf, yf, zf, x, y, z-1);
+d3d_set_projection(x, y, z, xf, yf, zf, 0, 0, 1);
 
 </string>
           </argument>
