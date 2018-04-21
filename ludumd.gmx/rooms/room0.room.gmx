@@ -11,7 +11,8 @@
   <colour>16744448</colour>
   <showcolour>-1</showcolour>
   <code>d3d_start();
-d3d_set_perspective(true);</code>
+d3d_set_perspective(true);
+draw_set_color(c_white);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

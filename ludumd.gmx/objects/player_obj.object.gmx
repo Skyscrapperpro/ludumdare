@@ -3,12 +3,36 @@
   <spriteName>editor_player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Movemet variables
+xmodule = 0;
+ymodule = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -134,36 +158,97 @@ mvspeed = GETYCAMSPD;
           <argument>
             <kind>1</kind>
             <string>///Get position
-if (FORWARD)
+var correction;
+
+if ((RIGHT or LEFT) &amp;&amp; (BACKWARDS or FORWARD)) //If pulsando diagonal
+    correction=1-lengthdir_x(1, 45);
+else
+    correction=0; //Este ifelse crea la variable correction, que se le resta a 1 para que la diagonal no sea mayor que las paralelas a los ejes
+
+if (BACKWARDS &amp;&amp; (xmodule &lt; (1 - correction))) { xmodule += 0.1; } //Velocidad progresiva según el tiempo que mantienes la tecla pulsada
+else if (xmodule &gt; 0) { xmodule -= 0.1; }
+if (FORWARD &amp;&amp; (xmodule &gt; (-1 + correction))) { xmodule -= 0.1; }
+else if (xmodule &lt; 0) { xmodule += 0.1; }
+if (LEFT &amp;&amp; (ymodule &lt; (1 - correction))) { ymodule += 0.1; }
+else if (ymodule &gt; 0) { ymodule -= 0.1; }
+if (RIGHT &amp;&amp; (ymodule &gt; (-1 + correction))) { ymodule -= 0.1; }
+else if (ymodule &lt; 0) { ymodule += 0.1; }
+
+//Angle
+if ((abs(xmodule) &gt; 0.1)
+or (abs(ymodule) &gt; 0.1))
+    move_angle = angle + point_direction(0, 0, xmodule, ymodule);
+else move_angle = angle;
+
+//Speed
+if (move_angle &gt; 360) then move_angle -= 360;
+else if (move_angle &lt; 0) then move_angle += 360;
+
+if (abs(xmodule) &gt; 0.1)
 {
-    var xsonic = lengthdir_x(CHARSPD, angle);
-    var ysonic = lengthdir_y(CHARSPD, angle);
-    x += xsonic;
-    y += ysonic;
+    if ((move_angle &gt; 90) &amp;&amp; (move_angle &lt; 270))
+        xsonic = -lengthdir_x(xmodule, move_angle) * CHARSPD;
+    else
+        xsonic = lengthdir_x(xmodule, move_angle) * CHARSPD;
 }
-else if (BACKWARDS)
+else
 {
-    var xsonic = lengthdir_x(CHARSPD, angle);
-    var ysonic = lengthdir_y(CHARSPD, angle);
-    x -= xsonic;
-    y -= ysonic;
+    xsonic = 0;
+}
+if (abs(ymodule) &gt; 0.1)
+{
+    if ((move_angle &gt; 0) &amp;&amp; (move_angle &lt; 180))
+        ysonic = -lengthdir_y(ymodule, move_angle) * CHARSPD;
+    else
+        ysonic = lengthdir_y(ymodule, move_angle) * CHARSPD;
+}
+else
+{
+    ysonic = 0;
 }
 
-if (LEFT)
-{
-    var xsonicside = lengthdir_x(CHARSPD, angle + 90);
-    var ysonicside = lengthdir_y(CHARSPD, angle + 90);
-    x += xsonicside;
-    y += ysonicside;
-}
-else if (RIGHT)
-{
-    var xsonicside = lengthdir_x(CHARSPD, angle + 90);
-    var ysonicside = lengthdir_y(CHARSPD, angle + 90);
-    x -= xsonicside;
-    y -= ysonicside;
-}
+x += xsonic;
+y += ysonic;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Collisions
+/*if (xsonic != 0)
+{
+    if !place_free(x+xsonic,y)
+    { //Estos dos ifs testean la posición x y la x,y por separado, para que si te chocas te deslices por la pared
+        if xsonic&gt;0 then move_contact_solid(0,xsonic)
+        if xsonic&lt;0 then move_contact_solid(180,-xsonic)
+        xsonic=0
+    }
+}
+if (ysonic != 0)
+{
+    if !place_free(x+xsonic,y+ysonic)
+    { //A veces este sistema hace que la colisión en diagonal no funcione y entres en el bloque, pero no es notable porque salir requiere la misma velocidad y nunca entras demasiados píxeles, esto aplicado al dash sí es notable
+        if ysonic&gt;0 then move_contact_solid(270,ysonic)
+        if ysonic&lt;0 then move_contact_solid(90,-ysonic)
+        ysonic=0
+    }
+}*/
 </string>
           </argument>
         </arguments>
