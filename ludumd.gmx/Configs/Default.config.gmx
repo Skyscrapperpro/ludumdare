@@ -634,11 +634,12 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="16">
+    <constants number="17">
+      <constant name="CHARACC">1</constant>
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S"))</constant>
-      <constant name="CHARSPD">5</constant>
+      <constant name="CHARSPD">3</constant>
       <constant name="FORWARD">keyboard_check(ord("W"))</constant>
       <constant name="MOUSESENS">0.06</constant>
       <constant name="GETYCAMSPD">mouse_y_speed()</constant>
