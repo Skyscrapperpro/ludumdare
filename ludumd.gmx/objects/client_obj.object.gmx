@@ -64,7 +64,15 @@ prevclient.nextclient=id;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>///EAT WELL OR DIE HARD
+nextclient.prevclient=-1;
+prevclient.nextclient=-1;
+client_manager_obj.lines[line]--;
+if (client_manager_obj.clients[line]==id)
+{
+    client_manager_obj.clients[line]=-1;
+}
+</string>
           </argument>
         </arguments>
       </action>
