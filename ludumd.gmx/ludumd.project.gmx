@@ -8,8 +8,16 @@
   <sprites name="sprites">
     <sprite>sprites\wall</sprite>
     <sprite>sprites\player</sprite>
-    <sprite>sprites\sprite6</sprite>
+    <sprite>sprites\meat</sprite>
+    <sprite>sprites\grill</sprite>
+    <sprite>sprites\gunitem</sprite>
+    <sprite>sprites\sprite14</sprite>
     <sprite>sprites\spatula</sprite>
+    <sprite>sprites\downbread</sprite>
+    <sprite>sprites\gunshot</sprite>
+    <sprite>sprites\burgersbox</sprite>
+    <sprite>sprites\topbread</sprite>
+    <sprite>sprites\lettuce</sprite>
     <sprite>sprites\table</sprite>
     <sprite>sprites\zombie</sprite>
     <sprite>sprites\client</sprite>
