@@ -9,12 +9,9 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
-    <object>objects\ball</object>
-    <object>objects\thai</object>
+    <object>objects\Bar0</object>
+    <object>objects\Bar1</object>
   </objects>
-  <rooms name="rooms">
-    <room>rooms\room0</room>
-  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
