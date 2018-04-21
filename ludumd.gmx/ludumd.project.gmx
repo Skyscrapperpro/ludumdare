@@ -12,6 +12,11 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <objects name="objects">
+    <object>objects\wall_obj</object>
+    <object>objects\player_obj</object>
+    <object>objects\table_obj</object>
+  </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
