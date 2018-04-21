@@ -24,6 +24,7 @@
     <object>objects\mount_st_obj</object>
     <object>objects\zombie_obj</object>
     <object>objects\client_obj</object>
+    <object>objects\client_manager_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

@@ -634,11 +634,12 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="4">
-      <constant name="spawnx">60</constant>
-      <constant name="spawny">100</constant>
-      <constant name="linenumber">3</constant>
-      <constant name="liney">[50,70,100,120]</constant>
+    <constants number="5">
+      <constant name="SPAWNX">60</constant>
+      <constant name="SPAWNY">100</constant>
+      <constant name="LINENUMBER">3</constant>
+      <constant name="FIRSTLINEY">70</constant>
+      <constant name="LINESEPARATION">20</constant>
     </constants>
   </ConfigConstants>
 </Config>
