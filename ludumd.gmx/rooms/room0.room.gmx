@@ -95,9 +95,9 @@ d3d_set_perspective(true);</code>
     <instance objName="wall_obj" x="70" y="60" name="inst_B7BEF368" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_obj" x="70" y="140" name="inst_C4938716" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_obj" x="70" y="60" name="inst_4AA9F4DB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="player_obj" x="270" y="80" name="inst_B1678610" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="client_manager_obj" x="10" y="50" name="inst_DCB13BCF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="client_obj" x="20" y="110" name="inst_77A6B889" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="player_obj" x="260" y="90" name="inst_BB89414A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

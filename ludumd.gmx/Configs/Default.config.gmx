@@ -634,7 +634,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="15">
+    <constants number="16">
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S"))</constant>
@@ -648,8 +648,9 @@
       <constant name="LINENUMBER">3</constant>
       <constant name="FIRSTLINEY">70</constant>
       <constant name="LINESEPARATION">20</constant>
-      <constant name="CLIENTSPEED">0.1</constant>
+      <constant name="CLIENTSPEED">1</constant>
       <constant name="CLIENTSEP">20</constant>
+      <constant name="CLIENTSEPRND">10</constant>
     </constants>
   </ConfigConstants>
 </Config>

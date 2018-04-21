@@ -39,6 +39,7 @@ for (i=0;i&lt;LINENUMBER;i++)
 }
 client_manager_obj.lines[line]++;
 prevclient=client_manager_obj.clients[line];
+client_manager_obj.clients[line]=id;
 nextclient=-1;
 </string>
           </argument>
@@ -63,26 +64,44 @@ nextclient=-1;
           <argument>
             <kind>1</kind>
             <string>///movement
-/*if (x&lt;200-(client_manager_obj.lines[line]*CLIENTSEP))
+if (prevclient=-1)
 {
-    if (y&gt;(FIRSTLINEY+(line*LINESEPARATION)))
-    {
-        y-=CLIENTSPEED*0.7;
-        x+=CLIENTSPEED*0.7;
-    }
-    if (y&lt;(FIRSTLINEY+(line*LINESEPARATION)))
-    {
-        y+=CLIENTSPEED*0.7;
-        x+=CLIENTSPEED*0.7;
-    }
-    if (y=(FIRSTLINEY+(line*LINESEPARATION)))
-    {
-        x+=CLIENTSPEED;
-    }
-}*/
-
-//point_direction(x,y,200-(client_manager_obj.lines[line]*CLIENTSEP,
-//lengthdir_x
+    angle=point_direction(x,y,200-irandom(CLIENTSEPRND),(FIRSTLINEY+(line*LINESEPARATION)+irandom(CLIENTSEPRND)-CLIENTSEPRND));
+    velx=lengthdir_x(CLIENTSPEED,angle);
+    vely=lengthdir_y(CLIENTSPEED,angle);
+}
+else
+{
+    angle=point_direction(x,y,prevclient-irandom(CLIENTSEPRND),(FIRSTLINEY+(line*LINESEPARATION)+irandom(CLIENTSEPRND)-CLIENTSEPRND));
+    velx=lengthdir_x(CLIENTSPEED,angle);
+    vely=lengthdir_y(CLIENTSPEED,angle);
+}
+x+=velx;
+y+=vely;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///draw sprite
+d3d_draw_wall(x,y-32,-32,x,y+32,32,sprite_get_texture(editor_client,0),1,1)
 </string>
           </argument>
         </arguments>
