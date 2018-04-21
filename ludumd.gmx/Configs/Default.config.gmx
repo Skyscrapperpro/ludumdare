@@ -634,12 +634,13 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="5">
+    <constants number="6">
       <constant name="SPAWNX">60</constant>
       <constant name="SPAWNY">100</constant>
       <constant name="LINENUMBER">3</constant>
       <constant name="FIRSTLINEY">70</constant>
       <constant name="LINESEPARATION">20</constant>
+      <constant name="CLIENTSPEED">5</constant>
     </constants>
   </ConfigConstants>
 </Config>
