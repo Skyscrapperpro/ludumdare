@@ -9,13 +9,21 @@
     <sprite>sprites\editor_wall</sprite>
     <sprite>sprites\editor_player</sprite>
     <sprite>sprites\editor_table</sprite>
+    <sprite>sprites\editor_zombie</sprite>
+    <sprite>sprites\editor_client</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\wall_obj</object>
     <object>objects\player_obj</object>
     <object>objects\table_obj</object>
+    <object>objects\grill_st_obj</object>
+    <object>objects\mount_st_obj</object>
+    <object>objects\zombie_obj</object>
+    <object>objects\client_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
