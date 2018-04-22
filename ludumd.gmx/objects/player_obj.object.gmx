@@ -25,6 +25,29 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Animations control
+guni = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Move variables
 xsonic = 0;
 ysonic = 0;
@@ -52,7 +75,7 @@ ysonic = 0;
             <string>///Create camera data
 zangle = 0;
 angle = 0;
-z = 0;
+z = -10;
 global.mouse_active = true;
 
 </string>
@@ -86,6 +109,35 @@ zf = z - sin(degtorad(zangle));
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animations
+if (guni &gt; 0)
+{
+    if ((guni + 1) &gt; (sprite_get_number(gunshot)-1))
+        guni = 0;
+    else guni++;
+}
+else if mouse_check_button_pressed(mb_left) guni++;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -232,6 +284,7 @@ if (ysonic != 0)
 ///Move
 x += xsonic;
 y += ysonic;
+
 </string>
           </argument>
         </arguments>
@@ -306,11 +359,11 @@ if (global.mouse_active) { display_mouse_set(display_get_width()/2, display_get_
             <string>///Draw gun
 var unif = shader_get_uniform(pix, "pixel");
 shader_set(pix);
-shader_set_uniform_f(unif, surface_get_width(application_surface), surface_get_height(application_surface), 5, 5);
-draw_surface(application_surface, -2, 0);
+shader_set_uniform_f(unif, surface_get_width(application_surface), surface_get_height(application_surface), PIXELEFFECT, PIXELEFFECT);
+draw_surface(application_surface, -2, -2);
 shader_reset();
 
-draw_sprite_ext(gunshot, 0, view_wport/2, view_hport, 5, 5, 0, -1, 1);
+draw_sprite_ext(gunshot, guni, view_wport/2, view_hport, PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
 </string>
           </argument>
         </arguments>

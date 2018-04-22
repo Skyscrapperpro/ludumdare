@@ -73,7 +73,7 @@ draw_set_color(c_white);</code>
     <instance objName="client_manager_obj" x="10" y="50" name="inst_DCB13BCF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="client_obj" x="20" y="110" name="inst_77A6B889" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="player_obj" x="260" y="90" name="inst_BB89414A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="floor_obj" x="120" y="80" name="inst_CACDB720" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="&lt;undefined&gt;" x="120" y="80" name="inst_CACDB720" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_obj" x="288" y="32" name="inst_B3EEC55E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="224" y="32" name="inst_21E836B8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="320" y="32" name="inst_852BB299" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
@@ -89,6 +89,7 @@ draw_set_color(c_white);</code>
     <instance objName="wall_obj" x="256" y="160" name="inst_F2A20E3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="288" y="160" name="inst_5367A7EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="320" y="160" name="inst_E4A753BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="floor_obj" x="128" y="96" name="inst_D758885C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

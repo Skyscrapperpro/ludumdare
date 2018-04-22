@@ -634,7 +634,8 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="18">
+    <constants number="19">
+      <constant name="PIXELEFFECT">4</constant>
       <constant name="CHARACC">1</constant>
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>

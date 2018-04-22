@@ -25,5 +25,20 @@
     <frame index="2">images\gunshot_2.png</frame>
     <frame index="3">images\gunshot_3.png</frame>
     <frame index="4">images\gunshot_4.png</frame>
+    <frame index="5">images\gunshot_5.png</frame>
+    <frame index="6">images\gunshot_6.png</frame>
+    <frame index="7">images\gunshot_7.png</frame>
+    <frame index="8">images\gunshot_8.png</frame>
+    <frame index="9">images\gunshot_9.png</frame>
+    <frame index="10">images\gunshot_10.png</frame>
+    <frame index="11">images\gunshot_11.png</frame>
+    <frame index="12">images\gunshot_12.png</frame>
+    <frame index="13">images\gunshot_13.png</frame>
+    <frame index="14">images\gunshot_14.png</frame>
+    <frame index="15">images\gunshot_15.png</frame>
+    <frame index="16">images\gunshot_16.png</frame>
+    <frame index="17">images\gunshot_17.png</frame>
+    <frame index="18">images\gunshot_18.png</frame>
+    <frame index="19">images\gunshot_19.png</frame>
   </frames>
 </sprite>
