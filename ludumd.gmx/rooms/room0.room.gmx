@@ -70,8 +70,7 @@ draw_set_color(c_white);</code>
     <instance objName="table_obj" x="220" y="160" name="inst_BAEC5B1F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_obj" x="64" y="160" name="inst_C4938716" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_obj" x="64" y="32" name="inst_4AA9F4DB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="client_manager_obj" x="10" y="50" name="inst_DCB13BCF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="client_obj" x="20" y="110" name="inst_77A6B889" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="client_manager_obj" x="16" y="96" name="inst_DCB13BCF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="player_obj" x="260" y="90" name="inst_BB89414A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_obj" x="288" y="32" name="inst_B3EEC55E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="224" y="32" name="inst_21E836B8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
@@ -88,8 +87,11 @@ draw_set_color(c_white);</code>
     <instance objName="wall_obj" x="256" y="160" name="inst_F2A20E3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="288" y="160" name="inst_5367A7EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="320" y="160" name="inst_E4A753BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="floor_obj" x="128" y="96" name="inst_D758885C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="grill_obj" x="304" y="48" name="inst_20E6602B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="wall_obj" x="64" y="128" name="inst_44808B9E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="wall_obj" x="64" y="64" name="inst_61884C0C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="floor_obj" x="64" y="32" name="inst_9C561B37" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="door_obj" x="80" y="96" name="inst_9B527125" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

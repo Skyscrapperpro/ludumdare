@@ -3,7 +3,7 @@
   <spriteName>player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>1</depth>
+  <depth>100</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -184,10 +184,9 @@ if ((angle + mspeed) &gt; 360) { angle = angle + mspeed - 360; }
 else angle += mspeed;
 
 mvspeed = GETYCAMSPD;
-if ((zangle + mvspeed) &lt; -90) { zangle = -90; }
-else if ((zangle + mvspeed) &gt; 90) { zangle = 90; }
-else zangle += mvspeed;
-
+//if ((zangle + mvspeed) &lt; -90) { zangle = -90; }
+//else if ((zangle + mvspeed) &gt; 90) { zangle = 90; }
+//else zangle += mvspeed;
 
 </string>
           </argument>

@@ -11,7 +11,7 @@
     <sprite>sprites\editor_table</sprite>
     <sprite>sprites\grill</sprite>
     <sprite>sprites\gunitem</sprite>
-    <sprite>sprites\floortiles</sprite>
+    <sprite>sprites\editor_door</sprite>
     <sprite>sprites\spatula</sprite>
     <sprite>sprites\downbread</sprite>
     <sprite>sprites\gunshot</sprite>
@@ -28,6 +28,7 @@
     <background>background\background0</background>
     <background>background\background2</background>
     <background>background\background1</background>
+    <background>background\background4</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -48,6 +49,7 @@
     <object>objects\zombie_obj</object>
     <object>objects\client_obj</object>
     <object>objects\client_manager_obj</object>
+    <object>objects\door_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
