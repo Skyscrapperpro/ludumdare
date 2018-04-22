@@ -123,15 +123,15 @@ else
           <argument>
             <kind>1</kind>
             <string>///draw
-z=0;
+z = -32;
 
-if (player_obj.handitem=0)
+if (player_obj.handitem = 0)
 {
-    sprite=gunitem;
+    sprite = gunitem;
 }
 else
 {
-   sprite=spatula;
+    sprite = spatula;
 }
 
 x1=x+lengthdir_x(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
