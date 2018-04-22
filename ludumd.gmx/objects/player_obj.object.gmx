@@ -305,8 +305,8 @@ if (global.mouse_active) { display_mouse_set(display_get_width()/2, display_get_
             <kind>1</kind>
             <string>///Draw camera
 view_angle = 180-angle;
-//d3d_set_projection(x, y, z, xf, yf, zf, 0, 0, -1);
-draw_self();
+d3d_set_projection(x, y, z, xf, yf, zf, 0, 0, -1);
+//draw_self();
 
 </string>
           </argument>
