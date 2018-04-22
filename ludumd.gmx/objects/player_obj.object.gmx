@@ -255,7 +255,7 @@ y += ysonic;
             <string>///Set camera
 image_angle = angle;
 xf = x - sin(degtorad(angle));
-yf = y + cos(degtorad(angle));
+yf = y - cos(degtorad(angle));
 zf = z - sin(degtorad(zangle));
 
 </string>
