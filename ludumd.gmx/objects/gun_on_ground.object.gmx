@@ -8,6 +8,33 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///var init
+x1=x;
+y1=y;
+x2=x;
+y2=y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,9 +52,53 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///equip item
-if (x&gt;player.x-ITEMBOX &amp; x&lt;player.x+ITEMBOX &amp; y&gt;player.y-ITEMBOX &amp; y&lt;player.y+ITEMBOX){
-    
+            <string>///equip item and raycast
+angleto1=point_direction(player.x,player.y,x1,y1)-90;
+angleto2=point_direction(player.x,player.y,x2,y2)-90;
+anglemin=0;
+anglemax=0;
+target=point_direction(player.x,player.y,x,y)-90;
+
+while(angleto1&lt;0)
+{
+    angleto1+=360;
+}
+while(angleto1&gt;=360)
+{
+    angleto1-=360;
+}
+while(angleto2&lt;0)
+{
+    angleto2+=360;
+}
+while(angleto2&gt;=360)
+{
+    angleto2-=360;
+}
+while(target&lt;0)
+{
+    target+=360;
+}
+while(target&gt;=360)
+{
+    target-=360;
+}
+
+
+if (angleto1&lt;angleto2){anglemin=angleto1;anglemax=angleto2}
+else {anglemin=angleto2;anglemax=angleto1}
+
+
+if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
+    if ((player.angle&gt;anglemin) &amp;&amp; (player.angle&lt;anglemax) &amp;&amp; (point_distance(player.x,player.y,x,y)&lt;ITEMRANGE) &amp;&amp; RIGHTCLICK){
+        player.handitem =! player.handitem;
+    }
+}
+else
+{
+    if (((player.angle&lt;anglemin) || (player.angle&gt;anglemax)) &amp;&amp; (point_distance(player.x,player.y,x,y)&lt;ITEMRANGE) &amp;&amp; RIGHTCLICK){
+        player.handitem =! player.handitem;
+    }
 }
 </string>
           </argument>
@@ -52,6 +123,23 @@ if (x&gt;player.x-ITEMBOX &amp; x&lt;player.x+ITEMBOX &amp; y&gt;player.y-ITEMBO
           <argument>
             <kind>1</kind>
             <string>///draw
+z=0;
+
+if (player_obj.handitem=0)
+{
+    sprite=gunitem;
+}
+else
+{
+   sprite=spatula;
+}
+
+x1=x+lengthdir_x(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
+y1=y+lengthdir_y(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
+x2=x-lengthdir_x(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
+y2=y-lengthdir_y(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
+
+d3d_draw_wall(x1,y1,z,x2,y2,sprite_get_height(sprite)*SIZESCALE+z,sprite_get_texture(sprite,0),1,1);
 
 </string>
           </argument>
