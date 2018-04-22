@@ -18,11 +18,11 @@
     <sprite>sprites\burgersbox</sprite>
     <sprite>sprites\topbread</sprite>
     <sprite>sprites\lettuce</sprite>
-    <sprite>sprites\table</sprite>
     <sprite>sprites\zombie</sprite>
     <sprite>sprites\client</sprite>
   </sprites>
   <backgrounds name="background">
+    <background>background\table</background>
     <background>background\background0</background>
     <background>background\background2</background>
     <background>background\background1</background>

@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>///draw
-
+d3d_draw_floor(x-sprite_get_width(editor_table),y-sprite_get_height(editor_table),0,x+sprite_get_width(editor_table),y+sprite_get_height(editor_table),0,background_get_texture(table),1,1);
+d3d_draw_wall(x+sprite_get_width(editor_table),y-sprite_get_height(editor_table),0,x+sprite_get_width(editor_table),y+sprite_get_height(editor_table),background_get_height(background0)*SIZESCALE/2,background_get_texture(table),1,1);
 </string>
           </argument>
         </arguments>
