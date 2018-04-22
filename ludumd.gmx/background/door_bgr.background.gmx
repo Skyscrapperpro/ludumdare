@@ -15,5 +15,5 @@
   <For3D>-1</For3D>
   <width>64</width>
   <height>64</height>
-  <data>images\background0.png</data>
+  <data>images\door_bgr.png</data>
 </background>

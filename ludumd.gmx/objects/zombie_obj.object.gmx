@@ -26,6 +26,37 @@
           <argument>
             <kind>1</kind>
             <string>///spawn
+x = SPAWNX;
+y = SPAWNY;
+x += irandom(ZOMVARIATION) - (ZOMVARIATION/2);
+y += irandom(ZOMVARIATION) - (ZOMVARIATION/2);
+if (instance_exists(client_obj))
+    target_obj = global.clients[irandom(global.c_amount)];
+else target_obj = player_obj;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation vars
+i = 0;
+ilimit = sprite_get_number(zombie)
 
 </string>
           </argument>
@@ -50,6 +81,106 @@
           <argument>
             <kind>1</kind>
             <string>///movement
+var targetx, targety, angle;
+if (instance_exists(client_obj))
+{
+    targetx = target_obj.x;
+    targety = target_obj.y;
+}
+else
+{
+    targetx = player_obj.x;
+    targety = player_obj.y;
+}
+angle = point_direction(x, y, targetx, targety);
+
+var xsonic = lengthdir_x(ZOMBSPD, angle);
+var ysonic = lengthdir_y(ZOMBSPD, angle);
+
+//Collisions
+if (xsonic != 0)
+{
+    if !place_free(x+xsonic,y)
+    { //Estos dos ifs testean la posición x y la x,y por separado, para que si te chocas te deslices por la pared
+        if xsonic&gt;0 then move_contact_solid(0,xsonic)
+        if xsonic&lt;0 then move_contact_solid(180,-xsonic)
+        xsonic=0
+    }
+}
+if (ysonic != 0)
+{
+    if !place_free(x+xsonic,y+ysonic)
+    { //A veces este sistema hace que la colisión en diagonal no funcione y entres en el bloque, pero no es notable porque salir requiere la misma velocidad y nunca entras demasiados píxeles, esto aplicado al dash sí es notable
+        if ysonic&gt;0 then move_contact_solid(270,ysonic)
+        if ysonic&lt;0 then move_contact_solid(90,-ysonic)
+        ysonic=0
+    }
+}
+
+//X
+if (x &lt; targetx)
+{
+    if ((x + xsonic) &gt; targetx) x = targetx;
+    else x = xsonic;
+}
+else if (x &gt; targetx)
+{
+    if ((x + xsonic) &lt; targetx) x = targetx;
+    else x += xsonic;
+}
+//Y
+if (y &lt; targety)
+{
+    if ((y + ysonic) &gt; targety) y = targety;
+    else y += ysonic;
+}
+else if (y &gt; targety)
+{
+    if ((y + ysonic) &lt; targety) y = targety;
+    else y += ysonic;
+}
+
+if (keyboard_check(ord("Q")))
+    instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///draw sprite
+var sprite, tex, w, h;
+sprite = zombie;
+tex = sprite_get_texture(sprite, i);
+w = sprite_get_width(sprite);
+h = sprite_get_height(sprite);
+z = (h * SIZESCALE)/2;
+
+x1 = x + lengthdir_x(w,player.angle) * SIZESCALE/2;
+y1 = y + lengthdir_y(w,player.angle) * SIZESCALE/2;
+x2 = x - lengthdir_x(w,player.angle) * SIZESCALE/2;
+y2 = y - lengthdir_y(w,player.angle) * SIZESCALE/2;
+
+draw_set_alpha_test(true);
+draw_set_alpha_test_ref_value(128);
+d3d_draw_wall(x1, y1, z, x2, y2, -(h * SIZESCALE)/2, tex, 1, 1);
 
 </string>
           </argument>

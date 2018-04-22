@@ -3,7 +3,7 @@
   <spriteName>editor_gunitem</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -123,23 +123,21 @@ else
           <argument>
             <kind>1</kind>
             <string>///draw
-z = -32;
-
+var sprite, tex, w, h;
+sprite = gunitem
 if (player_obj.handitem = 0)
-{
-    sprite = gunitem;
-}
+    tex = sprite_get_texture(sprite, 0);
 else
-{
-    sprite = spatula;
-}
+    tex = sprite_get_texture(sprite, 1);
+w = sprite_get_width(sprite);
+h = sprite_get_height(sprite);
+z = (h*SIZESCALE)/2;
 
-x1=x+lengthdir_x(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
-y1=y+lengthdir_y(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
-x2=x-lengthdir_x(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
-y2=y-lengthdir_y(sprite_get_width(sprite),player.angle)*SIZESCALE/2;
-
-d3d_draw_wall(x1,y1,z,x2,y2,sprite_get_height(sprite)*SIZESCALE+z,sprite_get_texture(sprite,0),1,1);
+x1=x+lengthdir_x(w,player.angle)*SIZESCALE/2;
+y1=y+lengthdir_y(w,player.angle)*SIZESCALE/2;
+x2=x-lengthdir_x(w,player.angle)*SIZESCALE/2;
+y2=y-lengthdir_y(w,player.angle)*SIZESCALE/2;
+d3d_draw_wall(x1,y1,z,x2,y2,z - (h*SIZESCALE)/2,tex,1,1);
 
 </string>
           </argument>

@@ -32,16 +32,15 @@ line=0;
 
 for (i=0;i&lt;LINENUMBER;i++)
 {
-    if (client_manager_obj.lines[i]&lt;client_manager_obj.lines[line])
-    {
+    if (client_manager_obj.lines[i] &lt; client_manager_obj.lines[line])
         line=i;
-    }
 }
 client_manager_obj.lines[line]++;
 prevclient=client_manager_obj.clients[line];
 client_manager_obj.clients[line]=id;
 nextclient=-1;
 prevclient.nextclient=id;
+
 </string>
           </argument>
         </arguments>
@@ -64,12 +63,13 @@ prevclient.nextclient=id;
             <kind>1</kind>
             <string>///draw var
 sp3d=client;
+i = 0;
+ilimit = sprite_get_number(client);
+
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="1" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -86,14 +86,21 @@ sp3d=client;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///EAT WELL OR DIE HARD
-nextclient.prevclient=-1;
-prevclient.nextclient=-1;
-client_manager_obj.lines[line]--;
-if (client_manager_obj.clients[line]==id)
+            <string>///Movement var
+rand = random(CLIENTSEPRND);
+if (prevclient == -1)
 {
-    client_manager_obj.clients[line]=-1;
+    targetx = 200 - rand;
+    targety = FIRSTLINEY + (line * LINESEPARATION) - (CLIENTSEPRND/2) + rand;
+    angle = point_direction(x, y, targetx, targety);
 }
+else
+{
+    targetx = prevclient.x - CLIENTSEP - rand;
+    targety = FIRSTLINEY + (line * LINESEPARATION) - (CLIENTSEPRND/2) + rand;
+    angle = point_direction(x, y, targetx, targety);
+}
+
 </string>
           </argument>
         </arguments>
@@ -116,21 +123,100 @@ if (client_manager_obj.clients[line]==id)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///movement
-if (prevclient=-1)
+            <string>///Movement
+//X
+if (x &lt; targetx)
 {
-    angle=point_direction(x,y,200-irandom(CLIENTSEPRND),(FIRSTLINEY+(line*LINESEPARATION)+irandom(CLIENTSEPRND)-CLIENTSEPRND));
-    velx=lengthdir_x(CLIENTSPEED,angle);
-    vely=lengthdir_y(CLIENTSPEED,angle);
+    if ((x + lengthdir_x(CLIENTSPEED, angle)) &gt; targetx) x = targetx;
+    else x += lengthdir_x(CLIENTSPEED, angle);
 }
-else
+else if (x &gt; targetx)
 {
-    angle=point_direction(x,y,prevclient.x-irandom(CLIENTSEPRND),(FIRSTLINEY+(line*LINESEPARATION)+irandom(CLIENTSEPRND)-CLIENTSEPRND));
-    velx=lengthdir_x(CLIENTSPEED,angle);
-    vely=lengthdir_y(CLIENTSPEED,angle);
+    if ((x + lengthdir_x(CLIENTSPEED, angle)) &lt; targetx) x = targetx;
+    else x += lengthdir_x(CLIENTSPEED, angle);
 }
-x+=velx;
-y+=vely;
+//Y
+if (y &lt; targety)
+{
+    if ((y + lengthdir_y(CLIENTSPEED, angle)) &gt; targety) y = targety;
+    else y += lengthdir_y(CLIENTSPEED, angle);
+}
+else if (y &gt; targety)
+{
+    if ((y + lengthdir_y(CLIENTSPEED, angle)) &lt; targety) y = targety;
+    else y += lengthdir_y(CLIENTSPEED, angle);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation
+if ((x != targetx) &amp;&amp; (y != targety))
+{
+    if ((i + 1) &gt; ilimit) then i = 1;
+    else i++;
+}
+else i = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check zombie
+if (instance_exists(zombie_obj))
+{
+    var near = instance_nearest(x, y, zombie_obj)
+    if (point_direction(x, y, near.x, near.y) &lt; CLIENTCOLLISION)
+    {
+        prevclient.nextclient=-1;
+        client_manager_obj.lines[line]--;
+        if (client_manager_obj.clients[line]==id)
+        {
+            client_manager_obj.clients[line]=-1;
+        }
+        global.c_amount--;
+        
+        if (instance_exists(client_obj))
+            near.target_obj = global.clients[irandom(global.c_amount)];
+        else near.target_obj = player_obj;
+        
+        instance_destroy();
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -154,9 +240,22 @@ y+=vely;
           <argument>
             <kind>1</kind>
             <string>///draw sprite
+var sprite, tex, w, h;
+sprite = client;
+tex = sprite_get_texture(sprite, i);
+w = sprite_get_width(sprite);
+h = sprite_get_height(sprite);
+z = (h * SIZESCALE)/2;
+
+x1 = x + lengthdir_x(w,player.angle) * SIZESCALE/2;
+y1 = y + lengthdir_y(w,player.angle) * SIZESCALE/2;
+x2 = x - lengthdir_x(w,player.angle) * SIZESCALE/2;
+y2 = y - lengthdir_y(w,player.angle) * SIZESCALE/2;
+
 draw_set_alpha_test(true);
 draw_set_alpha_test_ref_value(128);
-d3d_draw_wall(x,y-(sprite_get_width(sp3d)/2)*SIZESCALE,-(sprite_get_height(sp3d)/2)*SIZESCALE,x,y+(sprite_get_width(sp3d)/2)*SIZESCALE,(sprite_get_height(sp3d)/2)*SIZESCALE,sprite_get_texture(client,0),1,1)
+d3d_draw_wall(x1, y1, z, x2, y2, -(h * SIZESCALE)/2, tex, 1, 1);
+
 </string>
           </argument>
         </arguments>

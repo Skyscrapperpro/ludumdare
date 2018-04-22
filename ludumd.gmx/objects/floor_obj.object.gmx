@@ -26,8 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///Draw
-d3d_draw_floor(64,32,background_get_height(background0)*SIZESCALE/2,320,160,background_get_height(background0)*SIZESCALE/2,background_get_texture(background1),8,4);
-//d3d_draw_floor(64,32,-background_get_height(background0)*SIZESCALE/2,320,160,-background_get_height(background0)*SIZESCALE/2,background_get_texture(background2),8,4);
+var bgr0 = wall_bgr;
+var bgr1 = floor_bgr;
+var bgr2 = ceiling_bgr;
+d3d_draw_floor(64,32,-background_get_height(bgr0)*SIZESCALE/2,320,160,-background_get_height(bgr0)*SIZESCALE/2,background_get_texture(bgr1),8,4);
+d3d_draw_floor(64,32,background_get_height(bgr0)*SIZESCALE/2,320,160,background_get_height(bgr0)*SIZESCALE/2,background_get_texture(bgr2),8,4);
 
 </string>
           </argument>

@@ -51,8 +51,9 @@ open_amount = 0;
           <argument>
             <kind>1</kind>
             <string>///Draw plane
-d3d_draw_wall(x, y - ((background_get_width(background4) * SIZESCALE) + open_amount), -background_get_height(background4)*SIZESCALE/2, x, y, background_get_height(background4)*SIZESCALE/2, background_get_texture(background4), 1, 1);
-d3d_draw_wall(x, y, -background_get_height(background4)*SIZESCALE/2, x, y + ((background_get_width(background4) * SIZESCALE) + open_amount), background_get_height(background4)*SIZESCALE/2, background_get_texture(background4), 1, 1);
+var bgr = door_bgr;
+d3d_draw_wall(x, y - ((background_get_width(bgr) * SIZESCALE) + open_amount), -background_get_height(bgr)*SIZESCALE/2, x, y, background_get_height(bgr)*SIZESCALE/2, background_get_texture(bgr), 1, 1);
+d3d_draw_wall(x, y, -background_get_height(bgr)*SIZESCALE/2, x, y + ((background_get_width(bgr) * SIZESCALE) + open_amount), background_get_height(bgr)*SIZESCALE/2, background_get_texture(bgr), 1, 1);
 
 </string>
           </argument>

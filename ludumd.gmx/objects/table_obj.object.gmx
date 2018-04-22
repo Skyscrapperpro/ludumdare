@@ -26,8 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>///draw
-d3d_draw_floor(x-sprite_get_width(editor_table),y-sprite_get_height(editor_table),0,x+sprite_get_width(editor_table),y+sprite_get_height(editor_table),0,background_get_texture(table),1,1);
-d3d_draw_wall(x+sprite_get_width(editor_table),y-sprite_get_height(editor_table),0,x+sprite_get_width(editor_table),y+sprite_get_height(editor_table),background_get_height(background0)*SIZESCALE/2,background_get_texture(table),1,1);
+d3d_draw_floor(x-background_get_width(tabletop_bgr),y-background_get_height(tabletop_bgr),0,x+background_get_width(tabletop_bgr),y+background_get_height(tabletop_bgr),0,background_get_texture(tabletop_bgr),1,1);
+d3d_draw_wall(x+background_get_width(tabletop_bgr),y-background_get_height(tabletop_bgr),0,x+background_get_width(tabletop_bgr),y+background_get_height(tabletop_bgr),-background_get_height(table_bgr)*SIZESCALE/2,background_get_texture(table_bgr),1,1);
+
 </string>
           </argument>
         </arguments>

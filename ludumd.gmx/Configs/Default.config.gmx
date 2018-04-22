@@ -634,14 +634,16 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="21">
+    <constants number="32">
       <constant name="PIXELEFFECT">4</constant>
       <constant name="CHARACC">1</constant>
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S"))</constant>
       <constant name="FORWARD">keyboard_check(ord("W"))</constant>
-      <constant name="RIGHTCLICK">mouse_check_button_pressed(mb_middle)</constant>
+      <constant name="LEFTCLICK">mouse_check_button_pressed(mb_left)</constant>
+      <constant name="RIGHTCLICK">mouse_check_button_pressed(mb_right)</constant>
+      <constant name="MIDDLECLICK">mouse_check_button_pressed(mb_middle)</constant>
       <constant name="CHARSPD">3</constant>
       <constant name="MOUSESENS">0.06</constant>
       <constant name="GETYCAMSPD">mouse_y_speed()</constant>
@@ -652,10 +654,19 @@
       <constant name="FIRSTLINEY">70</constant>
       <constant name="LINESEPARATION">30</constant>
       <constant name="CLIENTSPEED">1</constant>
-      <constant name="CLIENTSEP">40</constant>
-      <constant name="CLIENTSEPRND">10</constant>
+      <constant name="CLIENTSEP">10</constant>
+      <constant name="CLIENTSEPRND">5</constant>
       <constant name="SIZESCALE">0.5</constant>
-      <constant name="ITEMRANGE">32</constant>
+      <constant name="ITEMRANGE">64</constant>
+      <constant name="CLIENTMARGIN">240</constant>
+      <constant name="CLIENTMARND">20</constant>
+      <constant name="ZOMBIEMARG0">2</constant>
+      <constant name="ZOMBIEMARG1">6</constant>
+      <constant name="ZOMVARIATION">50</constant>
+      <constant name="CLIENTCOLLISION">10</constant>
+      <constant name="ZOMBSPD">1</constant>
+      <constant name="ZQUANT0">4</constant>
+      <constant name="ZQUANT1">10</constant>
     </constants>
   </ConfigConstants>
 </Config>
