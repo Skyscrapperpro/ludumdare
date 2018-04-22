@@ -29,10 +29,10 @@
 switch(image_angle)
 {
     case 90:
-        d3d_draw_wall(x-(background_get_width(background0/2)), y, -background_get_height(background0), x+(background_get_height(background0/2)), y, background_get_height(background0), background_get_texture(background0), 1, 1);
+        d3d_draw_wall(x-(background_get_width(background0)*SIZESCALE/2), y, -background_get_height(background0)*SIZESCALE/2, x+(background_get_height(background0)/2)*SIZESCALE, y, background_get_height(background0)*SIZESCALE/2, background_get_texture(background0), 1, 1);
         break;
     default:
-        d3d_draw_wall( x, y-(-background_get_height(background0))/2, -background_get_height(background0), x, y+(-background_get_height(background0)/2), background_get_height(background0), background_get_texture(background0), 1, 1);
+        d3d_draw_wall( x, y-(-background_get_height(background0))*SIZESCALE/2, -background_get_height(background0)*SIZESCALE/2, x, y+(-background_get_height(background0)/2), background_get_height(background0)*SIZESCALE/2, background_get_texture(background0), 1, 1);
         break;
 }
 
