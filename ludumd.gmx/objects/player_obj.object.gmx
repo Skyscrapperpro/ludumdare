@@ -132,9 +132,9 @@ if ((angle + mspeed) &gt; 360) { angle = angle + mspeed - 360; }
 else angle += mspeed;
 
 mvspeed = GETYCAMSPD;
-//if ((zangle + mvspeed) &lt; -90) { zangle = -90; }
-//else if ((zangle + mvspeed) &gt; 90) { zangle = 90; }
-//else zangle += mvspeed;
+if ((zangle + mvspeed) &lt; -90) { zangle = -90; }
+else if ((zangle + mvspeed) &gt; 90) { zangle = 90; }
+else zangle += mvspeed;
 
 
 </string>
