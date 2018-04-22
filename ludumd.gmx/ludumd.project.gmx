@@ -8,7 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\editor_wall</sprite>
     <sprite>sprites\player</sprite>
-    <sprite>sprites\meat</sprite>
+    <sprite>sprites\editor_table</sprite>
     <sprite>sprites\grill</sprite>
     <sprite>sprites\gunitem</sprite>
     <sprite>sprites\floortiles</sprite>
