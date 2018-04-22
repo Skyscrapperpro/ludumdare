@@ -652,7 +652,7 @@
       <constant name="CLIENTSPEED">1</constant>
       <constant name="CLIENTSEP">40</constant>
       <constant name="CLIENTSEPRND">10</constant>
-      <constant name="PEOPLESIZE">32</constant>
+      <constant name="SIZESCALE">0.5</constant>
     </constants>
   </ConfigConstants>
 </Config>
