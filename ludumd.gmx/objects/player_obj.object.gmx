@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Animations control
 guni = 0;
-
+handitem=1;
 </string>
           </argument>
         </arguments>
@@ -337,6 +337,35 @@ if (global.mouse_active) { display_mouse_set(display_get_width()/2, display_get_
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///set angle to 0,360
+while (angle&lt;0)
+{
+    angle+=360;
+}
+while (angle&gt;=360)
+{
+    angle-=360;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -355,8 +384,7 @@ if (global.mouse_active) { display_mouse_set(display_get_width()/2, display_get_
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw item
-handitem=0; //edit from jimmy; 0=spatula, 1=gun
+            <string>///Draw sprite
 
 var unif = shader_get_uniform(pix, "pixel");
 shader_set(pix);
@@ -366,13 +394,12 @@ shader_reset();
 
 if (handitem=1)
 {
-    draw_sprite_ext(gunshot, guni, view_wport/2, view_hport, PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
+draw_sprite_ext(gunshot, guni, view_wport/2, view_hport, PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
 }
 if (handitem=0)
 {
-    draw_sprite_ext(spatula, 0, view_wport*0.8, view_hport, PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
+draw_sprite_ext(spatula, 0, view_wport*0.8, view_hport, PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
 }
-
 </string>
           </argument>
         </arguments>
