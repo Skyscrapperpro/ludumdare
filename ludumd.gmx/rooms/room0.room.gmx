@@ -13,7 +13,9 @@
   <code>d3d_start();
 d3d_set_perspective(true);
 draw_set_color(c_white);
-with all y = view_hview-y;</code>
+with all y = view_hview-y;
+audio_stop_all();
+audio_play_sound(cooking_music, 1, true);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -91,7 +93,6 @@ with all y = view_hview-y;</code>
     <instance objName="grill_obj" x="304" y="67" name="inst_20E6602B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="floor_obj" x="64" y="32" name="inst_9C561B37" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="door_obj" x="69" y="96" name="inst_9B527125" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="gun_on_ground" x="215" y="111" name="inst_A4DABE26" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="burguerbox_obj" x="304" y="44" name="inst_13397244" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>

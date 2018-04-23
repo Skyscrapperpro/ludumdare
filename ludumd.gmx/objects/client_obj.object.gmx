@@ -210,7 +210,7 @@ if (instance_exists(zombie_obj))
         }
         //
         //Delete from array
-        var i = global.c_amount;
+        var i = instance_number(client_obj) - 1;
         var prev = global.clients[i];
         var prev0 = global.clients[i];
         while(global.clients[i] != id)
@@ -221,12 +221,6 @@ if (instance_exists(zombie_obj))
             i--;
         }
         global.clients[i] = prev;
-        global.c_amount--;
-        //
-        //Assign new target
-        /*if (instance_exists(client_obj))
-            near.target_obj = global.clients[irandom(global.c_amount)];
-        else near.target_obj = player_obj;*/
         //
         instance_destroy();
     }

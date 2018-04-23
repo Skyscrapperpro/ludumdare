@@ -4,7 +4,10 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\zombies_music</sound>
+    <sound>sound\cooking_music</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Editor">
       <sprite>sprites\editor_player</sprite>
@@ -28,6 +31,7 @@
     <sprite>sprites\burgersbox</sprite>
     <sprite>sprites\topbread</sprite>
     <sprite>sprites\lettuce</sprite>
+    <sprite>sprites\focus</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\table_bgr</background>
