@@ -49,8 +49,8 @@ depth = point_distance(x, y, player_obj.x, player_obj.y)
           <argument>
             <kind>1</kind>
             <string>///unequip burger and raycast (configure w, h and d)
-w=sprite_get_width(grill)/2;
-h=sprite_get_height(grill)/2;
+w=background_get_width(grilltop_bgr)/2;
+h=background_get_height(grilltop_bgr)/2;
 d=1;
 
 x1=x+lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
@@ -60,7 +60,7 @@ x2=x-lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
 y2=y-lengthdir_y(w,player_obj.angle)*SIZESCALE/2;
 z2=d;
 
-if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=1) &amp;&amp; RIGHTCLICK)
+if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=1) &amp;&amp; LEFTCLICK)
 {
     angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
     angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
