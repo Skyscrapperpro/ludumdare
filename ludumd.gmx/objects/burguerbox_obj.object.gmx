@@ -37,7 +37,7 @@ x2=x-lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
 y2=y-lengthdir_y(w,player_obj.angle)*SIZESCALE/2;
 z2=d;
 
-if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=0) &amp;&amp; LEFTCLICK)
+if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=0))
 {
     angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
     angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
@@ -47,18 +47,18 @@ if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=0) &amp;&amp; L
     anglemax=0;
     target=point_direction(player_obj.x,player_obj.y,x,y)-90;
     
-    while(angleto1&lt;0)
+    while(angleto1&lt;-180)
         angleto1+=360;
-    while(angleto1&gt;=360)
+    while(angleto1&gt;=180)
         angleto1-=360;
-    while(angleto2&lt;0)
+    while(angleto2&lt;-180)
         angleto2+=360;
-    while(angleto2&gt;=360)
+    while(angleto2&gt;=180)
         angleto2-=360;
         
-    while(target&lt;0)
+    while(target&lt;-180)
         target+=360;
-    while(target&gt;=360)
+    while(target&gt;=180)
         target-=360;
     
     while(zangleto1&lt;-180)
@@ -75,13 +75,13 @@ if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=0) &amp;&amp; L
     
     
     if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
-        if ((player_obj.angle&gt;anglemin) &amp;&amp; (player_obj.angle&lt;anglemax) &amp;&amp; (player_obj.zangle&gt;zangleto1) &amp;&amp; (player_obj.zangle&lt;zangleto2) &amp;&amp; (point_distance(player_obj.x,player_obj.y,x,y)&lt;ITEMRANGE)){
+        if ((player_obj.angle&gt;anglemin) &amp;&amp; (player_obj.angle&lt;anglemax) &amp;&amp; (player_obj.zangle&lt;zangleto1) &amp;&amp; (player_obj.zangle&gt;zangleto2) &amp;&amp; (point_distance(player_obj.x,player_obj.y,x,y)&lt;ITEMRANGE)){
             player_obj.spatulaburger=1;
         }
     }
     else
     {
-        if (((player_obj.angle&lt;anglemin) || (player_obj.angle&gt;anglemax)) &amp;&amp; (player_obj.zangle&gt;zangleto1) &amp;&amp; (player_obj.zangle&lt;zangleto2) &amp;&amp; (point_distance(player_obj.x,player_obj.y,x,y)&lt;ITEMRANGE)){
+        if (((player_obj.angle&lt;anglemin) || (player_obj.angle&gt;anglemax)) &amp;&amp; (player_obj.zangle&lt;zangleto1) &amp;&amp; (player_obj.zangle&gt;zangleto2) &amp;&amp; (point_distance(player_obj.x,player_obj.y,x,y)&lt;ITEMRANGE)){
             player_obj.spatulaburger=1;
         }
     }
@@ -134,11 +134,18 @@ depth = point_distance(x, y, player_obj.x, player_obj.y)
             <string>///draw
 if (ISPERSPECTIVE)
 {
+
     d3d_draw_floor(x - sprite_get_width(burgersbox) * SIZESCALE/4, y - sprite_get_height(burgersbox) * SIZESCALE/4, 0, x + sprite_get_width(burgersbox) * SIZESCALE/4, y + sprite_get_height(burgersbox) * SIZESCALE/4, 0, sprite_get_texture(burgersbox,0), 1, 1);
     d3d_draw_wall(x - sprite_get_width(burgersbox) * SIZESCALE/4, y - sprite_get_height(burgersbox) * SIZESCALE/4, 0, x - sprite_get_width(burgersbox) * SIZESCALE/4, y + sprite_get_height(burgersbox) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1);
     d3d_draw_wall(x - sprite_get_width(burgersbox) * SIZESCALE/4, y - sprite_get_height(burgersbox) * SIZESCALE/4, 0, x + sprite_get_width(burgersbox) * SIZESCALE/4, y - sprite_get_height(burgersbox) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1);
-    
+
     //burguer chunk
+    x1 = sprite_get_width(burgerchunk)*BURGERSCALE+x + lengthdir_x(sprite_get_width(burgerchunk), player_obj.angle) * BURGERSCALE/2;
+    y1 = sprite_get_width(burgerchunk)*BURGERSCALE+y + lengthdir_y(sprite_get_width(burgerchunk), player_obj.angle) * BURGERSCALE/2;
+    x2 = sprite_get_width(burgerchunk)*BURGERSCALE+x - lengthdir_x(sprite_get_width(burgerchunk), player_obj.angle) * BURGERSCALE/2;
+    y2 = sprite_get_width(burgerchunk)*BURGERSCALE+y - lengthdir_y(sprite_get_width(burgerchunk), player_obj.angle) * BURGERSCALE/2;
+    d3d_draw_wall(x1, y1, -(sprite_get_height(burgerchunk) * BURGERSCALE), x2, y2,0, sprite_get_texture(burgerchunk,0), 1, 1);
+    
     w = sprite_get_width(burger);
     h = sprite_get_height(burger);
     
