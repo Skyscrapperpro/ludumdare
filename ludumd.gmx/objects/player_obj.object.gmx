@@ -78,6 +78,7 @@ zangle = 0;
 angle = 0;
 z = -10;
 global.mouse_active = true;
+auto_rotation = false;
 
 </string>
           </argument>
@@ -180,17 +181,33 @@ if (MIDDLECLICK)
           <argument>
             <kind>1</kind>
             <string>///Get rotation
-mspeed = GETXCAMSPD;
-if ((angle + mspeed) &gt; 360) { angle = angle + mspeed - 360; }
-else angle += mspeed;
-
-mvspeed = GETYCAMSPD;
-if (!handitem)
+if (!auto_rotation)
 {
-    if ((zangle + mvspeed) &lt; -90) { zangle = -90; }
-    else if ((zangle + mvspeed) &gt; 90) { zangle = 90; }
-    else zangle += mvspeed;
-} else zangle = 0;
+    var mspeed = GETXCAMSPD;
+    if ((angle + mspeed) &gt; 360) { angle = angle + mspeed - 360; }
+    else angle += mspeed;
+    
+    var mvspeed = GETYCAMSPD;
+    if (!handitem)
+    {
+        if ((zangle + mvspeed) &lt; -90) { zangle = -90; }
+        else if ((zangle + mvspeed) &gt; 90) { zangle = 90; }
+        else zangle += mvspeed;
+    } else zangle = 0;
+}
+else
+{
+    if (angle &lt; targety)
+    {
+        if ((angle + ysonic) &gt; targety) angle = targety;
+        else angle += ysonic;
+    }
+    else if (angle &gt; targety)
+    {
+        if ((angle + ysonic) &lt; targety) angle = targety;
+        else angle += ysonic;
+    }
+}
 
 </string>
           </argument>
