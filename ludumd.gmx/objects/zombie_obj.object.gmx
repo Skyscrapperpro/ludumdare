@@ -129,7 +129,7 @@ else subi++;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///equip item and raycast
+            <string>///kill zombie with raycast
 var angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
 var angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
 var anglemin=0;
@@ -158,7 +158,7 @@ if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
     if (player_obj.angle&gt;anglemin)
     if (player_obj.angle&lt;anglemax)
     if (player_obj.guni == sprite_get_number(gunshot) - 1)
-    if player_obj.handitem
+    if (player_obj.handitem == 1)
     if (instance_nearest(player_obj.x, player_obj.y, zombie_obj) = id)
         instance_destroy();
 }
@@ -167,7 +167,7 @@ else
     if ((player_obj.angle&lt;anglemin) || (player_obj.angle&gt;anglemax))
     if (point_distance(player_obj.x, player_obj.y, x, y) &lt; ITEMRANGE)
     if (player_obj.guni == sprite_get_number(gunshot) - 1)
-    if player_obj.handitem
+    if (player_obj.handitem == 1)
     if (instance_nearest(player_obj.x, player_obj.y, zombie_obj) = id)
         instance_destroy();
 }

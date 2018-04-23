@@ -128,13 +128,16 @@ zf = z - sin(degtorad(zangle));
           <argument>
             <kind>1</kind>
             <string>///Animations
-if (guni &gt; 0)
+if (handitem == 1)
 {
-    if ((guni + 1) &gt; (sprite_get_number(gunshot)-1))
-        guni = 0;
-    else guni++;
+    if (guni &gt; 0)
+    {
+        if ((guni + 1) &gt; (sprite_get_number(gunshot)-1))
+            guni = 0;
+        else guni++;
+    }
+    else if (LEFTCLICK) guni++;
 }
-else if (LEFTCLICK) guni++;
 
 </string>
           </argument>
@@ -184,7 +187,8 @@ if (MIDDLECLICK)
 if (!auto_rotation)
 {
     var mspeed = GETXCAMSPD;
-    if ((angle + mspeed) &gt; 360) { angle = angle + mspeed - 360; }
+    if ((angle + mspeed) &lt; -180) { angle += mspeed + 360; }
+    else if ((angle + mspeed) &gt; 180) { angle += mspeed - 360; }
     else angle += mspeed;
     
     var mvspeed = GETYCAMSPD;
@@ -197,15 +201,36 @@ if (!auto_rotation)
 }
 else
 {
-    if (angle &lt; targety)
+    var hrottarget = 90;
+    var vrottarget = 0;
+    
+    if (angle == hrottarget) //and
+    if (zangle == vrottarget)
     {
-        if ((angle + ysonic) &gt; targety) angle = targety;
-        else angle += ysonic;
+        auto_rotation = false;
+        handitem = 1;
     }
-    else if (angle &gt; targety)
+    
+    if (angle &lt; hrottarget)
     {
-        if ((angle + ysonic) &lt; targety) angle = targety;
-        else angle += ysonic;
+        if ((angle + AUTOCAMSPD) &gt; hrottarget) angle = hrottarget;
+        else angle += AUTOCAMSPD;
+    }
+    else if (angle &gt; hrottarget)
+    {
+        if ((angle - AUTOCAMSPD) &lt; hrottarget) angle = hrottarget;
+        else angle -= AUTOCAMSPD;
+    }
+    
+    if (zangle &lt; vrottarget)
+    {
+        if ((zangle + AUTOCAMSPD) &gt; vrottarget) zangle = vrottarget;
+        else zangle += AUTOCAMSPD;
+    }
+    else if (zangle &gt; vrottarget)
+    {
+        if ((zangle - AUTOCAMSPD) &lt; vrottarget) zangle = vrottarget;
+        else zangle -= AUTOCAMSPD;
     }
 }
 
@@ -411,6 +436,31 @@ else depth = -1
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check if zombies are present
+if (handitem == 1)
+if !instance_exists(zombie_obj)
+    handitem = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -438,13 +488,10 @@ draw_surface(application_surface, -2, -2);
 shader_reset();
 
 if (handitem=1)
-{
-draw_sprite_ext(gunshot, guni, view_wport/2, view_hport, PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
-}
-if (handitem=0)
-{
-draw_sprite_ext(spatula, 0, view_wport*0.8, view_hport - (PIXELEFFECT * 5), PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
-}
+    draw_sprite_ext(gunshot, guni, view_wport/2, view_hport, PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
+else if (handitem=0)
+    draw_sprite_ext(spatula, 0, view_wport*0.8, view_hport - (PIXELEFFECT * 5), PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
+
 </string>
           </argument>
         </arguments>

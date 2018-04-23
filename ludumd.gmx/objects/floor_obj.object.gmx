@@ -30,8 +30,15 @@ var bgr0 = wall_bgr;
 var bgr1 = floor_bgr;
 var bgr2 = ceiling_bgr;
 
-d3d_draw_floor(64, 32, background_get_height(bgr0)*SIZESCALE/2, 320, 160, background_get_height(bgr0)*SIZESCALE/2, background_get_texture(bgr1), 8, 4);   
-if (ISPERSPECTIVE) d3d_draw_floor(64, 32, -background_get_height(bgr0)*SIZESCALE, 320, 160, -background_get_height(bgr0)*SIZESCALE/2, background_get_texture(bgr2), 8, 4);
+var x0 = 56;
+var y0 = 32;
+var z0 = background_get_height(bgr0)*SIZESCALE/2;
+var x1 = 328;
+var y1 = 176;
+var z1 = -background_get_height(bgr0)*SIZESCALE;
+
+d3d_draw_floor(x0, y0, z0, x1, y1, z0, background_get_texture(bgr1), 8, 4);   
+if (ISPERSPECTIVE) d3d_draw_floor(x0, y0, z1, x1, y1, z1, background_get_texture(bgr2), 8, 4);
 
 </string>
           </argument>

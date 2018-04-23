@@ -29,7 +29,7 @@
 if (ISPERSPECTIVE)
 {
     d3d_draw_floor(x-sprite_get_width(editor_table)/2,y-background_get_height(tabletop_bgr),0,x + sprite_get_width(editor_table)/2,y+background_get_height(tabletop_bgr),0,background_get_texture(tabletop_bgr),1,1);
-    d3d_draw_wall(x-sprite_get_width(editor_table)/2,y-background_get_height(tabletop_bgr),0,x-sprite_get_width(editor_table)/2,y+background_get_height(tabletop_bgr),background_get_height(table_bgr)*SIZESCALE/2,background_get_texture(table_bgr),1,1);
+    d3d_draw_wall(x+sprite_get_width(editor_table)/2,y-background_get_height(tabletop_bgr),0,x+sprite_get_width(editor_table)/2,y+background_get_height(tabletop_bgr),background_get_height(table_bgr)*SIZESCALE/2,background_get_texture(table_bgr),1,1);
 }
 else draw_self();
 
