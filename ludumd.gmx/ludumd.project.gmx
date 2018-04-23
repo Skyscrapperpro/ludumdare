@@ -34,6 +34,7 @@
     <sprite>sprites\customer</sprite>
     <sprite>sprites\customer_ded</sprite>
     <sprite>sprites\customer_crying</sprite>
+    <sprite>sprites\burgerchunk</sprite>
     <sprite>sprites\grill</sprite>
     <sprite>sprites\gunitem</sprite>
     <sprite>sprites\burger</sprite>
