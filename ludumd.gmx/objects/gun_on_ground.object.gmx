@@ -3,7 +3,7 @@
   <spriteName>editor_gunitem</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>-2</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -53,11 +53,11 @@ y2=y;
           <argument>
             <kind>1</kind>
             <string>///equip item and raycast
-angleto1=point_direction(player.x,player.y,x1,y1)-90;
-angleto2=point_direction(player.x,player.y,x2,y2)-90;
+angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
+angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
 anglemin=0;
 anglemax=0;
-target=point_direction(player.x,player.y,x,y)-90;
+target=point_direction(player_obj.x,player_obj.y,x,y)-90;
 
 while(angleto1&lt;0)
 {
@@ -90,14 +90,14 @@ else {anglemin=angleto2;anglemax=angleto1}
 
 
 if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
-    if ((player.angle&gt;anglemin) &amp;&amp; (player.angle&lt;anglemax) &amp;&amp; (point_distance(player.x,player.y,x,y)&lt;ITEMRANGE) &amp;&amp; RIGHTCLICK){
-        player.handitem =! player.handitem;
+    if ((player_obj.angle&gt;anglemin) &amp;&amp; (player_obj.angle&lt;anglemax) &amp;&amp; (point_distance(player_obj.x,player_obj.y,x,y)&lt;ITEMRANGE) &amp;&amp; RIGHTCLICK){
+        player_obj.handitem =! player_obj.handitem;
     }
 }
 else
 {
-    if (((player.angle&lt;anglemin) || (player.angle&gt;anglemax)) &amp;&amp; (point_distance(player.x,player.y,x,y)&lt;ITEMRANGE) &amp;&amp; RIGHTCLICK){
-        player.handitem =! player.handitem;
+    if (((player_obj.angle&lt;anglemin) || (player_obj.angle&gt;anglemax)) &amp;&amp; (point_distance(player_obj.x,player_obj.y,x,y)&lt;ITEMRANGE) &amp;&amp; RIGHTCLICK){
+        player_obj.handitem =! player_obj.handitem;
     }
 }
 </string>
@@ -123,21 +123,25 @@ else
           <argument>
             <kind>1</kind>
             <string>///draw
-var sprite, tex, w, h;
-sprite = gunitem
-if (player_obj.handitem = 0)
-    tex = sprite_get_texture(sprite, 0);
-else
-    tex = sprite_get_texture(sprite, 1);
-w = sprite_get_width(sprite);
-h = sprite_get_height(sprite);
-z = (h*SIZESCALE)/2;
-
-x1=x+lengthdir_x(w,player.angle)*SIZESCALE/2;
-y1=y+lengthdir_y(w,player.angle)*SIZESCALE/2;
-x2=x-lengthdir_x(w,player.angle)*SIZESCALE/2;
-y2=y-lengthdir_y(w,player.angle)*SIZESCALE/2;
-d3d_draw_wall(x1,y1,z,x2,y2,z - (h*SIZESCALE)/2,tex,1,1);
+if (ISPERSPECTIVE)
+{
+    var sprite, tex, w, h;
+    sprite = gunitem
+    if (player_obj.handitem = 0)
+        tex = sprite_get_texture(sprite, 0);
+    else
+        tex = sprite_get_texture(sprite, 1);
+    w = sprite_get_width(sprite);
+    h = sprite_get_height(sprite);
+    z = -(h*SIZESCALE)/2;
+    
+    x1=x+lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
+    y1=y+lengthdir_y(w,player_obj.angle)*SIZESCALE/2;
+    x2=x-lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
+    y2=y-lengthdir_y(w,player_obj.angle)*SIZESCALE/2;
+    d3d_draw_wall(x1, y1, z, x2, y2, 0, tex, 1, 1);
+}
+else draw_self();
 
 </string>
           </argument>

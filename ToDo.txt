@@ -1,5 +1,3 @@
-- Client animation
-- Zombies
 - Raycast zombies
 - Movement zombies
 - Zombie animation

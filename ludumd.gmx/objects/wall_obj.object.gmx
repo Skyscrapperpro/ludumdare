@@ -26,16 +26,20 @@
           <argument>
             <kind>1</kind>
             <string>///Draw plane
-var bgr = wall_bgr;
-switch(image_angle)
+if (ISPERSPECTIVE)
 {
-    case 90:
-        d3d_draw_wall(x-(background_get_width(bgr)*SIZESCALE/2), y, background_get_height(bgr)*SIZESCALE/2, x+(background_get_height(bgr)/2)*SIZESCALE, y, -background_get_height(bgr)*SIZESCALE/2, background_get_texture(bgr), 1, 1);
-        break;
-    default:
-        d3d_draw_wall( x, y-(-background_get_height(bgr))*SIZESCALE/2, background_get_height(bgr)*SIZESCALE/2, x, y+(-background_get_height(bgr)/2), -background_get_height(bgr)*SIZESCALE/2, background_get_texture(bgr), 1, 1);
-        break;
+    var bgr = wall_bgr;
+    switch(image_angle)
+    {
+        case 90:
+            d3d_draw_wall(x-(background_get_width(bgr)*SIZESCALE/2), y, -background_get_height(bgr)*SIZESCALE, x+(background_get_height(bgr)/2)*SIZESCALE, y, background_get_height(bgr)*SIZESCALE, background_get_texture(bgr), 1, 1);
+            break;
+        default:
+            d3d_draw_wall( x, y-(-background_get_height(bgr))*SIZESCALE/2, -background_get_height(bgr)*SIZESCALE, x, y+(-background_get_height(bgr)/2), background_get_height(bgr)*SIZESCALE, background_get_texture(bgr), 1, 1);
+            break;
+    }
 }
+else draw_self();
 
 </string>
           </argument>
