@@ -123,6 +123,29 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Set depth
+depth = point_distance(x, y, player_obj.x, player_obj.y)
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Movement
 //X
 if (x &lt; targetx)
@@ -202,7 +225,8 @@ if (instance_exists(zombie_obj))
     if (point_distance(x, y, near.x, near.y) &lt; CLIENTCOLLISION)
     {
         //Jimmy's
-        prevclient.nextclient=-1;
+        //nextclient.prevclient=-1;
+        //prevclient.nextclient=-1;
         client_manager_obj.lines[line]--;
         if (client_manager_obj.clients[line]==id)
         {
@@ -210,7 +234,7 @@ if (instance_exists(zombie_obj))
         }
         //
         //Delete from array
-        var i = instance_number(client_obj) - 1;
+        var i = instance_number(client_obj)-1;
         var prev = global.clients[i];
         var prev0 = global.clients[i];
         while(global.clients[i] != id)

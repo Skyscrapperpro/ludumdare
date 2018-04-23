@@ -3,7 +3,7 @@
   <spriteName>editor_player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>100</depth>
+  <depth>1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -79,6 +79,7 @@ angle = 0;
 z = -10;
 global.mouse_active = true;
 auto_rotation = false;
+alp = 0;
 
 </string>
           </argument>
@@ -104,6 +105,50 @@ auto_rotation = false;
 xf = x + cos(degtorad(angle));
 yf = y - sin(degtorad(angle));
 zf = z - sin(degtorad(zangle));
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Zombie checking
+if (guni == (sprite_get_number(gunshot)/2))
+{
+    var ins;
+    var fins = client_manager_obj;
+    for (i = 0; i &lt; instance_number(zombie_obj); i++)
+    {
+        ins = instance_find(zombie_obj, i);
+        if (ins.in_angle)
+        if (point_distance(x, y, ins.x, ins.y) &lt; point_distance(x, y, fins.x, fins.y)) fins = ins;
+    }
+    if (fins != client_manager_obj)
+    {
+        if (instance_number(zombie_obj) == 1)
+        {
+            if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);
+            if (!audio_is_playing(cooking_music)) then audio_play_sound(cooking_music, 1, true);
+        }
+        fins.dying = true;
+    }
+}
 
 </string>
           </argument>
@@ -429,7 +474,7 @@ while (angle&gt;=360)
           <argument>
             <kind>1</kind>
             <string>///Set depth
-if (ISPERSPECTIVE) depth = 100;
+if (ISPERSPECTIVE) depth = 1000;
 else depth = -1
 
 </string>
@@ -461,6 +506,32 @@ if !instance_exists(zombie_obj)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Alpha check
+if (instance_exists(zombie_obj))
+    if (alp &lt; 1) alp += 0.1;
+else
+    if (alp &gt; 0) alp -= 0.1;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -480,18 +551,17 @@ if !instance_exists(zombie_obj)
           <argument>
             <kind>1</kind>
             <string>///Draw sprite
-
 var unif = shader_get_uniform(pix, "pixel");
 //shader_set(pix);
 //shader_set_uniform_f(unif, surface_get_width(application_surface), surface_get_height(application_surface), PIXELEFFECT, PIXELEFFECT);
 draw_surface(application_surface, -2, -2);
-if (handitem == 1) draw_sprite(focus, 0, -2, -2);
 shader_reset();
 
 if (handitem == 1)
     draw_sprite_ext(gunshot, guni, view_wport/2, view_hport, PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
-else if (handitem=0)
+else if (handitem == 0)
     draw_sprite_ext(spatula, 0, view_wport*0.8, view_hport - (PIXELEFFECT * 5), PIXELEFFECT, PIXELEFFECT, 0, -1, 1);
+draw_sprite_ext(focus, 0, 0, 0, (view_wport/sprite_get_width(focus)), (view_wport/sprite_get_width(focus)), 0, c_white, alp);
 
 </string>
           </argument>
@@ -517,7 +587,9 @@ else if (handitem=0)
             <kind>1</kind>
             <string>///Draw camera
 if (ISPERSPECTIVE)
+{
     d3d_set_projection(x, y, z, xf, yf, zf, 0, 0, -1);
+}
 else
 {
     view_angle = 180-angle;

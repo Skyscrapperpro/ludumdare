@@ -99,7 +99,7 @@ generated = 0;
           <argument>
             <kind>1</kind>
             <string>///Generate first client here
-global.clients[instance_number(client_obj)] = instance_create(0, 0, client_obj);
+global.clients[instance_number(client_obj)-1] = instance_create(0, 0, client_obj);
 
 </string>
           </argument>
@@ -129,7 +129,7 @@ if (generated &lt; zombie_marg)
     if (!instance_exists(zombie_obj))
     {
         generated++;
-        global.clients[instance_number(client_obj)] = instance_create(0, 0, client_obj);
+        global.clients[instance_number(client_obj)-1] = instance_create(0, 0, client_obj);
     }
 }
 else

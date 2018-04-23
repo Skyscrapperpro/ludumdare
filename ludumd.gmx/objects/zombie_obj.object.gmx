@@ -30,6 +30,9 @@ x1=x;
 y1=y;
 x2=x;
 y2=y;
+
+in_angle = false;
+
 </string>
           </argument>
         </arguments>
@@ -81,7 +84,10 @@ else target_obj = player_obj;
             <kind>1</kind>
             <string>///Animation vars
 subi = 0;
-ilimit = sprite_get_number(zombie)
+ilimit = sprite_get_number(zombie);
+dying = false;
+dedi = 0;
+dedlimit = sprite_get_number(zombie_ded);
 
 </string>
           </argument>
@@ -108,10 +114,57 @@ ilimit = sprite_get_number(zombie)
             <string>///Animation
 if ((subi + 1) &gt; ilimit) then subi = 0;
 else subi++;
+if (dying)
+{ 
+    if ((dedi + 2) &gt; dedlimit) then instance_destroy();
+    else dedi++;
+}
 
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>dying</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
       <action>
         <libid>1</libid>
@@ -157,33 +210,19 @@ else {anglemin=angleto2;anglemax=angleto1}
 if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
     if (player_obj.angle&gt;anglemin)
     if (player_obj.angle&lt;anglemax)
-    if (player_obj.guni == sprite_get_number(gunshot) - 1)
+    if (player_obj.guni == sprite_get_number(gunshot)/2)
     if (player_obj.handitem == 1)
     if (instance_nearest(player_obj.x, player_obj.y, zombie_obj) = id)
-    {
-        if (instance_number(zombie_obj) == 1)
-        {
-            if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);
-            if (!audio_is_playing(cooking_music)) then audio_play_sound(cooking_music, 1, true);
-        }
-        instance_destroy();
-    }
+        in_angle = true;
 }
 else
 {
     if ((player_obj.angle&lt;anglemin) || (player_obj.angle&gt;anglemax))
     if (point_distance(player_obj.x, player_obj.y, x, y) &lt; ITEMRANGE)
-    if (player_obj.guni == sprite_get_number(gunshot) - 1)
+    if (player_obj.guni == sprite_get_number(gunshot)/2)
     if (player_obj.handitem == 1)
     if (instance_nearest(player_obj.x, player_obj.y, zombie_obj) = id)
-    {
-        if (instance_number(zombie_obj) == 1)
-        {
-            if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);
-            if (!audio_is_playing(cooking_music)) then audio_play_sound(cooking_music, 1, true);
-        }
-        instance_destroy();
-    }
+        in_angle = true;
 }
 
 </string>
@@ -268,6 +307,43 @@ else if (y &gt; targety)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set depth
+depth = point_distance(x, y, player_obj.x, player_obj.y)
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -289,9 +365,18 @@ else if (y &gt; targety)
             <string>///draw sprite
 if (ISPERSPECTIVE)
 {
-    var sprite, tex, w, h;
-    sprite = zombie;
-    tex = sprite_get_texture(sprite, subi);
+    var sprite, tex, w, h, subifinal;
+    if (dying)
+    {
+        sprite = zombie_ded;
+        subifinal = dedi;
+    }
+    else
+    {
+        sprite = zombie;
+        subifinal = subi;
+    }
+    tex = sprite_get_texture(sprite, subifinal);
     w = sprite_get_width(sprite);
     h = sprite_get_height(sprite);
     z = -(h * SIZESCALE)/2;
@@ -301,8 +386,6 @@ if (ISPERSPECTIVE)
     x2 = x - lengthdir_x(w,player_obj.angle) * SIZESCALE/2;
     y2 = y - lengthdir_y(w,player_obj.angle) * SIZESCALE/2;
     
-    draw_set_alpha_test(true);
-    draw_set_alpha_test_ref_value(128);
     d3d_draw_wall(x1, y1, z, x2, y2, (h * SIZESCALE)/2, tex, 1, 1);
 }
 else
