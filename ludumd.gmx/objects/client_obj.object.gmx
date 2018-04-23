@@ -106,6 +106,38 @@ else
         </arguments>
       </action>
     </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Common destroy
+//Jimmy's
+prevclient.nextclient=-1;
+client_manager_obj.lines[line]--;
+if (client_manager_obj.clients[line]==id)
+{
+    client_manager_obj.clients[line]=-1;
+}
+//
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -201,12 +233,7 @@ if (instance_exists(zombie_obj))
     var near = instance_nearest(x, y, zombie_obj)
     if (point_distance(x, y, near.x, near.y) &lt; CLIENTCOLLISION)
     {
-        prevclient.nextclient=-1;
-        client_manager_obj.lines[line]--;
-        if (client_manager_obj.clients[line]==id)
-        {
-            client_manager_obj.clients[line]=-1;
-        }
+        //Delete from array
         var i = global.c_amount;
         var prev = global.clients[i];
         var prev0 = global.clients[i];
@@ -218,11 +245,12 @@ if (instance_exists(zombie_obj))
             i--;
         }
         global.c_amount--;
-        
+        //
+        //Assign new target
         if (instance_exists(client_obj))
             near.target_obj = global.clients[irandom(global.c_amount)];
         else near.target_obj = player_obj;
-        
+        //
         instance_destroy();
     }
 }
@@ -257,7 +285,7 @@ if (ISPERSPECTIVE)
     tex = sprite_get_texture(sprite, subi);
     w = sprite_get_width(sprite);
     h = sprite_get_height(sprite);
-    z = +(h * SIZESCALE)/2;
+    z = - (h * SIZESCALE)/2;
     
     x1 = x + lengthdir_x(w, player_obj.angle) * SIZESCALE/2;
     y1 = y + lengthdir_y(w, player_obj.angle) * SIZESCALE/2;

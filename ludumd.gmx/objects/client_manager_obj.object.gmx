@@ -99,7 +99,6 @@ global.c_amount = 0;
           <argument>
             <kind>1</kind>
             <string>///Generate first client here
-global.c_amount++;
 global.clients[global.c_amount] = instance_create(0, 0, client_obj);
 
 </string>
