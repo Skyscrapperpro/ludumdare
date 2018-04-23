@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>30</speed>
   <persistent>0</persistent>
-  <colour>16744448</colour>
+  <colour>4210688</colour>
   <showcolour>-1</showcolour>
   <code>d3d_start();
 d3d_set_perspective(true);

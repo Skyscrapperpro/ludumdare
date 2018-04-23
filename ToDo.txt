@@ -1,11 +1,8 @@
-- Raycast zombies
-- Movement zombies
-- Zombie animation
-- Camera progressive orientation
+- Randomize client orientation
+- Scared clients
 - Burguer scenery
 - Client death
 - Item move
-- Door
 - Random burguer
 - Ticket GUI
 - Burguer burning

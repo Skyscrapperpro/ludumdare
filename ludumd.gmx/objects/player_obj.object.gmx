@@ -133,19 +133,21 @@ if (guni == (sprite_get_number(gunshot)/2))
 {
     var ins;
     var fins = client_manager_obj;
-    for (i = 0; i &lt; instance_number(zombie_obj); i++)
+    for (i = 0; i &lt; instance_number(door_trigger); i++)
     {
-        ins = instance_find(zombie_obj, i);
-        if (ins.in_angle)
+        ins = instance_find(door_trigger, i);
+        if (ins.in_angle) //and
         if (point_distance(x, y, ins.x, ins.y) &lt; point_distance(x, y, fins.x, fins.y)) fins = ins;
     }
     if (fins != client_manager_obj)
     {
+        if (fins.object_index == zombie_obj) //and
         if (instance_number(zombie_obj) == 1)
         {
             if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);
             if (!audio_is_playing(cooking_music)) then audio_play_sound(cooking_music, 1, true);
         }
+        
         fins.dying = true;
     }
 }
@@ -552,8 +554,8 @@ else
             <kind>1</kind>
             <string>///Draw sprite
 var unif = shader_get_uniform(pix, "pixel");
-//shader_set(pix);
-//shader_set_uniform_f(unif, surface_get_width(application_surface), surface_get_height(application_surface), PIXELEFFECT, PIXELEFFECT);
+shader_set(pix);
+shader_set_uniform_f(unif, surface_get_width(application_surface), surface_get_height(application_surface), PIXELEFFECT, PIXELEFFECT);
 draw_surface(application_surface, -2, -2);
 shader_reset();
 

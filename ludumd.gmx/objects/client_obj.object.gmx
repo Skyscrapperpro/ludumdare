@@ -25,6 +25,34 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///var init
+x1=x;
+y1=y;
+x2=x;
+y2=y;
+
+in_angle = false;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///spawn
 x=SPAWNX;
 y=SPAWNY;
@@ -65,6 +93,9 @@ prevclient.nextclient=id;
 sp3d=client;
 subi = 0;
 ilimit = sprite_get_number(client);
+dying = false;
+dedi = 0;
+dedlimit = sprite_get_number(client_ded);
 
 </string>
           </argument>
@@ -123,73 +154,6 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set depth
-depth = point_distance(x, y, player_obj.x, player_obj.y)
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Movement
-//X
-if (x &lt; targetx)
-{
-    if ((x + lengthdir_x(CLIENTSPEED, angle)) &gt; targetx) x = targetx;
-    else x += lengthdir_x(CLIENTSPEED, angle);
-}
-else if (x &gt; targetx)
-{
-    if ((x + lengthdir_x(CLIENTSPEED, angle)) &lt; targetx) x = targetx;
-    else x += lengthdir_x(CLIENTSPEED, angle);
-}
-//Y
-if (y &lt; targety)
-{
-    if ((y + lengthdir_y(CLIENTSPEED, angle)) &gt; targety) y = targety;
-    else y += lengthdir_y(CLIENTSPEED, angle);
-}
-else if (y &gt; targety)
-{
-    if ((y + lengthdir_y(CLIENTSPEED, angle)) &lt; targety) y = targety;
-    else y += lengthdir_y(CLIENTSPEED, angle);
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Animation
 if ((x != targetx) &amp;&amp; (y != targety))
 {
@@ -197,6 +161,138 @@ if ((x != targetx) &amp;&amp; (y != targety))
     else subi++;
 }
 else subi = 0;
+if (dying)
+{ 
+    if ((dedi + 2) &gt; dedlimit) {
+        //Jimmy's
+        if (instance_exists(nextclient)) nextclient.prevclient=-1;
+        if (instance_exists(prevclient)) prevclient.nextclient=-1;
+        client_manager_obj.lines[line]--;
+        if (client_manager_obj.clients[line]==id)
+        {
+            client_manager_obj.clients[line]=-1;
+        }
+        //
+        //Delete from array
+        var i = instance_number(client_obj)-1;
+        var prev = global.clients[i];
+        var prev0 = global.clients[i];
+        while(global.clients[i] != id)
+        {
+            prev0 = global.clients[i];
+            global.clients[i] = prev;
+            prev = prev0;
+            i--;
+        }
+        global.clients[i] = prev;
+        //
+        instance_destroy();
+    }
+    else dedi++;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>dying</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///kill me with raycast
+var angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
+var angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
+var anglemin=0;
+var anglemax=0;
+var target=point_direction(player_obj.x, player_obj.y, x, y) - 90;
+
+while(angleto1&lt;0)
+    angleto1+=360;
+while(angleto1&gt;=360)
+    angleto1-=360;
+while(angleto2&lt;0)
+    angleto2+=360;
+while(angleto2&gt;=360)
+    angleto2-=360;
+while(target&lt;0)
+    target+=360;
+while(target&gt;=360)
+    target-=360;
+
+
+if (angleto1&lt;angleto2){anglemin=angleto1;anglemax=angleto2}
+else {anglemin=angleto2;anglemax=angleto1}
+
+in_angle = false;
+if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
+    if (player_obj.angle&gt;anglemin)
+    if (player_obj.angle&lt;anglemax)
+    if (player_obj.guni == sprite_get_number(gunshot)/2)
+    if (player_obj.handitem == 1)
+        in_angle = true;
+}
+else
+{
+    if ((player_obj.angle&lt;anglemin) || (player_obj.angle&gt;anglemax))
+    if (point_distance(player_obj.x, player_obj.y, x, y) &lt; ITEMRANGE)
+    if (player_obj.guni == sprite_get_number(gunshot)/2)
+    if (player_obj.handitem == 1)
+        in_angle = true;
+}
 
 </string>
           </argument>
@@ -221,34 +317,115 @@ else subi = 0;
             <string>///Check zombie
 if (instance_exists(zombie_obj))
 {
-    var near = instance_nearest(x, y, zombie_obj)
+    var near = instance_nearest(x, y, zombie_obj);
     if (point_distance(x, y, near.x, near.y) &lt; CLIENTCOLLISION)
-    {
-        //Jimmy's
-        //nextclient.prevclient=-1;
-        //prevclient.nextclient=-1;
-        client_manager_obj.lines[line]--;
-        if (client_manager_obj.clients[line]==id)
-        {
-            client_manager_obj.clients[line]=-1;
-        }
-        //
-        //Delete from array
-        var i = instance_number(client_obj)-1;
-        var prev = global.clients[i];
-        var prev0 = global.clients[i];
-        while(global.clients[i] != id)
-        {
-            prev0 = global.clients[i];
-            global.clients[i] = prev;
-            prev = prev0;
-            i--;
-        }
-        global.clients[i] = prev;
-        //
-        instance_destroy();
+        dying = true;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Movement
+var xsonic = lengthdir_x(CLIENTSPEED, angle);
+var ysonic = lengthdir_y(CLIENTSPEED, angle);
+
+
+//Collisions
+if (xsonic != 0)
+{
+    if !place_free(x+xsonic,y)
+    { //Estos dos ifs testean la posición x y la x,y por separado, para que si te chocas te deslices por la pared
+        if xsonic&gt;0 then move_contact_solid(0,xsonic)
+        if xsonic&lt;0 then move_contact_solid(180,-xsonic)
+        xsonic=0
     }
 }
+if (ysonic != 0)
+{
+    if !place_free(x+xsonic,y+ysonic)
+    { //A veces este sistema hace que la colisión en diagonal no funcione y entres en el bloque, pero no es notable porque salir requiere la misma velocidad y nunca entras demasiados píxeles, esto aplicado al dash sí es notable
+        if ysonic&gt;0 then move_contact_solid(270,ysonic)
+        if ysonic&lt;0 then move_contact_solid(90,-ysonic)
+        ysonic=0
+    }
+}
+
+//X
+if (x &lt; targetx)
+{
+    if ((x + xsonic) &gt; targetx) x = targetx;
+    else x += xsonic;
+}
+else if (x &gt; targetx)
+{
+    if ((x + xsonic) &lt; targetx) x = targetx;
+    else x += xsonic;
+}
+//Y
+if (y &lt; targety)
+{
+    if ((y + ysonic) &gt; targety) y = targety;
+    else y += ysonic;
+}
+else if (y &gt; targety)
+{
+    if ((y + ysonic) &lt; targety) y = targety;
+    else y += ysonic;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set depth
+depth = point_distance(x, y, player_obj.x, player_obj.y)
 
 </string>
           </argument>
@@ -275,9 +452,18 @@ if (instance_exists(zombie_obj))
             <string>///draw sprite
 if (ISPERSPECTIVE)
 {
-    var sprite, tex, w, h;
-    sprite = client;
-    tex = sprite_get_texture(sprite, subi);
+    var sprite, tex, w, h, subifinal;
+    if (dying)
+    {
+        sprite = client_ded;
+        subifinal = dedi;
+    }
+    else
+    {
+        sprite = client;
+        subifinal = subi;
+    }
+    tex = sprite_get_texture(sprite, subifinal);
     w = sprite_get_width(sprite);
     h = sprite_get_height(sprite);
     z = - (h * SIZESCALE)/2;
