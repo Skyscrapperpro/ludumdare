@@ -41,6 +41,8 @@ client_manager_obj.clients[line]=id;
 nextclient=-1;
 prevclient.nextclient=id;
 
+global.clients[global.c_amount] = id;
+
 </string>
           </argument>
         </arguments>
