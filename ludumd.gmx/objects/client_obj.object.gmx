@@ -41,8 +41,6 @@ client_manager_obj.clients[line]=id;
 nextclient=-1;
 prevclient.nextclient=id;
 
-global.clients[global.c_amount] = id;
-
 </string>
           </argument>
         </arguments>
@@ -102,38 +100,6 @@ else
     targety = FIRSTLINEY + (line * LINESEPARATION) - (CLIENTSEPRND/2) + rand;
     angle = point_direction(x, y, targetx, targety);
 }
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="1" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Common destroy
-//Jimmy's
-prevclient.nextclient=-1;
-client_manager_obj.lines[line]--;
-if (client_manager_obj.clients[line]==id)
-{
-    client_manager_obj.clients[line]=-1;
-}
-//
 
 </string>
           </argument>
@@ -235,6 +201,14 @@ if (instance_exists(zombie_obj))
     var near = instance_nearest(x, y, zombie_obj)
     if (point_distance(x, y, near.x, near.y) &lt; CLIENTCOLLISION)
     {
+        //Jimmy's
+        prevclient.nextclient=-1;
+        client_manager_obj.lines[line]--;
+        if (client_manager_obj.clients[line]==id)
+        {
+            client_manager_obj.clients[line]=-1;
+        }
+        //
         //Delete from array
         var i = global.c_amount;
         var prev = global.clients[i];
@@ -246,12 +220,13 @@ if (instance_exists(zombie_obj))
             prev = prev0;
             i--;
         }
+        global.clients[i] = prev;
         global.c_amount--;
         //
         //Assign new target
-        if (instance_exists(client_obj))
+        /*if (instance_exists(client_obj))
             near.target_obj = global.clients[irandom(global.c_amount)];
-        else near.target_obj = player_obj;
+        else near.target_obj = player_obj;*/
         //
         instance_destroy();
     }

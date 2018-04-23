@@ -53,36 +53,24 @@ y2=y;
           <argument>
             <kind>1</kind>
             <string>///equip item and raycast
-angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
-angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
-anglemin=0;
-anglemax=0;
-target=point_direction(player_obj.x,player_obj.y,x,y)-90;
+var angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
+var angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
+var anglemin=0;
+var anglemax=0;
+var target=point_direction(player_obj.x, player_obj.y, x, y) - 90;
 
 while(angleto1&lt;0)
-{
     angleto1+=360;
-}
 while(angleto1&gt;=360)
-{
     angleto1-=360;
-}
 while(angleto2&lt;0)
-{
     angleto2+=360;
-}
 while(angleto2&gt;=360)
-{
     angleto2-=360;
-}
 while(target&lt;0)
-{
     target+=360;
-}
 while(target&gt;=360)
-{
     target-=360;
-}
 
 
 if (angleto1&lt;angleto2){anglemin=angleto1;anglemax=angleto2}
@@ -100,6 +88,7 @@ else
         player_obj.handitem =! player_obj.handitem;
     }
 }
+
 </string>
           </argument>
         </arguments>

@@ -133,6 +133,7 @@ else
 {
     repeat(ZQUANT0 + irandom(ZQUANT1 - ZQUANT0)) instance_create(0, 0, zombie_obj);
     zombie_marg = ZOMBIEMARG0 + irandom(ZOMBIEMARG1 - ZOMBIEMARG0);
+    player_obj.auto_rotation = true;
 }
 
 alarm[0] = CLIENTMARGIN - (CLIENTMARND/2) + CLIENTMARND;
