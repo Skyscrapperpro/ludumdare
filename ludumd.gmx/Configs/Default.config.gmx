@@ -668,7 +668,7 @@
       <constant name="ZQUANT1">10</constant>
       <constant name="ZOMVARIATION">40</constant>
       <constant name="ZOMBSPD">0.5</constant>
-      <constant name="BURGERSCALE">0.08</constant>
+      <constant name="BURGERSCALE">0.16</constant>
       <constant name="AUTOCAMSPD">5</constant>
     </constants>
   </ConfigConstants>
