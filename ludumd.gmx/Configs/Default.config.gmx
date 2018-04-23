@@ -634,7 +634,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="33">
+    <constants number="34">
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S"))</constant>
@@ -668,6 +668,7 @@
       <constant name="ZQUANT1">10</constant>
       <constant name="ZOMVARIATION">40</constant>
       <constant name="ZOMBSPD">0.5</constant>
+      <constant name="BURGERSCALE">0.16</constant>
     </constants>
   </ConfigConstants>
 </Config>
