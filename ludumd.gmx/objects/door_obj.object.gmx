@@ -3,7 +3,7 @@
   <spriteName>editor_door</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>999</depth>
+  <depth>998</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -84,8 +84,8 @@ if (instance_exists(door_trigger))
             <kind>1</kind>
             <string>///Draw plane
 var bgr = door_bgr;
-d3d_draw_wall(x, y - (background_get_width(bgr) * SIZESCALE) - open_amount, -background_get_height(bgr)*SIZESCALE, x, y - open_amount, background_get_height(bgr)*SIZESCALE/2, background_get_texture(bgr), 1, 1);
-d3d_draw_wall(x, y + open_amount, -background_get_height(bgr)*SIZESCALE, x, y + (background_get_width(bgr) * SIZESCALE) + open_amount, background_get_height(bgr)*SIZESCALE/2, background_get_texture(bgr), 1, 1);
+d3d_draw_wall(x, y - (background_get_width(bgr) * SIZESCALE * 1.5) - open_amount, -background_get_height(bgr)*SIZESCALE, x, y - open_amount, background_get_height(bgr)*SIZESCALE/2, background_get_texture(bgr), 1, 1);
+d3d_draw_wall(x, y + (background_get_width(bgr) * SIZESCALE * 1.5) + open_amount, -background_get_height(bgr)*SIZESCALE, x, y + open_amount, background_get_height(bgr)*SIZESCALE/2, background_get_texture(bgr), 1, 1);
 
 </string>
           </argument>

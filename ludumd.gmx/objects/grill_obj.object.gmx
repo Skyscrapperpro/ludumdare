@@ -53,9 +53,9 @@ depth = point_distance(x, y, player_obj.x, player_obj.y)
             <string>///draw
 if (ISPERSPECTIVE)
 {
-    d3d_draw_floor(x - sprite_get_width(grill)*SIZESCALE/2, y - sprite_get_height(grill)*SIZESCALE/2, 0, x + sprite_get_width(grill)*SIZESCALE/2, y + sprite_get_height(grill)*SIZESCALE/2, 0, sprite_get_texture(grill,0), 1, 1);
-    d3d_draw_wall(x - sprite_get_width(grill)*SIZESCALE/2, y - sprite_get_height(grill)*SIZESCALE/2, 0, x - sprite_get_width(grill)*SIZESCALE/2, y + (sprite_get_height(grill)-20)*SIZESCALE/2, background_get_height(wall_bgr)*SIZESCALE/2, background_get_texture(table_bgr), 1, 1);
-    d3d_draw_wall(x - (sprite_get_height(grill) - 20)*SIZESCALE/2, y - sprite_get_width(grill)*SIZESCALE/2, 0, x + sprite_get_height(grill)*SIZESCALE/2, y - sprite_get_width(grill)*SIZESCALE/2, background_get_height(wall_bgr)*SIZESCALE/2, background_get_texture(table_bgr), 1, 1);
+    d3d_draw_floor(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, 0, background_get_texture(grilltop_bgr), 1, 1);
+    d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x - background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(grillfront_bgr), 1, 1);
+    d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_height(grilltop_bgr) * SIZESCALE/4, y - background_get_width(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(table_bgr), 1, 1);
 }
 else draw_self();
 
