@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>///Animations control
 guni = 0;
-handitem=0;
-
+handitem=0; //0=spatula,1=gun
+spatulaburger=0; //0=no,1=uncooked,2=cooked,3=burn
 </string>
           </argument>
         </arguments>
