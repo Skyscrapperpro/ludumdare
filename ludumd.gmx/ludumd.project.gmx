@@ -7,6 +7,14 @@
   <sounds name="sound">
     <sound>sound\zombies_music</sound>
     <sound>sound\cooking_music</sound>
+    <sound>sound\shot_snd</sound>
+    <sound>sound\elvis_snd</sound>
+    <sound>sound\cry0_snd</sound>
+    <sound>sound\cry1_snd</sound>
+    <sound>sound\cry2_snd</sound>
+    <sound>sound\cry3_snd</sound>
+    <sound>sound\cry4_snd</sound>
+    <sound>sound\cry5_snd</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Editor">
@@ -20,10 +28,12 @@
       <sprite>sprites\editor_door</sprite>
       <sprite>sprites\editor_burguerbox</sprite>
     </sprites>
-    <sprite>sprites\client</sprite>
     <sprite>sprites\zombie</sprite>
     <sprite>sprites\zombie_ded</sprite>
-    <sprite>sprites\client_ded</sprite>
+    <sprite>sprites\customer</sprite>
+    <sprite>sprites\customer_ded</sprite>
+    <sprite>sprites\customer_crying</sprite>
+    <sprite>sprites\sprite24</sprite>
     <sprite>sprites\grill</sprite>
     <sprite>sprites\gunitem</sprite>
     <sprite>sprites\burger</sprite>
@@ -52,7 +62,7 @@
     <shader type="GLSLES">shaders\pix.shader</shader>
   </shaders>
   <objects name="objects">
-    <object>objects\client_manager_obj</object>
+    <object>objects\customer_manager_obj</object>
     <object>objects\door_trigger</object>
     <object>objects\player_obj</object>
     <object>objects\wall_obj</object>
@@ -61,7 +71,7 @@
     <object>objects\floor_obj</object>
     <object>objects\burguerbox_obj</object>
     <object>objects\grill_obj</object>
-    <object>objects\client_obj</object>
+    <object>objects\customer_obj</object>
     <object>objects\zombie_obj</object>
     <object>objects\gun_on_ground</object>
   </objects>

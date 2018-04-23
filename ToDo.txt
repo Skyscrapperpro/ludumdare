@@ -1,4 +1,3 @@
-- Randomize client orientation
 - Scared clients
 - Burguer scenery
 - Client death

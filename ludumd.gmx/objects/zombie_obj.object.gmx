@@ -58,8 +58,8 @@ x = SPAWNX;
 y = SPAWNY;
 x += irandom(ZOMVARIATION) - (ZOMVARIATION/2);
 y += irandom(ZOMVARIATION) - (ZOMVARIATION/2);
-if (instance_exists(client_obj))
-    target_obj = global.clients[irandom(instance_number(client_obj)-1)];
+if (instance_exists(customer_obj))
+    target_obj = global.customers[irandom(instance_number(customer_obj)-1)];
 else target_obj = player_obj;
 
 </string>
@@ -189,34 +189,34 @@ var anglemin=0;
 var anglemax=0;
 var target=point_direction(player_obj.x, player_obj.y, x, y) - 90;
 
-while(angleto1&lt;0)
+while(angleto1 &lt; -180)
     angleto1+=360;
-while(angleto1&gt;=360)
+while(angleto1 &gt;= 180)
     angleto1-=360;
-while(angleto2&lt;0)
+while(angleto2 &lt;- 180)
     angleto2+=360;
-while(angleto2&gt;=360)
+while(angleto2 &gt;= 180)
     angleto2-=360;
-while(target&lt;0)
+while(target &lt; -180)
     target+=360;
-while(target&gt;=360)
+while(target &gt;= 180)
     target-=360;
 
 
-if (angleto1&lt;angleto2){anglemin=angleto1;anglemax=angleto2}
-else {anglemin=angleto2;anglemax=angleto1}
+if (angleto1 &lt; angleto2){anglemin = angleto1; anglemax = angleto2; }
+else {anglemin = angleto2; anglemax = angleto1; }
 
 in_angle = false;
-if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
-    if (player_obj.angle&gt;anglemin)
-    if (player_obj.angle&lt;anglemax)
+if ((target &lt; anglemax) &amp;&amp; (target &gt; anglemin)){
+    if (player_obj.angle &gt; anglemin)
+    if (player_obj.angle &lt; anglemax)
     if (player_obj.guni == sprite_get_number(gunshot)/2)
     if (player_obj.handitem == 1)
         in_angle = true;
 }
 else
 {
-    if ((player_obj.angle&lt;anglemin) || (player_obj.angle&gt;anglemax))
+    if ((player_obj.angle &lt; anglemin) || (player_obj.angle &gt; anglemax))
     if (point_distance(player_obj.x, player_obj.y, x, y) &lt; ITEMRANGE)
     if (player_obj.guni == sprite_get_number(gunshot)/2)
     if (player_obj.handitem == 1)
@@ -246,8 +246,8 @@ else
             <string>///movement
 if (!instance_exists(target_obj))
 {
-    if (instance_exists(client_obj))
-        target_obj = global.clients[irandom(instance_number(client_obj)-1)];
+    if (instance_exists(customer_obj))
+        target_obj = global.customers[irandom(instance_number(customer_obj)-1)];
     else target_obj = player_obj;
 }
 
