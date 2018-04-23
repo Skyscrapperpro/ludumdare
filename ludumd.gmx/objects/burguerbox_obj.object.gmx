@@ -48,46 +48,27 @@ if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=0) &amp;&amp; L
     target=point_direction(player_obj.x,player_obj.y,x,y)-90;
     
     while(angleto1&lt;0)
-    {
         angleto1+=360;
-    }
     while(angleto1&gt;=360)
-    {
         angleto1-=360;
-    }
     while(angleto2&lt;0)
-    {
         angleto2+=360;
-    }
     while(angleto2&gt;=360)
-    {
         angleto2-=360;
-    }
+        
     while(target&lt;0)
-    {
         target+=360;
-    }
     while(target&gt;=360)
-    {
         target-=360;
-    }
     
     while(zangleto1&lt;-180)
-    {
         zangleto1+=360;
-    }
     while(zangleto1&gt;=180)
-    {
-        angleto1-=360;
-    }
+        zangleto1-=360;
     while(zangleto2&lt;-180)
-    {
-        angleto2+=360;
-    }
-    while(angleto2&gt;=180)
-    {
-        angleto2-=360;
-    }
+        zangleto2+=360;
+    while(zangleto2&gt;=180)
+        zangleto2-=360;
     
     if (angleto1&lt;angleto2){anglemin=angleto1;anglemax=angleto2}
     else {anglemin=angleto2;anglemax=angleto1}
