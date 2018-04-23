@@ -27,6 +27,7 @@
       <sprite>sprites\editor_gunitem</sprite>
       <sprite>sprites\editor_door</sprite>
       <sprite>sprites\editor_burguerbox</sprite>
+      <sprite>sprites\editor_trash</sprite>
       <sprite>sprites\editor_borkposter</sprite>
     </sprites>
     <sprite>sprites\zombie</sprite>
@@ -34,7 +35,7 @@
     <sprite>sprites\customer</sprite>
     <sprite>sprites\customer_ded</sprite>
     <sprite>sprites\customer_crying</sprite>
-    <sprite>sprites\grill</sprite>
+    <sprite>sprites\burgerchunk</sprite>
     <sprite>sprites\gunitem</sprite>
     <sprite>sprites\burger</sprite>
     <sprite>sprites\spatula</sprite>
@@ -54,6 +55,7 @@
     <background>background\tabletop_bgr</background>
     <background>background\grilltop_bgr</background>
     <background>background\grillfront_bgr</background>
+    <background>background\side_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -76,6 +78,7 @@
     <object>objects\customer_obj</object>
     <object>objects\zombie_obj</object>
     <object>objects\gun_on_ground</object>
+    <object>objects\trash_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
