@@ -32,6 +32,7 @@ depth = point_distance(x, y, player_obj.x, player_obj.y)
           </argument>
         </arguments>
       </action>
+<<<<<<< HEAD
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -114,6 +115,8 @@ if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=1) &amp;&amp; L
           </argument>
         </arguments>
       </action>
+=======
+>>>>>>> parent of 4b38a84... raycast en plan bien
     </event>
     <event eventtype="8" enumb="0">
       <action>
