@@ -56,7 +56,7 @@ y = SPAWNY;
 x += irandom(ZOMVARIATION) - (ZOMVARIATION/2);
 y += irandom(ZOMVARIATION) - (ZOMVARIATION/2);
 if (instance_exists(client_obj))
-    target_obj = global.clients[irandom(global.c_amount)];
+    target_obj = global.clients[irandom(instance_number(client_obj)-1)];
 else target_obj = player_obj;
 
 </string>
@@ -160,7 +160,14 @@ if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
     if (player_obj.guni == sprite_get_number(gunshot) - 1)
     if (player_obj.handitem == 1)
     if (instance_nearest(player_obj.x, player_obj.y, zombie_obj) = id)
+    {
+        if (instance_number(zombie_obj) == 1)
+        {
+            if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);
+            if (!audio_is_playing(cooking_music)) then audio_play_sound(cooking_music, 1, true);
+        }
         instance_destroy();
+    }
 }
 else
 {
@@ -169,7 +176,14 @@ else
     if (player_obj.guni == sprite_get_number(gunshot) - 1)
     if (player_obj.handitem == 1)
     if (instance_nearest(player_obj.x, player_obj.y, zombie_obj) = id)
+    {
+        if (instance_number(zombie_obj) == 1)
+        {
+            if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);
+            if (!audio_is_playing(cooking_music)) then audio_play_sound(cooking_music, 1, true);
+        }
         instance_destroy();
+    }
 }
 
 </string>
@@ -196,7 +210,7 @@ else
 if (!instance_exists(target_obj))
 {
     if (instance_exists(client_obj))
-        target_obj = global.clients[irandom(global.c_amount)];
+        target_obj = global.clients[irandom(instance_number(client_obj)-1)];
     else target_obj = player_obj;
 }
 
@@ -249,9 +263,6 @@ else if (y &gt; targety)
     if ((y + ysonic) &lt; targety) y = targety;
     else y += ysonic;
 }
-
-if (keyboard_check(ord("Q")))
-    instance_destroy();
 
 </string>
           </argument>

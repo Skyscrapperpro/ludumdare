@@ -76,7 +76,7 @@ for (i=0;i&lt;LINENUMBER;i++)
             <string>///Alarm manager
 alarm[0] = CLIENTMARGIN - (CLIENTMARND/2) + CLIENTMARND;
 zombie_marg = ZOMBIEMARG0 + irandom(ZOMBIEMARG1 - ZOMBIEMARG0);
-global.c_amount = 0;
+generated = 0;
 
 </string>
           </argument>
@@ -99,7 +99,7 @@ global.c_amount = 0;
           <argument>
             <kind>1</kind>
             <string>///Generate first client here
-global.clients[global.c_amount] = instance_create(0, 0, client_obj);
+global.clients[instance_number(client_obj)] = instance_create(0, 0, client_obj);
 
 </string>
           </argument>
@@ -124,18 +124,23 @@ global.clients[global.c_amount] = instance_create(0, 0, client_obj);
           <argument>
             <kind>1</kind>
             <string>///Generate clients
-if (global.c_amount &lt; zombie_marg)
+if (generated &lt; zombie_marg)
 {
-    global.c_amount++;
-    global.clients[global.c_amount] = instance_create(0, 0, client_obj);
+    if (!instance_exists(zombie_obj))
+    {
+        generated++;
+        global.clients[instance_number(client_obj)] = instance_create(0, 0, client_obj);
+    }
 }
 else
 {
+    if (audio_is_playing(cooking_music)) then audio_stop_sound(cooking_music);
+    if (!audio_is_playing(zombies_music)) then audio_play_sound(zombies_music, 1, true);
     repeat(ZQUANT0 + irandom(ZQUANT1 - ZQUANT0)) instance_create(0, 0, zombie_obj);
     zombie_marg = ZOMBIEMARG0 + irandom(ZOMBIEMARG1 - ZOMBIEMARG0);
     player_obj.auto_rotation = true;
+    generated = 0;
 }
-
 alarm[0] = CLIENTMARGIN - (CLIENTMARND/2) + CLIENTMARND;
     
 </string>
