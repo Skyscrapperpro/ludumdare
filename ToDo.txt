@@ -1,6 +1,5 @@
 - Scared clients
 - Burguer scenery
-- Client death
 - Item move
 - Random burguer
 - Ticket GUI

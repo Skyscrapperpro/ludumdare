@@ -72,7 +72,7 @@
     <object>objects\door_obj</object>
     <object>objects\table_obj</object>
     <object>objects\burguerbox_obj</object>
-    <object>objects\burguerbox_obj</object>
+    <object>objects\breadbox_obj</object>
     <object>objects\grill_obj</object>
     <object>objects\customer_obj</object>
     <object>objects\zombie_obj</object>
