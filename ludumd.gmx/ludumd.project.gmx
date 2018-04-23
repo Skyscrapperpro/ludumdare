@@ -22,6 +22,7 @@
     </sprites>
     <sprite>sprites\client</sprite>
     <sprite>sprites\zombie</sprite>
+    <sprite>sprites\zombie_ded</sprite>
     <sprite>sprites\grill</sprite>
     <sprite>sprites\gunitem</sprite>
     <sprite>sprites\burger</sprite>
