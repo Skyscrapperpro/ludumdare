@@ -21,6 +21,7 @@
     <sprite>sprites\zombie</sprite>
     <sprite>sprites\grill</sprite>
     <sprite>sprites\gunitem</sprite>
+    <sprite>sprites\burger</sprite>
     <sprite>sprites\spatula</sprite>
     <sprite>sprites\downbread</sprite>
     <sprite>sprites\gunshot</sprite>

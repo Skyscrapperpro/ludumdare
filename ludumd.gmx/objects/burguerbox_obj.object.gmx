@@ -3,7 +3,7 @@
   <spriteName>editor_burguerbox</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -31,6 +31,33 @@ if (ISPERSPECTIVE)
     d3d_draw_floor(x - sprite_get_width(burgersbox)*SIZESCALE/2, y - sprite_get_height(burgersbox)*SIZESCALE/2, 0, x + sprite_get_width(burgersbox)*SIZESCALE/2, y + sprite_get_height(burgersbox)*SIZESCALE/2, 0, sprite_get_texture(burgersbox,0), 1, 1);
     d3d_draw_wall(x - sprite_get_width(burgersbox)*SIZESCALE/2, y - sprite_get_height(burgersbox)*SIZESCALE/2, 0, x - sprite_get_width(burgersbox)*SIZESCALE/2, y + (sprite_get_height(burgersbox)-20)*SIZESCALE/2, background_get_height(wall_bgr)*SIZESCALE/2, background_get_texture(table_bgr), 1, 1);
     d3d_draw_wall(x - (sprite_get_height(burgersbox) - 20)*SIZESCALE/2, y + sprite_get_width(burgersbox)*SIZESCALE/2, 0, x + sprite_get_height(burgersbox)*SIZESCALE/2, y + sprite_get_width(burgersbox)*SIZESCALE/2, background_get_height(wall_bgr)*SIZESCALE/2, background_get_texture(table_bgr), 1, 1);
+    
+    //burguer chunk
+    w = sprite_get_width(burger);
+    h = sprite_get_height(burger);
+    
+    for (i=0;i&lt;2;i++)
+    {
+        for (j=0;j&lt;2-i;j++)
+        {
+            for (k=0;k&lt;2-i;k++)
+            {
+                x1 = j*w*BURGERSCALE+x + lengthdir_x(w, player_obj.angle) * BURGERSCALE/2;
+                y1 = k*w*BURGERSCALE+y + lengthdir_y(w, player_obj.angle) * BURGERSCALE/2;
+                x2 = j*w*BURGERSCALE+x - lengthdir_x(w, player_obj.angle) * BURGERSCALE/2;
+                y2 = k*w*BURGERSCALE+y - lengthdir_y(w, player_obj.angle) * BURGERSCALE/2;
+                d3d_draw_wall(x1, y1, -i*(h * BURGERSCALE), x2, y2,-(i+1)*(h * BURGERSCALE), sprite_get_texture(burger,0), 1, 1);
+                if (j!=0 || k!=0)
+                {
+                    x1 = x - j*w*BURGERSCALE + lengthdir_x(w, player_obj.angle) * BURGERSCALE/2;
+                    y1 = y - k*w*BURGERSCALE + lengthdir_y(w, player_obj.angle) * BURGERSCALE/2;
+                    x2 = x - j*w*BURGERSCALE - lengthdir_x(w, player_obj.angle) * BURGERSCALE/2;
+                    y2 = y - k*w*BURGERSCALE - lengthdir_y(w, player_obj.angle) * BURGERSCALE/2;
+                    d3d_draw_wall(x1, y1, -i*(h * BURGERSCALE), x2, y2,-(i+1)*(h * BURGERSCALE), sprite_get_texture(burger,0), 1, 1);
+                }
+            }
+        }
+    }
 }
 else draw_self();
 </string>
