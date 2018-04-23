@@ -55,6 +55,7 @@
     <background>background\tabletop_bgr</background>
     <background>background\grilltop_bgr</background>
     <background>background\grillfront_bgr</background>
+    <background>background\side_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">

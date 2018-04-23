@@ -134,10 +134,11 @@ depth = point_distance(x, y, player_obj.x, player_obj.y)
             <string>///draw
 if (ISPERSPECTIVE)
 {
-    d3d_draw_floor(x - sprite_get_width(burgersbox)*SIZESCALE/4, y - sprite_get_height(burgersbox)*SIZESCALE/4, 0, x + sprite_get_width(burgersbox)*SIZESCALE/4, y + sprite_get_height(burgersbox)*SIZESCALE/4, 0, sprite_get_texture(burgersbox,0), 1, 1);
-    d3d_draw_wall(x - sprite_get_width(burgersbox)*SIZESCALE/4, y - sprite_get_height(burgersbox)*SIZESCALE/4, 0, x - sprite_get_width(burgersbox)*SIZESCALE/4, y + (sprite_get_height(burgersbox)-20)*SIZESCALE/4, background_get_height(wall_bgr)*SIZESCALE/2, background_get_texture(table_bgr), 1, 1);
-    d3d_draw_wall(x - (sprite_get_height(burgersbox) - 20)*SIZESCALE/4, y + sprite_get_width(burgersbox)*SIZESCALE/4, 0, x + sprite_get_height(burgersbox)*SIZESCALE/4, y + sprite_get_width(burgersbox)*SIZESCALE/4, background_get_height(wall_bgr)*SIZESCALE/2, background_get_texture(table_bgr), 1, 1);
-        
+
+    d3d_draw_floor(x - sprite_get_width(burgersbox) * SIZESCALE/4, y - sprite_get_height(burgersbox) * SIZESCALE/4, 0, x + sprite_get_width(burgersbox) * SIZESCALE/4, y + sprite_get_height(burgersbox) * SIZESCALE/4, 0, sprite_get_texture(burgersbox,0), 1, 1);
+    d3d_draw_wall(x - sprite_get_width(burgersbox) * SIZESCALE/4, y - sprite_get_height(burgersbox) * SIZESCALE/4, 0, x - sprite_get_width(burgersbox) * SIZESCALE/4, y + sprite_get_height(burgersbox) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1);
+    d3d_draw_wall(x - sprite_get_width(burgersbox) * SIZESCALE/4, y - sprite_get_height(burgersbox) * SIZESCALE/4, 0, x + sprite_get_width(burgersbox) * SIZESCALE/4, y - sprite_get_height(burgersbox) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1);
+
     //burguer chunk
     x1 = sprite_get_width(burgerchunk)*BURGERSCALE+x + lengthdir_x(sprite_get_width(burgerchunk), player_obj.angle) * BURGERSCALE/2;
     y1 = sprite_get_width(burgerchunk)*BURGERSCALE+y + lengthdir_y(sprite_get_width(burgerchunk), player_obj.angle) * BURGERSCALE/2;

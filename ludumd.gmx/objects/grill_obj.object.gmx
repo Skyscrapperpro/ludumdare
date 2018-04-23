@@ -55,7 +55,7 @@ if (ISPERSPECTIVE)
 {
     d3d_draw_floor(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, 0, background_get_texture(grilltop_bgr), 1, 1);
     d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x - background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(grillfront_bgr), 1, 1);
-    d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_height(grilltop_bgr) * SIZESCALE/4, y - background_get_width(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(table_bgr), 1, 1);
+    d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_height(grilltop_bgr) * SIZESCALE/4, y - background_get_width(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1);
 }
 else draw_self();
 
