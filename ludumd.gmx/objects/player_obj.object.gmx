@@ -131,22 +131,26 @@ zf = z - sin(degtorad(zangle));
             <string>///Zombie checking
 if (guni == (sprite_get_number(gunshot)/2))
 {
+    audio_play_sound(shot_snd, 2, false);
     var ins;
-    var fins = client_manager_obj;
+    var fins = customer_manager_obj;
     for (i = 0; i &lt; instance_number(door_trigger); i++)
     {
         ins = instance_find(door_trigger, i);
         if (ins.in_angle) //and
         if (point_distance(x, y, ins.x, ins.y) &lt; point_distance(x, y, fins.x, fins.y)) fins = ins;
     }
-    if (fins != client_manager_obj)
+    if (fins != customer_manager_obj)
     {
-        if (fins.object_index == zombie_obj) //and
-        if (instance_number(zombie_obj) == 1)
+        if (fins.object_index == zombie_obj)
         {
-            if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);
-            if (!audio_is_playing(cooking_music)) then audio_play_sound(cooking_music, 1, true);
+            if (instance_number(zombie_obj) == 1)
+            {
+                if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);
+                if (!audio_is_playing(cooking_music)) then audio_play_sound(cooking_music, 1, true);
+            }
         }
+        else audio_play_sound(elvis_snd, 2, false);
         
         fins.dying = true;
     }
@@ -446,35 +450,6 @@ if (global.mouse_active) { display_mouse_set(display_get_width()/2, display_get_
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///set angle to 0,360
-while (angle&lt;0)
-{
-    angle+=360;
-}
-while (angle&gt;=360)
-{
-    angle-=360;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Set depth
 if (ISPERSPECTIVE) depth = 1000;
 else depth = -1
@@ -501,8 +476,11 @@ else depth = -1
             <kind>1</kind>
             <string>///Check if zombies are present
 if (handitem == 1)
-if !instance_exists(zombie_obj)
-    handitem = 0;
+{
+    if !instance_exists(zombie_obj)
+        handitem = 0;
+    else if (irandom(240) == 1) audio_play_sound(choose(cry0_snd, cry1_snd, cry2_snd, cry3_snd, cry4_snd, cry5_snd), 2, false);
+}
 
 </string>
           </argument>
@@ -526,7 +504,12 @@ if !instance_exists(zombie_obj)
             <kind>1</kind>
             <string>///Alpha check
 if (instance_exists(zombie_obj))
-    if (alp &lt; 1) alp += 0.1;
+    if ((alp + 0.2) = 1)
+    {
+        audio_play_sound(choose(cry0_snd, cry1_snd, cry2_snd, cry3_snd, cry4_snd, cry5_snd), 2, false);
+        alp += 0.1;
+    }
+    else if (alp &lt; 1) alp += 0.1;
 else
     if (alp &gt; 0) alp -= 0.1;
 
