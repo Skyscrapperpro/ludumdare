@@ -30,11 +30,11 @@ w=sprite_get_width(burgersbox);
 h=sprite_get_height(burgersbox);
 d=-10;
 
-x1=x+lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
-y1=y+lengthdir_y(w,player_obj.angle)*SIZESCALE/2;
+x1=x+lengthdir_x(w,player_obj.angle)*SIZESCALE/4;
+y1=y+lengthdir_y(w,player_obj.angle)*SIZESCALE/4;
 z1=0;
-x2=x-lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
-y2=y-lengthdir_y(w,player_obj.angle)*SIZESCALE/2;
+x2=x-lengthdir_x(w,player_obj.angle)*SIZESCALE/4;
+y2=y-lengthdir_y(w,player_obj.angle)*SIZESCALE/4;
 z2=d;
 
 if ((player_obj.handitem=0) &amp;&amp; (player_obj.spatulaburger=0) &amp;&amp; RIGHTCLICK)
