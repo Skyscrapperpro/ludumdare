@@ -31,8 +31,6 @@ y1=y;
 x2=x;
 y2=y;
 
-in_angle = false;
-
 </string>
           </argument>
         </arguments>
@@ -69,6 +67,7 @@ customer_manager_obj.customers[line]=id;
 nextcustomer = -1;
 prevcustomer.nextcustomer = id;
 looking_right = choose(true, false);
+in_angle = false;
 
 </string>
           </argument>
@@ -100,7 +99,7 @@ dedlimit = sprite_get_number(customer_ded);
 
 main_spr = customer;
 ded_spr = customer_ded;
-//scared_spr = 
+selected_menu = false;
 
 </string>
           </argument>
@@ -471,6 +470,7 @@ if (ISPERSPECTIVE)
         sprite = main_spr;
         subifinal = subi;
     }
+    
     tex = sprite_get_texture(sprite, subifinal);
     w = sprite_get_width(sprite);
     h = sprite_get_height(sprite);
@@ -490,6 +490,7 @@ if (ISPERSPECTIVE)
         x1 = x - lengthdir_x(w, player_obj.angle) * SIZESCALE/2;
         y1 = y - lengthdir_y(w, player_obj.angle) * SIZESCALE/2;
     }
+    
     d3d_draw_wall(x1, y1, z, x2, y2, (h * SIZESCALE)/2, tex, 1, 1);
 }
 else

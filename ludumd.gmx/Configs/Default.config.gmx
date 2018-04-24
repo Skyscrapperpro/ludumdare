@@ -661,7 +661,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="35">
+    <constants number="36">
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S"))</constant>
@@ -677,7 +677,7 @@
       <constant name="PIXELEFFECT">4</constant>
       <constant name="CHARACC">0.2</constant>
       <constant name="CHARSPD">3</constant>
-      <constant name="ITEMRANGE">64</constant>
+      <constant name="ITEMRANGE">300</constant>
       <constant name="SPAWNX">0</constant>
       <constant name="SPAWNY">100</constant>
       <constant name="LINENUMBER">3</constant>
@@ -697,6 +697,7 @@
       <constant name="ZOMBSPD">0.5</constant>
       <constant name="BURGERSCALE">0.16</constant>
       <constant name="AUTOCAMSPD">5</constant>
+      <constant name="DEBUGRAYS">false</constant>
     </constants>
   </ConfigConstants>
 </Config>

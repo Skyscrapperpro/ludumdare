@@ -8,7 +8,122 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///var init
+x1 = x - background_get_width(grilltop_bgr) * SIZESCALE/4;
+y1 = y - background_get_height(grilltop_bgr) * SIZESCALE/4;
+x2 = x + background_get_width(grilltop_bgr) * SIZESCALE/4;
+y2 = y + background_get_height(grilltop_bgr) * SIZESCALE/4;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///equip item and raycast (configure w, h and d)
+d = 1;
+z1 = 0;
+z2 = d;
+
+if (LEFTCLICK)
+if (player_obj.handitem == 0)
+if (player_obj.spatulaburger == 1)
+if (point_distance(player_obj.x, player_obj.y, x, y) &lt; ITEMRANGE)
+{
+    var angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
+    var angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
+    var anglemin=0;
+    var anglemax=0;
+    var target=point_direction(player_obj.x, player_obj.y, x, y) - 90;
+    
+    while(angleto1 &lt; -180)
+        angleto1+=360;
+    while(angleto1 &gt;= 180)
+        angleto1-=360;
+    while(angleto2 &lt;- 180)
+        angleto2+=360;
+    while(angleto2 &gt;= 180)
+        angleto2-=360;
+    while(target &lt; -180)
+        target+=360;
+    while(target &gt;= 180)
+        target-=360;
+    
+    if (angleto1 &lt; angleto2){anglemin = angleto1; anglemax = angleto2; }
+    else {anglemin = angleto2; anglemax = angleto1; }
+    
+    zangleto1=point_direction(player_obj.x,player_obj.z,x1,z1);
+    zangleto2=point_direction(player_obj.x,player_obj.z,x2,z2);
+    
+    while(zangleto1 &lt; -180)
+        zangleto1 += 360;
+    while(zangleto1 &gt;= 180)
+        zangleto1 -= 360;
+    while(zangleto2 &lt; -180)
+        zangleto2 += 360;
+    while(zangleto2 &gt;= 180)
+        zangleto2 -= 360;
+
+    if (player_obj.zangle &gt; zangleto1)
+    if (player_obj.zangle &lt; zangleto2)
+    {
+        if ((target &lt; anglemax) &amp;&amp; (target &gt; anglemin))
+        {
+            if (player_obj.angle &gt; anglemin)
+            if (player_obj.angle &lt; anglemax)
+            {
+                player_obj.spatulaburger = 0;
+                instance_create(lengthdir_x(10/tan(degtorad(player_obj.angle)), 10/tan(degtorad(player_obj.zangle))), lengthdir_y(10/tan(degtorad(player_obj.angle)), 10/tan(degtorad(player_obj.zangle))), burger_obj);
+            }
+        }
+        else
+        {
+            if ((player_obj.angle &lt; anglemin) || (player_obj.angle &gt; anglemax))
+            {
+                player_obj.spatulaburger = 0;
+                instance_create(lengthdir_x(10/tan(degtorad(player_obj.angle)), 10/tan(degtorad(player_obj.zangle))), lengthdir_y(10/tan(degtorad(player_obj.angle)), 10/tan(degtorad(player_obj.zangle))), burger_obj);
+            }
+        }
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -55,7 +170,7 @@ if (ISPERSPECTIVE)
 {
     d3d_draw_floor(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, 0, background_get_texture(grilltop_bgr), 1, 1);
     d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x - background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(grillfront_bgr), 1, 1);
-    d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_height(grilltop_bgr) * SIZESCALE/4, y - background_get_width(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1);
+    d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_height(grilltop_bgr) * SIZESCALE/4, y - background_get_width(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1); 
 }
 else draw_self();
 
