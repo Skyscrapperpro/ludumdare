@@ -91,10 +91,15 @@ if (!ISPERSPECTIVE) depth = -1;
             <string>///Cries array
 cry[0] = cry0_snd;
 cry[1] = cry1_snd;
-cry[2] = cry2_snd;
+cry[2] = cry3_snd;
 cry[3] = cry3_snd;
 cry[4] = cry4_snd;
-cry[5] = cry5_snd;
+cry[5] = zombie0_snd;
+cry[6] = zombie1_snd;
+cry[7] = zombie2_snd;
+cry[8] = zombie3_snd;
+cry[9] = zombie4_snd;
+cry[10] = zombie5_snd;
 
 </string>
           </argument>

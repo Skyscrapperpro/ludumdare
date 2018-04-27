@@ -676,7 +676,7 @@
       <constant name="FLOOR_WREP">4</constant>
       <constant name="FLOOR_HREP">5</constant>
       <constant name="PIXEL_LENGTH">4</constant>
-      <constant name="CAM_Z">45</constant>
+      <constant name="CAM_Z">50</constant>
       <constant name="CHAR_ACC">0.2</constant>
       <constant name="CHAR_SPD">3</constant>
       <constant name="ITEM_RANGE">300</constant>
@@ -695,10 +695,10 @@
       <constant name="BURGER_SCALE">0.16</constant>
       <constant name="AUTOCAM_SPD">5</constant>
       <constant name="WALL_Z">32</constant>
-      <constant name="TABLE_Z">25</constant>
+      <constant name="TABLE_Z">30</constant>
       <constant name="SIZESCALE">50</constant>
       <constant name="CEILING_H">80</constant>
-      <constant name="CRY_FREQ">240</constant>
+      <constant name="CRY_FREQ">480</constant>
     </constants>
   </ConfigConstants>
 </Config>
