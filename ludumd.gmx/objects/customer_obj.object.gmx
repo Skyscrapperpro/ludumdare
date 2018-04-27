@@ -209,20 +209,6 @@ if (near != noone)
       </action>
       <action>
         <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -237,68 +223,35 @@ if (near != noone)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Animation
+            <string>/// Animation and Movement
 sprite = main_spr;
 if ((x != targetx) || (y != targety))
 {
+    // ------- Animation ------
     if ((subi + 1) &gt; ilimit) then subi = 1;
     else subi++;
+    //
+    // ------- Movement -------
+    //Set angle
+    var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
+    
+    //Set speed
+    var xspeed = lengthdir_x(CUSTOMER_SPD, m_angle);
+    var yspeed = lengthdir_y(CUSTOMER_SPD, m_angle);
+    
+    //Collisions
+    xspeed = do_collision_x_first(xspeed);
+    yspeed = do_collision_y(xspeed, yspeed);
+    
+    //Move
+    x = var_to_target(x, targetx, xspeed);
+    y = var_to_target(y, targety, yspeed);
 }
 else subi = 0;
 
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Movement
-//Set angle
-var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
-
-//Set speed
-var xspeed = lengthdir_x(CUSTOMER_SPD, m_angle);
-var yspeed = lengthdir_y(CUSTOMER_SPD, m_angle);
-
-//Collisions
-xspeed = do_collision_x_first(xspeed);
-yspeed = do_collision_y(xspeed, yspeed);
-
-//Move
-x = var_to_target(x, targetx, xspeed);
-y = var_to_target(y, targety, yspeed);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
       <action>
         <libid>1</libid>

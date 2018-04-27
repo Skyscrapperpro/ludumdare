@@ -682,7 +682,7 @@
       <constant name="ITEM_RANGE">300</constant>
       <constant name="LINES_AMOUNT">3</constant>
       <constant name="FIRST_LINE_X">240</constant>
-      <constant name="LINES_SEP">40</constant>
+      <constant name="LINES_SEP">50</constant>
       <constant name="CUSTOMER_SPD">1</constant>
       <constant name="CUSTOMER_RANGE">20</constant>
       <constant name="CUSTOMER_SEP_X">random_range(-10, 10)</constant>
