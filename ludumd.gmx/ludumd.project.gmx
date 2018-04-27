@@ -71,10 +71,10 @@
       <script>scripts\raycast_box.gml</script>
       <script>scripts\draw_3dbgr_angle.gml</script>
       <script>scripts\raycast_3d_spr.gml</script>
-      <script>scripts\raycast_2d_spr.gml</script>
       <script>scripts\music_switch.gml</script>
       <script>scripts\array_delete_element.gml</script>
       <script>scripts\reverse_position.gml</script>
+      <script>scripts\raycast_2d_spr.gml</script>
     </scripts>
     <scripts name="Events">
       <script>scripts\event_auto_rotate.gml</script>
