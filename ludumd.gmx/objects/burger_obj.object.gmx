@@ -28,7 +28,11 @@
             <string>///spawn
 temp=0;
 cook=0;
-
+sprite = burger;
+tex = sprite_get_texture(sprite, cook);
+w = sprite_get_width(sprite);
+h = sprite_get_height(sprite);
+z = grill_obj.zcast;
 </string>
           </argument>
         </arguments>
@@ -52,9 +56,23 @@ cook=0;
           <argument>
             <kind>1</kind>
             <string>///heat
-if (x&gt;(grill_obj.x-background_get_width(grilltop_bgr)*SIZESCALE/4) &amp;&amp; x&lt;(grill_obj.x+background_get_width(grilltop_bgr)*SIZESCALE/4) &amp;&amp; y&gt;(grill_obj.y-background_get_height(grilltop_bgr)*SIZESCALE/4) &amp;&amp; y&lt;(grill_obj.x+background_get_height(grilltop_bgr)*SIZESCALE/4))
+if (x&gt;(grill_obj.x-grill_obj.w/2) &amp;&amp; x&lt;(grill_obj.x+grill_obj.w/2) &amp;&amp; y&gt;(grill_obj.y-grill_obj.h/2) &amp;&amp; y&lt;(grill_obj.y+grill_obj.h/2))
+{
     temp++;
+}
 
+if temp&lt;120 //esto hay que regularlo
+{
+    cook=0;
+}
+else if temp &lt;240
+{
+    cook=1;
+    }
+else
+{
+    cook=2;
+}
 </string>
           </argument>
         </arguments>
@@ -80,26 +98,14 @@ if (x&gt;(grill_obj.x-background_get_width(grilltop_bgr)*SIZESCALE/4) &amp;&amp;
             <string>///draw sprite
 if (ISPERSPECTIVE)
 {
-    if temp&lt;120 //esto hay que regularlo
-        cook=0;
-    else if temp &lt;240
-        cook=1;
-    else
-        cook=2;
-    
     var sprite, tex, w, h;
-    sprite = burger;
-    tex = sprite_get_texture(sprite, cook);
-    w = sprite_get_width(sprite);
-    h = sprite_get_height(sprite);
-    z = -1 - (h * SIZESCALE)/2;
     
     x1 = x + lengthdir_x(w, player_obj.angle) * SIZESCALE/2;
     y1 = y + lengthdir_y(w, player_obj.angle) * SIZESCALE/2;
     x2 = x - lengthdir_x(w, player_obj.angle) * SIZESCALE/2;
     y2 = y - lengthdir_y(w, player_obj.angle) * SIZESCALE/2;
     
-    d3d_draw_wall(x1, y1, z, x2, y2, (h * SIZESCALE)/2 - 1, tex, 1, 1);
+    d3d_draw_wall(x1, y1, z, x2, y2, z-(h * SIZESCALE)/2, tex, 1, 1);
 }
 </string>
           </argument>
