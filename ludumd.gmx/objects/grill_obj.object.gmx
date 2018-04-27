@@ -106,7 +106,7 @@ if (point_distance(player_obj.x, player_obj.y, x, y) &lt; ITEMRANGE)
             if (player_obj.angle &lt; anglemax)
             {
                 player_obj.spatulaburger = 0;
-                instance_create(lengthdir_x(10/tan(degtorad(player_obj.angle)), 10/tan(degtorad(player_obj.zangle))), lengthdir_y(10/tan(degtorad(player_obj.angle)), 10/tan(degtorad(player_obj.zangle))), burger_obj);
+                instance_create(lengthdir_x(10/tan(degtorad(player_obj.zangle)), player_obj.angle), lengthdir_y(10/tan(degtorad(player_obj.zangle)), player_obj.angle), burger_obj);
             }
         }
         else
@@ -114,7 +114,7 @@ if (point_distance(player_obj.x, player_obj.y, x, y) &lt; ITEMRANGE)
             if ((player_obj.angle &lt; anglemin) || (player_obj.angle &gt; anglemax))
             {
                 player_obj.spatulaburger = 0;
-                instance_create(lengthdir_x(10/tan(degtorad(player_obj.angle)), 10/tan(degtorad(player_obj.zangle))), lengthdir_y(10/tan(degtorad(player_obj.angle)), 10/tan(degtorad(player_obj.zangle))), burger_obj);
+                instance_create(lengthdir_x(10/tan(degtorad(player_obj.zangle)), player_obj.angle), lengthdir_y(10/tan(degtorad(player_obj.zangle)), player_obj.angle), burger_obj);
             }
         }
     }
