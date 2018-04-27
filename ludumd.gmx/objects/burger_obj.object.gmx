@@ -29,10 +29,10 @@
 temp=0;
 cook=0;
 sprite = burger;
-tex = sprite_get_texture(sprite, cook);
+z = grill_obj.zcast;
 w = sprite_get_width(sprite);
 h = sprite_get_height(sprite);
-z = grill_obj.zcast;
+tex = sprite_get_texture(sprite, cook);
 </string>
           </argument>
         </arguments>
@@ -56,6 +56,7 @@ z = grill_obj.zcast;
           <argument>
             <kind>1</kind>
             <string>///heat
+
 if (x&gt;(grill_obj.x-grill_obj.w/2) &amp;&amp; x&lt;(grill_obj.x+grill_obj.w/2) &amp;&amp; y&gt;(grill_obj.y-grill_obj.h/2) &amp;&amp; y&lt;(grill_obj.y+grill_obj.h/2))
 {
     temp++;
@@ -73,6 +74,8 @@ else
 {
     cook=2;
 }
+
+tex = sprite_get_texture(sprite, cook);
 </string>
           </argument>
         </arguments>
@@ -96,9 +99,9 @@ else
           <argument>
             <kind>1</kind>
             <string>///draw sprite
+
 if (ISPERSPECTIVE)
 {
-    var sprite, tex, w, h;
     
     x1 = x + lengthdir_x(w, player_obj.angle) * SIZESCALE/2;
     y1 = y + lengthdir_y(w, player_obj.angle) * SIZESCALE/2;
