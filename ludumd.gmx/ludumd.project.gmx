@@ -68,6 +68,7 @@
       <script>scripts\add_angle.gml</script>
       <script>scripts\pixelate.gml</script>
       <script>scripts\draw_3dspr_angle.gml</script>
+      <script>scripts\raycast_box.gml</script>
       <script>scripts\draw_3dbgr_angle.gml</script>
       <script>scripts\raycast_3d_spr.gml</script>
       <script>scripts\raycast_2d_spr.gml</script>
