@@ -118,7 +118,9 @@
     <object>objects\humanoid_obj</object>
     <object>objects\burgerbox_obj</object>
     <object>objects\breadbox_obj</object>
-    <object>objects\object15</object>
+    <object>objects\lechugabox_obj</object>
+    <object>objects\cheesebox_obj</object>
+    <object>objects\tomatobox_obj</object>
     <object>objects\grill_obj</object>
     <object>objects\customer_obj</object>
     <object>objects\zombie_obj</object>
