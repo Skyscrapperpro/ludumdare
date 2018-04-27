@@ -37,6 +37,7 @@
     <sprite>sprites\human_collider</sprite>
     <sprite>sprites\gunitem</sprite>
     <sprite>sprites\burger</sprite>
+    <sprite>sprites\target_test</sprite>
     <sprite>sprites\spatula</sprite>
     <sprite>sprites\downbread</sprite>
     <sprite>sprites\gunshot</sprite>
@@ -68,11 +69,13 @@
       <script>scripts\add_angle.gml</script>
       <script>scripts\pixelate.gml</script>
       <script>scripts\draw_3dspr_angle.gml</script>
+      <script>scripts\raycast_box.gml</script>
       <script>scripts\draw_3dbgr_angle.gml</script>
       <script>scripts\raycast_3d_spr.gml</script>
       <script>scripts\raycast_2d_spr.gml</script>
       <script>scripts\music_switch.gml</script>
       <script>scripts\array_delete_element.gml</script>
+      <script>scripts\reverse_position.gml</script>
     </scripts>
     <scripts name="Events">
       <script>scripts\event_auto_rotate.gml</script>
@@ -81,7 +84,6 @@
       <script>scripts\event_kill_customer.gml</script>
     </scripts>
     <script>scripts\nearest_raycast.gml</script>
-    <script>scripts\reverse_position.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>

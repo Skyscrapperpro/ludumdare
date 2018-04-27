@@ -140,6 +140,7 @@ else
 {
     image_angle = d_angle;
     draw_self();
+    draw_sprite(target_test, 0, targetx, targety);
 }
 
 </string>
