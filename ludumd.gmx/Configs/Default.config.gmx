@@ -661,7 +661,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="36">
+    <constants number="37">
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S"))</constant>
@@ -672,7 +672,7 @@
       <constant name="MOUSESENS">0.06</constant>
       <constant name="GETYCAMSPD">mouse_y_speed()</constant>
       <constant name="GETXCAMSPD">mouse_x_speed()</constant>
-      <constant name="ISPERSPECTIVE">true</constant>
+      <constant name="ISPERSPECTIVE">false</constant>
       <constant name="FLOOR_WREP">4</constant>
       <constant name="FLOOR_HREP">5</constant>
       <constant name="PIXEL_LENGTH">4</constant>
@@ -681,10 +681,11 @@
       <constant name="CHAR_SPD">3</constant>
       <constant name="ITEM_RANGE">300</constant>
       <constant name="LINES_AMOUNT">3</constant>
-      <constant name="FIRST_LINE_X">room_width - 168</constant>
-      <constant name="LINES_SEP">random_range(40, 50)</constant>
+      <constant name="FIRST_LINE_X">240</constant>
+      <constant name="LINES_SEP">40</constant>
       <constant name="CUSTOMER_SPD">1</constant>
       <constant name="CUSTOMER_RANGE">20</constant>
+      <constant name="CUSTOMER_SEP_X">random_range(-10, 10)</constant>
       <constant name="CUSTOMER_SEP">random_range(16, 26)</constant>
       <constant name="CUSTOMER_ALARM">random_range(200, 280)</constant>
       <constant name="ZOMBIE_ACTIVATION">random_range(10, 10)</constant>

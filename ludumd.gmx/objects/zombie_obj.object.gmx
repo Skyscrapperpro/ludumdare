@@ -205,8 +205,11 @@ if (!instance_exists(target))
     else target = player_obj;
 }
 
+targetx = target.x;
+targety = target.y;
+
 //Set speed
-m_angle = point_direction(x, y, target.x, target.y);
+var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
 var xspeed = lengthdir_x(ZOMBIE_SPD, m_angle);
 var yspeed = lengthdir_y(ZOMBIE_SPD, m_angle);
 
@@ -215,8 +218,8 @@ xspeed = do_collision_x_first(xspeed);
 yspeed = do_collision_y(xspeed, yspeed)
 
 //Movement
-x = var_to_target(x, target.x, xspeed);
-y = var_to_target(y, target.y, yspeed);
+x = var_to_target(x, targetx, xspeed);
+y = var_to_target(y, targety, yspeed);
 
 </string>
           </argument>

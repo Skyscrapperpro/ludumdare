@@ -11,8 +11,8 @@ var zang = argument8;
 var ret = false;
 var h = sprite_get_height(spr);
 var dist = point_distance(xorig, yorig, xdest, ydest);
-var z0 = zdest - h/2;
-var z1 = zdest + h/2;
+var z0 = zdest + h/2;
+var z1 = zdest - h/2;
 
 var zangleto0 = add_angle(point_direction(0, zorig, dist, z0), 0, 180);
 var zangleto1 = add_angle(point_direction(0, zorig, dist, z1), 0, 180);

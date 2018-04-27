@@ -28,7 +28,7 @@
             <string>/// Spawn
 line = 0;
 
-for (i = 0; i &lt; LINES_AMOUNT; i++)
+for (var i = 0; i &lt; LINES_AMOUNT; i++)
 {
     if (customer_manager_obj.lines[i] &lt; customer_manager_obj.lines[line])
         line = i;
@@ -126,7 +126,7 @@ looking_right = choose(true, false);
 if (prevcustomer == -1) targety = table_obj.y - CUSTOMER_SEP;
 else targety = prevcustomer.y - CUSTOMER_SEP;
 
-targetx = FIRST_LINE_X + (line * LINES_SEP);
+targetx = FIRST_LINE_X - (line * LINES_SEP) - CUSTOMER_SEP_X;
 
 </string>
           </argument>
@@ -268,15 +268,15 @@ else subi = 0;
             <kind>1</kind>
             <string>///Movement
 //Set angle
-m_angle = add_angle(0, point_direction(x, y, targetx, targety), 180);
+var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
 
 //Set speed
 var xspeed = lengthdir_x(CUSTOMER_SPD, m_angle);
 var yspeed = lengthdir_y(CUSTOMER_SPD, m_angle);
 
 //Collisions
-var xspeed = do_collision_x_first(xspeed);
-var yspeed = do_collision_y(xspeed, yspeed);
+xspeed = do_collision_x_first(xspeed);
+yspeed = do_collision_y(xspeed, yspeed);
 
 //Move
 x = var_to_target(x, targetx, xspeed);
