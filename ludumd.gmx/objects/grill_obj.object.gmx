@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>interactable_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -65,12 +65,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///var init
-x1 = x - background_get_width(grilltop_bgr) * SIZESCALE/4;
-y1 = y - background_get_height(grilltop_bgr) * SIZESCALE/4;
-x2 = x + background_get_width(grilltop_bgr) * SIZESCALE/4;
-y2 = y + background_get_height(grilltop_bgr) * SIZESCALE/4;
+            <string>/// Setup raycast and draw
+in_angle=0;
 
+bgr_top = grilltop_bgr;
+bgr_front = grillfront_bgr;
+bgr_side = side_bgr;
+w = sprite_get_width(sprite_index);
+h = sprite_get_height(sprite_index);
+tex = background_get_texture(bgr_top);
 </string>
           </argument>
         </arguments>
@@ -93,95 +96,7 @@ y2 = y + background_get_height(grilltop_bgr) * SIZESCALE/4;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///equip item and raycast (configure w, h and d)
-d = 1;
-z1 = 0;
-z2 = d;
-
-if (LEFTCLICK)
-if (player_obj.handitem == 0)
-if (player_obj.spatulaburger == 1)
-if (point_distance(player_obj.x, player_obj.y, x, y) &lt; ITEMRANGE)
-{
-    var angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
-    var angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
-    var anglemin=0;
-    var anglemax=0;
-    var target=point_direction(player_obj.x, player_obj.y, x, y) - 90;
-    
-    while(angleto1 &lt; -180)
-        angleto1+=360;
-    while(angleto1 &gt;= 180)
-        angleto1-=360;
-    while(angleto2 &lt;- 180)
-        angleto2+=360;
-    while(angleto2 &gt;= 180)
-        angleto2-=360;
-    while(target &lt; -180)
-        target+=360;
-    while(target &gt;= 180)
-        target-=360;
-    
-    if (angleto1 &lt; angleto2){anglemin = angleto1; anglemax = angleto2; }
-    else {anglemin = angleto2; anglemax = angleto1; }
-    
-    zangleto1=point_direction(player_obj.x,player_obj.z,x1,z1);
-    zangleto2=point_direction(player_obj.x,player_obj.z,x2,z2);
-    
-    while(zangleto1 &lt; -180)
-        zangleto1 += 360;
-    while(zangleto1 &gt;= 180)
-        zangleto1 -= 360;
-    while(zangleto2 &lt; -180)
-        zangleto2 += 360;
-    while(zangleto2 &gt;= 180)
-        zangleto2 -= 360;
-
-    if (player_obj.zangle &gt; zangleto1)
-    if (player_obj.zangle &lt; zangleto2)
-    {
-        if ((target &lt; anglemax) &amp;&amp; (target &gt; anglemin))
-        {
-            if (player_obj.angle &gt; anglemin)
-            if (player_obj.angle &lt; anglemax)
-            {
-                player_obj.spatulaburger = 0;
-                instance_create(lengthdir_x(10/tan(degtorad(player_obj.zangle)), player_obj.angle), lengthdir_y(10/tan(degtorad(player_obj.zangle)), player_obj.angle), burger_obj);
-            }
-        }
-        else
-        {
-            if ((player_obj.angle &lt; anglemin) || (player_obj.angle &gt; anglemax))
-            {
-                player_obj.spatulaburger = 0;
-                instance_create(lengthdir_x(10/tan(degtorad(player_obj.zangle)), player_obj.angle), lengthdir_y(10/tan(degtorad(player_obj.zangle)), player_obj.angle), burger_obj);
-            }
-        }
-    }
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Set depth
-depth = point_distance(x, y, player_obj.x, player_obj.y)
+            <string>///raycast
 
 </string>
           </argument>
@@ -208,6 +123,9 @@ depth = point_distance(x, y, player_obj.x, player_obj.y)
             <string>///draw
 if (ISPERSPECTIVE)
 {
+    d3d_draw_floor(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, tex, 1, 1);
+    draw_3dbgr_angle(bgr_side, x + w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, 180));
+    draw_3dbgr_angle(bgr_front, x, y - h/2, -TABLE_Z/2, w, TABLE_Z, add_angle(image_angle, 0, 180));
     //d3d_draw_floor(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, 0, background_get_texture(grilltop_bgr), 1, 1);
     //d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x - background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(grillfront_bgr), 1, 1);
     //d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_height(grilltop_bgr) * SIZESCALE/4, y - background_get_width(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1); 

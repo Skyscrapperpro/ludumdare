@@ -4,9 +4,10 @@ var scr_angle = argument0;
 var addition = argument1;
 var limit = argument2;
 
-if ((scr_angle + addition) < (limit-360)) { scr_angle += addition + 360; }
-else if ((scr_angle + addition) >= limit) { scr_angle += addition - 360; }
-else scr_angle += addition;
+scr_angle += addition;
+
+while ((scr_angle + addition) < (limit-360)) { scr_angle += 360; }
+while ((scr_angle + addition) >= limit) { scr_angle  -= 360; }
 
 return scr_angle;
 
