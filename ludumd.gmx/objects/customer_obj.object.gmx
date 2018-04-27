@@ -268,7 +268,7 @@ else subi = 0;
             <kind>1</kind>
             <string>///Movement
 //Set angle
-var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
+m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
 
 //Set speed
 var xspeed = lengthdir_x(CUSTOMER_SPD, m_angle);
