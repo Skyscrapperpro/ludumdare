@@ -672,7 +672,7 @@
       <constant name="MOUSESENS">0.06</constant>
       <constant name="GETYCAMSPD">mouse_y_speed()</constant>
       <constant name="GETXCAMSPD">mouse_x_speed()</constant>
-      <constant name="ISPERSPECTIVE">false</constant>
+      <constant name="ISPERSPECTIVE">true</constant>
       <constant name="FLOOR_WREP">4</constant>
       <constant name="FLOOR_HREP">5</constant>
       <constant name="PIXEL_LENGTH">4</constant>

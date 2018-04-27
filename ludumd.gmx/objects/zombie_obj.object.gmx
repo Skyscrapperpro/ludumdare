@@ -52,6 +52,7 @@ y += ZOM_POS_VARIATION;
             <string>/// Draw setup
 main_spr = zombie;
 ded_spr = zombie_ded;
+looking_right = choose(true, false);
 
 </string>
           </argument>
