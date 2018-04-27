@@ -499,7 +499,6 @@ if (ISPERSPECTIVE)
 }
 else
 {
-    image_angle = angle;
     view_angle = 180-angle;
     view_xview = x - view_wview/2;
     view_yview = y - view_hview/2;
@@ -570,7 +569,7 @@ draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
             <kind>1</kind>
             <string>///Draw camera
 if (ISPERSPECTIVE) d3d_set_projection(x, y, -CAM_Z, xf, yf, zf, 0, 0, -1);
-else draw_self();
+else draw_sprite_ext(sprite_index, 0, x, y, 1, 1, angle, -1, 1);
 
 </string>
           </argument>
