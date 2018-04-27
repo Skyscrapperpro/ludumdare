@@ -124,7 +124,7 @@ looking_right = choose(true, false);
             <kind>1</kind>
             <string>/// Movement variables
 if (prevcustomer == -1) targety = table_obj.y - CUSTOMER_SEP;
-else targety = prevcustomer.y + CUSTOMER_SEP;
+else targety = prevcustomer.y - CUSTOMER_SEP;
 
 targetx = FIRST_LINE_X + (line * LINES_SEP);
 
