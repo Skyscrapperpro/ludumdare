@@ -71,8 +71,8 @@ in_angle=0;
 bgr_top = grilltop_bgr;
 bgr_front = grillfront_bgr;
 bgr_side = side_bgr;
-w = sprite_get_width(sprite_index)*2;
-h = sprite_get_height(sprite_index)*2;
+w = sprite_get_width(sprite_index);
+h = sprite_get_height(sprite_index);
 tex = background_get_texture(bgr_top);
 </string>
           </argument>
