@@ -52,7 +52,7 @@ else
 
 //horizontal plane
 zi=zclose;
-if (tan(degtorad(zangle)) != 0)
+if (sin(degtorad(zangle)) != 0)
 {
     di=(zi-originz)/tan(degtorad(zangle));
     xi=di*cos(degtorad(xyangle))+originx;
@@ -72,7 +72,7 @@ xi=xclose;
 if (cos(degtorad(xyangle)) != 0)
 {
     di=(xi-originx)/cos(degtorad(xyangle));
-    zi=di*tan(degtorad(zangle))+originz;
+    zi=di*sin(degtorad(zangle))+originz;
     yi=di*sin(degtorad(xyangle))+originy;
     if ((zi>min(z1,z2)) && (zi<max(z1,z2)) && (yi>min(y1,y2)) && (yi<max(y1,y2)) && ((ret[0]==false) || (ret[4]>di)))
     {
@@ -89,7 +89,7 @@ yi=yclose;
 if (sin(degtorad(xyangle)) != 0)
 {
     di=(yi-originy)/sin(degtorad(xyangle));
-    zi=di*tan(degtorad(zangle))+originz;
+    zi=di*sin(degtorad(zangle))+originz;
     xi=di*cos(degtorad(xyangle))+originx;
     if ((zi>min(z1,z2)) && (zi<max(z1,z2)) && (xi>min(x1,x2)) && (xi<max(x1,x2)) && ((ret[0]==false) || (ret[4]>di)))
     {
