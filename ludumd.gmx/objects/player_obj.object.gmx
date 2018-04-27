@@ -454,9 +454,13 @@ if (RIGHT||LEFT||FORWARD||BACKWARDS)
 xspeed = var_to_target(xspeed, xspeed_targ, CHAR_ACC);
 yspeed = var_to_target(yspeed, yspeed_targ, CHAR_ACC);
 
+///Collisions
+xspeed = do_collision_x_first(xspeed);
+yspeed = do_collision_y(xspeed, yspeed);
+
 ///Move
-x += do_collision_x_first(xspeed);
-y += do_collision_y(xspeed, yspeed);
+x += xspeed;
+y += yspeed;
 
 </string>
           </argument>
