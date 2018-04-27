@@ -100,3 +100,5 @@ if (sin(degtorad(xyangle)) != 0)
         ret[4]=di;
     }
 }
+
+return ret;
