@@ -16,7 +16,7 @@
   <TextureGroups>
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
-  <For3D>0</For3D>
+  <For3D>-1</For3D>
   <width>64</width>
   <height>64</height>
   <frames>
@@ -24,5 +24,17 @@
     <frame index="1">images\girl_ded_1.png</frame>
     <frame index="2">images\girl_ded_2.png</frame>
     <frame index="3">images\girl_ded_3.png</frame>
+    <frame index="4">images\girl_ded_4.png</frame>
+    <frame index="5">images\girl_ded_5.png</frame>
+    <frame index="6">images\girl_ded_6.png</frame>
+    <frame index="7">images\girl_ded_7.png</frame>
+    <frame index="8">images\girl_ded_8.png</frame>
+    <frame index="9">images\girl_ded_9.png</frame>
+    <frame index="10">images\girl_ded_10.png</frame>
+    <frame index="11">images\girl_ded_11.png</frame>
+    <frame index="12">images\girl_ded_12.png</frame>
+    <frame index="13">images\girl_ded_13.png</frame>
+    <frame index="14">images\girl_ded_14.png</frame>
+    <frame index="15">images\girl_ded_15.png</frame>
   </frames>
 </sprite>
