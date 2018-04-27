@@ -10,7 +10,7 @@ var z2 = argument5;
 var originx = argument6;
 var originy = argument7;
 var originz = argument8;
-var xyangle = argument9 - 90;
+var xyangle = -argument9 - 90;
 var zangle = argument10;
 
 var ret;
@@ -57,7 +57,7 @@ if (tan(degtorad(zangle)) != 0)
     di=(zi-originz)/tan(degtorad(zangle));
     xi=di*cos(degtorad(xyangle))+originx;
     yi=di*sin(degtorad(xyangle))+originy;
-    if ((xi>min(x1,x2)) && (xi<max(x1,x2)) && (yi>min(y1,x2)) && (yi<max(y1,y2)))
+    if ((xi>min(x1,x2)) && (xi<max(x1,x2)) && (yi>min(y1,y2)) && (yi<max(y1,y2)))
     {
         ret[0]=true;
         ret[1]=xi;
