@@ -406,7 +406,7 @@ if (!auto_rotation)
     
         //Vertical movement
         var mvspeed = GETYCAMSPD;
-        if (!handitem) zangle = clamp((zangle + mvspeed), -90, 90);
+        if (handitem != 1) zangle = clamp((zangle + mvspeed), -90, 90);
         else zangle = 0;
     }
 }
@@ -504,7 +504,7 @@ if (ISPERSPECTIVE)
 }
 else
 {
-    view_angle = 180-angle;
+    view_angle = 180 - angle;
     view_xview = x - view_wview/2;
     view_yview = y - view_hview/2;
 }

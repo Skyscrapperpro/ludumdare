@@ -33,6 +33,10 @@
       <sprite>sprites\editor_gunitem</sprite>
       <sprite>sprites\editor_door</sprite>
       <sprite>sprites\editor_burgerbox</sprite>
+      <sprite>sprites\editor_breadbox</sprite>
+      <sprite>sprites\editor_lechugabox</sprite>
+      <sprite>sprites\editor_cheesebox</sprite>
+      <sprite>sprites\editor_tomatobox</sprite>
       <sprite>sprites\editor_borkposter</sprite>
     </sprites>
     <sprite>sprites\zombie</sprite>
@@ -67,6 +71,10 @@
     <background>background\grillfront_bgr</background>
     <background>background\side_bgr</background>
     <background>background\burgerbox_bgr</background>
+    <background>background\breadbox_bgr</background>
+    <background>background\lechugabox_bgr</background>
+    <background>background\cheesebox_bgr</background>
+    <background>background\tomatobox_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -109,6 +117,8 @@
     <object>objects\interactable_obj</object>
     <object>objects\humanoid_obj</object>
     <object>objects\burgerbox_obj</object>
+    <object>objects\breadbox_obj</object>
+    <object>objects\object15</object>
     <object>objects\grill_obj</object>
     <object>objects\customer_obj</object>
     <object>objects\zombie_obj</object>
