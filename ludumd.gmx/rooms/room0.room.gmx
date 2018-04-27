@@ -99,6 +99,10 @@ draw_set_alpha_test_ref_value(1);</code>
     <instance objName="table_obj" x="288" y="256" name="inst_F93D20D2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_obj" x="128" y="80" name="inst_988F1545" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="grill_obj" x="256" y="338" name="inst_DB6D6D4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="breadbox_obj" x="232" y="339" name="inst_D91C7B7A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="lechugabox_obj" x="174" y="339" name="inst_15E1D129" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="cheesebox_obj" x="155" y="339" name="inst_C0F58C6C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="tomatobox_obj" x="136" y="339" name="inst_C9D33557" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

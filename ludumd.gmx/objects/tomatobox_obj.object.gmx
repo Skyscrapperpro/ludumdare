@@ -154,7 +154,7 @@ if (raycast_3d_spr(spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_obj.za
 if (ISPERSPECTIVE)
 {
     d3d_draw_floor(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, tex, 1, 1);
-    draw_3dbgr_angle(bgr_front, x + w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, 180));
+    draw_3dbgr_angle(bgr_front, x - w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, 180));
     draw_3dbgr_angle(bgr_front, x, y - h/2, -TABLE_Z/2, w, TABLE_Z, add_angle(image_angle, 0, 180));
     draw_3dspr_angle(spr, 0, x, y, zpos, player_obj.angle);
     /*
