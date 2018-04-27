@@ -698,7 +698,7 @@
       <constant name="TABLE_Z">25</constant>
       <constant name="SIZESCALE">50</constant>
       <constant name="CEILING_H">80</constant>
-      <constant name="CRY_FREQ">240</constant>
+      <constant name="CRY_FREQ">480</constant>
     </constants>
   </ConfigConstants>
 </Config>

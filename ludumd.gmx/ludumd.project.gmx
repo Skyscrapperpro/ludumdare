@@ -9,12 +9,18 @@
     <sound>sound\cooking_music</sound>
     <sound>sound\shot_snd</sound>
     <sound>sound\elvis_snd</sound>
+    <sound>sound\girl_snd</sound>
     <sound>sound\cry0_snd</sound>
     <sound>sound\cry1_snd</sound>
     <sound>sound\cry2_snd</sound>
     <sound>sound\cry3_snd</sound>
     <sound>sound\cry4_snd</sound>
-    <sound>sound\cry5_snd</sound>
+    <sound>sound\zombie0_snd</sound>
+    <sound>sound\zombie1_snd</sound>
+    <sound>sound\zombie2_snd</sound>
+    <sound>sound\zombie3_snd</sound>
+    <sound>sound\zombie4_snd</sound>
+    <sound>sound\zombie5_snd</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Editor">
@@ -88,7 +94,7 @@
       <script>scripts\event_kill_customer.gml</script>
     </scripts>
     <script>scripts\nearest_raycast.gml</script>
-    <script>scripts\sprites_array.gml</script>
+    <script>scripts\cust_array.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>

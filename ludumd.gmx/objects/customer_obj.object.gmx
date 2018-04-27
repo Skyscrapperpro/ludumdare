@@ -83,8 +83,10 @@ in_angle = false;
           <argument>
             <kind>1</kind>
             <string>/// Draw setup
-main_spr = customer;
-ded_spr = customer_ded;
+custID = irandom(array_length_1d(global.cust_alive) - 1);
+main_spr = global.cust_alive[custID];
+ded_spr = global.cust_ded[custID];
+snd = global.cust_cry_snd[custID];
 selected_menu = false;
 looking_right = choose(true, false);
 

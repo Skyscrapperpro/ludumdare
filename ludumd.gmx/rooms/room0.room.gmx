@@ -16,7 +16,8 @@ draw_set_color(c_white);
 audio_stop_all();
 audio_play_sound(cooking_music, 1, true);
 draw_set_alpha_test(true);
-draw_set_alpha_test_ref_value(1);</code>
+draw_set_alpha_test_ref_value(1);
+cust_array();</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
