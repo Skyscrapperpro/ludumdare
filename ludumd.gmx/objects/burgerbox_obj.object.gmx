@@ -122,8 +122,6 @@ else depth = -1;
           <argument>
             <kind>1</kind>
             <string>/// Get draw angle
-xorig = player_obj.x;
-yorig = player_obj.y;
 d_angle = player_obj.angle;
 
 </string>
@@ -147,6 +145,8 @@ d_angle = player_obj.angle;
           <argument>
             <kind>1</kind>
             <string>/// Hit me with 3D raycasts
+var xorig = player_obj.x;
+var yorig = player_obj.y;
 in_angle = false;
 if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
 if (raycast_3d_spr(spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_obj.zangle))

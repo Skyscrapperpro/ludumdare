@@ -31,8 +31,12 @@
     </sprites>
     <sprite>sprites\zombie</sprite>
     <sprite>sprites\zombie_ded</sprite>
-    <sprite>sprites\customer</sprite>
-    <sprite>sprites\customer_ded</sprite>
+    <sprites name="customers">
+      <sprite>sprites\customer</sprite>
+      <sprite>sprites\customer_ded</sprite>
+      <sprite>sprites\girl</sprite>
+      <sprite>sprites\girl_ded</sprite>
+    </sprites>
     <sprite>sprites\customer_mark</sprite>
     <sprite>sprites\human_collider</sprite>
     <sprite>sprites\gunitem</sprite>
@@ -84,6 +88,7 @@
       <script>scripts\event_kill_customer.gml</script>
     </scripts>
     <script>scripts\nearest_raycast.gml</script>
+    <script>scripts\sprites_array.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
