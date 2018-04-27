@@ -103,12 +103,12 @@ tex = sprite_get_texture(sprite, cook);
 if (ISPERSPECTIVE)
 {
     
-    x1 = x + lengthdir_x(w, player_obj.angle) * SIZESCALE/2;
-    y1 = y + lengthdir_y(w, player_obj.angle) * SIZESCALE/2;
-    x2 = x - lengthdir_x(w, player_obj.angle) * SIZESCALE/2;
-    y2 = y - lengthdir_y(w, player_obj.angle) * SIZESCALE/2;
+    x1 = x + lengthdir_x(w, player_obj.angle) * BURGER_SCALE/2;
+    y1 = y + lengthdir_y(w, player_obj.angle) * BURGER_SCALE/2;
+    x2 = x - lengthdir_x(w, player_obj.angle) * BURGER_SCALE/2;
+    y2 = y - lengthdir_y(w, player_obj.angle) * BURGER_SCALE/2;
     
-    d3d_draw_wall(x1, y1, z, x2, y2, z-(h * SIZESCALE)/2, tex, 1, 1);
+    d3d_draw_wall(x1, y1, z, x2, y2, z-(h * BURGER_SCALE), tex, 1, 1);
 }
 </string>
           </argument>
