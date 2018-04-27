@@ -246,7 +246,7 @@ if (guni == (sprite_get_number(gunshot)/2))
             break;
     }
 }
-else if (LEFTCLICK)
+//else if (LEFTCLICK)
 if (player_obj.handitem == 0) //and
 {
     obj_shot = nearest_raycast(interactable_obj);
@@ -263,7 +263,7 @@ if (player_obj.handitem == 0) //and
         case grill_obj:
             if (spatulaburger=1)
             {
-                spatulaburger=0;
+                spatulaburger=1;
                 instance_create(grill_obj.xcast,grill_obj.ycast,burger_obj);
             }
             break;
