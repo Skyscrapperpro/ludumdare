@@ -97,7 +97,15 @@ tex = background_get_texture(bgr_top);
           <argument>
             <kind>1</kind>
             <string>///raycast
-
+in_angle=false;
+var rcast=raycast_box(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle);
+if (rcast[0])
+{
+    in_angle=true;
+    xcast=rcast[1];
+    ycast=rcast[2];
+    zcast=rcast[3];
+}
 </string>
           </argument>
         </arguments>

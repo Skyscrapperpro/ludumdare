@@ -268,7 +268,7 @@ else subi = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Movement
+            <string>///Movement
 //Set angle
 m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
 

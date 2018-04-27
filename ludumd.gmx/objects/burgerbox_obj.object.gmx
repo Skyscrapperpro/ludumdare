@@ -97,6 +97,32 @@ tex = background_get_texture(bgr_top);
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Hit me with 3D raycasts
+in_angle = false;
+if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
+if (raycast_3d_spr(spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_obj.zangle))
+    in_angle = true;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Set depth relative to player
 if (ISPERSPECTIVE) depth = point_distance(x, y, player_obj.x, player_obj.y);
 else depth = -1;
@@ -125,32 +151,6 @@ else depth = -1;
 xorig = player_obj.x;
 yorig = player_obj.y;
 d_angle = player_obj.angle;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Hit me with 3D raycasts
-in_angle = false;
-if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
-if (raycast_3d_spr(spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_obj.zangle))
-    in_angle = true;
 
 </string>
           </argument>
