@@ -10,7 +10,7 @@ var z2 = argument5;
 var originx = argument6;
 var originy = argument7;
 var originz = argument8;
-var xyangle = argument9;
+var xyangle = argument9 - 90;
 var zangle = argument10;
 
 var ret;
@@ -19,4 +19,40 @@ ret[1] = 0;
 ret[2] = 0;
 ret[3] = 0;
 
+var xclose,yclose,zclose;
+var xi,yi,zi;
+
+if (abs(originx-x1)<abs(originx-x2))
+{
+    xclose=x1;
+}
+else
+{
+    xclose=x2;
+}
+
+if (abs(originy-y1)<abs(originy-y2))
+{
+    yclose=y1;
+}
+else
+{
+    yclose=y2;
+}
+
+if (abs(originz-z1)<abs(originz-z2))
+{
+    zclose=z1;
+}
+else
+{
+    zclose=z2;
+}
+
+//plano horizontal
+zi=zclose;
+if (tan(degtorad(zangle)) !=0)
+{
+        
+}
 
