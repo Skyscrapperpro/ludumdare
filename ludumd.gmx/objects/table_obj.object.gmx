@@ -98,7 +98,7 @@ tex = background_get_texture(bgr_top);
 if (ISPERSPECTIVE)
 {
     d3d_draw_floor(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, tex, 1, 1);
-    draw_3dbgr_angle(bgr_front, x, y + h/2, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 0, 180));
+    draw_3dbgr_angle(bgr_front, x, y + h/2, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 0, ANGREF));
 }
 else draw_self();
 

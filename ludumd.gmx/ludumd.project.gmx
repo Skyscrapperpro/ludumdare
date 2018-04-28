@@ -49,19 +49,16 @@
       <sprite>sprites\girl</sprite>
       <sprite>sprites\girl_ded</sprite>
     </sprites>
-    <sprites name="Colliders">
+    <sprites name="Colliders and tests">
       <sprite>sprites\human_collider</sprite>
       <sprite>sprites\gunitem_collider</sprite>
       <sprite>sprites\chunks_collider</sprite>
+      <sprite>sprites\target_test</sprite>
     </sprites>
     <sprite>sprites\gunitem</sprite>
     <sprite>sprites\ingredients</sprite>
-    <sprite>sprites\target_test</sprite>
     <sprite>sprites\spatula</sprite>
-    <sprite>sprites\bottombread</sprite>
     <sprite>sprites\gunshot</sprite>
-    <sprite>sprites\topbread</sprite>
-    <sprite>sprites\lechuga</sprite>
     <sprite>sprites\focus</sprite>
     <sprite>sprites\chunks</sprite>
   </sprites>

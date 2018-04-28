@@ -417,7 +417,7 @@ if (!auto_rotation)
     {
         //Horizontal movement
         var mspeed = GETXCAMSPD;
-        angle = add_angle(angle, mspeed, 180);
+        angle = add_angle(angle, mspeed, ANGREF);
     
         //Vertical movement
         var mvspeed = GETYCAMSPD;
@@ -464,7 +464,7 @@ if (mouse_active) then display_mouse_set(display_get_width()/2, display_get_heig
             <kind>1</kind>
             <string>/// Get position
 //Get input angle
-var move_angle = add_angle(angle, point_direction(0, 0, LEFT-RIGHT, BACKWARDS-FORWARD), 180);
+var move_angle = add_angle(angle, point_direction(0, 0, LEFT-RIGHT, BACKWARDS-FORWARD), ANGREF);
 var xspeed_targ = 0;
 var yspeed_targ = 0;
 

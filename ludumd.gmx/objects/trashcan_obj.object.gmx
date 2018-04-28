@@ -135,15 +135,15 @@ if (rcast[0])
             <string>///draw
 if (ISPERSPECTIVE)
 {
-    var xws = lengthdir_x(w, add_angle(-image_angle, 0, 180))/2;
-    var yws = lengthdir_y(w, add_angle(-image_angle, 0, 180))/2;
-    var xwf = lengthdir_x(w, add_angle(-image_angle, 90, 180))/2;
-    var ywf = lengthdir_y(w, add_angle(-image_angle, 90, 180))/2;
+    var xws = lengthdir_x(w, add_angle(-image_angle, 0, ANGREF))/2;
+    var yws = lengthdir_y(w, add_angle(-image_angle, 0, ANGREF))/2;
+    var xwf = lengthdir_x(w, add_angle(-image_angle, 90, ANGREF))/2;
+    var ywf = lengthdir_y(w, add_angle(-image_angle, 90, ANGREF))/2;
     
     d3d_draw_floor(x - xwf, y + yws, -h, x + xwf, y - yws, -h, tex, 1, 1);
-    draw_3dbgr_angle(bgr_side, x + xws, y + yws, -h/2, w, h, add_angle(-image_angle, -90, 180));
-    draw_3dbgr_angle(bgr_side, x - xws, y - yws, -h/2, w, h, add_angle(-image_angle, -90, 180));
-    draw_3dbgr_angle(bgr_front, x - xwf, y + ywf, -h/2, w, h, add_angle(-image_angle, 0, 180));
+    draw_3dbgr_angle(bgr_side, x + xws, y + yws, -h/2, w, h, add_angle(-image_angle, -90, ANGREF));
+    draw_3dbgr_angle(bgr_side, x - xws, y - yws, -h/2, w, h, add_angle(-image_angle, -90, ANGREF));
+    draw_3dbgr_angle(bgr_front, x - xwf, y + ywf, -h/2, w, h, add_angle(-image_angle, 0, ANGREF));
 }
 else draw_self();
 

@@ -14,11 +14,11 @@ var y0 = ydest + dify;
 var x1 = xdest - difx;
 var y1 = ydest - dify;
 
-var angleto0 = add_angle(point_direction(xorig, yorig, x0, y0), -90, 180);
-var angleto1 = add_angle(point_direction(xorig, yorig, x1, y1), -90, 180);
+var angleto0 = add_angle(point_direction(xorig, yorig, x0, y0), -90, ANGREF);
+var angleto1 = add_angle(point_direction(xorig, yorig, x1, y1), -90, ANGREF);
 var anglemin = min(angleto0, angleto1);
 var anglemax = max(angleto0, angleto1);
-var target = add_angle(point_direction(xorig, yorig, xdest, ydest), -90, 180);
+var target = add_angle(point_direction(xorig, yorig, xdest, ydest), -90, ANGREF);
 
 if ((target > anglemin) && (target < anglemax))
 {

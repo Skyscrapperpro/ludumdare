@@ -86,7 +86,7 @@ var yorig = player_obj.y;
 
 in_angle = false;
 if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
-if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_obj.zangle ))
+if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, zreal(player_obj.zangle)))
     in_angle = true;
 
 </string>
@@ -115,10 +115,10 @@ if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_ob
 if (ISPERSPECTIVE)
 {
     d3d_draw_floor(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, tex, 1, 1);
-    draw_3dbgr_angle(bgr_front, x + w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, 180));
-    draw_3dbgr_angle(bgr_front, x - w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, 180));
-    draw_3dbgr_angle(bgr_front, x, y - h/2, -TABLE_Z/2, w, TABLE_Z, add_angle(image_angle, 0, 180));
-    draw_3dspr_angle(spr, subi, x, y, zpos, player_obj.angle);
+    draw_3dbgr_angle(bgr_front, x + w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, ANGREF));
+    draw_3dbgr_angle(bgr_front, x - w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, ANGREF));
+    draw_3dbgr_angle(bgr_front, x, y - h/2, -TABLE_Z/2, w, TABLE_Z, add_angle(image_angle, 0, ANGREF));
+    draw_3dspr_angle(spr, subi, x, y, zpos, 1, player_obj.angle);
     /*
     w = sprite_get_width(burger)/2;
     h = sprite_get_height(burger)/2;

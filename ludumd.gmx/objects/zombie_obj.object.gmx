@@ -211,7 +211,7 @@ targetx = target.x;
 targety = target.y;
 
 //Set speed
-var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
+var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, ANGREF);
 var xspeed = lengthdir_x(ZOMBIE_SPD, m_angle);
 var yspeed = lengthdir_y(ZOMBIE_SPD, m_angle);
 

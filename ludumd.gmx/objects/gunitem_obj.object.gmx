@@ -143,8 +143,8 @@ var xorig = player_obj.x;
 var yorig = player_obj.y;
 
 in_angle = false;
-if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and   //arctan(-sin(degtorad(player_obj.zangle)))
-if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_obj.zangle ))
+if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
+if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, zreal(player_obj.zangle)))
     in_angle = true;
 
 </string>
@@ -172,8 +172,8 @@ if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_ob
             <string>///draw
 if (ISPERSPECTIVE)
 {
-    draw_3dspr_angle(spr, 0, x, y, zpos, player_obj.angle);
-    raycast_3d_spr(ray_spr, player_obj.x, player_obj.y, -CAM_Z, x, y, zpos, d_angle, player_obj.zangle )
+    draw_3dspr_angle(spr, 0, x, y, zpos, 0.7, player_obj.angle);
+    raycast_3d_spr(ray_spr, player_obj.x, player_obj.y, -CAM_Z, x, y, zpos, d_angle, zreal(player_obj.zangle))
 }
 else draw_self();
 
