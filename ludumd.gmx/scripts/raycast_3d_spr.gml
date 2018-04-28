@@ -6,7 +6,7 @@ var xdest = argument4;
 var ydest = argument5;
 var zdest = argument6;
 var ang = argument7;
-var zang = argument8;
+var zang = zreal(argument8);
 
 var ret = false;
 var h = sprite_get_height(spr);
