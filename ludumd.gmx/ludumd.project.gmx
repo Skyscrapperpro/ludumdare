@@ -55,13 +55,13 @@
       <sprite>sprites\chunks_collider</sprite>
     </sprites>
     <sprite>sprites\gunitem</sprite>
-    <sprite>sprites\burger</sprite>
+    <sprite>sprites\ingredients</sprite>
     <sprite>sprites\target_test</sprite>
     <sprite>sprites\spatula</sprite>
-    <sprite>sprites\downbread</sprite>
+    <sprite>sprites\bottombread</sprite>
     <sprite>sprites\gunshot</sprite>
     <sprite>sprites\topbread</sprite>
-    <sprite>sprites\lettuce</sprite>
+    <sprite>sprites\lechuga</sprite>
     <sprite>sprites\focus</sprite>
     <sprite>sprites\chunks</sprite>
   </sprites>

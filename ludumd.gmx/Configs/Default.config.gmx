@@ -661,7 +661,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="37">
+    <constants number="40">
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S"))</constant>
@@ -699,6 +699,9 @@
       <constant name="SIZESCALE">50</constant>
       <constant name="CEILING_H">80</constant>
       <constant name="CRY_FREQ">480</constant>
+      <constant name="DIALOG_DIST_X">20</constant>
+      <constant name="DIALOG_DIST_Z">2</constant>
+      <constant name="ING_SEP">8</constant>
     </constants>
   </ConfigConstants>
 </Config>

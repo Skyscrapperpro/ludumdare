@@ -104,7 +104,7 @@ draw_set_alpha_test_ref_value(1);</code>
     <instance objName="cheesebox_obj" x="155" y="339" name="inst_C0F58C6C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="tomatobox_obj" x="136" y="339" name="inst_C9D33557" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="gunitem_obj" x="192" y="224" name="inst_11C874F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="trashcan_obj" x="202" y="339" name="inst_70745B5D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="trashcan_obj" x="275" y="275" name="inst_70745B5D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-90"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
