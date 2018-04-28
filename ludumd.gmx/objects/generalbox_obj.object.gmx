@@ -27,7 +27,8 @@
             <kind>1</kind>
             <string>///General create
 spr = chunks;
-ray_spr = chunks_collider;
+ray_spr = 16; //chunks_collider;
+ray_h = 16;
 zpos = -TABLE_Z - sprite_get_height(spr)/2;
 z = TABLE_Z;
 bgr_side = side_bgr;
@@ -97,8 +98,8 @@ var xorig = player_obj.x;
 var yorig = player_obj.y;
 
 in_angle = false;
-if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
-if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, zreal(player_obj.zangle)))
+if (point_distance(xorig, yorig,  x + upx/2, y + upy/2,) &lt; ITEM_RANGE) //and
+if (raycast_3d_spr(ray_spr, ray_h, xorig, yorig, -CAM_Z, x + upx/2, y + upy/2, zpos, d_angle, zreal(player_obj.zangle)))
     in_angle = true;
 
 </string>
@@ -107,6 +108,20 @@ if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, zreal(pla
       </action>
     </event>
     <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -126,11 +141,7 @@ if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, zreal(pla
             <string>/// Draw
 if (ISPERSPECTIVE)
 {
-    d3d_draw_floor(x - w/2, y - h/2, -z, x + w/2, y + h/2, -z, tex, 1, 1);
-    draw_3dbgr_angle(bgr_front, x + w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
-    draw_3dbgr_angle(bgr_front, x - w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
-    draw_3dbgr_angle(bgr_front, x, y - h/2, -z/2, w, z, add_angle(image_angle, 0, ANGREF));
-    draw_3dspr_angle(spr, subi, x, y, zpos, 1, player_obj.angle);
+    draw_3dspr_angle(spr, subi, x + upx/2, y + upy/2, zpos, 1, player_obj.angle);
     /*
     w = sprite_get_width(burger)/2;
     h = sprite_get_height(burger)/2;

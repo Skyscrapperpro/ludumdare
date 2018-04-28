@@ -3,9 +3,9 @@
   <spriteName>ingredients</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-2</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>interactable_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,17 +25,40 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///spawn
-temp = 0;
-cook = 0;
+            <string>/// Get draw angle
+d_angle = player_obj.angle;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Spawn
 sprite[0] = burger_grill0;
 sprite[1] = burger_grill1;
 sprite[2] = burger_grill2;
 //w = sprite_get_width(sprite[0]);
-h = sprite_get_height(sprite[0]);
-z = grill_obj.zcast - (h * BURGER_SCALE/2);
-tex = sprite_get_texture(sprite[0], cook);
+h = sprite_get_height(sprite[0]) * BURGER_SCALE;
+zpos = grill_obj.zcast - h/4;
+ray_zpos = grill_obj.zcast - (5 * BURGER_SCALE);
 subi = 0;
+ray_spr = 31 * BURGER_SCALE; //burger_collider;
+ray_h = 11 * BURGER_SCALE;
 
 </string>
           </argument>
@@ -90,13 +113,63 @@ else cook = 2;
           <argument>
             <kind>1</kind>
             <string>///Animation
-var ratio = 0.25;
+var ratio = 0.125;
 var ilimit = sprite_get_number(sprite[cook]);
 
 if ((subi + ratio) &gt; ilimit) then subi = 0;
 else subi += ratio;
 
-//tex = sprite_get_texture(sprite[cook], subi);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get draw angle
+d_angle = player_obj.angle;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with 3D raycasts
+var xorig = player_obj.x;
+var yorig = player_obj.y;
+
+in_angle = false;
+if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
+if (raycast_3d_spr(ray_spr, ray_h, xorig, yorig, -CAM_Z, x, y, ray_zpos, d_angle, zreal(player_obj.zangle)))
+    in_angle = true;
 
 </string>
           </argument>
@@ -120,18 +193,12 @@ else subi += ratio;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw sprite
-
+            <string>/// Draw sprite
 if (ISPERSPECTIVE)
 {
-    draw_3dspr_angle(sprite[cook], subi, x, y, z, BURGER_SCALE, player_obj.angle);
-    /*x1 = x - lengthdir_x(w, player_obj.angle) * BURGER_SCALE/2;
-    y1 = y - lengthdir_y(w, player_obj.angle) * BURGER_SCALE/2;
-    x2 = x + lengthdir_x(w, player_obj.angle) * BURGER_SCALE/2;
-    y2 = y + lengthdir_y(w, player_obj.angle) * BURGER_SCALE/2;
-    
-    d3d_draw_wall(x1, y1, z, x2, y2, z - (h * BURGER_SCALE), tex, 1, 1);*/
+    draw_3dspr_angle(sprite[cook], subi, x, y, zpos, BURGER_SCALE, d_angle);
 }
+
 </string>
           </argument>
         </arguments>

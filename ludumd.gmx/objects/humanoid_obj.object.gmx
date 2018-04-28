@@ -40,7 +40,7 @@
           <argument>
             <kind>1</kind>
             <string>///Draw initialize
-ray_spr = human_collider;
+ray_spr = 32; //human_collider;
 sprite = main_spr;
 subi = 0;
 ilimit = sprite_get_number(main_spr);

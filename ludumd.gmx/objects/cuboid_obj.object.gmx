@@ -45,6 +45,17 @@ h = sprite_get_height(sprite_index);
 tex = background_get_texture(bgr_top);
 in_angle = 0;
 
+leftx = rotating_point_relative(-w/2, -h/2, image_angle, 0);
+lefty = rotating_point_relative(-w/2, -h/2, image_angle, 1);
+upx = rotating_point_relative(0, -h, image_angle, 0);
+upy = rotating_point_relative(0, -h, image_angle, 1);
+rightx = rotating_point_relative(+w/2, -h/2, image_angle, 0);
+righty = rotating_point_relative(+w/2, -h/2, image_angle, 1);
+cornerx0 = rotating_point_relative(+w/2, -h, image_angle, 0);
+cornery0 = rotating_point_relative(+w/2, -h, image_angle, 1);
+cornerx1 = rotating_point_relative(-w/2, 0, image_angle, 0);
+cornery1 = rotating_point_relative(-w/2, 0, image_angle, 1);
+
 </string>
           </argument>
         </arguments>
@@ -67,11 +78,11 @@ in_angle = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///raycast
+            <string>/// Box raycast
 in_angle=false;
 var rcast;
 
-rcast = raycast_box(x - w/2, y - h/2, -z, x + w/2, y + h/2, -z, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
+rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
 
 if (rcast[0])
 {
@@ -80,6 +91,7 @@ if (rcast[0])
     ycast=rcast[2];
     zcast=rcast[3];
 }
+
 </string>
           </argument>
         </arguments>
@@ -107,15 +119,10 @@ if (ISPERSPECTIVE)
 {
     ///ToDo: Hace falta generalizar esto para que se puedan
     //girar las cosas en el editor sin que se rompan
-    var xws = lengthdir_x(w, add_angle(image_angle, 0, ANGREF))/2;
-    var yws = lengthdir_y(w, add_angle(image_angle, 0, ANGREF))/2;
-    var xwf = lengthdir_x(w, add_angle(image_angle, 90, ANGREF))/2;
-    var ywf = lengthdir_y(w, add_angle(image_angle, 90, ANGREF))/2;
-    
-    d3d_draw_floor(x - xws, y + ywf, -z, x + xws, y - ywf, -z, tex, 1, 1);
-    draw_3dbgr_angle(bgr_side, x + xws, y + yws, -z/2, w, z, add_angle(90, -image_angle, ANGREF));
-    draw_3dbgr_angle(bgr_side, x - xws, y - yws, -z/2, w, z, add_angle(90, -image_angle, ANGREF));
-    draw_3dbgr_angle(bgr_front, x - xwf, y + ywf, -z/2, w, z, add_angle(180, -image_angle, ANGREF));
+    d3d_draw_floor(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z, tex, 1, 1);
+    draw_3dbgr_angle(bgr_side, x + leftx, y + lefty, -z/2, h, z, 90 + image_angle);
+    draw_3dbgr_angle(bgr_side, x + rightx, y + righty, -z/2, h, z, 90 + image_angle);
+    draw_3dbgr_angle(bgr_front, x + upx, y + upy, -z/2, w, z, 180 + image_angle);
 }
 else draw_self();
 

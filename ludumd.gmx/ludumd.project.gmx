@@ -52,6 +52,7 @@
       <sprite>sprites\human_collider</sprite>
       <sprite>sprites\gunitem_collider</sprite>
       <sprite>sprites\chunks_collider</sprite>
+      <sprite>sprites\burger_collider</sprite>
       <sprite>sprites\target_test</sprite>
     </sprites>
     <sprites name="GUI">
@@ -110,6 +111,7 @@
       <script>scripts\array_delete_element.gml</script>
       <script>scripts\reverse_position.gml</script>
       <script>scripts\zreal.gml</script>
+      <script>scripts\rotating_point_relative.gml</script>
     </scripts>
     <scripts name="Events">
       <script>scripts\event_auto_rotate.gml</script>
@@ -118,6 +120,7 @@
       <script>scripts\event_kill_zombie.gml</script>
       <script>scripts\event_kill_customer.gml</script>
       <script>scripts\event_last_zombie.gml</script>
+      <script>scripts\event_grill_burger.gml</script>
     </scripts>
     <script>scripts\nearest_raycast.gml</script>
     <script>scripts\cust_array.gml</script>

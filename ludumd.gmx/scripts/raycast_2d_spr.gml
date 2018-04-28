@@ -1,4 +1,5 @@
-var spr = argument0;
+//var spr = argument0;
+var w = argument0;
 var xorig = argument1;
 var yorig = argument2;
 var xdest = argument3;
@@ -6,7 +7,7 @@ var ydest = argument4;
 var ang = argument5;
 
 var ret = false;
-var w = sprite_get_width(spr);
+//var w = sprite_get_width(spr);
 var difx = lengthdir_x(w, ang)/2;
 var dify = lengthdir_y(w, ang)/2;
 var x0 = xdest + difx;
@@ -29,7 +30,7 @@ if ((target > anglemin) && (target < anglemax))
 else if ((player_obj.angle < anglemin) || (player_obj.angle > anglemax))
     ret = true;
     
-if (event_type == ev_draw) d3d_draw_wall(x0, y0, -CAM_Z, x1, y1, 0, sprite_get_texture(spr, 0), 1, 1)
+//if (event_type == ev_draw) d3d_draw_wall(x0, y0, -CAM_Z, x1, y1, 0, sprite_get_texture(spr, 0), 1, 1)
     
 return ret;
 

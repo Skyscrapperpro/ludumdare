@@ -54,6 +54,20 @@ tex_plate = background_get_texture(plate_bgr);
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -71,11 +85,11 @@ tex_plate = background_get_texture(plate_bgr);
             <string>/// Draw
 if (ISPERSPECTIVE)
 {
-    d3d_draw_floor(x - w/2, y - h/2, -z, x + w/2, y + h/2, -z, tex, 1, 1);
-    d3d_draw_floor(x - w/2, y - h/2, -z - PLATE_ELEV, x + w/2, y + h/2, -z - PLATE_ELEV, tex_plate, 1, 1);
-    draw_3dbgr_angle(bgr_front, x + w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
-    draw_3dbgr_angle(bgr_front, x - w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
-    draw_3dbgr_angle(bgr_front, x, y - h/2, -z/2, w, z, add_angle(image_angle, 0, ANGREF));
+    //d3d_draw_floor(x - w/2, y - h/2, -z, x + w/2, y + h/2, -z, tex, 1, 1);
+    d3d_draw_floor(x + cornerx0, y + cornery0, -z - PLATE_ELEV, x + cornerx1, y + cornery1, -z - PLATE_ELEV, tex_plate, 1, 1);
+    //draw_3dbgr_angle(bgr_front, x + w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
+    //draw_3dbgr_angle(bgr_front, x - w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
+    //draw_3dbgr_angle(bgr_front, x, y - h/2, -z/2, w, z, add_angle(image_angle, 0, ANGREF));
 }
 
 </string>
