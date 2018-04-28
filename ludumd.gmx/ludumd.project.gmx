@@ -41,8 +41,6 @@
       <sprite>sprites\editor_tomatobox</sprite>
       <sprite>sprites\editor_borkposter</sprite>
     </sprites>
-    <sprite>sprites\zombie</sprite>
-    <sprite>sprites\zombie_ded</sprite>
     <sprites name="Customers">
       <sprite>sprites\customer_dialog</sprite>
       <sprite>sprites\customer</sprite>
@@ -56,12 +54,20 @@
       <sprite>sprites\chunks_collider</sprite>
       <sprite>sprites\target_test</sprite>
     </sprites>
-    <sprite>sprites\gunitem</sprite>
-    <sprite>sprites\ingredients</sprite>
-    <sprite>sprites\spatula</sprite>
-    <sprite>sprites\gunshot</sprite>
-    <sprite>sprites\focus</sprite>
-    <sprite>sprites\chunks</sprite>
+    <sprites name="GUI">
+      <sprite>sprites\focus</sprite>
+      <sprite>sprites\gunshot</sprite>
+      <sprite>sprites\spatula</sprite>
+    </sprites>
+    <sprites name="Shooter">
+      <sprite>sprites\zombie</sprite>
+      <sprite>sprites\zombie_ded</sprite>
+      <sprite>sprites\gunitem</sprite>
+    </sprites>
+    <sprites name="Burgers">
+      <sprite>sprites\ingredients</sprite>
+      <sprite>sprites\chunks</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\table_bgr</background>
