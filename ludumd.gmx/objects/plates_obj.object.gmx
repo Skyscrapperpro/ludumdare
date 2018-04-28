@@ -30,7 +30,10 @@ bgr_top = side_bgr;
 bgr_side = side_bgr;
 bgr_front = side_bgr;
 z = 25;
+z1 = z;
 tex_plate = background_get_texture(plate_bgr);
+spr = refrigerio;
+zpos = -z - sprite_get_height(spr)/2;
 
 </string>
           </argument>
@@ -85,11 +88,8 @@ tex_plate = background_get_texture(plate_bgr);
             <string>/// Draw
 if (ISPERSPECTIVE)
 {
-    //d3d_draw_floor(x - w/2, y - h/2, -z, x + w/2, y + h/2, -z, tex, 1, 1);
     d3d_draw_floor(x + cornerx0, y + cornery0, -z - PLATE_ELEV, x + cornerx1, y + cornery1, -z - PLATE_ELEV, tex_plate, 1, 1);
-    //draw_3dbgr_angle(bgr_front, x + w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
-    //draw_3dbgr_angle(bgr_front, x - w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
-    //draw_3dbgr_angle(bgr_front, x, y - h/2, -z/2, w, z, add_angle(image_angle, 0, ANGREF));
+    draw_3dspr_angle(spr, 0, x + rightx/2, y + righty/2, zpos, 1, player_obj.angle);
 }
 
 </string>

@@ -66,6 +66,7 @@ bgr_side = side_bgr;
             <kind>1</kind>
             <string>///Z is W in this one
 z = w;
+z1 = z;
 
 </string>
           </argument>

@@ -5,6 +5,7 @@ var yorig = argument2;
 var xdest = argument3;
 var ydest = argument4;
 var ang = argument5;
+var angorig = argument6;
 
 var ret = false;
 //var w = sprite_get_width(spr);
@@ -23,11 +24,11 @@ var target = add_angle(point_direction(xorig, yorig, xdest, ydest), -90, ANGREF)
 
 if ((target > anglemin) && (target < anglemax))
 {
-    if (ang > anglemin) //and
-    if (ang < anglemax)
+    if (angorig > anglemin) //and
+    if (angorig < anglemax)
         ret = true;
 }
-else if ((player_obj.angle < anglemin) || (player_obj.angle > anglemax))
+else if ((angorig < anglemin) || (angorig > anglemax))
     ret = true;
     
 //if (event_type == ev_draw) d3d_draw_wall(x0, y0, -CAM_Z, x1, y1, 0, sprite_get_texture(spr, 0), 1, 1)

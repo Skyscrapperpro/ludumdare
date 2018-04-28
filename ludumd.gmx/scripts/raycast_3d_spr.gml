@@ -7,7 +7,8 @@ var xdest = argument5;
 var ydest = argument6;
 var zdest = argument7;
 var ang = argument8;
-var zang = argument9;
+var angorig = argument9;
+var zang = argument10;
 
 var ret = false;
 //var h = sprite_get_height(spr);
@@ -20,7 +21,7 @@ var zangleto1 = add_angle(point_direction(0, zorig, dist, z1), 0, ANGREF);
 
 if (zang > zangleto0) //and
 if (zang < zangleto1) //and
-if (raycast_2d_spr(spr_w, xorig, yorig, xdest, ydest, ang)) then ret = true;
+if (raycast_2d_spr(spr_w, xorig, yorig, xdest, ydest, ang, angorig)) then ret = true;
 
 return ret;
 

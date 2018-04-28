@@ -168,7 +168,7 @@ var yorig = player_obj.y;
 
 in_angle = false;
 if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
-if (raycast_3d_spr(ray_spr, ray_h, xorig, yorig, -CAM_Z, x, y, ray_zpos, d_angle, zreal(player_obj.zangle)))
+if (raycast_3d_spr(ray_spr, ray_h, xorig, yorig, -CAM_Z, x, y, ray_zpos, d_angle, d_angle, zreal(player_obj.zangle)))
     in_angle = true;
 
 </string>

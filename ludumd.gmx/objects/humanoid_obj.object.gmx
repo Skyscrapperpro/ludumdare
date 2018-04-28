@@ -93,7 +93,7 @@ d_angle = player_obj.angle;
           <argument>
             <kind>1</kind>
             <string>/// Hit me with raycasts
-if raycast_2d_spr(ray_spr, player_obj.x, player_obj.y, x, y, d_angle)
+if raycast_2d_spr(ray_spr, player_obj.x, player_obj.y, x, y, d_angle, d_angle)
     in_angle = true;
 else in_angle = false;
 
@@ -125,7 +125,6 @@ if (ISPERSPECTIVE)
     var zpos = -sprite_get_height(sprite)/2;
     if (looking_right) then draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, d_angle);
     else draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, add_angle(d_angle, 180, ANGREF));
-    //raycast_2d_spr(ray_spr, player_obj.x, player_obj.y, x, y, d_angle);
 }
 else
 {

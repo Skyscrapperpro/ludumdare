@@ -82,7 +82,7 @@ cornery1 = rotating_point_relative(-w/2, 0, image_angle, 1);
 in_angle=false;
 var rcast;
 
-rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
+rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
 
 if (rcast[0])
 {

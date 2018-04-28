@@ -264,6 +264,9 @@ if (player_obj.handitem == 0)
             if (spatulaburger == 0) then spatulaburger = obj_shot.cook + 1;
             with (obj_shot) instance_destroy();
             break;
+        case trashcan_obj:
+            spatulaburger = 0;
+            break;
         case gunitem_obj:
             handitem = 1;
             instance_deactivate_object(gunitem_obj);

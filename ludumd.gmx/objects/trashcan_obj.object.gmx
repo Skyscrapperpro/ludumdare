@@ -30,6 +30,7 @@ bgr_top = side_bgr;
 bgr_side = side_bgr;
 bgr_front = trashcan_bgr;
 z = 32;
+z1 = 0;
 
 </string>
           </argument>
@@ -48,6 +49,60 @@ z = 32;
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get draw angle
+d_angle = player_obj.angle;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with 3D raycasts
+var xorig = player_obj.x;
+var yorig = player_obj.y;
+
+in_angle = false;
+if (point_distance(xorig, yorig,  x + upx, y + upy,) &lt; ITEM_RANGE) //and
+if (raycast_3d_spr(w, z, xorig, yorig, -CAM_Z, x + upx, y + upy, -z/2, image_angle, d_angle, zreal(player_obj.zangle)))
+    in_angle = true;
+
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
     <event eventtype="8" enumb="0">
@@ -82,10 +137,10 @@ z = 32;
           <argument>
             <kind>1</kind>
             <string>/// Top part is rotated
-var xws = lengthdir_x(w, add_angle(image_angle, 0, ANGREF))/2;
-var yws = lengthdir_y(w, add_angle(image_angle, 0, ANGREF))/2;
-var xwf = lengthdir_x(w, add_angle(image_angle, 90, ANGREF))/2;
-var ywf = lengthdir_y(w, add_angle(image_angle, 90, ANGREF))/2;
+var xws = lengthdir_x(w, image_angle)/2;
+var yws = lengthdir_y(w, image_angle)/2;
+var xwf = lengthdir_x(w, image_angle + 90)/2;
+var ywf = lengthdir_y(w, image_angle + 90)/2;
 
 d3d_draw_floor(x - xwf, y + yws, -z, x + xwf, y - yws, -z, tex, 1, 1);
 
