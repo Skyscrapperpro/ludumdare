@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
-  <parentName>interactable_obj</parentName>
+  <parentName>cuboid_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -29,15 +29,27 @@
 spr = chunks;
 ray_spr = chunks_collider;
 zpos = -TABLE_Z - sprite_get_height(spr)/2;
-
+z = TABLE_Z;
+bgr_side = side_bgr;
 bgr_front = side_bgr;
-w = sprite_get_width(sprite_index);
-h = sprite_get_height(sprite_index);
-tex = background_get_texture(bgr_top);
 
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="3" enumb="0">
@@ -114,10 +126,10 @@ if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, zreal(pla
             <string>/// Draw
 if (ISPERSPECTIVE)
 {
-    d3d_draw_floor(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, tex, 1, 1);
-    draw_3dbgr_angle(bgr_front, x + w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, ANGREF));
-    draw_3dbgr_angle(bgr_front, x - w/2, y, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 90, ANGREF));
-    draw_3dbgr_angle(bgr_front, x, y - h/2, -TABLE_Z/2, w, TABLE_Z, add_angle(image_angle, 0, ANGREF));
+    d3d_draw_floor(x - w/2, y - h/2, -z, x + w/2, y + h/2, -z, tex, 1, 1);
+    draw_3dbgr_angle(bgr_front, x + w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
+    draw_3dbgr_angle(bgr_front, x - w/2, y, -z/2, h, z, add_angle(image_angle, 90, ANGREF));
+    draw_3dbgr_angle(bgr_front, x, y - h/2, -z/2, w, z, add_angle(image_angle, 0, ANGREF));
     draw_3dspr_angle(spr, subi, x, y, zpos, 1, player_obj.angle);
     /*
     w = sprite_get_width(burger)/2;
@@ -146,7 +158,6 @@ if (ISPERSPECTIVE)
         }
     }*/
 }
-else draw_self();
 
 </string>
           </argument>

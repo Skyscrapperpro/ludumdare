@@ -5,50 +5,10 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
-  <parentName>interactable_obj</parentName>
+  <parentName>cuboid_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
-            <script>reverse_position</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -66,20 +26,28 @@
           <argument>
             <kind>1</kind>
             <string>/// Setup raycast and draw
-in_angle=0;
-
 bgr_top = grilltop_bgr;
 bgr_front = grillfront_bgr;
 bgr_side = side_bgr;
-w = sprite_get_width(sprite_index);
-h = sprite_get_height(sprite_index);
-tex = background_get_texture(bgr_top);
+
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -96,53 +64,8 @@ tex = background_get_texture(bgr_top);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///raycast
-in_angle=false;
-var rcast;
-
-rcast=raycast_box(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
-
-if (rcast[0])
-{
-    in_angle=true;
-    xcast=rcast[1];
-    ycast=rcast[2];
-    zcast=rcast[3];
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///draw
-if (ISPERSPECTIVE)
-{
-    d3d_draw_floor(x - w/2, y - h/2, -w, x + w/2, y + h/2, -w, tex, 1, 1);
-    draw_3dbgr_angle(bgr_side, x + w/2, y, -w/2, h, w, add_angle(image_angle, 90, ANGREF));
-    draw_3dbgr_angle(bgr_side, x - w/2, y, -w/2, h, w, add_angle(image_angle, 90, ANGREF));
-    draw_3dbgr_angle(bgr_front, x, y - h/2, -w/2, w, w, add_angle(image_angle, 180, ANGREF));
-    //d3d_draw_floor(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, 0, background_get_texture(grilltop_bgr), 1, 1);
-    //d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x - background_get_width(grilltop_bgr) * SIZESCALE/4, y + background_get_height(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(grillfront_bgr), 1, 1);
-    //d3d_draw_wall(x - background_get_width(grilltop_bgr) * SIZESCALE/4, y - background_get_height(grilltop_bgr) * SIZESCALE/4, 0, x + background_get_height(grilltop_bgr) * SIZESCALE/4, y - background_get_width(grilltop_bgr) * SIZESCALE/4, background_get_height(wall_bgr) * SIZESCALE/2, background_get_texture(side_bgr), 1, 1); 
-}
-else draw_self();
+            <string>///Z is W in this one
+z = w;
 
 </string>
           </argument>

@@ -31,6 +31,7 @@
       <sprite>sprites\editor_zombie</sprite>
       <sprite>sprites\editor_grill</sprite>
       <sprite>sprites\editor_trash</sprite>
+      <sprite>sprites\editor_plates</sprite>
       <sprite>sprites\editor_gunitem</sprite>
       <sprite>sprites\editor_door</sprite>
       <sprite>sprites\editor_burgerbox</sprite>
@@ -78,6 +79,7 @@
     <background>background\cheesebox_bgr</background>
     <background>background\tomatobox_bgr</background>
     <background>background\trashcan_bgr</background>
+    <background>background\plate_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -117,6 +119,7 @@
     <objects name="Parents">
       <object>objects\interactable_obj</object>
       <object>objects\humanoid_obj</object>
+      <object>objects\cuboid_obj</object>
       <object>objects\generalbox_obj</object>
     </objects>
     <objects name="Static">
@@ -136,6 +139,7 @@
       <object>objects\tomatobox_obj</object>
       <object>objects\grill_obj</object>
       <object>objects\trashcan_obj</object>
+      <object>objects\plates_obj</object>
       <object>objects\burger_obj</object>
     </objects>
     <object>objects\player_obj</object>
