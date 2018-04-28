@@ -83,12 +83,15 @@ in_angle = false;
           <argument>
             <kind>1</kind>
             <string>/// Draw setup
-custID = irandom(array_length_1d(global.cust_alive) - 1);
+var custID = irandom(array_length_1d(global.cust_alive) - 1);
 main_spr = global.cust_alive[custID];
 ded_spr = global.cust_ded[custID];
 talk_spr = global.cust_talk_face[custID];
+talk_snd = global.cust_talk_snd[custID];
 
 snd = global.cust_cry_snd[custID];
+talki = 0;
+talklimit = sprite_get_number(talk_spr);
 
 menu_spr = customer_dialog;
 ing_spr = ingredients;
@@ -289,6 +292,14 @@ if ((x != targetx) || (y != targety))
 }
 else subi = 0;
 
+if (talki &gt; 0)
+{
+    var ratio = 0.5;
+
+    if ((talki + ratio) &gt; talklimit) then talki = 0;
+    else talki += ratio;
+}
+
 </string>
           </argument>
         </arguments>
@@ -375,6 +386,7 @@ y = var_to_target(y, targety, yspeed);
             <kind>1</kind>
             <string>///Animation
 sprite = ded_spr;
+
 var ratio = 0.25;
 
 if ((subi + (2 * ratio)) &gt; dedlimit)
@@ -425,13 +437,18 @@ else subi += ratio;
 if (ISPERSPECTIVE)
 {
     var zpos = -sprite_get_height(sprite)/2;
+    if (talki &gt; 0)
+    {
+        if (looking_right) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle);
+        else draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle + 180);
+    }
     if (selected_menu)
     {
         var xpos = x - lengthdir_x(DIALOG_DIST_X, d_angle);
         var ypos = y - lengthdir_y(DIALOG_DIST_X, d_angle);
-        draw_3dspr_angle(menu_spr, 0, x, y + 0.1, zpos, 1, d_angle);
+        draw_3dspr_angle(menu_spr, 0, x, y + 0.2, zpos, 1, d_angle);
         for (var i= 0; i &lt; array_length_1d(burger_asked); i++)
-            draw_3dspr_angle(ing_spr, burger_asked[i], xpos, ypos + 0.2 + (0.1 * i), zpos - DIALOG_DIST_Z - (ING_SEP * i), 0.5, d_angle);
+            draw_3dspr_angle(ing_spr, burger_asked[i], xpos, ypos + 0.3 + (0.1 * i), zpos - DIALOG_DIST_Z - (ING_SEP * i), 0.5, d_angle);
     }
 }
 

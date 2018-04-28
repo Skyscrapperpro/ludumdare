@@ -21,6 +21,8 @@
     <sound>sound\zombie3_snd</sound>
     <sound>sound\zombie4_snd</sound>
     <sound>sound\zombie5_snd</sound>
+    <sound>sound\talk_elvis_snd</sound>
+    <sound>sound\talk_girl_snd</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Editor">
@@ -39,14 +41,17 @@
       <sprite>sprites\editor_lechugabox</sprite>
       <sprite>sprites\editor_cheesebox</sprite>
       <sprite>sprites\editor_tomatobox</sprite>
-      <sprite>sprites\editor_borkposter</sprite>
+      <sprite>sprites\editor_poster0</sprite>
+      <sprite>sprites\editor_poster1</sprite>
     </sprites>
     <sprites name="Customers">
       <sprite>sprites\customer_dialog</sprite>
       <sprite>sprites\customer</sprite>
       <sprite>sprites\customer_ded</sprite>
+      <sprite>sprites\customer_talk</sprite>
       <sprite>sprites\girl</sprite>
       <sprite>sprites\girl_ded</sprite>
+      <sprite>sprites\girl_talk</sprite>
     </sprites>
     <sprites name="Colliders and tests">
       <sprite>sprites\human_collider</sprite>
@@ -91,6 +96,8 @@
     <background>background\tomatobox_bgr</background>
     <background>background\trashcan_bgr</background>
     <background>background\plate_bgr</background>
+    <background>background\burgerposter_bgr</background>
+    <background>background\borkposter_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -139,6 +146,8 @@
       <object>objects\wall_obj</object>
       <object>objects\floor_obj</object>
       <object>objects\table_obj</object>
+      <object>objects\burgerposter_obj</object>
+      <object>objects\borkposter_obj</object>
     </objects>
     <objects name="Used in shooter">
       <object>objects\zombie_obj</object>

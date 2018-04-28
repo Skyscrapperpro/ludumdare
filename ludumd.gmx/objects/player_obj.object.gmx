@@ -206,7 +206,9 @@ else
             <kind>1</kind>
             <string>/// GUI control
 guni = 0;
+gunlimit = (sprite_get_number(gunshot) - 1);
 spati = 0;
+spatlimit = (sprite_get_number(spatula) - 1);
 handitem = 0; //0 = spatula, 1 = gun
 spatulaburger = 0; //0 = no, 1 = uncooked, 2 = cooked, 3 = burn
 alp = 0;
@@ -370,7 +372,7 @@ if (handitem == 1) //If you got the gun
     var ratio = 0.25;
     if (guni &gt; 0)
     {
-        if ((guni + ratio) &gt; (sprite_get_number(gunshot) - 1))
+        if ((guni + ratio) &gt; gunlimit)
             guni = 0;
         else guni += ratio;
     }
@@ -382,7 +384,7 @@ else //If you got the spatula
     var ratio = 1;
     if (spati &gt; 3)
     {
-        if ((spati + ratio) &gt; (sprite_get_number(spatula) - 1))
+        if ((spati + ratio) &gt; spatlimit)
             spati = spatulaburger;
         else spati += ratio;
     }
