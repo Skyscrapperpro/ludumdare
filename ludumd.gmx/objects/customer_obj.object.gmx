@@ -86,7 +86,12 @@ in_angle = false;
 custID = irandom(array_length_1d(global.cust_alive) - 1);
 main_spr = global.cust_alive[custID];
 ded_spr = global.cust_ded[custID];
+talk_spr = global.cust_talk_face[custID];
+
 snd = global.cust_cry_snd[custID];
+
+menu_spr = customer_dialog;
+
 selected_menu = false;
 looking_right = choose(true, false);
 
@@ -244,8 +249,10 @@ sprite = main_spr;
 if ((x != targetx) || (y != targety))
 {
     // ------- Animation ------
-    if ((subi + 1) &gt; ilimit) then subi = 1;
-    else subi++;
+    var ratio = 0.2;
+    
+    if ((subi + ratio) &gt; ilimit) then subi = 1;
+    else subi += ratio;
     //
 }
 else subi = 0;
@@ -336,13 +343,55 @@ y = var_to_target(y, targety, yspeed);
             <kind>1</kind>
             <string>///Animation
 sprite = ded_spr;
-if ((subi + 2) &gt; dedlimit)
+var ratio = 0.25;
+
+if ((subi + (2 * ratio)) &gt; dedlimit)
 {
     event_delete_customer();
     array_delete_element(global.customers, id);
     instance_destroy();
 }
-else subi++;
+else subi += ratio;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw selected menu
+if (selected_menu) then draw_3dspr_angle(menu_spr, 0, x, y - 1, zpos, d_angle)
+
 </string>
           </argument>
         </arguments>

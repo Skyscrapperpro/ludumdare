@@ -29,7 +29,7 @@ if ((target > anglemin) && (target < anglemax))
 else if ((player_obj.angle < anglemin) || (player_obj.angle > anglemax))
     ret = true;
     
-if (event_type == ev_draw) d3d_draw_wall(x0, y0, -sprite_get_height(spr), x1, y1, 0, sprite_get_texture(spr, 0), 1, 1)
+if (event_type == ev_draw) d3d_draw_wall(x0, y0, -CAM_Z, x1, y1, 0, sprite_get_texture(spr, 0), 1, 1)
     
 return ret;
 

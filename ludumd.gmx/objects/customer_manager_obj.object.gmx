@@ -195,6 +195,7 @@ else
     music_switch(1);
     repeat(ZOMBIE_AMOUNT) instance_create(x, y, zombie_obj);
     event_auto_rotate();
+    if (player_obj.handitem != 1) then instance_activate_object(gunitem_obj);
     zombie_marg = ZOMBIE_ACTIVATION;
     generated = 0;
 }

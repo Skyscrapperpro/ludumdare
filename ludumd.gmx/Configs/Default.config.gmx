@@ -679,7 +679,7 @@
       <constant name="CAM_Z">50</constant>
       <constant name="CHAR_ACC">0.2</constant>
       <constant name="CHAR_SPD">3</constant>
-      <constant name="ITEM_RANGE">300</constant>
+      <constant name="ITEM_RANGE">50</constant>
       <constant name="LINES_AMOUNT">3</constant>
       <constant name="FIRST_LINE_X">240</constant>
       <constant name="LINES_SEP">50</constant>
@@ -688,7 +688,7 @@
       <constant name="CUSTOMER_SEP_X">random_range(-10, 10)</constant>
       <constant name="CUSTOMER_SEP">random_range(18, 28)</constant>
       <constant name="CUSTOMER_ALARM">random_range(200, 280)</constant>
-      <constant name="ZOMBIE_ACTIVATION">random_range(10, 10)</constant>
+      <constant name="ZOMBIE_ACTIVATION">random_range(1, 1)</constant>
       <constant name="ZOMBIE_AMOUNT">random_range(4, 10)</constant>
       <constant name="ZOMBIE_SPD">0.5</constant>
       <constant name="ZOM_POS_VARIATION">random_range(-20, 20)</constant>

@@ -41,14 +41,18 @@
     </sprites>
     <sprite>sprites\zombie</sprite>
     <sprite>sprites\zombie_ded</sprite>
-    <sprites name="customers">
+    <sprites name="Customers">
+      <sprite>sprites\customer_dialog</sprite>
       <sprite>sprites\customer</sprite>
       <sprite>sprites\customer_ded</sprite>
       <sprite>sprites\girl</sprite>
       <sprite>sprites\girl_ded</sprite>
     </sprites>
-    <sprite>sprites\customer_mark</sprite>
-    <sprite>sprites\human_collider</sprite>
+    <sprites name="Colliders">
+      <sprite>sprites\human_collider</sprite>
+      <sprite>sprites\gunitem_collider</sprite>
+      <sprite>sprites\chunks_collider</sprite>
+    </sprites>
     <sprite>sprites\gunitem</sprite>
     <sprite>sprites\burger</sprite>
     <sprite>sprites\target_test</sprite>
@@ -58,7 +62,7 @@
     <sprite>sprites\topbread</sprite>
     <sprite>sprites\lettuce</sprite>
     <sprite>sprites\focus</sprite>
-    <sprite>sprites\burgerchunk</sprite>
+    <sprite>sprites\chunks</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\table_bgr</background>
@@ -98,8 +102,10 @@
     <scripts name="Events">
       <script>scripts\event_auto_rotate.gml</script>
       <script>scripts\event_delete_customer.gml</script>
+      <script>scripts\event_customer_menu.gml</script>
       <script>scripts\event_kill_zombie.gml</script>
       <script>scripts\event_kill_customer.gml</script>
+      <script>scripts\event_last_zombie.gml</script>
     </scripts>
     <script>scripts\nearest_raycast.gml</script>
     <script>scripts\cust_array.gml</script>
@@ -108,24 +114,33 @@
     <shader type="GLSLES">shaders\pix.shader</shader>
   </shaders>
   <objects name="objects">
-    <object>objects\customer_manager_obj</object>
+    <objects name="Parents">
+      <object>objects\interactable_obj</object>
+      <object>objects\humanoid_obj</object>
+      <object>objects\generalbox_obj</object>
+    </objects>
+    <objects name="Static">
+      <object>objects\wall_obj</object>
+      <object>objects\floor_obj</object>
+      <object>objects\table_obj</object>
+    </objects>
+    <objects name="Used in shooter">
+      <object>objects\zombie_obj</object>
+      <object>objects\gunitem_obj</object>
+    </objects>
+    <objects name="Used in burgers">
+      <object>objects\burgerbox_obj</object>
+      <object>objects\breadbox_obj</object>
+      <object>objects\lechugabox_obj</object>
+      <object>objects\cheesebox_obj</object>
+      <object>objects\tomatobox_obj</object>
+      <object>objects\grill_obj</object>
+      <object>objects\burger_obj</object>
+    </objects>
     <object>objects\player_obj</object>
-    <object>objects\wall_obj</object>
-    <object>objects\door_obj</object>
-    <object>objects\floor_obj</object>
-    <object>objects\table_obj</object>
-    <object>objects\interactable_obj</object>
-    <object>objects\humanoid_obj</object>
-    <object>objects\burgerbox_obj</object>
-    <object>objects\breadbox_obj</object>
-    <object>objects\lechugabox_obj</object>
-    <object>objects\cheesebox_obj</object>
-    <object>objects\tomatobox_obj</object>
-    <object>objects\grill_obj</object>
+    <object>objects\customer_manager_obj</object>
     <object>objects\customer_obj</object>
-    <object>objects\zombie_obj</object>
-    <object>objects\burger_obj</object>
-    <object>objects\gun_on_ground</object>
+    <object>objects\door_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

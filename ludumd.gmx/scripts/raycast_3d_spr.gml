@@ -18,10 +18,8 @@ var zangleto0 = add_angle(point_direction(0, zorig, dist, z0), 0, 180);
 var zangleto1 = add_angle(point_direction(0, zorig, dist, z1), 0, 180);
 
 if (zang > zangleto0) //and
-if (zang < zangleto1)
-{
-    if (raycast_2d_spr(spr, xorig, yorig, xdest, ydest, ang)) then ret = true;
-}
+if (zang < zangleto1) //and
+if (raycast_2d_spr(spr, xorig, yorig, xdest, ydest, ang)) then ret = true;
 
 return ret;
 

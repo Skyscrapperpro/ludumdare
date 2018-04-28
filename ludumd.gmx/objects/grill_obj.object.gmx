@@ -100,7 +100,7 @@ tex = background_get_texture(bgr_top);
 in_angle=false;
 var rcast;
 
-rcast=raycast_box(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle);
+rcast=raycast_box(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
 
 if (rcast[0])
 {

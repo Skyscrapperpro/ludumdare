@@ -173,9 +173,10 @@ else target = player_obj;
             <kind>1</kind>
             <string>///Animation
 sprite = main_spr;
+var ratio = 0.125;
 
-if ((subi + 1) &gt; ilimit) then subi = 1;
-else subi++;
+if ((subi + ratio) &gt; ilimit) then subi = 0;
+else subi += ratio;
 
 </string>
           </argument>
@@ -272,9 +273,14 @@ y = var_to_target(y, targety, yspeed);
             <kind>1</kind>
             <string>///Animation
 sprite = ded_spr;
+var ratio = 0.25;
 
-if ((subi + 2) &gt; dedlimit) then instance_destroy();
-else subi++;
+if ((subi + (2 * ratio)) &gt; dedlimit)
+{
+    event_last_zombie();
+    instance_destroy();
+}
+else subi += ratio;
 
 </string>
           </argument>

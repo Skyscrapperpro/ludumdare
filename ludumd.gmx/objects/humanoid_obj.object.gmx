@@ -109,8 +109,8 @@ else in_angle = false;
 if (ISPERSPECTIVE)
 {
     var zpos = -sprite_get_height(sprite)/2;
-    if (looking_right) then draw_3dspr_angle(sprite, subi, x, y, zpos, d_angle);
-    else draw_3dspr_angle(sprite, subi, x, y, zpos, add_angle(d_angle, 180, 180));
+    if (looking_right) then draw_3dspr_angle(sprite, floor(subi), x, y, zpos, d_angle);
+    else draw_3dspr_angle(sprite, floor(subi), x, y, zpos, add_angle(d_angle, 180, 180));
     //raycast_2d_spr(ray_spr, player_obj.x, player_obj.y, x, y, d_angle);
 }
 else

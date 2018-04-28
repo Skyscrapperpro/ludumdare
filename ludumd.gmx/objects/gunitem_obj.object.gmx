@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>interactable_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -65,11 +65,34 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///var init
-x1=x;
-y1=y;
-x2=x;
-y2=y;
+            <string>///Raycast and draw setup
+spr = gunitem;
+ray_spr = gunitem_collider;
+zpos = -TABLE_Z - sprite_get_height(spr)/2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Deactivate
+instance_deactivate_object(id);
+
 </string>
           </argument>
         </arguments>
@@ -92,42 +115,37 @@ y2=y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///equip item and raycast
-var angleto1=point_direction(player_obj.x,player_obj.y,x1,y1)-90;
-var angleto2=point_direction(player_obj.x,player_obj.y,x2,y2)-90;
-var anglemin=0;
-var anglemax=0;
-var target=point_direction(player_obj.x, player_obj.y, x, y) - 90;
+            <string>/// Get draw angle
+d_angle = player_obj.angle;
 
-while(angleto1&lt;0)
-    angleto1+=360;
-while(angleto1&gt;=360)
-    angleto1-=360;
-while(angleto2&lt;0)
-    angleto2+=360;
-while(angleto2&gt;=360)
-    angleto2-=360;
-while(target&lt;0)
-    target+=360;
-while(target&gt;=360)
-    target-=360;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with 3D raycasts
+var xorig = player_obj.x;
+var yorig = player_obj.y;
 
-
-if (angleto1&lt;angleto2){anglemin=angleto1;anglemax=angleto2}
-else {anglemin=angleto2;anglemax=angleto1}
-
-
-if ((target&lt;anglemax) &amp;&amp; (target&gt;anglemin)){
-    if ((player_obj.angle&gt;anglemin) &amp;&amp; (player_obj.angle&lt;anglemax) &amp;&amp; (point_distance(player_obj.x,player_obj.y,x,y)&lt;ITEMRANGE) &amp;&amp; RIGHTCLICK){
-        player_obj.handitem =! player_obj.handitem;
-    }
-}
-else
-{
-    if (((player_obj.angle&lt;anglemin) || (player_obj.angle&gt;anglemax)) &amp;&amp; (point_distance(player_obj.x,player_obj.y,x,y)&lt;ITEMRANGE) &amp;&amp; RIGHTCLICK){
-        player_obj.handitem =! player_obj.handitem;
-    }
-}
+in_angle = false;
+if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and   //arctan(-sin(degtorad(player_obj.zangle)))
+if (raycast_3d_spr(ray_spr, xorig, yorig, -CAM_Z, x, y, zpos, d_angle, player_obj.zangle ))
+    in_angle = true;
 
 </string>
           </argument>
@@ -154,21 +172,8 @@ else
             <string>///draw
 if (ISPERSPECTIVE)
 {
-    var sprite, tex, w, h;
-    sprite = gunitem
-    if (player_obj.handitem = 0)
-        tex = sprite_get_texture(sprite, 0);
-    else
-        tex = sprite_get_texture(sprite, 1);
-    w = sprite_get_width(sprite);
-    h = sprite_get_height(sprite);
-    z = -(h*SIZESCALE)/2;
-    
-    x1=x+lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
-    y1=y+lengthdir_y(w,player_obj.angle)*SIZESCALE/2;
-    x2=x-lengthdir_x(w,player_obj.angle)*SIZESCALE/2;
-    y2=y-lengthdir_y(w,player_obj.angle)*SIZESCALE/2;
-    d3d_draw_wall(x1, y1, z, x2, y2, 0, tex, 1, 1);
+    draw_3dspr_angle(spr, 0, x, y, zpos, player_obj.angle);
+    raycast_3d_spr(ray_spr, player_obj.x, player_obj.y, -CAM_Z, x, y, zpos, d_angle, player_obj.zangle )
 }
 else draw_self();
 
