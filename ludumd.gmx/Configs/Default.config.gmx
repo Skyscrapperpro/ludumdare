@@ -661,7 +661,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="42">
+    <constants number="44">
       <constant name="LEFT">keyboard_check(ord("A"))</constant>
       <constant name="RIGHT">keyboard_check(ord("D"))</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S"))</constant>
@@ -693,7 +693,7 @@
       <constant name="ZOMBIE_AMOUNT">irandom_range(4, 10)</constant>
       <constant name="ZOMBIE_SPD">0.5</constant>
       <constant name="ZOM_POS_VARIATION">random_range(-20, 20)</constant>
-      <constant name="BURGER_SCALE">0.16</constant>
+      <constant name="BURGER_SCALE">0.3</constant>
       <constant name="AUTOCAM_SPD">5</constant>
       <constant name="WALL_Z">32</constant>
       <constant name="TABLE_Z">30</constant>
@@ -704,6 +704,8 @@
       <constant name="DIALOG_DIST_Z">3</constant>
       <constant name="ING_SEP">3</constant>
       <constant name="MAX_ING">10</constant>
+      <constant name="PLATE_ELEV">2</constant>
+      <constant name="TIME_TO_COOK">120</constant>
     </constants>
   </ConfigConstants>
 </Config>

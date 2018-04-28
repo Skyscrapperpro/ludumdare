@@ -67,6 +67,10 @@
     <sprites name="Burgers">
       <sprite>sprites\ingredients</sprite>
       <sprite>sprites\chunks</sprite>
+      <sprite>sprites\refrigerio</sprite>
+      <sprite>sprites\burger_grill0</sprite>
+      <sprite>sprites\burger_grill1</sprite>
+      <sprite>sprites\burger_grill2</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">

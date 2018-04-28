@@ -26,13 +26,17 @@
           <argument>
             <kind>1</kind>
             <string>///spawn
-temp=0;
-cook=0;
-sprite = ingredients;
-z = grill_obj.zcast;
-w = sprite_get_width(sprite);
-h = sprite_get_height(sprite);
-tex = sprite_get_texture(sprite, cook);
+temp = 0;
+cook = 0;
+sprite[0] = burger_grill0;
+sprite[1] = burger_grill1;
+sprite[2] = burger_grill2;
+//w = sprite_get_width(sprite[0]);
+h = sprite_get_height(sprite[0]);
+z = grill_obj.zcast - (h * BURGER_SCALE/2);
+tex = sprite_get_texture(sprite[0], cook);
+subi = 0;
+
 </string>
           </argument>
         </arguments>
@@ -55,18 +59,45 @@ tex = sprite_get_texture(sprite, cook);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///heat
+            <string>/// Heat
 
 if (x&gt;(grill_obj.x-grill_obj.w/2) &amp;&amp; x&lt;(grill_obj.x+grill_obj.w/2) &amp;&amp; y&gt;(grill_obj.y-grill_obj.h/2) &amp;&amp; y&lt;(grill_obj.y+grill_obj.h/2))
     temp++;
-if temp&lt;120 //esto hay que regularlo
-    cook=0;
-else if temp &lt;240
-    cook=1;
-else
-    cook=2;
 
-tex = sprite_get_texture(sprite, cook);
+// Esto hay que regularlo
+if (temp &lt; TIME_TO_COOK) cook = 0;
+else if (temp &lt; (TIME_TO_COOK * 2)) cook = 1;
+else cook = 2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation
+var ratio = 0.25;
+var ilimit = sprite_get_number(sprite[cook]);
+
+if ((subi + ratio) &gt; ilimit) then subi = 0;
+else subi += ratio;
+
+//tex = sprite_get_texture(sprite[cook], subi);
+
 </string>
           </argument>
         </arguments>
@@ -93,13 +124,13 @@ tex = sprite_get_texture(sprite, cook);
 
 if (ISPERSPECTIVE)
 {
+    draw_3dspr_angle(sprite[cook], subi, x, y, z, BURGER_SCALE, player_obj.angle);
+    /*x1 = x - lengthdir_x(w, player_obj.angle) * BURGER_SCALE/2;
+    y1 = y - lengthdir_y(w, player_obj.angle) * BURGER_SCALE/2;
+    x2 = x + lengthdir_x(w, player_obj.angle) * BURGER_SCALE/2;
+    y2 = y + lengthdir_y(w, player_obj.angle) * BURGER_SCALE/2;
     
-    x1 = x + lengthdir_x(w, player_obj.angle) * BURGER_SCALE/2;
-    y1 = y + lengthdir_y(w, player_obj.angle) * BURGER_SCALE/2;
-    x2 = x - lengthdir_x(w, player_obj.angle) * BURGER_SCALE/2;
-    y2 = y - lengthdir_y(w, player_obj.angle) * BURGER_SCALE/2;
-    
-    d3d_draw_wall(x1, y1, z, x2, y2, z - (h * BURGER_SCALE), tex, 1, 1);
+    d3d_draw_wall(x1, y1, z, x2, y2, z - (h * BURGER_SCALE), tex, 1, 1);*/
 }
 </string>
           </argument>
