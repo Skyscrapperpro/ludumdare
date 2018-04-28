@@ -100,6 +100,7 @@
       <script>scripts\music_switch.gml</script>
       <script>scripts\array_delete_element.gml</script>
       <script>scripts\reverse_position.gml</script>
+      <script>scripts\zreal.gml</script>
     </scripts>
     <scripts name="Events">
       <script>scripts\event_auto_rotate.gml</script>
