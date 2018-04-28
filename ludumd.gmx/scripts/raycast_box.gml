@@ -9,7 +9,7 @@ var y2 = argument4;
 var z2 = argument5;
 var originx = argument6;
 var originy = argument7;
-var originz = argument8;
+var originz = -argument8;
 var xyangle = -argument9 - 90;
 var zangle = argument10;
 
@@ -21,7 +21,7 @@ ret[3] = 0;
 ret[4] = 0;
 
 var xclose,yclose,zclose;
-var xi,yi,zi,di;
+//var xi,yi,zi,di;
 
 if (abs(originx-x1)<abs(originx-x2))
 {
@@ -54,7 +54,7 @@ else
 zi=zclose;
 if (sin(degtorad(zangle)) != 0)
 {
-    di=(zi-originz)/tan(degtorad(zangle));
+    di=-(zi-originz)/sin(degtorad(zangle));
     xi=di*cos(degtorad(xyangle))+originx;
     yi=di*sin(degtorad(xyangle))+originy;
     if ((xi>min(x1,x2)) && (xi<max(x1,x2)) && (yi>min(y1,y2)) && (yi<max(y1,y2)))

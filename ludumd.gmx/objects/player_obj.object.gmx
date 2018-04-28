@@ -273,7 +273,7 @@ if (player_obj.handitem == 0)
         case grill_obj:
             if (spatulaburger == 1)
             {
-                spatulaburger=1;
+                spatulaburger=0;
                 instance_create(grill_obj.xcast,grill_obj.ycast,burger_obj);
             }
             break;
