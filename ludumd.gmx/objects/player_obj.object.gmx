@@ -376,7 +376,7 @@ if (handitem == 1) //If you got the gun
 else //If you got the spatula
 {
     guni = 0;
-    var ratio = 0.5;
+    var ratio = 1;
     if (spati &gt; 3)
     {
         if ((spati + ratio) &gt; (sprite_get_number(spatula) - 1))

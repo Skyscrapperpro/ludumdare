@@ -20,7 +20,7 @@ if (num != noone)
     if (ind > 0)
     {
         fins = valid_ins[0];
-        for (var i = 1; i < array_length_1d(valid_ins) - 1; i++)
+        for (var i = 1; i < array_length_1d(valid_ins); i++)
         {
             ins = valid_ins[i];
             if (point_distance(x, y, ins.x, ins.y) < point_distance(x, y, fins.x, fins.y))

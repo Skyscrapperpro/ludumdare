@@ -30,6 +30,7 @@
       <sprite>sprites\editor_client</sprite>
       <sprite>sprites\editor_zombie</sprite>
       <sprite>sprites\editor_grill</sprite>
+      <sprite>sprites\editor_trash</sprite>
       <sprite>sprites\editor_gunitem</sprite>
       <sprite>sprites\editor_door</sprite>
       <sprite>sprites\editor_burgerbox</sprite>
@@ -79,6 +80,7 @@
     <background>background\lechugabox_bgr</background>
     <background>background\cheesebox_bgr</background>
     <background>background\tomatobox_bgr</background>
+    <background>background\trashcan_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -91,13 +93,13 @@
       <script>scripts\add_angle.gml</script>
       <script>scripts\pixelate.gml</script>
       <script>scripts\draw_3dspr_angle.gml</script>
-      <script>scripts\raycast_box.gml</script>
       <script>scripts\draw_3dbgr_angle.gml</script>
       <script>scripts\raycast_3d_spr.gml</script>
+      <script>scripts\raycast_2d_spr.gml</script>
+      <script>scripts\raycast_box.gml</script>
       <script>scripts\music_switch.gml</script>
       <script>scripts\array_delete_element.gml</script>
       <script>scripts\reverse_position.gml</script>
-      <script>scripts\raycast_2d_spr.gml</script>
     </scripts>
     <scripts name="Events">
       <script>scripts\event_auto_rotate.gml</script>
@@ -135,6 +137,7 @@
       <object>objects\cheesebox_obj</object>
       <object>objects\tomatobox_obj</object>
       <object>objects\grill_obj</object>
+      <object>objects\trashcan_obj</object>
       <object>objects\burger_obj</object>
     </objects>
     <object>objects\player_obj</object>
