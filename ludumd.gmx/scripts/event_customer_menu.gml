@@ -2,6 +2,6 @@ var obj = argument0;
 
 with (obj)
 {
-    slected_menu = true;
+    selected_menu = true;
 }
 
