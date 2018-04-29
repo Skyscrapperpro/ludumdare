@@ -148,7 +148,6 @@ yspeed = 0;
             <string>/// Create camera data
 zangle = 0;
 angle = 0;
-mouse_active = true;
 auto_rotation = false;
 
 </string>
@@ -313,7 +312,26 @@ if (player_obj.handitem == 0)
         switch (obj_shot.object_index)
         {
             case customer_obj:
-                //event check customer's array and plate array
+                if (!event_ask_customer(obj_shot, taken_plate))
+                {
+                    event_kill_customer(obj_shot);
+                    with (taken_plate) instance_destroy();
+                    taken_plate = -1;
+                }
+                else if (!obj_shot.satisf)
+                {
+                    event_satisfy_customer(obj_shot);
+                    with (taken_plate) instance_destroy();
+                    taken_plate = -1;
+                }
+                break;
+            case trashcan_obj:
+                with (taken_plate) instance_destroy();
+                taken_plate = -1;
+                break;
+            case plates_obj:
+                event_putdown_plate(obj_shot, taken_plate);
+                taken_plate = -1;
                 break;
         }
     }
@@ -447,20 +465,24 @@ else //If you got the spatula
             <kind>1</kind>
             <string>/// Get rotation
 //Check mouse active
-if (MIDDLECLICK) mouse_active = !mouse_active;
+if (global.play)
+if (MIDDLECLICK) global.mouse_active = !global.mouse_active;
 
 //Get angle
 if (!auto_rotation)
 {
-    if (mouse_active)
+    if (global.play)
     {
         //Horizontal movement
         var mspeed = GETXCAMSPD;
         angle = add_angle(angle, mspeed, ANGREF);
     
         //Vertical movement
-        var mvspeed = GETYCAMSPD;
-        if (handitem != 1) zangle = clamp((zangle + mvspeed), -90, 90);
+        if (handitem != 1)
+        {
+            var mvspeed = GETYCAMSPD;
+            zangle = clamp((zangle + mvspeed), -90, 90);
+        }
         else zangle = var_to_target(zangle, 0, AUTOCAM_SPD);
     }
 }
@@ -480,7 +502,7 @@ else //Auto rotation
 }
 
 //Reset mouse position
-if (mouse_active) then display_mouse_set(display_get_width()/2, display_get_height()/2);
+if (global.mouse_active) then display_mouse_set(display_get_width()/2, display_get_height()/2);
 </string>
           </argument>
         </arguments>
@@ -502,16 +524,20 @@ if (mouse_active) then display_mouse_set(display_get_width()/2, display_get_heig
           <argument>
             <kind>1</kind>
             <string>/// Get position
-//Get input angle
-var move_angle = add_angle(angle, point_direction(0, 0, LEFT-RIGHT, BACKWARDS-FORWARD), ANGREF);
 var xspeed_targ = 0;
 var yspeed_targ = 0;
 
-//Set speed if you are moving
-if (RIGHT||LEFT||FORWARD||BACKWARDS)
+if (global.play)
 {
-    xspeed_targ = lengthdir_x(CHAR_SPD, move_angle);
-    yspeed_targ = lengthdir_y(CHAR_SPD, move_angle);
+    //Get input angle
+    var move_angle = add_angle(angle, point_direction(0, 0, LEFT-RIGHT, BACKWARDS-FORWARD), ANGREF);
+    
+    //Set speed if you are moving
+    if (RIGHT||LEFT||FORWARD||BACKWARDS)
+    {
+        xspeed_targ = lengthdir_x(CHAR_SPD, move_angle);
+        yspeed_targ = lengthdir_y(CHAR_SPD, move_angle);
+    }
 }
 
 //Acceleration
@@ -583,8 +609,8 @@ else
             <string>/// Set plate position
 if (taken_plate != -1)
 {
-    taken_plate.x = x;
-    taken_plate.y = y;
+    taken_plate.x = x - sin(degtorad(angle)) * PLATE_SEP;
+    taken_plate.y = y - cos(degtorad(angle)) * PLATE_SEP;
     taken_plate.image_angle = angle;
 }
 

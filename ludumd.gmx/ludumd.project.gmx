@@ -133,6 +133,12 @@
       <script>scripts\event_grill_burger.gml</script>
       <script>scripts\event_place_ing.gml</script>
       <script>scripts\event_take_plate.gml</script>
+      <script>scripts\event_putdown_plate.gml</script>
+      <script>scripts\event_ask_customer.gml</script>
+      <script>scripts\event_satisfy_customer.gml</script>
+      <script>scripts\event_lose_life.gml</script>
+      <script>scripts\event_add_score.gml</script>
+      <script>scripts\event_initialize_manager.gml</script>
     </scripts>
     <script>scripts\nearest_raycast.gml</script>
     <script>scripts\cust_array.gml</script>
@@ -173,7 +179,7 @@
       <object>objects\burger_obj</object>
     </objects>
     <object>objects\player_obj</object>
-    <object>objects\customer_manager_obj</object>
+    <object>objects\room_manager_obj</object>
     <object>objects\customer_obj</object>
     <object>objects\door_obj</object>
   </objects>
