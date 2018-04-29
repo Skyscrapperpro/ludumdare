@@ -169,6 +169,7 @@
       <object>objects\grill_obj</object>
       <object>objects\trashcan_obj</object>
       <object>objects\plates_obj</object>
+      <object>objects\taken_plate_obj</object>
       <object>objects\burger_obj</object>
     </objects>
     <object>objects\player_obj</object>

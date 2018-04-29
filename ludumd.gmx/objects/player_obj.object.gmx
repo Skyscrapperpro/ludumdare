@@ -213,6 +213,8 @@ handitem = 0; //0 = spatula, 1 = gun
 spatulaburger = 0; //0 = no, 1 = uncooked, 2 = cooked, 3 = burn
 alp = 0;
 
+taken_plate = -1;
+
 </string>
           </argument>
         </arguments>
@@ -260,48 +262,60 @@ if (player_obj.handitem == 0)
     var obj_shot = nearest_raycast(interactable_obj);
     
     if (obj_shot != noone) //and
-    switch (obj_shot.object_index)
+    if (taken_plate = -1)
     {
-        case gunitem_obj:
-            handitem = 1;
-            instance_deactivate_object(gunitem_obj);
-            break;
-        case customer_obj:
-            event_customer_menu(obj_shot);
-            break;
-        case trashcan_obj:
-            spatulaburger = 0;
-            break;
-        case burger_obj:
-            if (spatulaburger == 0) then spatulaburger = obj_shot.cook + 1;
-            with (obj_shot) instance_destroy();
-            break;
-        case grill_obj:
-            event_grill_burger(obj_shot);
-            break;
-        case burgerbox_obj:
-            if (spatulaburger == 0) then spatulaburger = 1;
-            break;
-        case breadbox_obj:
-            if (spatulaburger == 0) then spatulaburger = 4;
-            break;
-        case cheesebox_obj:
-            if (spatulaburger == 0) then spatulaburger = 5;
-            break;
-        case lechugabox_obj:
-            if (spatulaburger == 0) then spatulaburger = 6;
-            break;
-        case tomatobox_obj:
-            if (spatulaburger == 0) then spatulaburger = 7;
-            break;
-        case plates_obj:
-            if (spatulaburger != 0)
-            {
-                if event_place_ing(obj_shot, spatulaburger)
+        switch (obj_shot.object_index)
+        {
+            case gunitem_obj:
+                handitem = 1;
+                instance_deactivate_object(gunitem_obj);
+                break;
+            case customer_obj:
+                event_customer_menu(obj_shot);
+                break;
+            case trashcan_obj:
                 spatulaburger = 0;
-            }
-            else event_take_plate(obj_shot);
-            break;
+                break;
+            case burger_obj:
+                if (spatulaburger == 0) then spatulaburger = obj_shot.cook + 1;
+                with (obj_shot) instance_destroy();
+                break;
+            case grill_obj:
+                event_grill_burger(obj_shot);
+                break;
+            case burgerbox_obj:
+                if (spatulaburger == 0) then spatulaburger = 1;
+                break;
+            case breadbox_obj:
+                if (spatulaburger == 0) then spatulaburger = 4;
+                break;
+            case cheesebox_obj:
+                if (spatulaburger == 0) then spatulaburger = 5;
+                break;
+            case lechugabox_obj:
+                if (spatulaburger == 0) then spatulaburger = 6;
+                break;
+            case tomatobox_obj:
+                if (spatulaburger == 0) then spatulaburger = 7;
+                break;
+            case plates_obj:
+                if (spatulaburger != 0)
+                {
+                    if event_place_ing(obj_shot, spatulaburger)
+                    spatulaburger = 0;
+                }
+                else taken_plate = event_take_plate(obj_shot);
+                break;
+        }
+    }
+    else
+    {
+        switch (obj_shot.object_index)
+        {
+            case customer_obj:
+                //event check customer's array and plate array
+                break;
+        }
     }
 }
 
@@ -544,6 +558,34 @@ else
     view_angle = 180 - angle;
     view_xview = x - view_wview/2;
     view_yview = y - view_hview/2;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set plate position
+if (taken_plate != -1)
+{
+    taken_plate.x = x;
+    taken_plate.y = y;
+    taken_plate.image_angle = angle;
 }
 
 </string>

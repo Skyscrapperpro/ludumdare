@@ -1,4 +1,7 @@
 var obj = argument0;
+var given_plate = instance_create(x, y, taken_plate_obj);
+given_plate.burger = obj.burger;
+given_plate.arraypos = obj.arraypos;
 
 with (obj)
 {
@@ -7,4 +10,6 @@ with (obj)
     burger[arraypos] = 0;
     finished = false;
 }
+
+return given_plate;
 
