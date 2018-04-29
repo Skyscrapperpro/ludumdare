@@ -152,7 +152,6 @@
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
   </shaders>
-  <fonts name="fonts"/>
   <objects name="objects">
     <objects name="Parents">
       <object>objects\interactable_obj</object>
