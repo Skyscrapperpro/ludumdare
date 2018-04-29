@@ -689,7 +689,7 @@
       <constant name="CUSTOMER_RANGE">20</constant>
       <constant name="CUSTOMER_SEP_X">random_range(-10, 10)</constant>
       <constant name="CUSTOMER_SEP">random_range(18, 28)</constant>
-      <constant name="CUSTOMER_ALARM">irandom_range(480, 540)</constant>
+      <constant name="CUSTOMER_ALARM">irandom_range(240, 300)</constant>
       <constant name="ZOMBIE_ACTIVATION">irandom_range(2, 5)</constant>
       <constant name="ZOMBIE_AMOUNT">irandom_range(4, 10)</constant>
       <constant name="ZOMBIE_SPD">0.5</constant>

@@ -90,7 +90,7 @@ looking_right = choose(true, false);
             <kind>1</kind>
             <string>/// Movement variables
 if (instance_exists(customer_obj))
-    target = global.customers[irandom(instance_number(customer_obj)-1)];
+    target = instance_find(customer_obj, irandom(instance_number(customer_obj) - 1));
 else target = player_obj;
 
 </string>
@@ -203,7 +203,7 @@ else subi += ratio;
 if (!instance_exists(target))
 {
     if (instance_exists(customer_obj))
-        target = global.customers[irandom(instance_number(customer_obj)-1)];
+        target = instance_find(customer_obj, irandom(instance_number(customer_obj) - 1));
     else target = player_obj;
 }
 
@@ -275,12 +275,12 @@ y = var_to_target(y, targety, yspeed);
 sprite = ded_spr;
 var ratio = 0.25;
 
-if ((subi + (2 * ratio)) &gt; dedlimit)
+if ((dedi + (2 * ratio)) &gt; dedlimit)
 {
     event_last_zombie();
     instance_destroy();
 }
-else subi += ratio;
+else dedi += ratio;
 
 </string>
           </argument>

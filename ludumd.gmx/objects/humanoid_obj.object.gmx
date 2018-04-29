@@ -43,6 +43,7 @@
 ray_spr = 32; //human_collider;
 sprite = main_spr;
 subi = 0;
+dedi = 0;
 ilimit = sprite_get_number(main_spr);
 dedlimit = sprite_get_number(ded_spr);
 dying = false;
@@ -146,6 +147,7 @@ else in_angle = false;
 if (ISPERSPECTIVE)
 {
     var zpos = -sprite_get_height(sprite)/2;
+    if (dying) then subi = dedi;
     if (looking_right) then draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, d_angle);
     else draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, add_angle(d_angle, 180, ANGREF));
 }

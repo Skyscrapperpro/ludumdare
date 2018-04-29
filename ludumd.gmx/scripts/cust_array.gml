@@ -13,6 +13,6 @@ global.cust_talk_face[1] = girl_talk;
 global.cust_talk_snd[0] = talk_elvis_snd;
 global.cust_talk_snd[1] = talk_girl_snd;
 
-global.cust_cry_face[0] = -1;
-global.cust_cry_face[1] = -1;
+global.cust_back[0] = customer_back;
+global.cust_back[1] = girl_back;
 

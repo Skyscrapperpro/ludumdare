@@ -50,9 +50,11 @@
       <sprite>sprites\customer</sprite>
       <sprite>sprites\customer_ded</sprite>
       <sprite>sprites\customer_talk</sprite>
+      <sprite>sprites\customer_back</sprite>
       <sprite>sprites\girl</sprite>
       <sprite>sprites\girl_ded</sprite>
       <sprite>sprites\girl_talk</sprite>
+      <sprite>sprites\girl_back</sprite>
     </sprites>
     <sprites name="Colliders and tests">
       <sprite>sprites\human_collider</sprite>

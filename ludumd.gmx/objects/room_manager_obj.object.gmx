@@ -248,7 +248,7 @@ alarm[0] = CUSTOMER_ALARM;
           <argument>
             <kind>1</kind>
             <string>///Press start
-if (START) then event_initialize_manager(id);
+if (!global.play) if (START) then event_initialize_manager(id);
 
 </string>
           </argument>

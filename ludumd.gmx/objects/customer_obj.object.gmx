@@ -85,6 +85,7 @@ in_angle = false;
             <string>/// Draw setup
 var custID = irandom(array_length_1d(global.cust_alive) - 1);
 main_spr = global.cust_alive[custID];
+back_spr = global.cust_back[custID];
 ded_spr = global.cust_ded[custID];
 talk_spr = global.cust_talk_face[custID];
 talk_snd = global.cust_talk_snd[custID];
@@ -119,6 +120,30 @@ looking_right = choose(true, false);
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Other
+satisf = false;
+deleted = false;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Array burger
 //0 = burger cruda
 //1 = burger quemada
@@ -129,8 +154,6 @@ burger_asked[0] = 2;
 for(var i = 1; i &lt; irandom_range(2, floor(global.level) - 1); i++)
     burger_asked[i] = irandom_range(3, 5);
 burger_asked[i] = 7;
-
-satisf = false;
 
 </string>
           </argument>
@@ -216,10 +239,7 @@ var near = instance_nearest(x, y, zombie_obj);
 if (near != noone)
 {
     if (point_distance(x, y, near.x, near.y) &lt; CUSTOMER_RANGE)
-    {
-        dying = true;
-        audio_play_sound(elvis_snd, 2, false);
-    }
+        event_kill_customer(id);
 }
 
 </string>
@@ -285,7 +305,9 @@ if (near != noone)
           <argument>
             <kind>1</kind>
             <string>/// Animation
-sprite = main_spr;
+if (targety &lt; y) then sprite = back_spr;
+else sprite = main_spr;
+
 if ((x != targetx) || (y != targety))
 {
     // ------- Animation ------
@@ -434,8 +456,8 @@ sprite = ded_spr;
 
 var ratio = 0.25;
 
-if ((subi + (2 * ratio)) &gt; dedlimit) then instance_destroy();
-else subi += ratio;
+if ((dedi + (2 * ratio)) &gt; dedlimit) then instance_destroy();
+else dedi += ratio;
 
 </string>
           </argument>

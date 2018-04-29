@@ -1,7 +1,6 @@
 var ID = argument0;
 
-event_delete_customer(ID);
-array_delete_element(global.customers, ID);
+if (!ID.deleted) then event_delete_customer(ID);
 with (ID)
 {
     talki = 0;
