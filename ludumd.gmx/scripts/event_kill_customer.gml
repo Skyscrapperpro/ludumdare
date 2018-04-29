@@ -1,6 +1,5 @@
 var ID = argument0;
 
-
 event_delete_customer(ID);
 array_delete_element(global.customers, ID);
 with (ID)
@@ -10,6 +9,6 @@ with (ID)
     subi = 0;
     talki = 0;
     selected_menu = false;
-    if (!satif) then event_lose_life();
+    if (!satisf) then event_lose_life();
 }
 

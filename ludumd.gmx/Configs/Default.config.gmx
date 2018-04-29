@@ -662,14 +662,14 @@
   </Options>
   <ConfigConstants>
     <constants number="47">
-      <constant name="LEFT">keyboard_check(ord("A")) || (gamepad_axis_value(0, gp_axislh) &lt; -0.5)</constant>
-      <constant name="RIGHT">keyboard_check(ord("D")) || (gamepad_axis_value(0, gp_axislh) &gt; 0.5)</constant>
-      <constant name="BACKWARDS">keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) &lt; -0.5)</constant>
-      <constant name="FORWARD">keyboard_check(ord("W")) || (gamepad_axis_value(0, gp_axislv) &gt; 0.5)</constant>
-      <constant name="LEFTCLICK">mouse_check_button_pressed(mb_left) || gamepad_button_check_pressed(0, gp_face1)</constant>
-      <constant name="RIGHTCLICK">mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_face3)</constant>
+      <constant name="LEFT">keyboard_check(ord("A")) //|| (gamepad_axis_value(0, gp_axislh) &lt; -0.5)</constant>
+      <constant name="RIGHT">keyboard_check(ord("D")) //|| (gamepad_axis_value(0, gp_axislh) &gt; +0.5)</constant>
+      <constant name="BACKWARDS">keyboard_check(ord("S")) //|| (gamepad_axis_value(0, gp_axislv) &lt; -0.5)</constant>
+      <constant name="FORWARD">keyboard_check(ord("W")) //|| (gamepad_axis_value(0, gp_axislv) &gt; +0.5)</constant>
+      <constant name="LEFTCLICK">mouse_check_button_pressed(mb_left) //|| gamepad_button_check_pressed(0, gp_face1)</constant>
+      <constant name="RIGHTCLICK">mouse_check_button_pressed(mb_right) //|| gamepad_button_check_pressed(0, gp_face3)</constant>
       <constant name="MIDDLECLICK">mouse_check_button_pressed(mb_middle) || keyboard_check_pressed(vk_escape)</constant>
-      <constant name="START">mouse_check_button_pressed(mb_left) || keyboard_check_pressed(vk_enter) || gamepad_button_check_pressed(0, gp_start)</constant>
+      <constant name="START">mouse_check_button_pressed(mb_left) || keyboard_check_pressed(vk_enter) //|| gamepad_button_check_pressed(0, gp_start)</constant>
       <constant name="MOUSESENS">0.06</constant>
       <constant name="GETYCAMSPD">mouse_y_speed()</constant>
       <constant name="GETXCAMSPD">mouse_x_speed()</constant>
