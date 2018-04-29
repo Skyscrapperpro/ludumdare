@@ -133,6 +133,7 @@
       <script>scripts\event_delete_customer.gml</script>
       <script>scripts\event_customer_menu.gml</script>
       <script>scripts\event_kill_zombie.gml</script>
+      <script>scripts\event_kill_all_customers.gml</script>
       <script>scripts\event_kill_customer.gml</script>
       <script>scripts\event_last_zombie.gml</script>
       <script>scripts\event_grill_burger.gml</script>

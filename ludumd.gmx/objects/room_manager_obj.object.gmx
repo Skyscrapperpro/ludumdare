@@ -209,6 +209,7 @@ global.play = false;
             <string>///Generate customers
 if (generated++ &lt; zombie_marg)
 {
+    if (player_obj.gameoverval==0) //and
     if (!instance_exists(zombie_obj))
         global.customers[instance_number(customer_obj) - 1] = instance_create(x, y, customer_obj);
 }
