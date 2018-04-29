@@ -214,6 +214,8 @@ alp = 0;
 
 taken_plate = -1;
 
+lifeval=STARTING_LIFE;
+
 </string>
           </argument>
         </arguments>
@@ -655,6 +657,11 @@ else if (handitem == 0)
 var scl = (view_wport/sprite_get_width(focus));
 draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
 
+//Draw life
+for (i=0;i&lt;lifeval;i++)
+{
+    draw_sprite_ext(life, 0, i*LIFE_SEP*PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+}
 </string>
           </argument>
         </arguments>

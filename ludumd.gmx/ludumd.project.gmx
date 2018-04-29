@@ -64,6 +64,7 @@
     <sprites name="GUI">
       <sprite>sprites\focus</sprite>
       <sprite>sprites\gunshot</sprite>
+      <sprite>sprites\life</sprite>
       <sprite>sprites\spatula</sprite>
     </sprites>
     <sprites name="Shooter">

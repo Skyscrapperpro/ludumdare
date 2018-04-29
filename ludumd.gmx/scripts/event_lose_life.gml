@@ -1,2 +1,2 @@
-
+player_obj.lifeval--;
 

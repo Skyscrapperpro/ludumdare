@@ -661,7 +661,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="47">
+    <constants number="49">
       <constant name="LEFT">keyboard_check(ord("A")) //|| (gamepad_axis_value(0, gp_axislh) &lt; -0.5)</constant>
       <constant name="RIGHT">keyboard_check(ord("D")) //|| (gamepad_axis_value(0, gp_axislh) &gt; +0.5)</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S")) //|| (gamepad_axis_value(0, gp_axislv) &lt; -0.5)</constant>
@@ -709,6 +709,8 @@
       <constant name="TIME_TO_COOK">120</constant>
       <constant name="PLATE_SEP">20</constant>
       <constant name="LEVEL_RATIO">0.5</constant>
+      <constant name="STARTING_LIFE">3</constant>
+      <constant name="LIFE_SEP">10</constant>
     </constants>
   </ConfigConstants>
 </Config>
