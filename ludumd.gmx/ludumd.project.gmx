@@ -43,6 +43,7 @@
       <sprite>sprites\editor_tomatobox</sprite>
       <sprite>sprites\editor_poster0</sprite>
       <sprite>sprites\editor_poster1</sprite>
+      <sprite>sprites\editor_poster2</sprite>
     </sprites>
     <sprites name="Customers">
       <sprite>sprites\customer_dialog</sprite>
@@ -77,6 +78,7 @@
       <sprite>sprites\burger_grill0</sprite>
       <sprite>sprites\burger_grill1</sprite>
       <sprite>sprites\burger_grill2</sprite>
+      <sprite>sprites\burger_timer</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -98,6 +100,7 @@
     <background>background\plate_bgr</background>
     <background>background\burgerposter_bgr</background>
     <background>background\borkposter_bgr</background>
+    <background>background\burgersign_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -128,9 +131,12 @@
       <script>scripts\event_kill_customer.gml</script>
       <script>scripts\event_last_zombie.gml</script>
       <script>scripts\event_grill_burger.gml</script>
+      <script>scripts\event_place_ing.gml</script>
+      <script>scripts\event_take_plate.gml</script>
     </scripts>
     <script>scripts\nearest_raycast.gml</script>
     <script>scripts\cust_array.gml</script>
+    <script>scripts\spat_to_burger.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
@@ -148,6 +154,7 @@
       <object>objects\table_obj</object>
       <object>objects\burgerposter_obj</object>
       <object>objects\borkposter_obj</object>
+      <object>objects\burgersign_obj</object>
     </objects>
     <objects name="Used in shooter">
       <object>objects\zombie_obj</object>

@@ -262,13 +262,6 @@ if (player_obj.handitem == 0)
     if (obj_shot != noone) //and
     switch (obj_shot.object_index)
     {
-        case burger_obj:
-            if (spatulaburger == 0) then spatulaburger = obj_shot.cook + 1;
-            with (obj_shot) instance_destroy();
-            break;
-        case trashcan_obj:
-            spatulaburger = 0;
-            break;
         case gunitem_obj:
             handitem = 1;
             instance_deactivate_object(gunitem_obj);
@@ -276,11 +269,38 @@ if (player_obj.handitem == 0)
         case customer_obj:
             event_customer_menu(obj_shot);
             break;
-        case burgerbox_obj:
-            if (spatulaburger == 0) then spatulaburger = 1;
+        case trashcan_obj:
+            spatulaburger = 0;
+            break;
+        case burger_obj:
+            if (spatulaburger == 0) then spatulaburger = obj_shot.cook + 1;
+            with (obj_shot) instance_destroy();
             break;
         case grill_obj:
             event_grill_burger(obj_shot);
+            break;
+        case burgerbox_obj:
+            if (spatulaburger == 0) then spatulaburger = 1;
+            break;
+        case breadbox_obj:
+            if (spatulaburger == 0) then spatulaburger = 4;
+            break;
+        case cheesebox_obj:
+            if (spatulaburger == 0) then spatulaburger = 5;
+            break;
+        case lechugabox_obj:
+            if (spatulaburger == 0) then spatulaburger = 6;
+            break;
+        case tomatobox_obj:
+            if (spatulaburger == 0) then spatulaburger = 7;
+            break;
+        case plates_obj:
+            if (spatulaburger != 0)
+            {
+                if event_place_ing(obj_shot, spatulaburger)
+                spatulaburger = 0;
+            }
+            else event_take_plate(obj_shot);
             break;
     }
 }
@@ -382,13 +402,13 @@ else //If you got the spatula
 {
     guni = 0;
     var ratio = 1;
-    if (spati &gt; 3)
+    if (spati &gt; 7)
     {
         if ((spati + ratio) &gt; spatlimit)
             spati = spatulaburger;
         else spati += ratio;
     }
-    else if (LEFTCLICK) spati = 4;
+    else if (LEFTCLICK) spati = 8;
 }
 
 </string>

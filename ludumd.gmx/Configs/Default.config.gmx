@@ -705,7 +705,7 @@
       <constant name="ING_SEP">3</constant>
       <constant name="MAX_ING">10</constant>
       <constant name="PLATE_ELEV">2</constant>
-      <constant name="TIME_TO_COOK">120</constant>
+      <constant name="TIME_TO_COOK">60</constant>
     </constants>
   </ConfigConstants>
 </Config>

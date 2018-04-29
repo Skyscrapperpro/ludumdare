@@ -30,5 +30,9 @@
     <frame index="7">images\spatula_7.png</frame>
     <frame index="8">images\spatula_8.png</frame>
     <frame index="9">images\spatula_9.png</frame>
+    <frame index="10">images\spatula_10.png</frame>
+    <frame index="11">images\spatula_11.png</frame>
+    <frame index="12">images\spatula_12.png</frame>
+    <frame index="13">images\spatula_13.png</frame>
   </frames>
 </sprite>

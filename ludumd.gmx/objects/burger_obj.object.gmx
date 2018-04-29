@@ -53,12 +53,17 @@ sprite[0] = burger_grill0;
 sprite[1] = burger_grill1;
 sprite[2] = burger_grill2;
 //w = sprite_get_width(sprite[0]);
+timer_spr = burger_timer;
 h = sprite_get_height(sprite[0]) * BURGER_SCALE;
 zpos = grill_obj.zcast - h/4;
 ray_zpos = grill_obj.zcast - (5 * BURGER_SCALE);
 subi = 0;
-ray_spr = 31 * BURGER_SCALE; //burger_collider;
+ray_spr = 31 * BURGER_SCALE;
 ray_h = 11 * BURGER_SCALE;
+
+timer_end = (sprite_get_number(timer_spr) - 1);
+timer_half = timer_end/2;
+timer_ratio = timer_half/TIME_TO_COOK;
 
 </string>
           </argument>
@@ -83,13 +88,16 @@ ray_h = 11 * BURGER_SCALE;
           <argument>
             <kind>1</kind>
             <string>/// Heat
-
-if (x&gt;(grill_obj.x-grill_obj.w/2) &amp;&amp; x&lt;(grill_obj.x+grill_obj.w/2) &amp;&amp; y&gt;(grill_obj.y-grill_obj.h/2) &amp;&amp; y&lt;(grill_obj.y+grill_obj.h/2))
-    temp++;
+/*if (x &gt; (grill_obj.x - grill_obj.w/2))
+if (x &lt; (grill_obj.x + grill_obj.w/2))
+if (y &gt; (grill_obj.y - grill_obj.h/2))
+if (y &lt; (grill_obj.y + grill_obj.h/2))*/
+if (temp &lt;= timer_end)
+    temp += timer_ratio;
 
 // Esto hay que regularlo
-if (temp &lt; TIME_TO_COOK) cook = 0;
-else if (temp &lt; (TIME_TO_COOK * 2)) cook = 1;
+if (temp &lt;= timer_half) cook = 0;
+else if (temp &lt;= timer_end) cook = 1;
 else cook = 2;
 
 </string>
@@ -197,6 +205,7 @@ if (raycast_3d_spr(ray_spr, ray_h, xorig, yorig, -CAM_Z, x, y, ray_zpos, d_angle
 if (ISPERSPECTIVE)
 {
     draw_3dspr_angle(sprite[cook], subi, x, y, zpos, BURGER_SCALE, d_angle);
+    draw_3dspr_angle(timer_spr, floor(temp), x, y, zpos - h, 0.5, d_angle);
 }
 
 </string>

@@ -7,7 +7,18 @@ if ((player_obj.spatulaburger == 1) || (player_obj.spatulaburger == 2) || (playe
     with (burg)
     {
         cook = player_obj.spatulaburger - 1;
-        temp = cook * TIME_TO_COOK;
+        switch (cook)
+        {
+            case 1:
+                temp = timer_half;
+                break;
+            case 2:
+                temp = timer_end;
+                break;
+            default:
+                temp = 0;
+                break;
+        }
     }
     with (player_obj) spatulaburger = 0;
 }

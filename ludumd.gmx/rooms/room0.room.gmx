@@ -108,6 +108,7 @@ draw_set_alpha_test_ref_value(1);</code>
     <instance objName="plates_obj" x="203" y="352" name="inst_E70A590C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="burgerposter_obj" x="287" y="160" name="inst_381E266C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-90"/>
     <instance objName="borkposter_obj" x="129" y="288" name="inst_6DC177CE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="burgersign_obj" x="203" y="351" name="inst_3408DC77" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
