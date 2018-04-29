@@ -217,6 +217,8 @@ taken_plate = -1;
 lifeval=STARTING_LIFE;
 scoreval=0;
 gameoverval=0;
+goindex=0;
+gotimer=0;
 </string>
           </argument>
         </arguments>
@@ -446,6 +448,16 @@ else //If you got the spatula
     else if (LEFTCLICK) spati = 8;
 }
 
+// for game over screen
+if (gameoverval==1)
+{
+    gotimer++;
+    if (gotimer==GOBLINKRATE)
+    {
+        gotimer=0;
+        goindex=!goindex;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -678,7 +690,7 @@ var alpgo=0;
 
 if gameoverval=1
 {
-draw_sprite_ext(gameover, 0, 0, 0, sclgo, sclgo, 0, -1, 1);
+draw_sprite_ext(gameover, goindex, 0, 0, sclgo, sclgo, 0, -1, 1);
 
 }
 
