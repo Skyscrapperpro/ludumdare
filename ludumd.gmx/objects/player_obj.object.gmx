@@ -2,7 +2,7 @@
 <object>
   <spriteName>editor_player</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -215,7 +215,7 @@ alp = 0;
 taken_plate = -1;
 
 lifeval=STARTING_LIFE;
-
+scoreval=0;
 </string>
           </argument>
         </arguments>
@@ -658,10 +658,18 @@ var scl = (view_wport/sprite_get_width(focus));
 draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
 
 //Draw life
-for (i=0;i&lt;lifeval;i++)
+if (lifeval&gt;0)
 {
-    draw_sprite_ext(life, 0, i*LIFE_SEP*PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    for (i=0;i&lt;lifeval;i++)
+    {
+        draw_sprite_ext(life, 0, i*LIFE_SEP*PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    }
 }
+
+//Draw score
+draw_set_colour(c_teal);
+draw_text_transformed(0,view_hport-80,string_insert(string(scoreval),'score: ',7),PIXEL_LENGTH,PIXEL_LENGTH,0);
+draw_set_colour(c_white);
 </string>
           </argument>
         </arguments>

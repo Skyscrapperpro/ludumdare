@@ -64,6 +64,7 @@
       <sprite>sprites\target_test</sprite>
     </sprites>
     <sprites name="GUI">
+      <sprite>sprites\gameover</sprite>
       <sprite>sprites\focus</sprite>
       <sprite>sprites\gunshot</sprite>
       <sprite>sprites\life</sprite>
@@ -127,6 +128,7 @@
       <script>scripts\rotating_point_relative.gml</script>
     </scripts>
     <scripts name="Events">
+      <script>scripts\event_game_over.gml</script>
       <script>scripts\event_auto_rotate.gml</script>
       <script>scripts\event_delete_customer.gml</script>
       <script>scripts\event_customer_menu.gml</script>
@@ -150,6 +152,7 @@
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
   </shaders>
+  <fonts name="fonts"/>
   <objects name="objects">
     <objects name="Parents">
       <object>objects\interactable_obj</object>
