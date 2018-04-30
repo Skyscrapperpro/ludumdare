@@ -1,5 +1,7 @@
-player_obj.lifeval--;
-if (player_obj.lifeval<1)
+with (player_obj)
 {
-    event_game_over();
+    lifei[lifeval - 1]++;
+    lifeval--;
+    if (lifeval < 1) then event_game_over();
 }
+

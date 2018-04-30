@@ -214,11 +214,15 @@ alp = 0;
 
 taken_plate = -1;
 
-lifeval=STARTING_LIFE;
-scoreval=0;
-gameoverval=0;
-goindex=0;
-gotimer=0;
+lifeval = STARTING_LIFE;
+scoreval = 0;
+gameoverval = 0;
+goindex = 0;
+gotimer = 0;
+alpgo = 0;
+
+for (var i = 0; i &lt; STARTING_LIFE; i++) lifei[i] = 0;
+
 </string>
           </argument>
         </arguments>
@@ -401,8 +405,18 @@ if (instance_exists(zombie_obj))
     }
     else if (alp &lt; 1) alp += 0.1;
 }
-else
-    if (alp &gt; 0) alp -= 0.1;
+else if (alp &gt; 0) then alp -= 0.1;
+
+if (gameoverval == 1)
+{
+    if ((alpgo + 0.1) = 1)
+    {
+        //audio_play_sound(go_snd, 2, false);
+        alpgo += 0.1;
+    }
+    else if (alpgo &lt; 1) alpgo += 0.1;
+}
+else if (alpgo &gt; 0) then alpgo -= 0.1;
 
 </string>
           </argument>
@@ -460,6 +474,12 @@ if (gameoverval==1)
         goindex=!goindex;
     }
 }
+
+// Lives animation
+for (var i = 0, ratio = 0.125; i &lt; STARTING_LIFE; i++)
+    if (lifei[i] &gt; 0) //and
+    if (lifei[i] &lt; (sprite_get_number(life) - 1)) lifei[i] += ratio;
+
 </string>
           </argument>
         </arguments>
@@ -660,7 +680,7 @@ if (ISPERSPECTIVE) then pixelate(PIXEL_LENGTH);
 //Draw hold item
 var gun_x = view_wport/2;
 var gun_y = view_hport;
-var spat_x = view_wport*0.8;
+var spat_x = view_wport * 0.8;
 var spat_y = view_hport - (PIXEL_LENGTH * 5);
 
 if (handitem == 1)
@@ -670,31 +690,22 @@ else if (handitem == 0)
 
 //Draw alpha effect
 var scl = (view_wport/sprite_get_width(focus));
-draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
+if (alp &gt; 0) then draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
 
 //Draw life
-if (lifeval&gt;0)
-{
-    for (i=0;i&lt;lifeval;i++)
-    {
-        draw_sprite_ext(life, 0, i*LIFE_SEP*PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-    }
-}
+for (var i = 0; i &lt; STARTING_LIFE; i++)
+    draw_sprite_ext(life, floor(lifei[i]), i * LIFE_SEP * PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 
 //Draw score
 draw_set_colour(c_teal);
-draw_text_transformed(0,view_hport-80,string_insert(string(scoreval),'score: ',7),PIXEL_LENGTH,PIXEL_LENGTH,0);
+draw_text_transformed(0, view_hport - 80, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(c_white);
 
 //Draw game over
 var sclgo = (view_wport/sprite_get_width(gameover));
-var alpgo=0;
 
-if gameoverval=1
-{
-draw_sprite_ext(gameover, goindex, 0, 0, sclgo, sclgo, 0, -1, 1);
-
-}
+if (gameoverval == 1)
+    draw_sprite_ext(gameover, goindex, 0, 0, sclgo, sclgo, 0, -1, alpgo);
 
 </string>
           </argument>

@@ -73,6 +73,7 @@
     <sprites name="Shooter">
       <sprite>sprites\zombie</sprite>
       <sprite>sprites\zombie_ded</sprite>
+      <sprite>sprites\zombie_attack</sprite>
       <sprite>sprites\gunitem</sprite>
     </sprites>
     <sprites name="Burgers">
@@ -153,6 +154,9 @@
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
   </shaders>
+  <fonts name="fonts">
+    <font>fonts\font0</font>
+  </fonts>
   <objects name="objects">
     <objects name="Parents">
       <object>objects\interactable_obj</object>

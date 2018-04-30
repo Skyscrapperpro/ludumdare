@@ -709,7 +709,7 @@
       <constant name="TIME_TO_COOK">60</constant>
       <constant name="PLATE_SEP">20</constant>
       <constant name="LEVEL_RATIO">1</constant>
-      <constant name="STARTING_LIFE">3</constant>
+      <constant name="STARTING_LIFE">5</constant>
       <constant name="LIFE_SEP">10</constant>
       <constant name="RESTARTKEY">keyboard_check_pressed(vk_space)</constant>
       <constant name="GOBLINKRATE">25</constant>

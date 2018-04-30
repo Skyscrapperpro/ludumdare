@@ -1,11 +1,3 @@
-- Lose life animation
-- Attack animation and delay for zombie
-	=> que el zombie se encargue de atacar y que
-	aplique el ataque solo sobre el target, en
-	lugar de que el customer mire la distancia y ya.
-- Game Over animation
-	=> hace falta tanto un fade como hacer algo con esas letras gigantes.
-	Also the "press space" font needs some improvement.
 - Fix dialogs going inside wall
 
 NEED ART:
