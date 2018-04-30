@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Spawn
-line = 0;
+/*line = 0;
 
 for (var i = 0; i &lt; LINES_AMOUNT; i++)
 {
@@ -38,6 +38,23 @@ prevcustomer = room_manager_obj.customers[line];
 room_manager_obj.customers[line] = id;
 nextcustomer = -1;
 prevcustomer.nextcustomer = id;
+*/
+
+//Look for shortest line
+line = 0;
+for (var i = 0; i &lt; LINES_AMOUNT; i++)
+{
+    if (ds_list_size(global.line_ids[i]) &lt; ds_list_size(global.line_ids[line]))
+        line = i;
+}
+
+//Get last position in line
+last = ds_list_size(global.line_ids[line]);
+
+//Set id
+ds_list_add(global.line_ids[line], id);
+
+set_customer_target(id);
 
 </string>
           </argument>
@@ -173,35 +190,6 @@ burger_asked[i] = 7;
         <relative>0</relative>
         <isnot>0</isnot>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Movement variables
-if (prevcustomer == -1) inittargety = table_obj.y - CUSTOMER_SEP;
-else inittargety = prevcustomer.y - CUSTOMER_SEP;
-
-inittargetx = FIRST_LINE_X - (line * LINES_SEP) - CUSTOMER_SEP_X;
-
-targetx = inittargetx;
-targety = inittargety;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -276,49 +264,6 @@ targety = inittargety;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Animation
-if (targety &lt; y) then sprite = back_spr;
-else sprite = main_spr;
-
-if ((x != targetx) || (y != targety))
-{
-    // ------- Animation ------
-    var ratio = 0.2;
-    
-    if ((subi + ratio) &gt; ilimit) then subi = 1;
-    else subi += ratio;
-    //
-}
-else subi = 0;
-
-if (talki &gt; 0)
-{
-    var ratio = 0.5;
-
-    if ((talki + ratio) &gt; talklimit) then talki = 0;
-    else talki += ratio;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Check zombies and set target
 if (instance_exists(zombie_obj))
 {
@@ -332,6 +277,7 @@ if (instance_exists(zombie_obj))
 }
 else
 {
+    if (!satisf) check_line(id);
     targetx = inittargetx;
     targety = inittargety;
     solid = false;
@@ -374,6 +320,49 @@ x = var_to_target(x, targetx, xspeed);
 y = var_to_target(y, targety, yspeed);
 
 if (y &lt; (room_manager_obj.y)) then instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Animation
+if (targety &lt; y) then sprite = back_spr;
+else sprite = main_spr;
+
+if ((x != targetx) || (y != targety))
+{
+    // ------- Animation ------
+    var ratio = 0.2;
+    
+    if ((subi + ratio) &lt; ilimit) then subi += ratio;
+    else subi = 1;
+    //
+}
+else subi = 0;
+
+if (talki &gt; 0)
+{
+    var ratio = 0.5;
+
+    if ((talki + ratio) &lt; talklimit) then talki += ratio;
+    else talki = 0;
+}
 
 </string>
           </argument>
@@ -428,8 +417,8 @@ sprite = ded_spr;
 
 var ratio = 0.25;
 
-if ((dedi + (2 * ratio)) &gt; dedlimit) then instance_destroy();
-else dedi += ratio;
+if ((dedi + (2 * ratio)) &lt; dedlimit) then dedi += ratio;
+else instance_destroy();
 
 </string>
           </argument>
@@ -471,13 +460,13 @@ else dedi += ratio;
 if (ISPERSPECTIVE)
 {
     var zpos = -sprite_get_height(sprite)/2;
-    if (talki &gt; 0)
-    {
-        if (looking_right) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle);
-        else draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle + 180);
-    }
     if (selected_menu)
     {
+        if (talki &gt; 0)
+        {
+            if (looking_right) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle);
+            else draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle + 180);
+        }
         var xpos = x - lengthdir_x(DIALOG_DIST_X, d_angle);
         var ypos = y - lengthdir_y(DIALOG_DIST_X, d_angle);
         draw_3dspr_angle(menu_spr, 0, x, y + 0.2, zpos, 1, d_angle);

@@ -97,9 +97,6 @@ cry[4] = cry4_snd;
 cry[5] = zombie0_snd;
 cry[6] = zombie1_snd;
 cry[7] = zombie2_snd;
-cry[8] = zombie3_snd;
-cry[9] = zombie4_snd;
-cry[10] = zombie5_snd;
 
 </string>
           </argument>
@@ -287,8 +284,11 @@ if (player_obj.handitem == 0)
                 spatulaburger = 0;
                 break;
             case burger_obj:
-                if (spatulaburger == 0) then spatulaburger = obj_shot.cook + 1;
-                with (obj_shot) instance_destroy();
+                if (spatulaburger == 0)
+                {
+                    spatulaburger = obj_shot.cook + 1;
+                    with (obj_shot) instance_destroy();
+                }
                 break;
             case grill_obj:
                 event_grill_burger(obj_shot);
@@ -323,17 +323,20 @@ if (player_obj.handitem == 0)
         switch (obj_shot.object_index)
         {
             case customer_obj:
-                if (!event_ask_customer(obj_shot, taken_plate))
+                if (!instance_exists(zombie_obj))
                 {
-                    event_kill_customer(obj_shot);
-                    with (taken_plate) instance_destroy();
-                    taken_plate = -1;
-                }
-                else if (!obj_shot.satisf)
-                {
-                    event_satisfy_customer(obj_shot);
-                    with (taken_plate) instance_destroy();
-                    taken_plate = -1;
+                    if (!event_ask_customer(obj_shot, taken_plate))
+                    {
+                        event_kill_customer(obj_shot);
+                        with (taken_plate) instance_destroy();
+                        taken_plate = -1;
+                    }
+                    else if (!obj_shot.satisf)
+                    {
+                        event_satisfy_customer(obj_shot);
+                        with (taken_plate) instance_destroy();
+                        taken_plate = -1;
+                    }
                 }
                 break;
             case trashcan_obj:
@@ -445,9 +448,8 @@ if (handitem == 1) //If you got the gun
     var ratio = 0.25;
     if (guni &gt; 0)
     {
-        if ((guni + ratio) &gt; gunlimit)
-            guni = 0;
-        else guni += ratio;
+        if ((guni + ratio) &lt; gunlimit) then guni += ratio;
+        else guni = 0;
     }
     else if (LEFTCLICK) guni = ratio;
 }
@@ -457,9 +459,8 @@ else //If you got the spatula
     var ratio = 1;
     if (spati &gt; 7)
     {
-        if ((spati + ratio) &gt; spatlimit)
-            spati = spatulaburger;
-        else spati += ratio;
+        if ((spati + ratio) &lt; spatlimit) then spati += ratio;
+        else spati = spatulaburger;
     }
     else if (LEFTCLICK) spati = 8;
 }
@@ -697,8 +698,9 @@ for (var i = 0; i &lt; STARTING_LIFE; i++)
     draw_sprite_ext(life, floor(lifei[i]), i * LIFE_SEP * PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 
 //Draw score
-draw_set_colour(c_teal);
-draw_text_transformed(0, view_hport - 80, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
+draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+draw_set_colour(c_green);
+draw_text_transformed(view_wport - (sprite_get_width(money) * PIXEL_LENGTH), -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(c_white);
 
 //Draw game over

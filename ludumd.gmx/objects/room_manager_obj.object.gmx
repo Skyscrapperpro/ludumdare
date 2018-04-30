@@ -129,6 +129,7 @@ global.level = 3;
           <argument>
             <kind>1</kind>
             <string>/// Arrays used in lines code
+/*
 //Number of customers per line array: lines
 for (i = 0; i &lt; LINES_AMOUNT; i++)
     lines[i] = 0;
@@ -136,6 +137,10 @@ for (i = 0; i &lt; LINES_AMOUNT; i++)
 //ID of last customer: customer[line]
 for (i = 0; i &lt; LINES_AMOUNT; i++)
     customers[i] = -1;
+*/
+
+for (var i = 0; i &lt; LINES_AMOUNT; i++)
+    global.line_ids[i] = ds_list_create();
 
 </string>
           </argument>
@@ -211,7 +216,7 @@ if (generated++ &lt; zombie_marg)
 {
     if (player_obj.gameoverval==0) //and
     if (!instance_exists(zombie_obj))
-        global.customers[instance_number(customer_obj) - 1] = instance_create(x, y, customer_obj);
+        instance_create(x, y, customer_obj);
 }
 else
 {
@@ -273,12 +278,8 @@ if (!global.play) if (START) then event_initialize_manager(id);
             <kind>1</kind>
             <string>///restart from game over
 if (player_obj.gameoverval==1)
-{
-    if (RESTARTKEY)
-    {
-        room_restart();
-    }
-}
+    if (RESTARTKEY) then room_restart();
+
 </string>
           </argument>
         </arguments>

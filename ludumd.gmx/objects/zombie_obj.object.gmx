@@ -240,21 +240,21 @@ if (sprite == at_spr)
 {
     var ratio = 0.25;
     
-    if ((subi + ratio) &gt; atlimit)
+    if ((subi + ratio) &lt; atlimit) then subi += ratio;
+    else 
     {
         event_kill_customer(target);
         sprite = main_spr;
         subi = 0;
     }
-    else subi += ratio;
 }
 else
 {
     sprite = main_spr;
     var ratio = 0.125;
     
-    if ((subi + ratio) &gt; ilimit) then subi = 0;
-    else subi += ratio;
+    if ((subi + ratio) &lt; ilimit) then subi += ratio;
+    else subi = 0;
 }
 
 </string>
@@ -309,12 +309,12 @@ else
 sprite = ded_spr;
 var ratio = 0.25;
 
-if ((dedi + (2 * ratio)) &gt; dedlimit)
+if ((dedi + (2 * ratio)) &lt; dedlimit) then dedi += ratio;
+else 
 {
     event_last_zombie();
     instance_destroy();
 }
-else dedi += ratio;
 
 </string>
           </argument>

@@ -1,10 +1,5 @@
 - Fix dialogs going inside wall
 
 NEED ART:
-- Add sprite for score and improve font
 - Better burger graphics for customer dialogs
 - Start menu graphics
-
-BUGS:
-- Fix satisfied customer animation
-- Fix customer's position in line

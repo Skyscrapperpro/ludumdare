@@ -1,2 +1,2 @@
-with (customer_obj) instance_destroy();
+with (customer_obj) event_kill_customer(id);
 
