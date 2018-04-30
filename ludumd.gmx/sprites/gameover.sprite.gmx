@@ -8,19 +8,19 @@
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
-  <bbox_right>18</bbox_right>
+  <bbox_right>179</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>26</bbox_bottom>
+  <bbox_bottom>99</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>19</width>
-  <height>27</height>
+  <width>180</width>
+  <height>100</height>
   <frames>
-    <frame index="0">images\life_0.png</frame>
-    <frame index="1">images\life_1.png</frame>
+    <frame index="0">images\gameover_0.png</frame>
+    <frame index="1">images\gameover_1.png</frame>
   </frames>
 </sprite>

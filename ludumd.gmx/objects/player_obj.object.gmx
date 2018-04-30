@@ -215,7 +215,10 @@ alp = 0;
 taken_plate = -1;
 
 lifeval=STARTING_LIFE;
-
+scoreval=0;
+gameoverval=0;
+goindex=0;
+gotimer=0;
 </string>
           </argument>
         </arguments>
@@ -272,7 +275,9 @@ if (player_obj.handitem == 0)
                 instance_deactivate_object(gunitem_obj);
                 break;
             case customer_obj:
-                event_customer_menu(obj_shot);
+                if (!obj_shot.satisf)
+                if (!obj_shot.dying)
+                    event_customer_menu(obj_shot);
                 break;
             case trashcan_obj:
                 spatulaburger = 0;
@@ -445,6 +450,16 @@ else //If you got the spatula
     else if (LEFTCLICK) spati = 8;
 }
 
+// for game over screen
+if (gameoverval==1)
+{
+    gotimer++;
+    if (gotimer==GOBLINKRATE)
+    {
+        gotimer=0;
+        goindex=!goindex;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -658,10 +673,29 @@ var scl = (view_wport/sprite_get_width(focus));
 draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
 
 //Draw life
-for (i=0;i&lt;lifeval;i++)
+if (lifeval&gt;0)
 {
-    draw_sprite_ext(life, 0, i*LIFE_SEP*PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    for (i=0;i&lt;lifeval;i++)
+    {
+        draw_sprite_ext(life, 0, i*LIFE_SEP*PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    }
 }
+
+//Draw score
+draw_set_colour(c_teal);
+draw_text_transformed(0,view_hport-80,string_insert(string(scoreval),'score: ',7),PIXEL_LENGTH,PIXEL_LENGTH,0);
+draw_set_colour(c_white);
+
+//Draw game over
+var sclgo = (view_wport/sprite_get_width(gameover));
+var alpgo=0;
+
+if gameoverval=1
+{
+draw_sprite_ext(gameover, goindex, 0, 0, sclgo, sclgo, 0, -1, 1);
+
+}
+
 </string>
           </argument>
         </arguments>

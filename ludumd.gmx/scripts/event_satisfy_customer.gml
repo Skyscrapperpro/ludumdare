@@ -7,7 +7,7 @@ with (ID)
     selected_menu = false;
     satisf = true;
     inittargetx = room_manager_obj.x;
-    inittargety = room_manager_obj.y - 100;
+    inittargety = room_manager_obj.y - 1;
 }
 if ((global.level + LEVEL_RATIO) > MAX_ING) then global.level = MAX_ING;
 else global.level += LEVEL_RATIO;

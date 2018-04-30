@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Setup draw
-z = 32;
+z = 28;
 tex_plate = background_get_texture(plate_bgr);
 spr = refrigerio;
 ing_spr = ingredients;
@@ -48,7 +48,7 @@ cornery1 = rotating_point_relative(-w/2, 0, image_angle, 1);
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -75,8 +75,6 @@ righty = rotating_point_relative(+w/2, -h/2, image_angle, 1);
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
