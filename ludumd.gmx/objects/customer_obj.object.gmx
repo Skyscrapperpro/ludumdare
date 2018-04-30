@@ -401,7 +401,7 @@ yspeed = do_collision_y(xspeed, yspeed);
 x = var_to_target(x, targetx, xspeed);
 y = var_to_target(y, targety, yspeed);
 
-if (y &lt; (room_manager_obj.y - 50)) then instance_destroy();
+if (y &lt; (room_manager_obj.y)) then instance_destroy();
 
 </string>
           </argument>

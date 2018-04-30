@@ -275,7 +275,9 @@ if (player_obj.handitem == 0)
                 instance_deactivate_object(gunitem_obj);
                 break;
             case customer_obj:
-                event_customer_menu(obj_shot);
+                if (!obj_shot.satisf)
+                if (!obj_shot.dying)
+                    event_customer_menu(obj_shot);
                 break;
             case trashcan_obj:
                 spatulaburger = 0;
