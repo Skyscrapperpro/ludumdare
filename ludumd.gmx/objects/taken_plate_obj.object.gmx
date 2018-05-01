@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Setup draw
-z = 28;
+z = 30;
 tex_plate = background_get_texture(plate_bgr);
 spr = refrigerio;
 ing_spr = ingredients;

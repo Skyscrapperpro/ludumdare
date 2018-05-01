@@ -18,11 +18,11 @@
     <sound>sound\zombie0_snd</sound>
     <sound>sound\zombie1_snd</sound>
     <sound>sound\zombie2_snd</sound>
-    <sound>sound\zombie3_snd</sound>
-    <sound>sound\zombie4_snd</sound>
-    <sound>sound\zombie5_snd</sound>
+    <sound>sound\zombiedie0_snd</sound>
+    <sound>sound\zombiedie1_snd</sound>
     <sound>sound\talk_elvis_snd</sound>
     <sound>sound\talk_girl_snd</sound>
+    <sound>sound\lifelost_snd</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Editor">
@@ -69,10 +69,12 @@
       <sprite>sprites\gunshot</sprite>
       <sprite>sprites\life</sprite>
       <sprite>sprites\spatula</sprite>
+      <sprite>sprites\money</sprite>
     </sprites>
     <sprites name="Shooter">
       <sprite>sprites\zombie</sprite>
       <sprite>sprites\zombie_ded</sprite>
+      <sprite>sprites\zombie_attack</sprite>
       <sprite>sprites\gunitem</sprite>
     </sprites>
     <sprites name="Burgers">
@@ -126,11 +128,11 @@
       <script>scripts\reverse_position.gml</script>
       <script>scripts\zreal.gml</script>
       <script>scripts\rotating_point_relative.gml</script>
+      <script>scripts\nearest_raycast.gml</script>
     </scripts>
     <scripts name="Events">
       <script>scripts\event_game_over.gml</script>
       <script>scripts\event_auto_rotate.gml</script>
-      <script>scripts\event_delete_customer.gml</script>
       <script>scripts\event_customer_menu.gml</script>
       <script>scripts\event_kill_zombie.gml</script>
       <script>scripts\event_kill_all_customers.gml</script>
@@ -145,14 +147,19 @@
       <script>scripts\event_lose_life.gml</script>
       <script>scripts\event_add_score.gml</script>
       <script>scripts\event_initialize_manager.gml</script>
+      <script>scripts\event_delete_customer.gml</script>
     </scripts>
-    <script>scripts\nearest_raycast.gml</script>
     <script>scripts\cust_array.gml</script>
     <script>scripts\spat_to_burger.gml</script>
+    <script>scripts\check_line.gml</script>
+    <script>scripts\set_customer_target.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
   </shaders>
+  <fonts name="fonts">
+    <font>fonts\font0</font>
+  </fonts>
   <objects name="objects">
     <objects name="Parents">
       <object>objects\interactable_obj</object>

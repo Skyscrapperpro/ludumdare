@@ -124,8 +124,8 @@ else cook = 2;
 var ratio = 0.125;
 var ilimit = sprite_get_number(sprite[cook]);
 
-if ((subi + ratio) &gt; ilimit) then subi = 0;
-else subi += ratio;
+if ((subi + ratio) &lt; ilimit) then subi += ratio;
+else subi = 0;
 
 </string>
           </argument>

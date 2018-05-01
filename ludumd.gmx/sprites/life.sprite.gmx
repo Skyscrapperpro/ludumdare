@@ -22,5 +22,6 @@
   <frames>
     <frame index="0">images\life_0.png</frame>
     <frame index="1">images\life_1.png</frame>
+    <frame index="2">images\life_2.png</frame>
   </frames>
 </sprite>
