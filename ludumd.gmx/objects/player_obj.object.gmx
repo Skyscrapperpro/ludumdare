@@ -742,9 +742,9 @@ if (global.play=true)
 //Draw score
 if (global.play=true)
 {
-    draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH + ((sprite_get_width(money) * PIXEL_LENGTH)*sdisplacement/100), PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH + ((sprite_get_width(money) * PIXEL_LENGTH)*sdisplacement*2/100), PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
     draw_set_colour(c_green);
-    draw_text_transformed(view_wport - (sprite_get_width(money) * PIXEL_LENGTH)*(100-sdisplacement)/100, -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
+    draw_text_transformed(view_wport - (sprite_get_width(money) * PIXEL_LENGTH)*(100-sdisplacement*2)/100, -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
     draw_set_colour(c_white);
 }
 
