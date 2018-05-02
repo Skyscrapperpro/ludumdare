@@ -3,12 +3,26 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>interactable_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -26,9 +40,10 @@
           <argument>
             <kind>1</kind>
             <string>///Draw initialize
-ray_spr = human_collider;
+ray_spr = 32; //human_collider;
 sprite = main_spr;
 subi = 0;
+dedi = 0;
 ilimit = sprite_get_number(main_spr);
 dedlimit = sprite_get_number(ded_spr);
 dying = false;
@@ -37,8 +52,6 @@ dying = false;
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -55,14 +68,15 @@ dying = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set depth relative to player
-if (ISPERSPECTIVE) depth = point_distance(x, y, player_obj.x, player_obj.y);
-else depth = -1;
+            <string>/// Get draw angle
+d_angle = player_obj.angle;
 
 </string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -103,7 +117,7 @@ d_angle = player_obj.angle;
           <argument>
             <kind>1</kind>
             <string>/// Hit me with raycasts
-if raycast_2d_spr(ray_spr, player_obj.x, player_obj.y, x, y, d_angle)
+if raycast_2d_spr(ray_spr, player_obj.x, player_obj.y, x, y, d_angle, d_angle)
     in_angle = true;
 else in_angle = false;
 
@@ -133,8 +147,9 @@ else in_angle = false;
 if (ISPERSPECTIVE)
 {
     var zpos = -sprite_get_height(sprite)/2;
-    draw_3dspr_angle(sprite, subi, x, y, zpos, d_angle);
-    //raycast_2d_spr(ray_spr, player_obj.x, player_obj.y, x, y, d_angle);
+    if (dying) then subi = dedi;
+    if (looking_right) then draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, d_angle);
+    else draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, add_angle(d_angle, 180, ANGREF));
 }
 else
 {

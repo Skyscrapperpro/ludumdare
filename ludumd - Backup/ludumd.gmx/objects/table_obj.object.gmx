@@ -3,7 +3,7 @@
   <spriteName>editor_table</spriteName>
   <solid>-1</solid>
   <visible>-1</visible>
-  <depth>999</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -65,29 +65,6 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set depth
-if (!ISPERSPECTIVE) depth = -1;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// Draw setup
 bgr_top = tabletop_bgr;
 bgr_front = table_bgr;
@@ -121,7 +98,7 @@ tex = background_get_texture(bgr_top);
 if (ISPERSPECTIVE)
 {
     d3d_draw_floor(x - w/2, y - h/2, -TABLE_Z, x + w/2, y + h/2, -TABLE_Z, tex, 1, 1);
-    draw_3dbgr_angle(bgr_front, x, y + h/2, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 0, 180));
+    draw_3dbgr_angle(bgr_front, x, y + h/2, -TABLE_Z/2, h, TABLE_Z, add_angle(image_angle, 0, ANGREF));
 }
 else draw_self();
 

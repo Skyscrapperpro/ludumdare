@@ -1,3 +1,5 @@
+///music_switch(track_number)
+
 var musicID = argument0;
 
 switch (musicID)

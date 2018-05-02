@@ -3,7 +3,7 @@
   <spriteName>editor_door</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>998</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -147,8 +147,8 @@ if (near != noone)
           <argument>
             <kind>1</kind>
             <string>///Draw plane
-draw_3dbgr_angle(bgr, x + w/2 + open_amount, y, -CEILING_H/2, w, CEILING_H, add_angle(image_angle, 0, 180));
-draw_3dbgr_angle(bgr, x - w/2 - open_amount, y, -CEILING_H/2, -w, CEILING_H, add_angle(image_angle, 0, 180));
+draw_3dbgr_angle(bgr, x + w/2 + open_amount, y, -CEILING_H/2, w, CEILING_H, add_angle(image_angle, 0, ANGREF));
+draw_3dbgr_angle(bgr, x - w/2 - open_amount, y, -CEILING_H/2, -w, CEILING_H, add_angle(image_angle, 0, ANGREF));
 
 </string>
           </argument>

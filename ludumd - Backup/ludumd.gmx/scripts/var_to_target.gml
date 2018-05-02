@@ -1,6 +1,8 @@
+///var_to_target(origin, target, speed)
+
 var moveable = argument0;
 var target = argument1;
-var ratio_per_frame = argument2;
+var ratio_per_frame = abs(argument2);
 
 if (moveable < target)
 {

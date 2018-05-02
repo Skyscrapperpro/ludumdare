@@ -1,3 +1,5 @@
+///do_collision_y(horizontal_speed, vertical_speed)
+
 var xsonic = argument0;
 var ysonic = argument1;
 

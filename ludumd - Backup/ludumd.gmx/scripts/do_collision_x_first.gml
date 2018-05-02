@@ -1,3 +1,5 @@
+///do_collision_x_first(horizontal_speed)
+
 var xsonic = argument0;
 
 //Check x and y separately so that you can slide across the walls.

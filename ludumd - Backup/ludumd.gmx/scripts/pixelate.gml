@@ -1,3 +1,5 @@
+///pixelate(pixel_length)
+
 pixel_length = argument0;
 
 var unif = shader_get_uniform(pix, "pixel");
