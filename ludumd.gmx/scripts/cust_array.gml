@@ -1,3 +1,5 @@
+///cust_array()
+
 global.cust_alive[0] = customer;
 global.cust_alive[1] = girl;
 

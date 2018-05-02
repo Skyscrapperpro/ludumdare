@@ -661,15 +661,15 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="53">
-      <constant name="LEFT">keyboard_check(ord("A")) //|| (gamepad_axis_value(0, gp_axislh) &lt; -0.5)</constant>
-      <constant name="RIGHT">keyboard_check(ord("D")) //|| (gamepad_axis_value(0, gp_axislh) &gt; +0.5)</constant>
-      <constant name="BACKWARDS">keyboard_check(ord("S")) //|| (gamepad_axis_value(0, gp_axislv) &lt; -0.5)</constant>
-      <constant name="FORWARD">keyboard_check(ord("W")) //|| (gamepad_axis_value(0, gp_axislv) &gt; +0.5)</constant>
-      <constant name="LEFTCLICK">mouse_check_button_pressed(mb_left) //|| gamepad_button_check_pressed(0, gp_face1)</constant>
-      <constant name="RIGHTCLICK">mouse_check_button_pressed(mb_right) //|| gamepad_button_check_pressed(0, gp_face3)</constant>
-      <constant name="MIDDLECLICK">mouse_check_button_pressed(mb_middle) || keyboard_check_pressed(vk_escape)</constant>
-      <constant name="START">mouse_check_button_pressed(mb_left) || keyboard_check_pressed(vk_enter) //|| gamepad_button_check_pressed(0, gp_start)</constant>
+    <constants number="54">
+      <constant name="LEFT">(keyboard_check(ord("A")) || (gamepad_axis_value(0, gp_axislh) &lt; -0.5))</constant>
+      <constant name="RIGHT">(keyboard_check(ord("D")) || (gamepad_axis_value(0, gp_axislh) &gt; +0.5))</constant>
+      <constant name="BACKWARDS">(keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) &lt; -0.5))</constant>
+      <constant name="FORWARD">(keyboard_check(ord("W")) || (gamepad_axis_value(0, gp_axislv) &gt; +0.5))</constant>
+      <constant name="LEFTCLICK">(mouse_check_button_pressed(mb_left) || gamepad_button_check_pressed(0, gp_face1))</constant>
+      <constant name="RIGHTCLICK">(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_face3))</constant>
+      <constant name="MIDDLECLICK">(mouse_check_button_pressed(mb_middle) || keyboard_check_pressed(vk_escape))</constant>
+      <constant name="START">(mouse_check_button_pressed(mb_left) || keyboard_check_pressed(vk_enter) || gamepad_button_check_pressed(0, gp_start))</constant>
       <constant name="MOUSESENS">0.06</constant>
       <constant name="GETYCAMSPD">mouse_y_speed()</constant>
       <constant name="GETXCAMSPD">mouse_x_speed()</constant>
@@ -715,6 +715,7 @@
       <constant name="GOBLINKRATE">25</constant>
       <constant name="SCORE_PER_CUSTOMER">100</constant>
       <constant name="CURSOR">cr_default</constant>
+      <constant name="DISP_SPD">20</constant>
     </constants>
   </ConfigConstants>
 </Config>

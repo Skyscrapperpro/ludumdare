@@ -1,3 +1,5 @@
+///spat_to_burger(spatulaburger)
+
 var spat = argument0;
 var ret = -1;
 

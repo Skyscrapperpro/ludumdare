@@ -1,3 +1,5 @@
+///check_line(customer)
+
 var obj = argument0;
 
 with (obj)
