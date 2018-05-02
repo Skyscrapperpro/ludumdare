@@ -1,3 +1,5 @@
+///array_delete_element(array, element)
+
 var array = argument0;
 var element = argument1;
 

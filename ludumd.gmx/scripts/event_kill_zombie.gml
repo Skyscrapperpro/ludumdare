@@ -1,3 +1,5 @@
+///event_kill_zombie(zombie)
+
 var ID = argument0;
 
 with (ID)

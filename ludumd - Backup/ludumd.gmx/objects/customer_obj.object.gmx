@@ -26,18 +26,35 @@
           <argument>
             <kind>1</kind>
             <string>/// Spawn
-line = 0;
+/*line = 0;
 
 for (var i = 0; i &lt; LINES_AMOUNT; i++)
 {
-    if (customer_manager_obj.lines[i] &lt; customer_manager_obj.lines[line])
+    if (room_manager_obj.lines[i] &lt; room_manager_obj.lines[line])
         line = i;
 }
-customer_manager_obj.lines[line]++;
-prevcustomer = customer_manager_obj.customers[line];
-customer_manager_obj.customers[line] = id;
+room_manager_obj.lines[line]++;
+prevcustomer = room_manager_obj.customers[line];
+room_manager_obj.customers[line] = id;
 nextcustomer = -1;
 prevcustomer.nextcustomer = id;
+*/
+
+//Look for shortest line
+line = 0;
+for (var i = 0; i &lt; LINES_AMOUNT; i++)
+{
+    if (ds_list_size(global.line_ids[i]) &lt; ds_list_size(global.line_ids[line]))
+        line = i;
+}
+
+//Get last position in line
+last = ds_list_size(global.line_ids[line]);
+
+//Set id
+ds_list_add(global.line_ids[line], id);
+
+set_customer_target(id);
 
 </string>
           </argument>
@@ -83,10 +100,77 @@ in_angle = false;
           <argument>
             <kind>1</kind>
             <string>/// Draw setup
-main_spr = customer;
-ded_spr = customer_ded;
+var custID = irandom(array_length_1d(global.cust_alive) - 1);
+main_spr = global.cust_alive[custID];
+back_spr = global.cust_back[custID];
+ded_spr = global.cust_ded[custID];
+talk_spr = global.cust_talk_face[custID];
+talk_snd = global.cust_talk_snd[custID];
+
+snd = global.cust_cry_snd[custID];
+talki = 0;
+talklimit = sprite_get_number(talk_spr);
+
+menu_spr = customer_dialog;
+ing_spr = ingredients;
+
 selected_menu = false;
 looking_right = choose(true, false);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Other
+satisf = false;
+deleted = false;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Array burger
+//0 = burger cruda
+//1 = burger quemada
+//2 = bread, 3 = burger
+//4 = cheese, 5 = lechuga
+// 6 = tomato, 7 = top bread
+burger_asked[0] = 2;
+for(var i = 1; i &lt; irandom_range(2, floor(global.level) - 1); i++)
+    burger_asked[i] = irandom_range(3, 5);
+burger_asked[i] = 7;
 
 </string>
           </argument>
@@ -105,32 +189,6 @@ looking_right = choose(true, false);
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Movement variables
-if (prevcustomer == -1) targety = table_obj.y - CUSTOMER_SEP;
-else targety = prevcustomer.y - CUSTOMER_SEP;
-
-targetx = FIRST_LINE_X - (line * LINES_SEP) - CUSTOMER_SEP_X;
-
-</string>
-          </argument>
-        </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
@@ -147,37 +205,6 @@ targetx = FIRST_LINE_X - (line * LINES_SEP) - CUSTOMER_SEP_X;
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Check zombie
-var near = instance_nearest(x, y, zombie_obj);
-if (near != noone)
-{
-    if (point_distance(x, y, near.x, near.y) &lt; CUSTOMER_RANGE)
-    {
-        dying = true;
-        audio_play_sound(elvis_snd, 2, false);
-    }
-}
-
-</string>
-          </argument>
-        </arguments>
       </action>
       <action>
         <libid>1</libid>
@@ -237,14 +264,24 @@ if (near != noone)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Animation
-sprite = main_spr;
-if ((x != targetx) || (y != targety))
+            <string>///Check zombies and set target
+if (instance_exists(zombie_obj))
 {
-    if ((subi + 1) &gt; ilimit) then subi = 1;
-    else subi++;
+    var zomb = instance_nearest(x, y, zombie_obj);
+    var zomang = point_direction(zomb.x, zomb.y, x, y,);
+    targetx = lengthdir_x(1000, zomang);
+    targety = lengthdir_y(1000, zomang);
+    if (selected_menu) then selected_menu = false;
+    solid = true;
+    talki = 1;
 }
-else subi = 0;
+else
+{
+    if (!satisf) check_line(id);
+    targetx = inittargetx;
+    targety = inittargety;
+    solid = false;
+}
 
 </string>
           </argument>
@@ -268,7 +305,7 @@ else subi = 0;
             <kind>1</kind>
             <string>///Movement
 //Set angle
-var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, 180);
+m_angle = add_angle(point_direction(x, y, targetx, targety), 0, ANGREF);
 
 //Set speed
 var xspeed = lengthdir_x(CUSTOMER_SPD, m_angle);
@@ -281,6 +318,51 @@ yspeed = do_collision_y(xspeed, yspeed);
 //Move
 x = var_to_target(x, targetx, xspeed);
 y = var_to_target(y, targety, yspeed);
+
+if (y &lt; (room_manager_obj.y)) then instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Animation
+if (targety &lt; y) then sprite = back_spr;
+else sprite = main_spr;
+
+if ((x != targetx) || (y != targety))
+{
+    // ------- Animation ------
+    var ratio = 0.2;
+    
+    if ((subi + ratio) &lt; ilimit) then subi += ratio;
+    else subi = 1;
+    //
+}
+else subi = 0;
+
+if (talki &gt; 0)
+{
+    var ratio = 0.5;
+
+    if ((talki + ratio) &lt; talklimit) then talki += ratio;
+    else talki = 0;
+}
 
 </string>
           </argument>
@@ -332,13 +414,67 @@ y = var_to_target(y, targety, yspeed);
             <kind>1</kind>
             <string>///Animation
 sprite = ded_spr;
-if ((subi + 2) &gt; dedlimit)
+
+var ratio = 0.25;
+
+if ((dedi + (2 * ratio)) &lt; dedlimit) then dedi += ratio;
+else instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw selected menu
+if (ISPERSPECTIVE)
 {
-    event_delete_customer();
-    array_delete_element(global.customers, id);
-    instance_destroy();
+    var zpos = -sprite_get_height(sprite)/2;
+    if (selected_menu)
+    {
+        if (talki &gt; 0)
+        {
+            if (looking_right) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle);
+            else draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle + 180);
+        }
+        var xpos = x - lengthdir_x(DIALOG_DIST_X, d_angle);
+        var ypos = y - lengthdir_y(DIALOG_DIST_X, d_angle);
+        draw_3dspr_angle(menu_spr, 0, x, y + 0.2, zpos, 1, d_angle);
+        for (var i= 0; i &lt; array_length_1d(burger_asked); i++)
+            draw_3dspr_angle(ing_spr, burger_asked[i], xpos, ypos + 0.3 + (0.1 * i), zpos - DIALOG_DIST_Z - (ING_SEP * i), 0.5, d_angle);
+    }
 }
-else subi++;
+
 </string>
           </argument>
         </arguments>

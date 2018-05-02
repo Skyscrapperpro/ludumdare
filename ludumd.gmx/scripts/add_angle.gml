@@ -1,3 +1,5 @@
+///add_angle(angle0, angle1, format)
+
 //Returns angle sum between with limit being max vakue
 //If it is clamped, then the min value is -limit, otherwise it's limit-360
 var scr_angle = argument0;

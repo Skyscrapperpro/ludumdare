@@ -1,3 +1,5 @@
+///nearest_raycast(obj_type)
+
 //Requires each checked object to have an "in_angle" variable set to true if in raycast
 var obj = argument0;
 

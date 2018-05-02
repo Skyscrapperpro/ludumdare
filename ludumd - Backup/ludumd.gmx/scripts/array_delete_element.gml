@@ -1,3 +1,5 @@
+///array_delete_element(array, element)
+
 var array = argument0;
 var element = argument1;
 
@@ -9,7 +11,8 @@ while (array[i] != element)
     prev0 = array[i];
     array[@i] = prev;
     prev = prev0;
-    i--;
+    if (i == 0) then break;
+    else i--;
 }
 array[@i] = prev;
 

@@ -1,3 +1,5 @@
+///draw_3dspr_angle(sprite, subimagen, x, y, z, scale, rotation)
+
 var sprite = argument0;
 var subi = argument1;
 var xpos = argument2;

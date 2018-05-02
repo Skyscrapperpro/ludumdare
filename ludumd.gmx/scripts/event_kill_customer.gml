@@ -1,3 +1,5 @@
+///event_kill_customer(customer)
+
 var ID = argument0;
 
 if (!ID.deleted) then event_delete_customer(ID);

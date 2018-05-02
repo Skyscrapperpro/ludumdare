@@ -1,3 +1,5 @@
+///raycast_3d_spr(width, height, xorig, yorig, zorig, x, y, z, rotation, horizontal_angle_orig, vertical_angle_orig)
+
 var spr_w = argument0;
 var h = argument1;
 var xorig = argument2;

@@ -9,12 +9,20 @@
     <sound>sound\cooking_music</sound>
     <sound>sound\shot_snd</sound>
     <sound>sound\elvis_snd</sound>
+    <sound>sound\girl_snd</sound>
     <sound>sound\cry0_snd</sound>
     <sound>sound\cry1_snd</sound>
     <sound>sound\cry2_snd</sound>
     <sound>sound\cry3_snd</sound>
     <sound>sound\cry4_snd</sound>
-    <sound>sound\cry5_snd</sound>
+    <sound>sound\zombie0_snd</sound>
+    <sound>sound\zombie1_snd</sound>
+    <sound>sound\zombie2_snd</sound>
+    <sound>sound\zombiedie0_snd</sound>
+    <sound>sound\zombiedie1_snd</sound>
+    <sound>sound\talk_elvis_snd</sound>
+    <sound>sound\talk_girl_snd</sound>
+    <sound>sound\lifelost_snd</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Editor">
@@ -24,27 +32,60 @@
       <sprite>sprites\editor_client</sprite>
       <sprite>sprites\editor_zombie</sprite>
       <sprite>sprites\editor_grill</sprite>
+      <sprite>sprites\editor_trash</sprite>
+      <sprite>sprites\editor_plates</sprite>
       <sprite>sprites\editor_gunitem</sprite>
       <sprite>sprites\editor_door</sprite>
       <sprite>sprites\editor_burgerbox</sprite>
-      <sprite>sprites\editor_borkposter</sprite>
+      <sprite>sprites\editor_breadbox</sprite>
+      <sprite>sprites\editor_lechugabox</sprite>
+      <sprite>sprites\editor_cheesebox</sprite>
+      <sprite>sprites\editor_tomatobox</sprite>
+      <sprite>sprites\editor_poster0</sprite>
+      <sprite>sprites\editor_poster1</sprite>
+      <sprite>sprites\editor_poster2</sprite>
     </sprites>
-    <sprite>sprites\zombie</sprite>
-    <sprite>sprites\zombie_ded</sprite>
-    <sprite>sprites\customer</sprite>
-    <sprite>sprites\customer_ded</sprite>
-    <sprite>sprites\customer_mark</sprite>
-    <sprite>sprites\human_collider</sprite>
-    <sprite>sprites\gunitem</sprite>
-    <sprite>sprites\burger</sprite>
-    <sprite>sprites\target_test</sprite>
-    <sprite>sprites\spatula</sprite>
-    <sprite>sprites\downbread</sprite>
-    <sprite>sprites\gunshot</sprite>
-    <sprite>sprites\topbread</sprite>
-    <sprite>sprites\lettuce</sprite>
-    <sprite>sprites\focus</sprite>
-    <sprite>sprites\burgerchunk</sprite>
+    <sprites name="Customers">
+      <sprite>sprites\customer_dialog</sprite>
+      <sprite>sprites\customer</sprite>
+      <sprite>sprites\customer_ded</sprite>
+      <sprite>sprites\customer_talk</sprite>
+      <sprite>sprites\customer_back</sprite>
+      <sprite>sprites\girl</sprite>
+      <sprite>sprites\girl_ded</sprite>
+      <sprite>sprites\girl_talk</sprite>
+      <sprite>sprites\girl_back</sprite>
+    </sprites>
+    <sprites name="Colliders and tests">
+      <sprite>sprites\human_collider</sprite>
+      <sprite>sprites\gunitem_collider</sprite>
+      <sprite>sprites\chunks_collider</sprite>
+      <sprite>sprites\burger_collider</sprite>
+      <sprite>sprites\target_test</sprite>
+    </sprites>
+    <sprites name="GUI">
+      <sprite>sprites\gameover</sprite>
+      <sprite>sprites\focus</sprite>
+      <sprite>sprites\gunshot</sprite>
+      <sprite>sprites\life</sprite>
+      <sprite>sprites\spatula</sprite>
+      <sprite>sprites\money</sprite>
+    </sprites>
+    <sprites name="Shooter">
+      <sprite>sprites\zombie</sprite>
+      <sprite>sprites\zombie_ded</sprite>
+      <sprite>sprites\zombie_attack</sprite>
+      <sprite>sprites\gunitem</sprite>
+    </sprites>
+    <sprites name="Burgers">
+      <sprite>sprites\ingredients</sprite>
+      <sprite>sprites\chunks</sprite>
+      <sprite>sprites\refrigerio</sprite>
+      <sprite>sprites\burger_grill0</sprite>
+      <sprite>sprites\burger_grill1</sprite>
+      <sprite>sprites\burger_grill2</sprite>
+      <sprite>sprites\burger_timer</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\table_bgr</background>
@@ -57,6 +98,15 @@
     <background>background\grillfront_bgr</background>
     <background>background\side_bgr</background>
     <background>background\burgerbox_bgr</background>
+    <background>background\breadbox_bgr</background>
+    <background>background\lechugabox_bgr</background>
+    <background>background\cheesebox_bgr</background>
+    <background>background\tomatobox_bgr</background>
+    <background>background\trashcan_bgr</background>
+    <background>background\plate_bgr</background>
+    <background>background\burgerposter_bgr</background>
+    <background>background\borkposter_bgr</background>
+    <background>background\burgersign_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -69,40 +119,82 @@
       <script>scripts\add_angle.gml</script>
       <script>scripts\pixelate.gml</script>
       <script>scripts\draw_3dspr_angle.gml</script>
-      <script>scripts\raycast_box.gml</script>
       <script>scripts\draw_3dbgr_angle.gml</script>
       <script>scripts\raycast_3d_spr.gml</script>
       <script>scripts\raycast_2d_spr.gml</script>
-      <script>scripts\music_switch.gml</script>
+      <script>scripts\raycast_box.gml</script>
       <script>scripts\array_delete_element.gml</script>
       <script>scripts\reverse_position.gml</script>
+      <script>scripts\zreal.gml</script>
+      <script>scripts\rotating_point_relative.gml</script>
+      <script>scripts\nearest_raycast.gml</script>
     </scripts>
     <scripts name="Events">
+      <script>scripts\event_game_over.gml</script>
       <script>scripts\event_auto_rotate.gml</script>
-      <script>scripts\event_delete_customer.gml</script>
+      <script>scripts\event_customer_menu.gml</script>
       <script>scripts\event_kill_zombie.gml</script>
+      <script>scripts\event_kill_all_customers.gml</script>
       <script>scripts\event_kill_customer.gml</script>
+      <script>scripts\event_last_zombie.gml</script>
+      <script>scripts\event_grill_burger.gml</script>
+      <script>scripts\event_place_ing.gml</script>
+      <script>scripts\event_take_plate.gml</script>
+      <script>scripts\event_putdown_plate.gml</script>
+      <script>scripts\event_ask_customer.gml</script>
+      <script>scripts\event_satisfy_customer.gml</script>
+      <script>scripts\event_lose_life.gml</script>
+      <script>scripts\event_add_score.gml</script>
+      <script>scripts\event_initialize_manager.gml</script>
+      <script>scripts\event_delete_customer.gml</script>
     </scripts>
-    <script>scripts\nearest_raycast.gml</script>
+    <script>scripts\cust_array.gml</script>
+    <script>scripts\spat_to_burger.gml</script>
+    <script>scripts\check_line.gml</script>
+    <script>scripts\set_customer_target.gml</script>
+    <script>scripts\music_switch.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
   </shaders>
+  <fonts name="fonts">
+    <font>fonts\font0</font>
+  </fonts>
   <objects name="objects">
-    <object>objects\customer_manager_obj</object>
+    <objects name="Parents">
+      <object>objects\interactable_obj</object>
+      <object>objects\humanoid_obj</object>
+      <object>objects\cuboid_obj</object>
+      <object>objects\generalbox_obj</object>
+    </objects>
+    <objects name="Static">
+      <object>objects\wall_obj</object>
+      <object>objects\floor_obj</object>
+      <object>objects\table_obj</object>
+      <object>objects\burgerposter_obj</object>
+      <object>objects\borkposter_obj</object>
+      <object>objects\burgersign_obj</object>
+    </objects>
+    <objects name="Used in shooter">
+      <object>objects\zombie_obj</object>
+      <object>objects\gunitem_obj</object>
+    </objects>
+    <objects name="Used in burgers">
+      <object>objects\burgerbox_obj</object>
+      <object>objects\breadbox_obj</object>
+      <object>objects\lechugabox_obj</object>
+      <object>objects\cheesebox_obj</object>
+      <object>objects\tomatobox_obj</object>
+      <object>objects\grill_obj</object>
+      <object>objects\trashcan_obj</object>
+      <object>objects\plates_obj</object>
+      <object>objects\taken_plate_obj</object>
+      <object>objects\burger_obj</object>
+    </objects>
     <object>objects\player_obj</object>
-    <object>objects\wall_obj</object>
-    <object>objects\door_obj</object>
-    <object>objects\floor_obj</object>
-    <object>objects\table_obj</object>
-    <object>objects\interactable_obj</object>
-    <object>objects\humanoid_obj</object>
-    <object>objects\burgerbox_obj</object>
-    <object>objects\grill_obj</object>
+    <object>objects\room_manager_obj</object>
     <object>objects\customer_obj</object>
-    <object>objects\zombie_obj</object>
-    <object>objects\burger_obj</object>
-    <object>objects\gun_on_ground</object>
+    <object>objects\door_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
