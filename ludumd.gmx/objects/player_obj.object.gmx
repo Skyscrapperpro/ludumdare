@@ -771,7 +771,7 @@ var spat_y = view_hport - (PIXEL_LENGTH * 5);
 if (handitem == 1)
     draw_sprite_ext(gunshot, floor(guni), gun_x, gun_y, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 else if (handitem == 0)
-    draw_sprite_ext(spatula, floor(spati), spat_x, spat_y + floor(sdisplacement * 5 / 100) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    draw_sprite_ext(spatula, floor(spati), spat_x, spat_y + floor(sdisplacement * 40 / 100) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 
 //Draw alpha effect
 var scl = (view_wport/sprite_get_width(focus));
