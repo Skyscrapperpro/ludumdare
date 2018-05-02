@@ -1,3 +1,5 @@
+///event_lose_life()
+
 with (player_obj)
 {
     if (lifeval > 0)

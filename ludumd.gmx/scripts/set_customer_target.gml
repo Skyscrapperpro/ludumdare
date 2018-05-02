@@ -1,3 +1,5 @@
+///set_customer_target(customer)
+
 var obj = argument0;
 
 with (obj)

@@ -1,3 +1,5 @@
+///event_place_ing(plates_table, spatulaburger)
+
 var obj = argument0;
 var spat = spat_to_burger(argument1);
 

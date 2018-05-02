@@ -1,3 +1,5 @@
+///event_take_plate(plates_table)
+
 var obj = argument0;
 var given_plate = instance_create(x, y, taken_plate_obj);
 given_plate.burger = obj.burger;

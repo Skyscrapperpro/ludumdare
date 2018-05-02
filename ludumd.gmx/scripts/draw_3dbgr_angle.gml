@@ -1,3 +1,5 @@
+///draw_3dbgr_angle(background, x, y, z, width, height, rotation)
+
 var bgr = argument0;
 var xpos = argument1;
 var ypos = argument2;

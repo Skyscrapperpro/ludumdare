@@ -1,3 +1,5 @@
+///event_ask_customer(customer, given_plate)
+
 var obj = argument0;
 var given_plate = argument1;
 

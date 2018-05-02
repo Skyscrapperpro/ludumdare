@@ -1,3 +1,5 @@
+///event_customer_menu(customer)
+
 var obj = argument0;
 
 with (obj)

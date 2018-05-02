@@ -1,3 +1,5 @@
+///raycast_2d_spr(width, xorig, yorig, x, y, rotation, angle_orig)
+
 //var spr = argument0;
 var w = argument0;
 var xorig = argument1;

@@ -1,5 +1,6 @@
-//returns the real angle from a vertical orientation angle based on sin instead of tan
+///zreal(zangle)
 
+//returns the real angle from a vertical orientation angle based on sin instead of tan
 var zangle = argument0;
 var zr = radtodeg(arctan(sin(degtorad(zangle))));
 

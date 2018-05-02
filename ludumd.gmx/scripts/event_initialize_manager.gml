@@ -1,3 +1,5 @@
+///event_initialize_manager(manager_obj)
+
 var manager = argument0;
 
 if (!gamepad_button_check_pressed(0, gp_start)) then global.mouse_active = true;

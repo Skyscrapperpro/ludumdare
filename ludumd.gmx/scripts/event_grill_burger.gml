@@ -1,3 +1,5 @@
+///event_grill_burger(grill)
+
 var obj = argument0;
 
 if ((player_obj.spatulaburger == 1) || (player_obj.spatulaburger == 2) || (player_obj.spatulaburger == 3))

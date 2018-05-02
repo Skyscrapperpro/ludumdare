@@ -123,7 +123,6 @@
       <script>scripts\raycast_3d_spr.gml</script>
       <script>scripts\raycast_2d_spr.gml</script>
       <script>scripts\raycast_box.gml</script>
-      <script>scripts\music_switch.gml</script>
       <script>scripts\array_delete_element.gml</script>
       <script>scripts\reverse_position.gml</script>
       <script>scripts\zreal.gml</script>
@@ -153,6 +152,7 @@
     <script>scripts\spat_to_burger.gml</script>
     <script>scripts\check_line.gml</script>
     <script>scripts\set_customer_target.gml</script>
+    <script>scripts\music_switch.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>

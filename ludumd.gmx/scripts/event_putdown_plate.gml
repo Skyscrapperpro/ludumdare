@@ -1,3 +1,5 @@
+///event_putdown_plate(plates_table, given_plate)
+
 var obj = argument0;
 var given_plate = argument1;
 
