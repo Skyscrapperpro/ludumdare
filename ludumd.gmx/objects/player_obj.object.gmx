@@ -220,6 +220,8 @@ alpgo = 0;
 
 for (var i = 0; i &lt; STARTING_LIFE; i++) lifei[i] = 0;
 
+sdisplacement=100;
+
 </string>
           </argument>
         </arguments>
@@ -540,7 +542,13 @@ else //Auto rotation
 }
 
 //Reset mouse position
-if (global.mouse_active) then display_mouse_set(display_get_width()/2, display_get_height()/2);
+if (global.mouse_active)
+{
+    display_mouse_set(display_get_width()/2, display_get_height()/2);
+    window_set_cursor(CURSOR);
+}
+else window_set_cursor(cr_default);
+
 </string>
           </argument>
         </arguments>
@@ -656,6 +664,34 @@ if (taken_plate != -1)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///starting animation
+if (sdisplacement&gt;0)
+{
+    if (global.play=true)
+    {
+        sdisplacement--;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -684,24 +720,33 @@ var gun_y = view_hport;
 var spat_x = view_wport * 0.8;
 var spat_y = view_hport - (PIXEL_LENGTH * 5);
 
-if (handitem == 1)
-    draw_sprite_ext(gunshot, floor(guni), gun_x, gun_y, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-else if (handitem == 0)
-    draw_sprite_ext(spatula, floor(spati), spat_x, spat_y, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+if (global.play=true)
+{
+    if (handitem == 1)
+        draw_sprite_ext(gunshot, floor(guni), gun_x, gun_y, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    else if (handitem == 0)
+        draw_sprite_ext(spatula, floor(spati), spat_x, spat_y + sdisplacement * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+}
 
 //Draw alpha effect
 var scl = (view_wport/sprite_get_width(focus));
 if (alp &gt; 0) then draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
 
 //Draw life
-for (var i = 0; i &lt; STARTING_LIFE; i++)
-    draw_sprite_ext(life, floor(lifei[i]), i * LIFE_SEP * PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+if (global.play=true)
+{
+    for (var i = 0; i &lt; STARTING_LIFE; i++)
+        draw_sprite_ext(life, floor(lifei[i]), (i - (i+1) * (sdisplacement/100)) * LIFE_SEP * PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+}
 
 //Draw score
-draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-draw_set_colour(c_green);
-draw_text_transformed(view_wport - (sprite_get_width(money) * PIXEL_LENGTH), -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
-draw_set_colour(c_white);
+if (global.play=true)
+{
+    draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH + ((sprite_get_width(money) * PIXEL_LENGTH)*sdisplacement*2/100), PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    draw_set_colour(c_green);
+    draw_text_transformed(view_wport - (sprite_get_width(money) * PIXEL_LENGTH)*(100-sdisplacement*2)/100, -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
+    draw_set_colour(c_white);
+}
 
 //Draw game over
 var sclgo = (view_wport/sprite_get_width(gameover));
