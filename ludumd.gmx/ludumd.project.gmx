@@ -70,6 +70,7 @@
       <sprite>sprites\life</sprite>
       <sprite>sprites\spatula</sprite>
       <sprite>sprites\money</sprite>
+      <sprite>sprites\title</sprite>
     </sprites>
     <sprites name="Shooter">
       <sprite>sprites\zombie</sprite>
