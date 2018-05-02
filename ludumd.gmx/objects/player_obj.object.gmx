@@ -540,7 +540,13 @@ else //Auto rotation
 }
 
 //Reset mouse position
-if (global.mouse_active) then display_mouse_set(display_get_width()/2, display_get_height()/2);
+if (global.mouse_active)
+{
+    display_mouse_set(display_get_width()/2, display_get_height()/2);
+    window_set_cursor(CURSOR);
+}
+else window_set_cursor(cr_default);
+
 </string>
           </argument>
         </arguments>

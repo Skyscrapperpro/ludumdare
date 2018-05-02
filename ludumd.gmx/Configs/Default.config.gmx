@@ -661,7 +661,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="52">
+    <constants number="53">
       <constant name="LEFT">keyboard_check(ord("A")) //|| (gamepad_axis_value(0, gp_axislh) &lt; -0.5)</constant>
       <constant name="RIGHT">keyboard_check(ord("D")) //|| (gamepad_axis_value(0, gp_axislh) &gt; +0.5)</constant>
       <constant name="BACKWARDS">keyboard_check(ord("S")) //|| (gamepad_axis_value(0, gp_axislv) &lt; -0.5)</constant>
@@ -700,7 +700,7 @@
       <constant name="TABLE_Z">30</constant>
       <constant name="SIZESCALE">50</constant>
       <constant name="CEILING_H">80</constant>
-      <constant name="CRY_FREQ">480</constant>
+      <constant name="CRY_FREQ">30</constant>
       <constant name="DIALOG_DIST_X">20</constant>
       <constant name="DIALOG_DIST_Z">3</constant>
       <constant name="ING_SEP">3</constant>
@@ -714,6 +714,7 @@
       <constant name="RESTARTKEY">keyboard_check_pressed(vk_space)</constant>
       <constant name="GOBLINKRATE">25</constant>
       <constant name="SCORE_PER_CUSTOMER">100</constant>
+      <constant name="CURSOR">cr_default</constant>
     </constants>
   </ConfigConstants>
 </Config>
