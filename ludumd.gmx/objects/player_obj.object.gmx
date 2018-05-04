@@ -224,6 +224,7 @@ sdisplacement=100;
 
 //Title
 titli=0;
+titllimit = (sprite_get_number(title) - 1);
 
 </string>
           </argument>
@@ -447,44 +448,57 @@ else if (alpgo &gt; 0) then alpgo -= 0.1;
           <argument>
             <kind>1</kind>
             <string>/// Animations
-if (handitem == 1) //If you got the gun
+if (global.play)
 {
-    spati = spatulaburger;
-    var ratio = 0.25;
-    if (guni &gt; 0)
+    if (handitem == 1) //If you got the gun
     {
-        if ((guni + ratio) &lt; gunlimit) then guni += ratio;
-        else guni = 0;
+        spati = spatulaburger;
+        var ratio = 0.25;
+        if (guni &gt; 0)
+        {
+            if ((guni + ratio) &lt; gunlimit) then guni += ratio;
+            else guni = 0;
+        }
+        else if (LEFTCLICK) guni = ratio;
     }
-    else if (LEFTCLICK) guni = ratio;
+    else //If you got the spatula
+    {
+        guni = 0;
+        var ratio = 1;
+        if (spati &gt; 7)
+        {
+            if ((spati + ratio) &lt; spatlimit) then spati += ratio;
+            else spati = spatulaburger;
+        }
+        else if (LEFTCLICK) spati = 8;
+    }
+    
+    // for game over screen
+    if (gameoverval==1)
+    {
+        gotimer++;
+        if (gotimer==GOBLINKRATE)
+        {
+            gotimer=0;
+            goindex=!goindex;
+        }
+    }
+    
+    // Lives animation
+    for (var i = 0, ratio = 0.125; i &lt; STARTING_LIFE; i++)
+        if (lifei[i] &gt; 0) //and
+        if (lifei[i] &lt; (sprite_get_number(life) - 1)) lifei[i] += ratio;
 }
-else //If you got the spatula
+else
 {
-    guni = 0;
-    var ratio = 1;
-    if (spati &gt; 7)
-    {
-        if ((spati + ratio) &lt; spatlimit) then spati += ratio;
-        else spati = spatulaburger;
-    }
-    else if (LEFTCLICK) spati = 8;
+    //var ratio = 0.25;
+    //if ((titli + ratio) &lt; titllimit) then titli += ratio;
+    //else titli = 0;
+    var ratio = 5;
+    if ((titli + ratio) &lt; 180) then titli += ratio;
+    else titli = -180;
+    titlsin = sin(degtorad(titli)) * 5;
 }
-
-// for game over screen
-if (gameoverval==1)
-{
-    gotimer++;
-    if (gotimer==GOBLINKRATE)
-    {
-        gotimer=0;
-        goindex=!goindex;
-    }
-}
-
-// Lives animation
-for (var i = 0, ratio = 0.125; i &lt; STARTING_LIFE; i++)
-    if (lifei[i] &gt; 0) //and
-    if (lifei[i] &lt; (sprite_get_number(life) - 1)) lifei[i] += ratio;
 
 </string>
           </argument>
@@ -787,6 +801,8 @@ for (var i = 0; i &lt; STARTING_LIFE; i++)
 //Draw score
 draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH + floor((sprite_get_width(money))*sdisplacement*2/100) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 draw_set_colour(c_green);
+draw_set_halign(fa_right);
+draw_set_valign(fa_top);
 draw_text_transformed(view_wport - floor((sprite_get_width(money))*(100-sdisplacement*2)/100) * PIXEL_LENGTH, -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(c_white);
 
@@ -799,20 +815,6 @@ if (gameoverval == 1)
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
       <action>
         <libid>1</libid>
@@ -831,8 +833,18 @@ if (gameoverval == 1)
           <argument>
             <kind>1</kind>
             <string>///Draw Title
+draw_sprite_ext(title, 0/*floor(titli)*/, 0, titlsin - 10 - ((100-sdisplacement) * PIXEL_LENGTH), 1, 1, 0, -1, 1);
 
-draw_sprite_ext(title, floor(titli), view_wport * 0.5,view_hport * 0.5 , 1, 1, 0, -1, 1);
+if (!global.play)
+if (titli &gt; 0)
+{
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    var c = c_navy;
+    draw_text_transformed_colour(view_wview * 0.5, view_hport - 30, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
+    draw_text_transformed_colour(view_wview * 0.5, view_hport - 30, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
+}
+
 </string>
           </argument>
         </arguments>
