@@ -497,7 +497,7 @@ else
     var ratio = 5;
     if ((titli + ratio) &lt; 180) then titli += ratio;
     else titli = -180;
-    titlsin = sin(degtorad(titli)) * 5;
+    titlsin = sin(degtorad(titli)) * 2;
 }
 
 </string>
@@ -788,7 +788,7 @@ var spat_y = view_hport - (PIXEL_LENGTH * 5);
 if (handitem == 1)
     draw_sprite_ext(gunshot, floor(guni), gun_x, gun_y, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 else if (handitem == 0)
-    draw_sprite_ext(spatula, floor(spati), spat_x, spat_y + floor(sdisplacement * 40 / 100) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    draw_sprite_ext(spatula, floor(spati), spat_x, spat_y + ((sdisplacement * 40) div 100) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 
 //Draw alpha effect
 var scl = (view_wport/sprite_get_width(focus));
@@ -796,14 +796,14 @@ if (alp &gt; 0) then draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
 
 //Draw life
 for (var i = 0; i &lt; STARTING_LIFE; i++)
-    draw_sprite_ext(life, floor(lifei[i]), floor((i - (i+1) * (sdisplacement/100)) * LIFE_SEP) * PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+    draw_sprite_ext(life, floor(lifei[i]), floor((i - (i+1) * (sdisplacement div 100)) * LIFE_SEP) * PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 
 //Draw score
-draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH + floor((sprite_get_width(money))*sdisplacement*2/100) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH + ((sprite_get_width(money)*sdisplacement*2) div 100) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 draw_set_colour(c_green);
 draw_set_halign(fa_right);
 draw_set_valign(fa_top);
-draw_text_transformed(view_wport - floor((sprite_get_width(money))*(100-sdisplacement*2)/100) * PIXEL_LENGTH, -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
+draw_text_transformed(view_wport - ((sprite_get_width(money)*(100-sdisplacement*2)) div 100) * PIXEL_LENGTH, -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(c_white);
 
 //Draw game over
@@ -833,14 +833,14 @@ if (gameoverval == 1)
           <argument>
             <kind>1</kind>
             <string>///Draw Title
-draw_sprite_ext(title, 0/*floor(titli)*/, 0, titlsin - 10 - ((100-sdisplacement) * PIXEL_LENGTH), 1, 1, 0, -1, 1);
+draw_sprite_ext(title, 0/*floor(titli)*/, 0, round(titlsin - (100-sdisplacement)) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 
-/*if (!global.play)
+if (!global.play)
 if (titli &gt; 0)
 {
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
-    var c = c_navy;
+    var c = c_yellow;
     draw_text_transformed_colour(view_wview * 0.5, view_hport - 30, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
     draw_text_transformed_colour(view_wview * 0.5, view_hport - 30, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
 }

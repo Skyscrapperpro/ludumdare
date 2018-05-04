@@ -715,7 +715,7 @@
       <constant name="GOBLINKRATE">25</constant>
       <constant name="SCORE_PER_CUSTOMER">100</constant>
       <constant name="CURSOR">cr_default</constant>
-      <constant name="DISP_SPD">20</constant>
+      <constant name="DISP_SPD">1</constant>
     </constants>
   </ConfigConstants>
 </Config>
