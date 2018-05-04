@@ -491,9 +491,9 @@ if (global.play)
 }
 else
 {
-    //var ratio = 0.25;
-    //if ((titli + ratio) &lt; titllimit) then titli += ratio;
-    //else titli = 0;
+    /*var ratio = 0.125;
+    if ((titli + ratio) &lt; titllimit) then titli += ratio;
+    else titli = 0;*/
     var ratio = 5;
     if ((titli + ratio) &lt; 180) then titli += ratio;
     else titli = -180;
@@ -835,7 +835,7 @@ if (gameoverval == 1)
             <string>///Draw Title
 draw_sprite_ext(title, 0/*floor(titli)*/, 0, titlsin - 10 - ((100-sdisplacement) * PIXEL_LENGTH), 1, 1, 0, -1, 1);
 
-if (!global.play)
+/*if (!global.play)
 if (titli &gt; 0)
 {
     draw_set_halign(fa_center);
