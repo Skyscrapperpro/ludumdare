@@ -278,6 +278,7 @@ if (!global.play) if (START) then event_initialize_manager(id);
             <kind>1</kind>
             <string>///restart from game over
 if (player_obj.gameoverval==1)
+    if (part_system_exists(player_obj.titlepartsis)) then part_system_clear(player_obj.titlepartsis);
     if (RESTARTKEY) then room_restart();
 
 </string>
