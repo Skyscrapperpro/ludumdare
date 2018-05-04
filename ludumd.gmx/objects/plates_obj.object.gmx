@@ -59,6 +59,97 @@ finished = false;
         <isnot>0</isnot>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get draw angle
+d_angle = player_obj.angle;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Floor raycast
+in_angle=false;
+xorig = player_obj.x;
+yorig = player_obj.y;
+
+if (point_distance(xorig, yorig,  x + upx/2, y + upy/2,) &lt; ITEM_RANGE)
+{
+    var rcast;
+    
+    rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
+    
+    if (rcast[0])
+    {
+        in_angle=true;
+        xcast=rcast[1];
+        ycast=rcast[2];
+        zcast=rcast[3];
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with 3D raycasts
+var zburg = -z - PLATE_ELEV - 8;
+if (point_distance(xorig, yorig,  x + upx/2, y + upy/2,) &lt; ITEM_RANGE) //and
+if (raycast_3d_spr(16, 16, xorig, yorig, -CAM_Z, x + leftx/2, y + lefty/2, zburg, d_angle, d_angle, zreal(player_obj.zangle)))
+    in_angle = true;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -94,12 +185,12 @@ finished = false;
 if (ISPERSPECTIVE)
 {
     d3d_draw_floor(x + cornerx0, y + cornery0, -z - PLATE_ELEV, x + cornerx1, y + cornery1, -z - PLATE_ELEV, tex_plate, 1, 1);
-    draw_3dspr_angle(spr, 0, x + rightx/2, y + righty/2, zpos, 1, player_obj.angle);
+    draw_3dspr_angle(spr, 0, x + rightx/2, y + righty/2, zpos, 1, d_angle);
     if (arraypos &gt; 0)
         for(var i = 0, zburg; i &lt; array_length_1d(burger); i++)
         {
             zburg = -z - PLATE_ELEV - (ING_SEP * (i+1));
-            draw_3dspr_angle(ing_spr, burger[i], x + leftx/2, y + lefty/2 - (0.1 * i), zburg, 0.5, player_obj.angle);
+            draw_3dspr_angle(ing_spr, burger[i], x + leftx/2, y + lefty/2 - (0.1 * i), zburg, 0.5, d_angle);
         }
 }
 

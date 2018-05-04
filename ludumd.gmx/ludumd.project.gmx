@@ -71,6 +71,7 @@
       <sprite>sprites\spatula</sprite>
       <sprite>sprites\money</sprite>
       <sprite>sprites\title</sprite>
+      <sprite>sprites\catsoup</sprite>
     </sprites>
     <sprites name="Shooter">
       <sprite>sprites\zombie</sprite>

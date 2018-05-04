@@ -73,6 +73,42 @@ z1 = z;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Floor raycast
+in_angle=false;
+var rcast;
+
+rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
+
+if (rcast[0])
+{
+    in_angle=true;
+    xcast=rcast[1];
+    ycast=rcast[2];
+    zcast=rcast[3];
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
   </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>

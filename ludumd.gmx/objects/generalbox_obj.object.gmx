@@ -31,6 +31,7 @@ ray_spr = 16; //chunks_collider;
 ray_h = 16;
 zpos = -TABLE_Z - sprite_get_height(spr)/2;
 z = TABLE_Z;
+z1 = z;
 bgr_side = side_bgr;
 bgr_front = side_bgr;
 
@@ -93,11 +94,44 @@ d_angle = player_obj.angle;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Floor raycast
+in_angle=false;
+var rcast;
+
+rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
+
+if (rcast[0])
+{
+    in_angle=true;
+    xcast=rcast[1];
+    ycast=rcast[2];
+    zcast=rcast[3];
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Hit me with 3D raycasts
 var xorig = player_obj.x;
 var yorig = player_obj.y;
 
-in_angle = false;
 if (point_distance(xorig, yorig,  x + upx/2, y + upy/2,) &lt; ITEM_RANGE) //and
 if (raycast_3d_spr(ray_spr, ray_h, xorig, yorig, -CAM_Z, x + upx/2, y + upy/2, zpos, d_angle, d_angle, zreal(player_obj.zangle)))
     in_angle = true;

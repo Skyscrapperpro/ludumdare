@@ -91,13 +91,99 @@ d_angle = player_obj.angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Hit me with 3D raycasts
-var xorig = player_obj.x;
-var yorig = player_obj.y;
+            <string>/// Floor raycast
+in_angle=false;
+xorig = player_obj.x;
+yorig = player_obj.y;
 
-in_angle = false;
+if (point_distance(xorig, yorig,  x + upx, y + upy,) &lt; ITEM_RANGE)
+{
+    var rcast;
+    
+    rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
+    
+    if (rcast[0])
+    {
+        in_angle=true;
+        xcast=rcast[1];
+        ycast=rcast[2];
+        zcast=rcast[3];
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with 3D raycasts
 if (point_distance(xorig, yorig,  x + upx, y + upy,) &lt; ITEM_RANGE) //and
 if (raycast_3d_spr(w, z, xorig, yorig, -CAM_Z, x + upx, y + upy, -z/2, image_angle, d_angle, zreal(player_obj.zangle)))
+    in_angle = true;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with 3D raycasts left
+if (point_distance(xorig, yorig,  x + leftx, y + lefty,) &lt; ITEM_RANGE) //and
+if (raycast_3d_spr(w, z, xorig, yorig, -CAM_Z, x + leftx, y + lefty, -z/2, add_angle(image_angle, 90, ANGREF), d_angle, zreal(player_obj.zangle)))
+    in_angle = true;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with 3D raycasts right
+if (point_distance(xorig, yorig,  x + rightx, y + righty,) &lt; ITEM_RANGE) //and
+if (raycast_3d_spr(w, z, xorig, yorig, -CAM_Z, x + rightx, y + righty, -z/2, add_angle(image_angle, 90, ANGREF), d_angle, zreal(player_obj.zangle)))
     in_angle = true;
 
 </string>
