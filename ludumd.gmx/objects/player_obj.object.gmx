@@ -252,10 +252,16 @@ titleparttype=part_type_create();
 //visuals for parts
 part_type_shape(titleparttype,pt_shape_pixel);
 part_type_scale(titleparttype,PIXEL_LENGTH,PIXEL_LENGTH);
-part_type_speed(titleparttype,0,0,1,0);
-part_type_gravity(titleparttype,0.5,270);
+part_type_speed(titleparttype,0,0,0,0);
+part_type_gravity(titleparttype,PIXEL_LENGTH,270);
 part_type_colour_mix(titleparttype,c_red,c_red);
 part_type_life(titleparttype,PART_LIFE,PART_LIFE);
+
+part_system_automatic_draw(titleparttype,false);
+
+//particle vars
+partgentimer=0;
+partgentim=PART_TIME_MIN+irandom(PART_TIME_VAR);
 </string>
           </argument>
         </arguments>
@@ -739,6 +745,84 @@ if (sdisplacement&gt;0)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Particle generation
+if (!global.play)
+if (part_system_exists(player_obj.titlepartsis))
+{
+partgentimer++;
+if (partgentimer&gt;=partgentim)
+{
+    partgentimer=0;
+    partgentim=PART_TIME_MIN+irandom(PART_TIME_VAR);
+    switch(irandom(13))
+    {
+        case 0:
+            part_particles_create(titlepartsis,34*PIXEL_LENGTH,38*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 1:
+            part_particles_create(titlepartsis,49*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 2:
+            part_particles_create(titlepartsis,60*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 3:
+            part_particles_create(titlepartsis,79*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 4:
+            part_particles_create(titlepartsis,101*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 5:
+            part_particles_create(titlepartsis,116*PIXEL_LENGTH,35*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 6:
+            part_particles_create(titlepartsis,130*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 7:
+            part_particles_create(titlepartsis,40*PIXEL_LENGTH,74*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 8:
+            part_particles_create(titlepartsis,51*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 9:
+            part_particles_create(titlepartsis,66*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 10:
+            part_particles_create(titlepartsis,81*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 11:
+            part_particles_create(titlepartsis,90*PIXEL_LENGTH,77*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 12:
+            part_particles_create(titlepartsis,102*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        case 13:
+            part_particles_create(titlepartsis,121*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+            break;
+        default:
+            part_particles_create(titlepartsis,34*PIXEL_LENGTH,38*PIXEL_LENGTH+titley,titleparttype,1);
+    }
+}
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -863,7 +947,8 @@ if (gameoverval == 1)
           <argument>
             <kind>1</kind>
             <string>///Draw Title
-draw_sprite_ext(title, 0/*floor(titli)*/, 0, round(titlsin - (100-sdisplacement)) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+titley=round(titlsin - (100-sdisplacement)) * PIXEL_LENGTH;
+draw_sprite_ext(title, 0/*floor(titli)*/, 0, titley, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
 
 if (!global.play)
 if (titli &gt; 0)
@@ -873,8 +958,16 @@ if (titli &gt; 0)
     var c = c_yellow;
     draw_text_transformed_colour(view_wview * 0.5, view_hport - 30, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
     draw_text_transformed_colour(view_wview * 0.5, view_hport - 30, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
+    part_system_drawit(titlepartsis);
 }
 
+if (global.play)
+{
+    if (part_system_exists(player_obj.titlepartsis))
+    {
+        part_system_clear(player_obj.titlepartsis);
+    }
+}
 </string>
           </argument>
         </arguments>

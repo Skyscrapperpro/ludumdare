@@ -661,7 +661,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="55">
+    <constants number="57">
       <constant name="LEFT">(keyboard_check(ord("A")) || (gamepad_axis_value(0, gp_axislh) &lt; -0.5))</constant>
       <constant name="RIGHT">(keyboard_check(ord("D")) || (gamepad_axis_value(0, gp_axislh) &gt; +0.5))</constant>
       <constant name="BACKWARDS">(keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) &gt; +0.5))</constant>
@@ -716,7 +716,9 @@
       <constant name="SCORE_PER_CUSTOMER">100</constant>
       <constant name="CURSOR">cr_default</constant>
       <constant name="DISP_SPD">1</constant>
-      <constant name="PART_LIFE">100</constant>
+      <constant name="PART_LIFE">30</constant>
+      <constant name="PART_TIME_VAR">0</constant>
+      <constant name="PART_TIME_MIN">10</constant>
     </constants>
   </ConfigConstants>
 </Config>
