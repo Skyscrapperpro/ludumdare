@@ -97,7 +97,7 @@ if (ISPERSPECTIVE)
     d3d_transform_set_identity();
     d3d_transform_add_rotation_z(image_angle);
     d3d_transform_add_translation(x, y,  -z - PLATE_ELEV);
-    d3d_draw_floor(cornerx0, cornery0, 0, cornerx1, cornery1, 0, tex_plate, 1, 1);
+    d3d_draw_floor(cornerx1, cornery0, 0, cornerx0, cornery1, 0, tex_plate, 1, 1);
     d3d_transform_set_identity();
     
     draw_3dspr_angle(spr, 0, x + leftx/2, y + lefty/2, zpos, 1, player_obj.angle);

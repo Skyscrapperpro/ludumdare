@@ -58,14 +58,14 @@ draw_set_font(font0);</code>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="wall_obj" x="288" y="112" name="inst_AB01492F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="288" y="80" name="inst_9C4E14C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="144" y="352" name="inst_89DDBCA7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="wall_obj" x="272" y="352" name="inst_DACEAF7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="wall_obj" x="288" y="144" name="inst_04312AA9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="288" y="176" name="inst_12104C89" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="288" y="208" name="inst_38465730" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="208" y="352" name="inst_6042066D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="wall_obj" x="288" y="112" name="inst_AB01492F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
+    <instance objName="wall_obj" x="288" y="80" name="inst_9C4E14C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
+    <instance objName="wall_obj" x="144" y="352" name="inst_89DDBCA7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
+    <instance objName="wall_obj" x="272" y="352" name="inst_DACEAF7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
+    <instance objName="wall_obj" x="288" y="144" name="inst_04312AA9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
+    <instance objName="wall_obj" x="288" y="176" name="inst_12104C89" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
+    <instance objName="wall_obj" x="288" y="208" name="inst_38465730" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
+    <instance objName="wall_obj" x="208" y="352" name="inst_6042066D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
     <instance objName="table_obj" x="144" y="224" name="inst_1CFE7809" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="table_obj" x="176" y="224" name="inst_B12EF754" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="table_obj" x="160" y="224" name="inst_9FB19F43" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -85,12 +85,12 @@ draw_set_font(font0);</code>
     <instance objName="wall_obj" x="128" y="176" name="inst_7C5529E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="128" y="144" name="inst_7EB9CBDE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="wall_obj" x="128" y="112" name="inst_B013F174" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="240" y="352" name="inst_5F0B1E7D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="wall_obj" x="176" y="352" name="inst_4BFF65F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="wall_obj" x="288" y="240" name="inst_65471E37" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="288" y="272" name="inst_F2A20E3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="288" y="304" name="inst_5367A7EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="wall_obj" x="288" y="336" name="inst_E4A753BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="wall_obj" x="240" y="352" name="inst_5F0B1E7D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
+    <instance objName="wall_obj" x="176" y="352" name="inst_4BFF65F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
+    <instance objName="wall_obj" x="288" y="240" name="inst_65471E37" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
+    <instance objName="wall_obj" x="288" y="272" name="inst_F2A20E3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
+    <instance objName="wall_obj" x="288" y="304" name="inst_5367A7EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
+    <instance objName="wall_obj" x="288" y="336" name="inst_E4A753BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
     <instance objName="floor_obj" x="128" y="64" name="inst_9C561B37" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="door_obj" x="208" y="80" name="inst_9B527125" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="burgerbox_obj" x="280" y="352" name="inst_13397244" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

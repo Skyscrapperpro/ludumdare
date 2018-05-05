@@ -148,7 +148,7 @@ if (near != noone)
             <kind>1</kind>
             <string>///Draw plane
 draw_3dbgr_angle(bgr, x + w/2 + open_amount, y, -CEILING_H/2, w, CEILING_H, add_angle(image_angle, 0, ANGREF));
-draw_3dbgr_angle(bgr, x - w/2 - open_amount, y, -CEILING_H/2, -w, CEILING_H, add_angle(image_angle, 0, ANGREF));
+draw_3dbgr_angle(bgr, x - w/2 - open_amount, y, -CEILING_H/2, -w, -CEILING_H, add_angle(image_angle, 0, ANGREF));
 
 </string>
           </argument>

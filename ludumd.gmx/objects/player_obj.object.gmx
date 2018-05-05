@@ -557,9 +557,21 @@ else
           <argument>
             <kind>1</kind>
             <string>/// Get rotation
+//Reset mouse position
+if (mouse_is_locked())
+{
+    mouse_lock_update();//display_mouse_set(display_get_width()/2, display_get_height()/2);
+    window_set_cursor(CURSOR);
+}
+else window_set_cursor(cr_default);
+
 //Check mouse active
 if (global.play)
-if (MIDDLECLICK) global.mouse_active = !global.mouse_active;
+if (MIDDLECLICK)
+{
+    if (global.mouse_active) then mouse_unlock();
+    else mouse_lock();
+}
 
 //Get angle
 if (!auto_rotation)
@@ -593,14 +605,6 @@ else //Auto rotation
     if (zangle == vrottarget)
         auto_rotation = false;
 }
-
-//Reset mouse position
-if (global.mouse_active)
-{
-    display_mouse_set(display_get_width()/2, display_get_height()/2);
-    window_set_cursor(CURSOR);
-}
-else window_set_cursor(cr_default);
 
 </string>
           </argument>
@@ -917,7 +921,7 @@ draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH + ((sprite_get_width(money) 
 draw_set_colour(c_green);
 draw_set_halign(fa_right);
 draw_set_valign(fa_top);
-draw_text_transformed(view_wport - ((sprite_get_width(money)*(100-sdisplacement*2)) div 100) * PIXEL_LENGTH, -2 * PIXEL_LENGTH, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
+draw_text_transformed(view_wport - ((sprite_get_width(money)*(100-sdisplacement*2)) div 100) * PIXEL_LENGTH, (-2 * PIXEL_LENGTH) - 1, string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(c_white);
 
 //Draw game over

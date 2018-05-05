@@ -148,8 +148,7 @@ if (ISPERSPECTIVE)
 {
     var zpos = -sprite_get_height(sprite)/2;
     if (dying) then subi = dedi;
-    if (looking_right) then draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, d_angle);
-    else draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, add_angle(d_angle, 180, ANGREF));
+    draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, d_angle, looking_right);
 }
 else
 {

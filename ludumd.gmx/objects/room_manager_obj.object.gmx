@@ -186,7 +186,6 @@ zombie_marg = ZOMBIE_ACTIVATION;
           <argument>
             <kind>1</kind>
             <string>/// Globals
-global.mouse_active = false;
 global.play = false;
 
 </string>

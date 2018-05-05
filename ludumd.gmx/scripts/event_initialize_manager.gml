@@ -2,7 +2,7 @@
 
 var manager = argument0;
 
-if (!gamepad_button_check_pressed(0, gp_start)) then global.mouse_active = true;
+if (!gamepad_button_check_pressed(0, gp_start)) then mouse_lock();
 //Generate first customer
 instance_create(manager.x, manager.y, customer_obj);
 //Alarm manager

@@ -96,7 +96,7 @@ tex1 = background_get_texture(bgr_ceiling);
           <argument>
             <kind>1</kind>
             <string>///Draw
-d3d_draw_floor(x, y, 0, x1, y1, 0, tex0,  FLOOR_WREP, FLOOR_HREP);   
+d3d_draw_floor(x1, y, 0, x, y1, 0, tex0,  FLOOR_WREP, FLOOR_HREP);   
 if (ISPERSPECTIVE) d3d_draw_floor(x, y, -CEILING_H, x1, y1, -CEILING_H, tex1, FLOOR_WREP, FLOOR_HREP);
 
 </string>
