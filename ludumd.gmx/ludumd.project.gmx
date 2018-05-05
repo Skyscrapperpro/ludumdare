@@ -58,19 +58,13 @@
       <sprite>sprites\girl_talk</sprite>
       <sprite>sprites\girl_back</sprite>
     </sprites>
-    <sprites name="Colliders and tests">
-      <sprite>sprites\human_collider</sprite>
-      <sprite>sprites\gunitem_collider</sprite>
-      <sprite>sprites\chunks_collider</sprite>
-      <sprite>sprites\burger_collider</sprite>
-      <sprite>sprites\target_test</sprite>
-    </sprites>
     <sprites name="GUI">
       <sprite>sprites\gameover</sprite>
       <sprite>sprites\focus</sprite>
       <sprite>sprites\gunshot</sprite>
       <sprite>sprites\life</sprite>
       <sprite>sprites\spatula</sprite>
+      <sprite>sprites\target_spr</sprite>
       <sprite>sprites\money</sprite>
       <sprite>sprites\title</sprite>
       <sprite>sprites\catsoup</sprite>

@@ -94,7 +94,7 @@ w = sprite_get_width(sprite_index);
             <kind>1</kind>
             <string>///Draw plane
 if (ISPERSPECTIVE)
-    draw_3dbgr_angle(bgr, x, y, z, w, CEILING_H, image_angle);
+    draw_3dbgr_angle(bgr, x, y, z, w, CEILING_H, image_angle, image_xscale);
 else draw_self();
 
 </string>
