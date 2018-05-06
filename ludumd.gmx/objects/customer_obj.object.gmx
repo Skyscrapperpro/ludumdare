@@ -462,10 +462,8 @@ if (ISPERSPECTIVE)
     var zpos = -sprite_get_height(sprite)/2;
     if (selected_menu)
     {
-        if (talki &gt; 0)
-        {
-            draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle, looking_right);
-        }
+        if (talki &gt; 0) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle, looking_right);
+        
         var xpos = x - lengthdir_x(DIALOG_DIST_X, d_angle);
         var ypos = y - lengthdir_y(DIALOG_DIST_X, d_angle);
         draw_3dspr_angle(menu_spr, 0, x, y + 0.2, zpos, 1, d_angle);

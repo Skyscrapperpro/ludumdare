@@ -570,7 +570,7 @@ else window_set_cursor(cr_default);
 if (global.play)
 if (MIDDLECLICK)
 {
-    if (global.mouse_active) then mouse_unlock();
+    if (mouse_is_locked()) then mouse_unlock();
     else mouse_lock();
 }
 
