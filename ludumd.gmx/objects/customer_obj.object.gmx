@@ -464,8 +464,7 @@ if (ISPERSPECTIVE)
     {
         if (talki &gt; 0)
         {
-            if (looking_right) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle);
-            else draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle + 180);
+            draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle, looking_right);
         }
         var xpos = x - lengthdir_x(DIALOG_DIST_X, d_angle);
         var ypos = y - lengthdir_y(DIALOG_DIST_X, d_angle);

@@ -14,7 +14,7 @@
 d3d_set_perspective(true);
 draw_set_color(c_white);
 audio_stop_all();
-audio_play_sound(cooking_music, 1, true);
+audio_play_sound(cooking_music, 0, true);
 draw_set_alpha_test(true);
 draw_set_alpha_test_ref_value(1);
 draw_set_font(font0);</code>

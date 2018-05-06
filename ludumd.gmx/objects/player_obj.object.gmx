@@ -262,6 +262,7 @@ part_system_automatic_draw(titleparttype,false);
 //particle vars
 partgentimer=0;
 partgentim=PART_TIME_MIN+irandom(PART_TIME_VAR);
+
 </string>
           </argument>
         </arguments>
