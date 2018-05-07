@@ -321,6 +321,7 @@ if (player_obj.handitem == 0)
             case customer_obj:
                 if (!obj_shot.satisf)
                 if (!obj_shot.dying)
+                if (!instance_exists(zombie_obj))
                     event_customer_menu(obj_shot);
                 break;
             case trashcan_obj:
@@ -927,9 +928,9 @@ draw_sprite_ext(money, 0, view_wport - PIXEL_LENGTH + ((sprite_get_width(money) 
 draw_set_halign(fa_right);
 draw_set_valign(fa_top);
 draw_set_colour(c_dkgray);
-draw_text_transformed(view_wport - ((sprite_get_width(money)*(100-sdisplacement*2)) div 100) * PIXEL_LENGTH + PIXEL_LENGTH, (-2 * PIXEL_LENGTH), string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
+draw_text_transformed(view_wport - ((sprite_get_width(money)*(100-sdisplacement*2)) div 100) * PIXEL_LENGTH, (-2 * PIXEL_LENGTH), string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(c_green);
-draw_text_transformed(view_wport - ((sprite_get_width(money)*(100-sdisplacement*2)) div 100) * PIXEL_LENGTH, (-3 * PIXEL_LENGTH), string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
+draw_text_transformed(view_wport - ((sprite_get_width(money)*(100-sdisplacement*2)) div 100) * PIXEL_LENGTH - PIXEL_LENGTH, (-3 * PIXEL_LENGTH), string(scoreval), PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(c_white);
 
 //Draw game over

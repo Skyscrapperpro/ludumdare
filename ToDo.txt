@@ -1,5 +1,0 @@
-- Fix dialogs going inside wall
-
-NEED ART:
-- Better burger graphics for customer dialogs
-- Start menu graphics
