@@ -151,6 +151,7 @@
     <script>scripts\check_line.gml</script>
     <script>scripts\set_customer_target.gml</script>
     <script>scripts\music_switch.gml</script>
+    <script>scripts\draw_score.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>

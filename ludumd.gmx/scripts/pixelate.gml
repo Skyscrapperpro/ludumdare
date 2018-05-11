@@ -8,6 +8,6 @@ var h = surface_get_height(application_surface);
 
 shader_set(pix);
 shader_set_uniform_f(unif, w, h, pixel_length, pixel_length);
-    draw_surface(application_surface, -2, -2);
+    draw_surface(application_surface, 0, 0);
 shader_reset();
 
