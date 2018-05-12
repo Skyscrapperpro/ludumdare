@@ -366,6 +366,12 @@ if (player_obj.handitem == 0)
     {
         switch (obj_shot.object_index)
         {
+            case gunitem_obj:
+                event_putdown_plate(plates_obj, taken_plate);
+                taken_plate = -1;
+                handitem = 1;
+                instance_deactivate_object(gunitem_obj);
+                break;
             case customer_obj:
                 if (!instance_exists(zombie_obj))
                 {
