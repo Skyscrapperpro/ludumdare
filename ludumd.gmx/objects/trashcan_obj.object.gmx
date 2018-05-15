@@ -29,7 +29,7 @@
 bgr_top = side_bgr;
 bgr_side = side_bgr;
 bgr_front = trashcan_bgr;
-z = 32;
+z = 30;
 z1 = 0;
 
 </string>

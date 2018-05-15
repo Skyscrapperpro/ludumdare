@@ -2,7 +2,6 @@
 
 var ID = argument0;
 
-if (!ID.deleted) then event_delete_customer(ID);
 
 with (ID)
 {
@@ -10,6 +9,10 @@ with (ID)
     dying = true;
     talki = 0;
     selected_menu = false;
-    if (!satisf) then event_lose_life();
+    if (!satisf)
+    {
+        event_delete_customer(id);
+        event_lose_life();
+    }
 }
 

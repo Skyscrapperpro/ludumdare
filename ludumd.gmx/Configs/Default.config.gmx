@@ -680,7 +680,7 @@
       <constant name="FORWARD">(keyboard_check(ord("W")) || (gamepad_axis_value(0, gp_axislv) &lt; -0.5))</constant>
       <constant name="LEFTCLICK">(mouse_check_button_pressed(mb_left) || gamepad_button_check_pressed(0, gp_face1) || gamepad_button_check_pressed(0, gp_shoulderrb) || gamepad_button_check_pressed(0, gp_shoulderr) || gamepad_button_check_pressed(0, gp_shoulderlb) || gamepad_button_check_pressed(0, gp_shoulderl))</constant>
       <constant name="RIGHTCLICK">(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_face3))</constant>
-      <constant name="MIDDLECLICK">(mouse_check_button_pressed(mb_middle) || keyboard_check_pressed(vk_escape))</constant>
+      <constant name="MIDDLECLICK">mouse_check_button_pressed(mb_middle)</constant>
       <constant name="START">(mouse_check_button_pressed(mb_left) || keyboard_check_pressed(vk_enter) || gamepad_button_check_pressed(0, gp_start))</constant>
       <constant name="MOUSESENS">0.06</constant>
       <constant name="ANGREF">180</constant>
@@ -718,7 +718,7 @@
       <constant name="PLATE_ELEV">2</constant>
       <constant name="TIME_TO_COOK">60</constant>
       <constant name="PLATE_SEP">20</constant>
-      <constant name="LEVEL_RATIO">1</constant>
+      <constant name="LEVEL_RATIO">0.5</constant>
       <constant name="STARTING_LIFE">3</constant>
       <constant name="LIFE_SEP">10</constant>
       <constant name="RESTARTKEY">keyboard_check_pressed(vk_space)</constant>
