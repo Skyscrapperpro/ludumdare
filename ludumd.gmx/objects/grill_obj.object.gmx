@@ -3,7 +3,7 @@
   <spriteName>editor_grill</spriteName>
   <solid>-1</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>cuboid_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -29,6 +29,9 @@
 bgr_top = grilltop_bgr;
 bgr_front = grillfront_bgr;
 bgr_side = side_bgr;
+fog_start = 500;
+fog_range = fog_start;
+fog_spd = fog_start/12;
 
 </string>
           </argument>
@@ -91,18 +94,107 @@ z1 = z;
           <argument>
             <kind>1</kind>
             <string>/// Floor raycast
-in_angle=false;
+in_angle = false;
 var rcast;
 
 rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
 
 if (rcast[0])
 {
-    in_angle=true;
-    xcast=rcast[1];
-    ycast=rcast[2];
-    zcast=rcast[3];
+    in_angle = true;
+    xcast = rcast[1];
+    ycast = rcast[2];
+    zcast = rcast[3];
 }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Fog range calculation
+if (fog_range &lt; fog_start)
+{
+    if ((fog_range - fog_spd) &gt; -fog_start) then fog_range -= fog_spd;
+    else fog_range = fog_start;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Color
+d3d_set_fog(true, c_white, abs(fog_range) - 100, abs(fog_range));
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Reset color
+d3d_set_fog(false, c_white, 0, 0);
 
 </string>
           </argument>

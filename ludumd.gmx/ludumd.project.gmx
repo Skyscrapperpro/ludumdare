@@ -145,6 +145,7 @@
       <script>scripts\event_add_score.gml</script>
       <script>scripts\event_initialize_manager.gml</script>
       <script>scripts\event_delete_customer.gml</script>
+      <script>scripts\event_grillfog.gml</script>
     </scripts>
     <script>scripts\cust_array.gml</script>
     <script>scripts\spat_to_burger.gml</script>

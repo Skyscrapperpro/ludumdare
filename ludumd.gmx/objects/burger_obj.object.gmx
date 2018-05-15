@@ -3,7 +3,7 @@
   <spriteName>ingredients</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-2</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>interactable_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>

@@ -3,7 +3,7 @@
   <spriteName>editor_player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>1000</depth>
+  <depth>2</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -339,6 +339,7 @@ if (player_obj.handitem == 0)
                 break;
             case burgerbox_obj:
                 if (spatulaburger == 0) then spatulaburger = 1;
+                event_grillfog(grill_obj);
                 break;
             case breadbox_obj:
                 if (spatulaburger == 0) then spatulaburger = 4;
@@ -1043,8 +1044,13 @@ if (titli &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Draw camera
+/*d3d_set_lighting(true);
+d3d_light_define_point(1, x, y, CAM_Z, 20000, c_white);
+d3d_light_enable(1, true);*/
+
 if (ISPERSPECTIVE) d3d_set_projection(x, y, -CAM_Z, xf, yf, zf, 0, 0, -1);
 else draw_sprite_ext(sprite_index, 0, x, y, 1, 1, angle, -1, 1);
+
 
 </string>
           </argument>

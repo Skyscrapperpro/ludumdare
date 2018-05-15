@@ -17,7 +17,9 @@ audio_stop_all();
 audio_play_sound(cooking_music, 0, true);
 draw_set_alpha_test(true);
 draw_set_alpha_test_ref_value(1);
-draw_set_font(font0);</code>
+draw_set_font(font0);
+d3d_set_hidden(true);
+d3d_set_culling(true);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

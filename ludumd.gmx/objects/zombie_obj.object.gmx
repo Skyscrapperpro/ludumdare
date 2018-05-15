@@ -3,7 +3,7 @@
   <spriteName>editor_zombie</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>humanoid_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -28,6 +28,7 @@
             <string>/// Spawn
 x += ZOM_POS_VARIATION;
 y += ZOM_POS_VARIATION;
+last = 0;
 
 </string>
           </argument>
