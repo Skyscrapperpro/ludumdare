@@ -157,15 +157,23 @@ pr_alp = 1;
 // 6 = tomato, 7 = top bread
 burger_asked[0] = 2;
 price = 0;
+shield=PATIENCE_SHIELD;
 for(var i = 1; i &lt; irandom_range(2, floor(global.level) - 1); i++)
 {
     burger_asked[i] = irandom_range(3, 5);
-    if (burger_asked[i] == 3) then price += PRICE_BURGER;
+    if (burger_asked[i] == 3) {
+        price += PRICE_BURGER;
+        shield+=BURGER_SHIELD;
+    }
     else price += PRICE_INGREDIENT;
+    shield+=PATIENCE_SHIELD;
 }
 burger_asked[i] = 7;
+shield+=PATIENCE_SHIELD;
+shieldstart=shield;
 ptimer=0;
 patientimer=0;
+
 </string>
           </argument>
         </arguments>
@@ -445,16 +453,20 @@ else instance_destroy();
             <string>///ptimer management
 if (selected_menu)      //el tiempo solo cuenta cuando el cliente ha pedido
     {
-    patientimer++;
-    if (patientimer&gt;=CUSTOMER_PATIENCE)
+    if (shield==0)
     {
-        patientimer=0;
-        ptimer+=CUSTOMER_IMPATIENCE;
+        patientimer++;
+        if (patientimer&gt;=CUSTOMER_PATIENCE)
+        {
+            patientimer=0;
+            ptimer+=CUSTOMER_IMPATIENCE;
+        }
+        if (ptimer&gt;price)
+        {
+            ptimer=price;
+        }
     }
-    if (ptimer&gt;price)
-    {
-        ptimer=price;
-    }
+    else shield-=1;
 }
 else                
 {
@@ -513,8 +525,16 @@ if (ISPERSPECTIVE)
     {
         text_effect(satix, satiy, -CAM_Z + pr_alp, "$" + string_format(price, 1, 2), 0.3, d_angle, c_green, pr_alp);
         var ran_col = make_colour_hsv(irandom(255), 255, 255);
-        text_effect(satix, satiy, -CAM_Z + 6 + pr_alp, "+" + string_format(ptimer, 1, 2), 0.3, d_angle, c_red, pr_alp);
-        text_effect(satix, satiy, -CAM_Z + 10 + pr_alp, "Time penalty!", 0.2, d_angle, c_red, pr_alp);
+        if (ptimer&gt;0)
+        {
+            text_effect(satix, satiy, -CAM_Z + 6 + pr_alp, "-" + string_format(ptimer, 1, 2), 0.3, d_angle, c_red, pr_alp);
+            text_effect(satix, satiy, -CAM_Z + 10 + pr_alp, "Time penalty!", 0.2, d_angle, c_red, pr_alp);
+        }
+        else if (shield&gt;shieldstart/2)
+        {
+            text_effect(satix, satiy, -CAM_Z + 6 + pr_alp, "+" + string_format(price*0.5, 1, 2), 0.3, d_angle, ran_col, pr_alp);
+            text_effect(satix, satiy, -CAM_Z + 10 + pr_alp, "Time bonus!", 0.2, d_angle, ran_col, pr_alp);
+        }
     }
 }
 
