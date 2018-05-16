@@ -13,7 +13,7 @@ with (ID)
     satiy = y;
     pr_alp -= 0.01;
     if (shield<shieldstart/2) then event_add_score(price-ptimer);
-    else if (shield>shieldstart/2) then event_add_score(price*1.5);
+    else if (shield>shieldstart/4) then event_add_score(price*1.5);
     event_delete_customer(id);
 }
 if ((global.level + LEVEL_RATIO) > MAX_ING) then global.level = MAX_ING;
