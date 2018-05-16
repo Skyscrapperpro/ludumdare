@@ -26,20 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>/// Spawn
-/*line = 0;
-
-for (var i = 0; i &lt; LINES_AMOUNT; i++)
-{
-    if (room_manager_obj.lines[i] &lt; room_manager_obj.lines[line])
-        line = i;
-}
-room_manager_obj.lines[line]++;
-prevcustomer = room_manager_obj.customers[line];
-room_manager_obj.customers[line] = id;
-nextcustomer = -1;
-prevcustomer.nextcustomer = id;
-*/
-
 //Look for shortest line
 line = 0;
 for (var i = 0; i &lt; LINES_AMOUNT; i++)
@@ -139,7 +125,9 @@ looking_right = choose(true, false);
             <kind>1</kind>
             <string>/// Other
 satisf = false;
-deleted = false;
+satix = 0;
+satiy = 0;
+pr_alp = 1;
 
 </string>
           </argument>
@@ -168,8 +156,13 @@ deleted = false;
 //4 = cheese, 5 = lechuga
 // 6 = tomato, 7 = top bread
 burger_asked[0] = 2;
+price = 0;
 for(var i = 1; i &lt; irandom_range(2, floor(global.level) - 1); i++)
+{
     burger_asked[i] = irandom_range(3, 5);
+    if (burger_asked[i] == 3) then price += PRICE_BURGER;
+    else price += PRICE_INGREDIENT;
+}
 burger_asked[i] = 7;
 
 </string>
@@ -363,7 +356,14 @@ if (talki &gt; 0)
     if ((talki + ratio) &lt; talklimit) then talki += ratio;
     else talki = 0;
 }
-//if (instance_exists(zombie_obj)) then talki = 1;
+
+if (pr_alp &lt; 5)
+{
+    var ratio = 0.1;
+    
+    if ((pr_alp - ratio) &gt; 0) then pr_alp -= ratio;
+    else pr_alp = 5;
+}
 
 </string>
           </argument>
@@ -469,6 +469,13 @@ if (ISPERSPECTIVE)
         draw_3dspr_angle(menu_spr, 0, x, y + 0.2, zpos, 1, d_angle);
         for (var i= 0; i &lt; array_length_1d(burger_asked); i++)
             draw_3dspr_angle(ing_spr, burger_asked[i], xpos, ypos + 0.3 + (0.1 * i), zpos - DIALOG_DIST_Z - (ING_SEP * i), 0.5, d_angle);
+    }
+    if (pr_alp &lt; 5) 
+    {
+        text_effect(satix, satiy, -CAM_Z + pr_alp, "$" + string_format(price, 1, 2), 0.3, d_angle, c_green, pr_alp);
+        var ran_col = make_colour_hsv(irandom(255), 255, 255);
+        text_effect(satix, satiy, -CAM_Z + 6 + pr_alp, "+" + string_format(price, 1, 2), 0.3, d_angle, ran_col, pr_alp);
+        text_effect(satix, satiy, -CAM_Z + 10 + pr_alp, "Speed bonus!", 0.2, d_angle, ran_col, pr_alp);
     }
 }
 

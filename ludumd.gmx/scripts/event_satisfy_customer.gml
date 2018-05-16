@@ -9,9 +9,12 @@ with (ID)
     satisf = true;
     inittargetx = room_manager_obj.x;
     inittargety = room_manager_obj.y - 1;
+    satix = x;
+    satiy = y;
+    pr_alp -= 0.01;
+    event_add_score(price);
     event_delete_customer(id);
 }
 if ((global.level + LEVEL_RATIO) > MAX_ING) then global.level = MAX_ING;
 else global.level += LEVEL_RATIO;
-event_add_score(SCORE_PER_CUSTOMER);
 
