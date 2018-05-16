@@ -673,7 +673,7 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="57">
+    <constants number="59">
       <constant name="LEFT">(keyboard_check(ord("A")) || (gamepad_axis_value(0, gp_axislh) &lt; -0.5))</constant>
       <constant name="RIGHT">(keyboard_check(ord("D")) || (gamepad_axis_value(0, gp_axislh) &gt; +0.5))</constant>
       <constant name="BACKWARDS">(keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) &gt; +0.5))</constant>
@@ -731,6 +731,8 @@
       <constant name="PART_TIME_MIN">10</constant>
       <constant name="PRICE_BURGER">1</constant>
       <constant name="PRICE_INGREDIENT">0.5</constant>
+      <constant name="CUSTOMER_PATIENCE">30</constant>
+      <constant name="CUSTOMER_IMPATIENCE">0.01</constant>
     </constants>
   </ConfigConstants>
 </Config>

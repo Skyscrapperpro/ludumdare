@@ -12,7 +12,7 @@ with (ID)
     satix = x;
     satiy = y;
     pr_alp -= 0.01;
-    event_add_score(price);
+    event_add_score(price-ptimer);
     event_delete_customer(id);
 }
 if ((global.level + LEVEL_RATIO) > MAX_ING) then global.level = MAX_ING;
