@@ -4,9 +4,12 @@ var obj = argument0;
 
 with (obj)
 {
-    inittargety = table_obj.y - CUSTOMER_SEP;
-    repeat (last) inittargety -= CUSTOMER_SEP;
+    inittargety = table_obj.y - CUSTOMER_SEP_Y;
+    repeat (last) inittargety -= CUSTOMER_SEP_Y;
     
-    inittargetx = FIRST_LINE_X - (line * LINES_SEP) - CUSTOMER_SEP_X;
+    inittargetx = FIRST_LINE_X + (line * LINES_SEP) + CUSTOMER_SEP_X;
+    
+    targetx = inittargetx;
+    targety = inittargety;
 }
 

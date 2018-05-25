@@ -1,4 +1,4 @@
-///rotating_point_relative(x, y, rotation, x_or_y)
+///rotating_point_relative(x, y, rotation, return_y)
 
 var xpos = argument0;
 var ypos = argument1;

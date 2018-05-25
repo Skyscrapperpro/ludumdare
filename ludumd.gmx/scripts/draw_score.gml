@@ -1,4 +1,4 @@
-///draw_score(score, x, y, halign, text_color)
+///draw_score(score, sprite, x, y, halign, text_color)
 var scoreval = string_format(argument0, 1, 2);
 var spr = argument1;
 var xpos = argument2;

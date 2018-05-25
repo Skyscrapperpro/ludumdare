@@ -34,14 +34,14 @@ zpos = -z - sprite_get_height(spr)/2;
 w = sprite_get_width(sprite_index);
 h = sprite_get_height(sprite_index);
 
-leftx = rotating_point_relative(-w/2, -h/2, image_angle, 0);
-lefty = rotating_point_relative(-w/2, -h/2, image_angle, 1);
-rightx = rotating_point_relative(+w/2, -h/2, image_angle, 0);
-righty = rotating_point_relative(+w/2, -h/2, image_angle, 1);
-cornerx0 = rotating_point_relative(+w/2, -h, image_angle, 0);
-cornery0 = rotating_point_relative(+w/2, -h, image_angle, 1);
-cornerx1 = rotating_point_relative(-w/2, 0, image_angle, 0);
-cornery1 = rotating_point_relative(-w/2, 0, image_angle, 1);
+leftx = rotating_point_relative(+w/2, -h/2, image_angle, false);
+lefty = rotating_point_relative(+w/2, -h/2, image_angle, true);
+rightx = rotating_point_relative(-w/2, -h/2, image_angle, false);
+righty = rotating_point_relative(-w/2, -h/2, image_angle, true);
+cornerx0 = rotating_point_relative(+w/2, -h, image_angle, false);
+cornery0 = rotating_point_relative(+w/2, -h, image_angle, true);
+cornerx1 = rotating_point_relative(-w/2, 0, image_angle, false);
+cornery1 = rotating_point_relative(-w/2, 0, image_angle, true);
 
 </string>
           </argument>
@@ -92,25 +92,22 @@ righty = rotating_point_relative(+w/2, -h/2, image_angle, 1);
           <argument>
             <kind>1</kind>
             <string>/// Draw
-if (ISPERSPECTIVE)
-{
-    d3d_transform_set_identity();
-    d3d_transform_add_rotation_z(image_angle);
-    d3d_transform_add_translation(x, y,  -z - PLATE_ELEV);
-    d3d_draw_floor(cornerx1, cornery0, 0, cornerx0, cornery1, 0, tex_plate, 1, 1);
-    d3d_transform_set_identity();
-    
-    draw_3dspr_angle(spr, 0, x + leftx/2, y + lefty/2, zpos, 1, player_obj.angle);
-    if (arraypos &gt; 0)
-        for(var i = 0, zburg; i &lt; array_length_1d(burger); i++)
-        {
-            var ytoplayer;
-            if (player_obj.y &lt; y) then ytoplayer = - (0.1 * i);
-            else ytoplayer = + (0.1 * i);
-            zburg = -z - PLATE_ELEV - (ING_SEP * (i+1));
-            draw_3dspr_angle(ing_spr, burger[i], x + rightx/2, y + righty/2 + ytoplayer, zburg, 0.5, player_obj.angle);
-        }
-}
+d3d_transform_set_identity();
+d3d_transform_add_rotation_z(image_angle);
+d3d_transform_add_translation(x, y,  z + PLATE_ELEV);
+d3d_draw_floor(cornerx1, cornery0, 0, cornerx0, cornery1, 0, tex_plate, 1, 1);
+d3d_transform_set_identity();
+
+draw_3dspr_angle(spr, 0, x + leftx/2, y + lefty/2, zpos, 1, 1, player_obj.angle);
+if (arraypos &gt; 0)
+    for(var i = 0, zburg; i &lt; array_length_1d(burger); i++)
+    {
+        var ytoplayer;
+        if (player_obj.y &lt; y) then ytoplayer = - (0.1 * i);
+        else ytoplayer = + (0.1 * i);
+        zburg = -z - PLATE_ELEV - (ING_SEP * (i+1));
+        draw_3dspr_angle(ing_spr, burger[i], x + rightx/2, y + righty/2 + ytoplayer, zburg, 0.5, 0.5, player_obj.angle);
+    }
 
 </string>
           </argument>

@@ -1,5 +1,5 @@
 ///event_game_over()
 
-player_obj.gameoverval = 1;
+global.isgameover = true;
 event_kill_all_customers();
 

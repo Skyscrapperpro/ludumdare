@@ -25,26 +25,80 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Spawn
-//Look for shortest line
-line = 0;
-for (var i = 0; i &lt; LINES_AMOUNT; i++)
-{
-    if (ds_list_size(global.line_ids[i]) &lt; ds_list_size(global.line_ids[line]))
-        line = i;
-}
-
-//Get last position in line
-last = ds_list_size(global.line_ids[line]);
-
-//Set id
-ds_list_add(global.line_ids[line], id);
-
-set_customer_target(id);
+            <string>/// Get random customer id
+var custID = irandom(array_length_1d(global.cust_stand) - 1);
 
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Sprites from array
+
+//Standard
+stand_spr = global.cust_stand[custID];
+walkf_spr = global.cust_walk[custID];
+walkb_spr = global.cust_back[custID];
+ded_spr = global.cust_ded[custID];
+
+//Extra
+talk_spr = global.cust_talk_face[custID];
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Speed setup
+move_spd = CUSTOMER_SPD;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
       <action>
         <libid>1</libid>
@@ -63,7 +117,8 @@ set_customer_target(id);
           <argument>
             <kind>1</kind>
             <string>/// Raycast setup
-in_angle = false;
+ray_w = 16;
+ray_h = 50;
 
 </string>
           </argument>
@@ -85,23 +140,9 @@ in_angle = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw setup
-var custID = irandom(array_length_1d(global.cust_alive) - 1);
-main_spr = global.cust_alive[custID];
-back_spr = global.cust_back[custID];
-ded_spr = global.cust_ded[custID];
-talk_spr = global.cust_talk_face[custID];
+            <string>/// Sounds from array
 talk_snd = global.cust_talk_snd[custID];
-
 snd = global.cust_cry_snd[custID];
-talki = 0;
-talklimit = sprite_get_number(talk_spr);
-
-menu_spr = customer_dialog;
-ing_spr = ingredients;
-
-selected_menu = false;
-looking_right = choose(true, false);
 
 </string>
           </argument>
@@ -109,95 +150,242 @@ looking_right = choose(true, false);
       </action>
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Other
-satisf = false;
-satix = 0;
-satiy = 0;
-pr_alp = 1;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Array burger
-//0 = burger cruda
-//1 = burger quemada
-//2 = bread, 3 = burger
-//4 = cheese, 5 = lechuga
-// 6 = tomato, 7 = top bread
-burger_asked[0] = 2;
-price = 0;
-for(var i = 1; i &lt; irandom_range(2, floor(global.level) - 1); i++)
-{
-    burger_asked[i] = irandom_range(3, 5);
-    if (burger_asked[i] == 3) then price += PRICE_BURGER;
-    else price += PRICE_INGREDIENT;
-}
-burger_asked[i] = 7;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>604</id>
+        <id>605</id>
         <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_inherited</functionname>
+        <exetype>0</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Line stuff</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Add to shortest line
+//Look for shortest line
+line = 0;
+for (var i = 0; i &lt; LINES_AMOUNT; i++)
+{
+    if (ds_list_size(global.line_ids[i]) &lt; ds_list_size(global.line_ids[line]))
+        line = i;
+}
+
+//Get last position in line
+last = ds_list_size(global.line_ids[line]);
+
+//Set id
+ds_list_add(global.line_ids[line], id);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>set_customer_target</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>id</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Selected menu stuff</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Initialize
+selected_menu = false;
+satisf = false;
+satix = 0;
+satiy = 0;
+pr_alp = 1;
+talki = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Create burger
+burger_asked = create_burger(floor(global.level) + 3);
+price = burger_get_price(burger_asked);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Selected menu setup
+menu_spr = customer_dialog;
+ing_spr = ingredients;
+
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
-        <id>604</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_inherited</functionname>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get draw angle
+d_angle = player_obj.angle;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Reset raycast
+in_angle = false;
+
+</string>
+          </argument>
+        </arguments>
       </action>
       <action>
         <libid>1</libid>
@@ -257,25 +445,63 @@ burger_asked[i] = 7;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Check zombies and set target
+            <string>///Raycast pre-setup
+var rz_angle = zreal(player_obj.zangle);
+var xorig = player_obj.x;
+var yorig = player_obj.y;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with 3d raycasts
+in_angle = raycast_3d_spr(ray_w, ray_h, xorig, yorig, CAM_Z, x, y, zpos, d_angle, d_angle, rz_angle);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check zombies / Set target
 if (instance_exists(zombie_obj))
 {
     var zomb = instance_nearest(x, y, zombie_obj);
     var zomang = point_direction(zomb.x, zomb.y, x, y,);
-    targetx = lengthdir_x(1000, zomang);
-    targety = lengthdir_y(1000, zomang);
-    if (selected_menu) then selected_menu = false;
-    solid = true;
-    talki = 1;
+    targetx = lengthdir_x(HIGH_NUMBER, zomang);
+    targety = lengthdir_y(HIGH_NUMBER, zomang);
 }
-else
-{
-    if (!satisf) check_line(id);
-    targetx = inittargetx;
-    targety = inittargety;
-    solid = false;
-}
-
+else if (!satisf) check_line(id);
 </string>
           </argument>
         </arguments>
@@ -296,74 +522,12 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Movement
-//Set angle
-m_angle = add_angle(point_direction(x, y, targetx, targety), 0, ANGREF);
+            <string>/// Animations
+//Talk
+if (talki &gt; 0) then talki = subimg_animation(talk_spr, talki, sprite_get_speed(talk_spr));
 
-//Set speed
-var xspeed = lengthdir_x(CUSTOMER_SPD, m_angle);
-var yspeed = lengthdir_y(CUSTOMER_SPD, m_angle);
-
-//Collisions
-xspeed = do_collision_x_first(xspeed);
-yspeed = do_collision_y(xspeed, yspeed);
-
-//Move
-x = var_to_target(x, targetx, xspeed);
-y = var_to_target(y, targety, yspeed);
-
-if (y &lt; (room_manager_obj.y)) then instance_destroy();
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Animation
-if (targety &lt; y) then sprite = back_spr;
-else sprite = main_spr;
-
-if ((x != targetx) || (y != targety))
-{
-    // ------- Animation ------
-    var ratio = 0.2;
-    
-    if ((subi + ratio) &lt; ilimit) then subi += ratio;
-    else subi = 1;
-    //
-}
-else subi = 0;
-
-if (talki &gt; 0)
-{
-    var ratio = 0.5;
-
-    if ((talki + ratio) &lt; talklimit) then talki += ratio;
-    else talki = 0;
-}
-
-if (pr_alp &lt; 5)
-{
-    var ratio = 0.1;
-    
-    if ((pr_alp - ratio) &gt; 0) then pr_alp -= ratio;
-    else pr_alp = 5;
-}
+//Price effect
+if (pr_alp &lt; 5) then cycle_value(5, 0, pr_alp, 0.1);
 
 </string>
           </argument>
@@ -413,17 +577,26 @@ if (pr_alp &lt; 5)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Animation
-sprite = ded_spr;
-
-var ratio = 0.25;
-
-if ((dedi + (2 * ratio)) &lt; dedlimit) then dedi += ratio;
-else instance_destroy();
+            <string>///Death animation ended
+if (subi &gt; sprite_get_number(ded_spr) - 0.5) then instance_destroy();
 
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="8" enumb="0">
@@ -457,26 +630,65 @@ else instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw selected menu
-if (ISPERSPECTIVE)
+            <string>/// Draw talking/crying face
+if (talki &gt; 0) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, dir, 1, d_angle);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw dialog and burger
+if (selected_menu)
 {
-    var zpos = -sprite_get_height(sprite)/2;
-    if (talki &gt; 0) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, 1, d_angle, looking_right);
-    if (selected_menu)
-    {
-        var xpos = x - lengthdir_x(DIALOG_DIST_X, d_angle);
-        var ypos = y - lengthdir_y(DIALOG_DIST_X, d_angle);
-        draw_3dspr_angle(menu_spr, 0, x, y + 0.2, zpos, 1, d_angle);
-        for (var i= 0; i &lt; array_length_1d(burger_asked); i++)
-            draw_3dspr_angle(ing_spr, burger_asked[i], xpos, ypos + 0.3 + (0.1 * i), zpos - DIALOG_DIST_Z - (ING_SEP * i), 0.5, d_angle);
-    }
-    if (pr_alp &lt; 5) 
-    {
-        text_effect(satix, satiy, -CAM_Z + pr_alp, "$" + string_format(price, 1, 2), 0.3, d_angle, c_green, pr_alp);
-        var ran_col = make_colour_hsv(irandom(255), 255, 255);
-        text_effect(satix, satiy, -CAM_Z + 6 + pr_alp, "+" + string_format(price, 1, 2), 0.3, d_angle, ran_col, pr_alp);
-        text_effect(satix, satiy, -CAM_Z + 10 + pr_alp, "Speed bonus!", 0.2, d_angle, ran_col, pr_alp);
-    }
+    var xpos = x + lengthdir_x(DIALOG_DIST_X, d_angle);
+    var ypos = y + lengthdir_y(DIALOG_DIST_X, d_angle);
+    draw_3dspr_angle(menu_spr, 0, x, y + 0.2, zpos, 1, 1, d_angle);
+    for (var i= 0; i &lt; array_length_1d(burger_asked); i++)
+        draw_3dspr_angle(ing_spr, burger_asked[i], xpos, ypos + 0.3 + (0.1 * i), zpos + DIALOG_DIST_Z + (ING_SEP * i), 0.5, 0.5, d_angle);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw price effect
+if (pr_alp &lt; 5)
+{
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_3dtext_vertical(satix, satiy, CAM_Z - pr_alp, "$" + string_format(price, 1, 2), 0.3, d_angle, c_green, pr_alp);
 }
 
 </string>

@@ -25,31 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Setup raycast and draw
-bgr_top = grilltop_bgr;
-bgr_front = grillfront_bgr;
-bgr_side = side_bgr;
-fog_start = 500;
-fog_range = fog_start;
-fog_spd = fog_start/12;
+            <string>///Cuboid setup
+bak[5] = side_bgr;
+bak[4] = side_bgr;
+bak[3] = -1;
+bak[2] = grillfront_bgr;
+bak[1] = -1;
+bak[0] = grilltop_bgr;
+w = sprite_get_width(sprite_index);
+l = sprite_get_height(sprite_index);
+z = w;
+z1 = z;
 
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>604</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_inherited</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
       <action>
         <libid>1</libid>
@@ -67,9 +57,10 @@ fog_spd = fog_start/12;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Z is W in this one
-z = w;
-z1 = z;
+            <string>/// Fog setup
+fog_start = 500;
+fog_range = fog_start;
+fog_spd = fog_start/12;
 
 </string>
           </argument>
@@ -95,7 +86,7 @@ z1 = z;
             <kind>1</kind>
             <string>/// Floor raycast
 in_angle = false;
-var rcast;
+/*var rcast;
 
 rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
 
@@ -105,7 +96,7 @@ if (rcast[0])
     xcast = rcast[1];
     ycast = rcast[2];
     zcast = rcast[3];
-}
+}*/
 
 </string>
           </argument>

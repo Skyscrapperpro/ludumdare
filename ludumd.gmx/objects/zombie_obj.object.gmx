@@ -25,10 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Spawn
-x += ZOM_POS_VARIATION;
-y += ZOM_POS_VARIATION;
-last = 0;
+            <string>/// Sprites setup
+
+//Standard
+//stand_spr = zombie;
+walkf_spr = zombie;
+//walkb_spr = zombie;
+ded_spr = zombie_ded;
+
+//Extra
+at_spr = zombie_attack;
 
 </string>
           </argument>
@@ -50,12 +56,8 @@ last = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw setup
-main_spr = zombie;
-ded_spr = zombie_ded;
-at_spr = zombie_attack;
-atlimit = sprite_get_number(at_spr);
-looking_right = choose(true, false);
+            <string>///Speed setup
+move_spd = ZOMBIE_SPD;
 
 </string>
           </argument>
@@ -91,10 +93,82 @@ looking_right = choose(true, false);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Movement variables
+            <string>/// Raycast setup
+ray_w = 16;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Spawn point variation
+x += ZOM_POS_VARIATION;
+y += ZOM_POS_VARIATION;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set targeted customer
 if (instance_exists(customer_obj))
     target = instance_find(customer_obj, irandom(instance_number(customer_obj) - 1));
 else target = player_obj;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Turn off standard movement-based animation
+spr_from_move_state = false;
+//Initialize
+sprite = walkf_spr;
 
 </string>
           </argument>
@@ -104,17 +178,49 @@ else target = player_obj;
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
-        <id>604</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_inherited</functionname>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get draw angle
+d_angle = player_obj.angle;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Reset raycast
+in_angle = false;
+
+</string>
+          </argument>
+        </arguments>
       </action>
       <action>
         <libid>1</libid>
@@ -174,47 +280,9 @@ else target = player_obj;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Movement
-//Change target after one is killed
-if (!instance_exists(target))
-{
-    if (instance_exists(customer_obj))
-        target = instance_find(customer_obj, irandom(instance_number(customer_obj) - 1));
-    else 
-    {
-        target = player_obj;
-        sprite = main_spr;
-        subi = 0;
-    }
-}
-
-//Check attack
-if (point_distance(x, y, target.x, target.y) &lt; CUSTOMER_RANGE) //and
-if (target.object_index == customer_obj)
-{
-    if (sprite != at_spr)
-    {
-        sprite = at_spr;
-        subi = 0;
-    }
-}
-
-//Set target position
-targetx = target.x;
-targety = target.y;
-
-//Set speed
-var m_angle = add_angle(point_direction(x, y, targetx, targety), 0, ANGREF);
-var xspeed = lengthdir_x(ZOMBIE_SPD, m_angle);
-var yspeed = lengthdir_y(ZOMBIE_SPD, m_angle);
-
-//Collisions
-xspeed = do_collision_x_first(xspeed);
-yspeed = do_collision_y(xspeed, yspeed)
-
-//Movement
-x = var_to_target(x, targetx, xspeed);
-y = var_to_target(y, targety, yspeed);
+            <string>///Raycast pre-setup
+var xorig = player_obj.x;
+var yorig = player_obj.y;
 
 </string>
           </argument>
@@ -236,26 +304,97 @@ y = var_to_target(y, targety, yspeed);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Animation
-if (sprite == at_spr)
+            <string>/// Hit me with raycasts
+in_angle = raycast_2d_spr(ray_w, xorig, yorig, x, y, d_angle, d_angle);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check target if one is killed
+//Change target after one is killed
+if (!instance_exists(target))
 {
-    var ratio = 0.25;
-    
-    if ((subi + ratio) &lt; atlimit) then subi += ratio;
-    else 
+    if (instance_exists(customer_obj))
+        target = instance_find(customer_obj, irandom(instance_number(customer_obj) - 1));
+    else target = player_obj;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Get target position
+targetx = target.x;
+targety = target.y;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Switch to attack animation if target close and kill them
+if (point_distance(x, y, targetx, targety) &lt; ZOMBIE_ATTACK_RANGE) //and
+if (target.object_index == customer_obj)
+{
+    if (sprite != at_spr)
     {
-        event_kill_customer(target);
-        sprite = main_spr;
+        sprite = at_spr;
         subi = 0;
     }
-}
-else
-{
-    sprite = main_spr;
-    var ratio = 0.125;
-    
-    if ((subi + ratio) &lt; ilimit) then subi += ratio;
-    else subi = 0;
+    else if (subi &gt; sprite_get_number(sprite) - 0.5)
+    {
+        event_kill_customer(target);
+        sprite = walkf_spr;
+        subi = 0;
+    }
 }
 
 </string>
@@ -306,12 +445,8 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Animation
-sprite = ded_spr;
-var ratio = 0.25;
-
-if ((dedi + (2 * ratio)) &lt; dedlimit) then dedi += ratio;
-else 
+            <string>///Death animation ended
+if (subi &gt; sprite_get_number(ded_spr) - 0.5)
 {
     event_last_zombie();
     instance_destroy();
@@ -320,6 +455,20 @@ else
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
   </events>

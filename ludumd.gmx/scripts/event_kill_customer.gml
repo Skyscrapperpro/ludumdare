@@ -5,14 +5,19 @@ var ID = argument0;
 
 with (ID)
 {
-    audio_play_sound(snd, 2, false);
-    dying = true;
-    talki = 0;
-    selected_menu = false;
-    if (!satisf)
+    if (!dying)
     {
-        event_delete_customer(id);
-        event_lose_life();
+        dying = true;
+        selected_menu = false;
+        talki = 0;
+        sprite = ded_spr;
+        subi = 0;
+        audio_play_sound(snd, 2, false);
+        if (!satisf)
+        {
+            event_delete_customer(id);
+            event_lose_life();
+        }
     }
 }
 

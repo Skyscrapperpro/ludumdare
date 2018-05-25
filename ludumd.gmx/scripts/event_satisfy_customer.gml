@@ -8,7 +8,9 @@ with (ID)
     selected_menu = false;
     satisf = true;
     inittargetx = room_manager_obj.x;
-    inittargety = room_manager_obj.y - 1;
+    inittargety = -10;
+    targetx = inittargetx;
+    targety = inittargety;
     satix = x;
     satiy = y;
     pr_alp -= 0.01;

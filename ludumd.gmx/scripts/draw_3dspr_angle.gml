@@ -1,31 +1,31 @@
-///draw_3dspr_angle(sprite, subimagen, x, y, z, scale, rotation, facing_right)
+///draw_3dspr_angle(sprite, subimagen, x, y, z, xscale, yscale, rotation)
 
-var sprite = argument[0];
-var subi = argument[1];
-var xpos = argument[2];
-var ypos = argument[3];
-var zpos = argument[4];
-var scl = argument[5];
-var ang = argument[6];
-var facing_right;
-if (argument_count > 7) then facing_right = argument[7];
-else facing_right = true;
+var sprite = argument0;
+var subi = argument1;
+var xpos = argument2;
+var ypos = argument3;
+var zpos = argument4;
+var sclx = argument5;
+var scly = argument6;
+var ang = argument7;
 
+d3d_transform_set_identity();
+d3d_transform_add_rotation_x(90);
+d3d_transform_add_rotation_z(ang);
+d3d_transform_add_translation(xpos, ypos, zpos);
 
-var tex, w, h, x0, y0, z0, x1, y1, z1;
-var tex = sprite_get_texture(sprite, subi);
-var w = sprite_get_width(sprite) * scl;
-var h = sprite_get_height(sprite) * scl;
-var difx = lengthdir_x(w, ang)/2;
-var dify = lengthdir_y(w, ang)/2;
+if (global.sh_sup)
+{
+    var uvs = sprite_get_uvs(sprite, subi);
+    var uvx = (uvs[0] + uvs[2]) * (sclx < 0);
+    var uvy = (uvs[1] + uvs[3]) * (scly < 0);
+    var uniform = shader_get_uniform(flip_shd, "uvs_sum");
+    shader_set(flip_shd);
+    shader_set_uniform_f(uniform, uvx, uvy);
+    draw_sprite_ext(sprite, subi, 0, 0, abs(sclx), abs(scly), 0, -1, 1);
+    shader_reset();
+}
+else draw_sprite_ext(sprite, subi, 0, 0, abs(sclx), abs(scly), 0, -1, 1);
 
-var x0 = xpos + difx;
-var y0 = ypos + dify;
-var z0 = zpos - h/2;
-var x1 = xpos - difx;
-var y1 = ypos - dify;
-var z1 = zpos + h/2;
-
-if (facing_right) then d3d_draw_wall(x0, y0, z0, x1, y1, z1, tex, 1, 1);
-else d3d_draw_wall(x0, y0, z0, x1, y1, z1, tex, -1, 1);
+d3d_transform_set_identity();
 

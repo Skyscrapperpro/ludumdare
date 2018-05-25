@@ -39,14 +39,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw initialize
-ray_spr = 32; //human_collider;
-sprite = main_spr;
-subi = 0;
-dedi = 0;
-ilimit = sprite_get_number(main_spr);
-dedlimit = sprite_get_number(ded_spr);
-dying = false;
+            <string>///Initialize (weird)
+zpos = 0;
+sprite = 0;
 
 </string>
           </argument>
@@ -68,8 +63,35 @@ dying = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Get draw angle
-d_angle = player_obj.angle;
+            <string>///Initialize
+spr_from_move_state = true;
+dying = false;
+subi = 0;
+targetx = x;
+targety = y;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set direction
+dir = choose(-1, 1);
 
 </string>
           </argument>
@@ -79,6 +101,66 @@ d_angle = player_obj.angle;
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Set target and change sprite before</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>move_towards</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>targetx</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>targety</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>move_spd</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -93,8 +175,22 @@ d_angle = player_obj.angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Get draw angle
-d_angle = player_obj.angle;
+            <string>///Set sprite
+if (!dying)
+{
+    if (spr_from_move_state)
+    { 
+        if ((x != targetx) || (y != targety))
+        {
+            if (point_distance(CAM_OBJ.x, CAM_OBJ.y, x, y) &gt; point_distance(CAM_OBJ.x, CAM_OBJ.y, xprevious, yprevious))
+                sprite = walkb_spr;
+            else sprite = walkf_spr;
+        }
+        else sprite = stand_spr;
+    }
+}
+
+zpos = sprite_get_height(sprite)/2;
 
 </string>
           </argument>
@@ -116,14 +212,28 @@ d_angle = player_obj.angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Hit me with raycasts
-if raycast_2d_spr(ray_spr, player_obj.x, player_obj.y, x, y, d_angle, d_angle)
-    in_angle = true;
-else in_angle = false;
+            <string>///Do animation
+subi = subimg_animation(sprite, subi, sprite_get_speed(sprite));
 
 </string>
           </argument>
         </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>203</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_kill_object</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="8" enumb="0">
@@ -143,19 +253,60 @@ else in_angle = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw sprite
-if (ISPERSPECTIVE)
-{
-    var zpos = -sprite_get_height(sprite)/2;
-    if (dying) then subi = dedi;
-    draw_3dspr_angle(sprite, floor(subi), x, y, zpos, 1, d_angle, looking_right);
-}
-else
-{
-    image_angle = d_angle;
-    draw_self();
-    draw_sprite(target_test, 0, targetx, targety);
-}
+            <string>/// draw_3dspr_angle
+draw_3dspr_angle(sprite, subi, x, y, zpos, dir, 1, d_angle);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>ISPERSPECTIVE</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw self from above
+draw_self();
+draw_sprite(target_spr, 0, targetx, targety);
 
 </string>
           </argument>

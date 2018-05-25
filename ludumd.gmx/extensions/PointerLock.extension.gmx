@@ -36,6 +36,9 @@
         <Config name="Default">
           <CopyToMask>98336</CopyToMask>
         </Config>
+        <Config name="PerspectiveOff">
+          <CopyToMask>98336</CopyToMask>
+        </Config>
       </ConfigOptions>
       <ProxyFiles/>
       <functions>
@@ -116,6 +119,9 @@
         <Config name="Default">
           <CopyToMask>123145504686274</CopyToMask>
         </Config>
+        <Config name="PerspectiveOff">
+          <CopyToMask>123145504686274</CopyToMask>
+        </Config>
       </ConfigOptions>
       <ProxyFiles/>
       <functions>
@@ -194,6 +200,9 @@
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
+          <CopyToMask>123146358329582</CopyToMask>
+        </Config>
+        <Config name="PerspectiveOff">
           <CopyToMask>123146358329582</CopyToMask>
         </Config>
       </ConfigOptions>

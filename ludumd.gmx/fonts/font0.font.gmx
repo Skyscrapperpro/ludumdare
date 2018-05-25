@@ -10,7 +10,8 @@
   <includeTTF>0</includeTTF>
   <TTFName></TTFName>
   <texgroups>
-    <texgroup0>2</texgroup0>
+    <texgroup0>0</texgroup0>
+    <texgroup1>0</texgroup1>
   </texgroups>
   <ranges>
     <range0>32,127</range0>

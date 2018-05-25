@@ -25,9 +25,36 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Setup raycast and draw
+            <string>///Cuboid setup
+bak[5] = side_bgr;
+bak[4] = side_bgr;
+bak[3] = -1;
+bak[2] = side_bgr;
+bak[1] = -1;
+bak[0] = cheesebox_bgr;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Ingredient id
 subi = 3;
-bgr_top = cheesebox_bgr;
 
 </string>
           </argument>

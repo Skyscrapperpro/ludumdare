@@ -14,11 +14,11 @@ var xyangle = -argument9 - 90;
 var zangle = argument10;
 
 var ret;
-ret[0] = false;
-ret[1] = 0;
-ret[2] = 0;
-ret[3] = 0;
 ret[4] = 0;
+ret[3] = 0;
+ret[2] = 0;
+ret[1] = 0;
+ret[0] = false;
 
 var xclose,yclose,zclose;
 //var xi,yi,zi,di;
@@ -76,11 +76,11 @@ if (cos(degtorad(xyangle)) != 0)
     yi=di*sin(degtorad(xyangle))+originy;
     if ((zi>min(z1,z2)) && (zi<max(z1,z2)) && (yi>min(y1,y2)) && (yi<max(y1,y2)) && ((ret[0]==false) || (ret[4]>di)))
     {
-        ret[0]=true;
-        ret[1]=xi;
-        ret[2]=yi;
-        ret[3]=zi;
         ret[4]=di;
+        ret[3]=zi;
+        ret[2]=yi;
+        ret[1]=xi;
+        ret[0]=true;
     }
 }
 
@@ -93,11 +93,11 @@ if (sin(degtorad(xyangle)) != 0)
     xi=di*cos(degtorad(xyangle))+originx;
     if ((zi>min(z1,z2)) && (zi<max(z1,z2)) && (xi>min(x1,x2)) && (xi<max(x1,x2)) && ((ret[0]==false) || (ret[4]>di)))
     {
-        ret[0]=true;
-        ret[1]=xi;
-        ret[2]=yi;
-        ret[3]=zi;
         ret[4]=di;
+        ret[3]=zi;
+        ret[2]=yi;
+        ret[1]=xi;
+        ret[0]=true;
     }
 }
 

@@ -11,46 +11,6 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
-            <script>reverse_position</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -68,7 +28,7 @@
             <string>/// Draw setup
 bgr_floor = floor_bgr;
 bgr_ceiling = ceiling_bgr;
-x1 = x - (background_get_width(bgr_floor) * FLOOR_WREP);
+x1 = x + (background_get_width(bgr_floor) * FLOOR_WREP);
 y1 = y + (background_get_height(bgr_floor) * FLOOR_HREP);
 tex0 = background_get_texture(bgr_floor);
 tex1 = background_get_texture(bgr_ceiling);
@@ -97,7 +57,7 @@ tex1 = background_get_texture(bgr_ceiling);
             <kind>1</kind>
             <string>///Draw
 d3d_draw_floor(x1, y, 0, x, y1, 0, tex0,  FLOOR_WREP, FLOOR_HREP);   
-if (ISPERSPECTIVE) d3d_draw_floor(x, y, -CEILING_H, x1, y1, -CEILING_H, tex1, FLOOR_WREP, FLOOR_HREP);
+if (ISPERSPECTIVE) d3d_draw_floor(x, y, CEILING_H, x1, y1, CEILING_H, tex1, FLOOR_WREP, FLOOR_HREP);
 
 </string>
           </argument>

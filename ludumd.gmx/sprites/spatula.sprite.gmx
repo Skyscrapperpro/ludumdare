@@ -7,14 +7,15 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>7</bbox_left>
-  <bbox_right>58</bbox_right>
-  <bbox_top>4</bbox_top>
-  <bbox_bottom>64</bbox_bottom>
+  <bbox_left>15</bbox_left>
+  <bbox_right>52</bbox_right>
+  <bbox_top>5</bbox_top>
+  <bbox_bottom>63</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>2</TextureGroup0>
+    <TextureGroup0>0</TextureGroup0>
+    <TextureGroup1>0</TextureGroup1>
   </TextureGroups>
   <For3D>0</For3D>
   <width>70</width>
@@ -28,11 +29,5 @@
     <frame index="5">images\spatula_5.png</frame>
     <frame index="6">images\spatula_6.png</frame>
     <frame index="7">images\spatula_7.png</frame>
-    <frame index="8">images\spatula_8.png</frame>
-    <frame index="9">images\spatula_9.png</frame>
-    <frame index="10">images\spatula_10.png</frame>
-    <frame index="11">images\spatula_11.png</frame>
-    <frame index="12">images\spatula_12.png</frame>
-    <frame index="13">images\spatula_13.png</frame>
   </frames>
 </sprite>

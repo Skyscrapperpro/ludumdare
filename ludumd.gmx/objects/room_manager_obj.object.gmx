@@ -25,46 +25,6 @@
         <arguments>
           <argument>
             <kind>9</kind>
-            <script>reverse_position</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
             <script>cust_array</script>
           </argument>
           <argument>
@@ -105,8 +65,33 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Globals
+global.play = false;
+global.isgameover = false;
+global.sh_sup = shaders_are_supported();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Initialize level
-global.level = 3;
+global.level = 0;
 
 </string>
           </argument>
@@ -129,16 +114,6 @@ global.level = 3;
           <argument>
             <kind>1</kind>
             <string>/// Arrays used in lines code
-/*
-//Number of customers per line array: lines
-for (i = 0; i &lt; LINES_AMOUNT; i++)
-    lines[i] = 0;
-
-//ID of last customer: customer[line]
-for (i = 0; i &lt; LINES_AMOUNT; i++)
-    customers[i] = -1;
-*/
-
 for (var i = 0; i &lt; LINES_AMOUNT; i++)
     global.line_ids[i] = ds_list_create();
 
@@ -162,7 +137,7 @@ for (var i = 0; i &lt; LINES_AMOUNT; i++)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Alarm manager
+            <string>///Start alarm
 zombie_marg = ZOMBIE_ACTIVATION;
 
 </string>
@@ -185,8 +160,17 @@ zombie_marg = ZOMBIE_ACTIVATION;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Globals
-global.play = false;
+            <string>///Room start
+if (ISPERSPECTIVE) then d3d_start();
+draw_texture_flush();
+draw_set_color(c_white);
+audio_stop_all();
+audio_play_sound(cooking_music, 0, true);
+draw_set_alpha_test(true);
+draw_set_alpha_test_ref_value(1);
+draw_set_font(font0);
+d3d_set_hidden(true);
+d3d_set_culling(true);
 
 </string>
           </argument>
@@ -211,24 +195,24 @@ global.play = false;
           <argument>
             <kind>1</kind>
             <string>///Generate customers
-if (generated++ &lt; zombie_marg)
+if (!global.isgameover)
 {
-    if (player_obj.gameoverval==0) //and
-    if (!instance_exists(zombie_obj))
-        instance_create(x, y, customer_obj);
+    if (generated++ &lt; zombie_marg)
+    {
+         //and
+        if (!instance_exists(zombie_obj))
+            instance_create(x, y, customer_obj);
+    }
+    else
+    {
+        event_spawn_zombies();
+        zombie_marg = ZOMBIE_ACTIVATION;
+        generated = 0;
+    }
+    
+    //Reset alarm
+    alarm[0] = CUSTOMER_ALARM;
 }
-else
-{
-    music_switch(1);
-    repeat(ZOMBIE_AMOUNT) instance_create(x, y, zombie_obj);
-    event_auto_rotate();
-    if (player_obj.handitem != 1) then instance_activate_object(gunitem_obj);
-    zombie_marg = ZOMBIE_ACTIVATION;
-    generated = 0;
-}
-
-//Reset alarm
-alarm[0] = CUSTOMER_ALARM;
     
 </string>
           </argument>
@@ -276,14 +260,15 @@ if (!global.play) if (START) then event_initialize_manager(id);
           <argument>
             <kind>1</kind>
             <string>///restart from game over
-if (player_obj.gameoverval==1)
+if (global.isgameover)
+{
     if (part_system_exists(player_obj.titlepartsis)) then part_system_clear(player_obj.titlepartsis);
     if (RESTARTKEY)
     {
         room_restart();
         if (mouse_is_locked()) then mouse_unlock();
     }
-
+}
 </string>
           </argument>
         </arguments>

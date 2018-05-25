@@ -10,14 +10,14 @@ var ang = argument6;
 var sclx = argument7;
 
 var tex = background_get_texture(bgr);
-var difx = (lengthdir_x(w * sclx, ang)/2);
-var dify = (lengthdir_y(w * sclx, ang)/2);
+var difx = lengthdir_x(w * sclx, ang)/2;
+var dify = lengthdir_y(w * sclx, ang)/2;
 var x0 = xpos + difx;
 var y0 = ypos + dify;
-var z0 = zpos - (h/2);
+var z0 = zpos + (h/2);
 var x1 = xpos - difx;
 var y1 = ypos - dify;
-var z1 = zpos + (h/2);
+var z1 = zpos - (h/2);
 
 d3d_draw_wall(x0, y0, z0, x1, y1, z1, tex, sclx, 1);
 

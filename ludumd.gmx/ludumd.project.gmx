@@ -2,6 +2,7 @@
 <assets>
   <Configs name="configs">
     <Config>Configs\Default</Config>
+    <Config>Configs\PerspectiveOff</Config>
   </Configs>
   <NewExtensions>
     <extension index="0">extensions\PointerLock</extension>
@@ -49,11 +50,13 @@
     </sprites>
     <sprites name="Customers">
       <sprite>sprites\customer_dialog</sprite>
-      <sprite>sprites\customer</sprite>
+      <sprite>sprites\customer_stand</sprite>
+      <sprite>sprites\customer_walk</sprite>
       <sprite>sprites\customer_ded</sprite>
       <sprite>sprites\customer_talk</sprite>
       <sprite>sprites\customer_back</sprite>
-      <sprite>sprites\girl</sprite>
+      <sprite>sprites\girl_stand</sprite>
+      <sprite>sprites\girl_walk</sprite>
       <sprite>sprites\girl_ded</sprite>
       <sprite>sprites\girl_talk</sprite>
       <sprite>sprites\girl_back</sprite>
@@ -64,6 +67,7 @@
       <sprite>sprites\gunshot</sprite>
       <sprite>sprites\life</sprite>
       <sprite>sprites\spatula</sprite>
+      <sprite>sprites\spatula_move</sprite>
       <sprite>sprites\target_spr</sprite>
       <sprite>sprites\money</sprite>
       <sprite>sprites\title</sprite>
@@ -109,23 +113,29 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="General functions">
+      <scripts name="Requeriments for other scripts">
+        <script>scripts\clamp_angle.gml</script>
+        <script>scripts\do_collision_move.gml</script>
+        <script>scripts\var_to_target.gml</script>
+        <script>scripts\cycle_value.gml</script>
+      </scripts>
+      <script>scripts\move_towards.gml</script>
       <script>scripts\mouse_x_speed.gml</script>
       <script>scripts\mouse_y_speed.gml</script>
-      <script>scripts\do_collision_x_first.gml</script>
-      <script>scripts\do_collision_y.gml</script>
-      <script>scripts\var_to_target.gml</script>
-      <script>scripts\add_angle.gml</script>
       <script>scripts\pixelate.gml</script>
       <script>scripts\draw_3dspr_angle.gml</script>
       <script>scripts\draw_3dbgr_angle.gml</script>
       <script>scripts\raycast_3d_spr.gml</script>
+      <script>scripts\raycast_3d_plane.gml</script>
       <script>scripts\raycast_2d_spr.gml</script>
       <script>scripts\raycast_box.gml</script>
       <script>scripts\array_delete_element.gml</script>
-      <script>scripts\reverse_position.gml</script>
       <script>scripts\zreal.gml</script>
       <script>scripts\rotating_point_relative.gml</script>
       <script>scripts\nearest_raycast.gml</script>
+      <script>scripts\draw_3dtext_vertical.gml</script>
+      <script>scripts\draw_cuboid.gml</script>
+      <script>scripts\subimg_animation.gml</script>
     </scripts>
     <scripts name="Events">
       <script>scripts\event_game_over.gml</script>
@@ -146,17 +156,21 @@
       <script>scripts\event_initialize_manager.gml</script>
       <script>scripts\event_delete_customer.gml</script>
       <script>scripts\event_grillfog.gml</script>
+      <script>scripts\event_spawn_zombies.gml</script>
     </scripts>
     <script>scripts\cust_array.gml</script>
+    <script>scripts\sprite_get_speed.gml</script>
     <script>scripts\spat_to_burger.gml</script>
     <script>scripts\check_line.gml</script>
     <script>scripts\set_customer_target.gml</script>
     <script>scripts\music_switch.gml</script>
     <script>scripts\draw_score.gml</script>
-    <script>scripts\text_effect.gml</script>
+    <script>scripts\create_burger.gml</script>
+    <script>scripts\burger_get_price.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
+    <shader type="GLSLES">shaders\flip_shd.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -200,6 +214,65 @@
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
+  <constants number="57">
+    <constant name="LEFT">(keyboard_check(ord("A")) || (gamepad_axis_value(0, gp_axislh) &lt; -0.5))</constant>
+    <constant name="RIGHT">(keyboard_check(ord("D")) || (gamepad_axis_value(0, gp_axislh) &gt; +0.5))</constant>
+    <constant name="FORWARD">(keyboard_check(ord("W")) || (gamepad_axis_value(0, gp_axislv) &lt; -0.5))</constant>
+    <constant name="BACKWARDS">(keyboard_check(ord("S")) || (gamepad_axis_value(0, gp_axislv) &gt; +0.5))</constant>
+    <constant name="LEFTCLICK">(mouse_check_button_pressed(mb_left) || gamepad_button_check_pressed(0, gp_face1) || gamepad_button_check_pressed(0, gp_shoulderrb) || gamepad_button_check_pressed(0, gp_shoulderr) || gamepad_button_check_pressed(0, gp_shoulderlb) || gamepad_button_check_pressed(0, gp_shoulderl))</constant>
+    <constant name="RIGHTCLICK">(mouse_check_button_pressed(mb_right) || gamepad_button_check_pressed(0, gp_face3))</constant>
+    <constant name="MIDDLECLICK">mouse_check_button_pressed(mb_middle)</constant>
+    <constant name="START">(mouse_check_button_pressed(mb_left) || keyboard_check_pressed(vk_enter) || gamepad_button_check_pressed(0, gp_start))</constant>
+    <constant name="MOUSESENS">0.06</constant>
+    <constant name="ANGREF">180</constant>
+    <constant name="CAM_OBJ">player_obj</constant>
+    <constant name="RESTARTKEY">(keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter) || gamepad_button_check_pressed(0, gp_start))</constant>
+    <constant name="CURSOR">cr_none</constant>
+    <constant name="HIGH_NUMBER">1000</constant>
+    <constant name="ISPERSPECTIVE">true</constant>
+    <constant name="PIXEL_LENGTH">4</constant>
+    <constant name="CAM_Z">50</constant>
+    <constant name="CHAR_ACC">0.2</constant>
+    <constant name="CHAR_SPD">3</constant>
+    <constant name="AUTOCAM_SPD">5</constant>
+    <constant name="LEVEL_RATIO">0.5</constant>
+    <constant name="STARTING_LIFE">3</constant>
+    <constant name="MAX_ING">10</constant>
+    <constant name="PRICE_INGREDIENT">0.5</constant>
+    <constant name="PRICE_BURGER">1</constant>
+    <constant name="TIME_TO_COOK">60</constant>
+    <constant name="ITEM_RANGE">100</constant>
+    <constant name="CRY_FREQ">30</constant>
+    <constant name="LINES_AMOUNT">3</constant>
+    <constant name="FIRST_LINE_X">156</constant>
+    <constant name="LINES_SEP">50</constant>
+    <constant name="CUSTOMER_SPD">1</constant>
+    <constant name="CUSTOMER_SEP_X">random_range(-10, 10)</constant>
+    <constant name="CUSTOMER_SEP_Y">random_range(18, 28)</constant>
+    <constant name="CUSTOMER_ALARM">irandom_range(240, 300)</constant>
+    <constant name="DIALOG_DIST_X">20</constant>
+    <constant name="DIALOG_DIST_Z">3</constant>
+    <constant name="ZOMBIE_ACTIVATION">irandom_range(3, 6)</constant>
+    <constant name="ZOMBIE_AMOUNT">irandom_range(4, 10)</constant>
+    <constant name="ZOMBIE_SPD">0.5</constant>
+    <constant name="ZOM_POS_VARIATION">random_range(-20, 20)</constant>
+    <constant name="ZOMBIE_ATTACK_RANGE">20</constant>
+    <constant name="BURGER_SCALE">0.3</constant>
+    <constant name="ING_SEP">3</constant>
+    <constant name="FLOOR_WREP">8</constant>
+    <constant name="FLOOR_HREP">10</constant>
+    <constant name="WALL_Z">32</constant>
+    <constant name="TABLE_Z">30</constant>
+    <constant name="CEILING_H">80</constant>
+    <constant name="PLATE_ELEV">2</constant>
+    <constant name="PLATE_SEP">20</constant>
+    <constant name="LIFE_SEP">10</constant>
+    <constant name="GOBLINKRATE">25</constant>
+    <constant name="DISP_SPD">10</constant>
+    <constant name="PART_LIFE">30</constant>
+    <constant name="PART_TIME_VAR">0</constant>
+    <constant name="PART_TIME_MIN">10</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>

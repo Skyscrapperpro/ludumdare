@@ -11,46 +11,6 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
-            <script>reverse_position</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -89,14 +49,14 @@ if (!ISPERSPECTIVE) depth = -1;
           <argument>
             <kind>1</kind>
             <string>///Cries array
-cry[0] = cry0_snd;
-cry[1] = cry1_snd;
-cry[2] = cry3_snd;
-cry[3] = cry3_snd;
-cry[4] = cry4_snd;
-cry[5] = zombie0_snd;
-cry[6] = zombie1_snd;
 cry[7] = zombie2_snd;
+cry[6] = zombie1_snd;
+cry[5] = zombie0_snd;
+cry[4] = cry4_snd;
+cry[3] = cry3_snd;
+cry[2] = cry3_snd;
+cry[1] = cry1_snd;
+cry[0] = cry0_snd;
 
 </string>
           </argument>
@@ -212,7 +172,6 @@ taken_plate = -1;
 
 lifeval = STARTING_LIFE;
 scoreval = 0;
-gameoverval = 0;
 goindex = 0;
 gotimer = 0;
 alpgo = 0;
@@ -286,8 +245,7 @@ partgentim=PART_TIME_MIN+irandom(PART_TIME_VAR);
           <argument>
             <kind>1</kind>
             <string>/// Raycasts checking
-//Gun shot
-if (guni == (sprite_get_number(gunshot)/2))
+if (guni == (sprite_get_number(gunshot)/2)) //Gun shot
 {
     audio_play_sound(shot_snd, 2, false);
     
@@ -305,27 +263,52 @@ if (guni == (sprite_get_number(gunshot)/2))
     }
 }
 else if (LEFTCLICK) //and
-if (player_obj.handitem == 0)
+if (player_obj.handitem == 0) //No gun
 {
     var obj_shot = nearest_raycast(interactable_obj);
-    
-    if (obj_shot != noone) //and
-    if (taken_plate = -1)
+    if (obj_shot != noone)
     {
         switch (obj_shot.object_index)
         {
             case gunitem_obj:
+                if (taken_plate != -1)
+                {
+                    event_putdown_plate(plates_obj, taken_plate);
+                    taken_plate = -1;
+                }
                 handitem = 1;
                 instance_deactivate_object(gunitem_obj);
                 break;
             case customer_obj:
-                if (!obj_shot.satisf)
+                if (!instance_exists(zombie_obj)) //and
+                if (!obj_shot.satisf) //and
                 if (!obj_shot.dying)
-                if (!instance_exists(zombie_obj))
-                    event_customer_menu(obj_shot);
+                {
+                    if (taken_plate == -1) then event_customer_menu(obj_shot);
+                    else
+                    {
+                        if (event_ask_customer(obj_shot, taken_plate))
+                        {
+                            event_satisfy_customer(obj_shot);
+                            with (taken_plate) instance_destroy();
+                            taken_plate = -1;
+                        }
+                        else
+                        {
+                            event_kill_customer(obj_shot);
+                            with (taken_plate) instance_destroy();
+                            taken_plate = -1;
+                        }
+                    }
+                }
                 break;
             case trashcan_obj:
-                spatulaburger = 0;
+                if (taken_plate == -1) then spatulaburger = 0;
+                else
+                {
+                    with (taken_plate) instance_destroy();
+                    taken_plate = -1;
+                }
                 break;
             case burger_obj:
                 if (spatulaburger == 0)
@@ -354,49 +337,20 @@ if (player_obj.handitem == 0)
                 if (spatulaburger == 0) then spatulaburger = 7;
                 break;
             case plates_obj:
-                if (spatulaburger != 0)
+                if (taken_plate != -1)
                 {
-                    if event_place_ing(obj_shot, spatulaburger)
-                    spatulaburger = 0;
+                    event_putdown_plate(obj_shot, taken_plate);
+                    taken_plate = -1;
                 }
-                else taken_plate = event_take_plate(obj_shot);
-                break;
-        }
-    }
-    else
-    {
-        switch (obj_shot.object_index)
-        {
-            case gunitem_obj:
-                event_putdown_plate(plates_obj, taken_plate);
-                taken_plate = -1;
-                handitem = 1;
-                instance_deactivate_object(gunitem_obj);
-                break;
-            case customer_obj:
-                if (!instance_exists(zombie_obj))
+                else
                 {
-                    if (!event_ask_customer(obj_shot, taken_plate))
+                    if (spatulaburger != 0)
                     {
-                        event_kill_customer(obj_shot);
-                        with (taken_plate) instance_destroy();
-                        taken_plate = -1;
+                        if event_place_ing(obj_shot, spatulaburger)
+                        spatulaburger = 0;
                     }
-                    else if (!obj_shot.satisf)
-                    {
-                        event_satisfy_customer(obj_shot);
-                        with (taken_plate) instance_destroy();
-                        taken_plate = -1;
-                    }
+                    else taken_plate = event_take_plate(obj_shot);
                 }
-                break;
-            case trashcan_obj:
-                with (taken_plate) instance_destroy();
-                taken_plate = -1;
-                break;
-            case plates_obj:
-                event_putdown_plate(obj_shot, taken_plate);
-                taken_plate = -1;
                 break;
         }
     }
@@ -461,7 +415,7 @@ if (instance_exists(zombie_obj))
 }
 else if (alp &gt; 0) then alp -= 0.1;
 
-if (gameoverval == 1)
+if (global.isgameover)
 {
     if ((alpgo + 0.1) = 1)
     {
@@ -519,7 +473,7 @@ if (global.play)
     }
     
     // for game over screen
-    if (gameoverval==1)
+    if (global.isgameover)
     {
         gotimer++;
         if (gotimer==GOBLINKRATE)
@@ -589,7 +543,7 @@ if (!auto_rotation)
     {
         //Horizontal movement
         var mspeed = mouse_x_speed();
-        angle = add_angle(angle, mspeed, ANGREF);
+        angle = clamp_angle(angle - mspeed, ANGREF);
     
         //Vertical movement
         if (handitem != 1)
@@ -642,7 +596,7 @@ var yspeed_targ = 0;
 if (global.play)
 {
     //Get input angle
-    var move_angle = add_angle(angle, point_direction(0, 0, LEFT-RIGHT, BACKWARDS-FORWARD), ANGREF);
+    var move_angle = clamp_angle(angle + point_direction(0, 0, RIGHT-LEFT, BACKWARDS-FORWARD), ANGREF);
     
     //Set speed if you are moving
     if (RIGHT||LEFT||FORWARD||BACKWARDS)
@@ -657,12 +611,7 @@ xspeed = var_to_target(xspeed, xspeed_targ, CHAR_ACC);
 yspeed = var_to_target(yspeed, yspeed_targ, CHAR_ACC);
 
 ///Collisions
-xspeed = do_collision_x_first(xspeed);
-yspeed = do_collision_y(xspeed, yspeed);
-
-///Move
-x += xspeed;
-y += yspeed;
+do_collision_move(xspeed, yspeed);
 
 </string>
           </argument>
@@ -689,11 +638,11 @@ if (ISPERSPECTIVE)
 {
     xf = x - sin(degtorad(angle));
     yf = y - cos(degtorad(angle));
-    zf = -CAM_Z - sin(degtorad(zangle));
+    zf = CAM_Z - sin(degtorad(zangle));
 }
 else
 {
-    view_angle = 180 - angle;
+    view_angle = 360 - angle;
     view_xview = x - view_wview/2;
     view_yview = y - view_hview/2;
 }
@@ -957,7 +906,7 @@ for (var i = 0; i &lt; STARTING_LIFE; i++)
 draw_score(scoreval, money, view_wport + ((sdisplacement div 3) * PIXEL_LENGTH), 0, fa_right, c_green);
 
 //Draw game over
-if (gameoverval == 1)
+if (global.isgameover)
 {
     var sclgo = (view_wport/sprite_get_width(gameover));
     draw_sprite_ext(gameover, goindex, 0, 0, sclgo, sclgo, 0, -1, alpgo);
@@ -1044,13 +993,8 @@ if (titli &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Draw camera
-/*d3d_set_lighting(true);
-d3d_light_define_point(1, x, y, CAM_Z, 20000, c_white);
-d3d_light_enable(1, true);*/
-
-if (ISPERSPECTIVE) d3d_set_projection(x, y, -CAM_Z, xf, yf, zf, 0, 0, -1);
+if (ISPERSPECTIVE) d3d_set_projection(x, y, CAM_Z, xf, yf, zf, 0, 0, 1);
 else draw_sprite_ext(sprite_index, 0, x, y, 1, 1, angle, -1, 1);
-
 
 </string>
           </argument>
