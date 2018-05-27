@@ -19,9 +19,9 @@ var ray_is_in_angle;
 
 //Check top-down angle
 if ((total_angle > 90) || ((total_angle < 0) && (total_angle > -90)))
-    ray_is_in_angle = raycast_2d_spr(diag_l, xyorig, yorig, xdest, ydest, image_angle - diag_angle, angorig);
+    ray_is_in_angle = raycast_2d_spr(diag_l, xorig, yorig, xdest, ydest, image_angle - diag_angle, angorig);
 else
-    ray_is_in_angle = raycast_2d_spr(diag_l, xyorig, yorig, xdest, ydest, image_angle + diag_angle, angorig);
+    ray_is_in_angle = raycast_2d_spr(diag_l, xorig, yorig, xdest, ydest, image_angle + diag_angle, angorig);
 
 if (ray_is_in_angle)
 {
