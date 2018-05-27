@@ -1,4 +1,4 @@
-///clamp_angle(angle0, format)
+///clamp_angle(angle, format)
 
 //Returns angle sum between with limit being max vakue
 //If it is clamped, then the min value is -limit, otherwise it's limit-360

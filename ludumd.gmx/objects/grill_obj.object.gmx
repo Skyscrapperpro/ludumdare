@@ -86,7 +86,7 @@ fog_spd = fog_start/12;
             <kind>1</kind>
             <string>/// Floor raycast
 in_angle = false;
-/*var rcast;
+var rcast;
 
 rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
 
@@ -96,7 +96,7 @@ if (rcast[0])
     xcast = rcast[1];
     ycast = rcast[2];
     zcast = rcast[3];
-}*/
+}
 
 </string>
           </argument>

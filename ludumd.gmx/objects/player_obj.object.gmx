@@ -546,6 +546,7 @@ if (!auto_rotation)
         angle = clamp_angle(angle - mspeed, ANGREF);
     
         //Vertical movement
+        if (ISPERSPECTIVE)
         if (handitem != 1)
         {
             var mvspeed = mouse_y_speed();
@@ -556,16 +557,13 @@ if (!auto_rotation)
 }
 else //Auto rotation
 {
-    var hrottarget = 0;
-    var vrottarget = 0;
-    
     //Rotate
-    angle = var_to_target(angle, hrottarget, AUTOCAM_SPD);
-    zangle = var_to_target(zangle, vrottarget, AUTOCAM_SPD);
+    angle = var_to_target(angle, 0, AUTOCAM_SPD);
+    zangle = var_to_target(zangle, 0, AUTOCAM_SPD);
     
     //Check if rotation has finished
-    if (angle == hrottarget) //and
-    if (zangle == vrottarget)
+    if (angle == 0) //and
+    if (zangle == 0)
         auto_rotation = false;
 }
 

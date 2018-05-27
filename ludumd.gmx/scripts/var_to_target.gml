@@ -1,4 +1,4 @@
-///var_to_target(origin, target, speed)
+///var_to_target(moveable, target, speed)
 
 var moveable = argument0;
 var target = argument1;

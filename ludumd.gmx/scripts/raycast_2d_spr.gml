@@ -10,8 +10,7 @@ var ang = argument5;
 var angorig = argument6;
 
 var ret = false;
-//var w = sprite_get_width(spr);
-var difx = lengthdir_x(w, ang)/2;
+var difx = lengthdir_x(w, ang)/2; //Could be improved
 var dify = lengthdir_y(w, ang)/2;
 var x0 = xdest + difx;
 var y0 = ydest + dify;
@@ -32,8 +31,6 @@ if ((target > anglemin) && (target < anglemax))
 }
 else if ((angorig < anglemin) || (angorig > anglemax))
     ret = true;
-    
-//if (event_type == ev_draw) d3d_draw_wall(x0, y0, -CAM_Z, x1, y1, 0, sprite_get_texture(spr, 0), 1, 1)
-    
+     
 return ret;
 

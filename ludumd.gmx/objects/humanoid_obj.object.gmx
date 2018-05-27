@@ -306,7 +306,7 @@ draw_3dspr_angle(sprite, subi, x, y, zpos, dir, 1, d_angle);
             <kind>1</kind>
             <string>///Draw self from above
 draw_self();
-draw_sprite(target_spr, 0, targetx, targety);
+draw_sprite_ext(target_spr, 0, targetx, targety, 3, 3, 0, c_lime, 1);
 
 </string>
           </argument>

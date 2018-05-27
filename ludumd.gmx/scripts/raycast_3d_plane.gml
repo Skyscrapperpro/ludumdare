@@ -1,7 +1,7 @@
 ///raycast_3d_plane(width, length, xorig, yorig, zorig, x, y, z, rotation, horizontal_angle_orig, vertical_angle_orig)
 
 var w = argument0;
-var h = argument1;
+var l = argument1;
 var xorig = argument2;
 var yorig = argument3;
 var zorig = argument4;
@@ -12,17 +12,36 @@ var ang = argument8;
 var angorig = argument9;
 var zang = argument10;
 
-var ret = false;
-var dist = point_distance(xorig, yorig, xdest, ydest);
-var y0 = dist - h/2; //ToDo: this the arch of a circular line, not a rectangle
-var y1 = dist + h/2;
+var total_angle = clamp_angle(ang + angorig, ANGREF);
+var diag_angle = point_direction(0, 0, w, l); //Should be defined at create event (actually even the sums below should)
+var diag_l = point_distance(0, 0, w, l); //Should be defined at create event
+var ray_is_in_angle;
 
-var zangleto0 = clamp_angle(point_direction(0, zorig, y0, zdest), ANGREF);
-var zangleto1 = clamp_angle(point_direction(0, zorig, y1, zdest), ANGREF);
+//Check top-down angle
+if ((total_angle > 90) || ((total_angle < 0) && (total_angle > -90)))
+    ray_is_in_angle = raycast_2d_spr(diag_l, xyorig, yorig, xdest, ydest, image_angle - diag_angle, angorig);
+else
+    ray_is_in_angle = raycast_2d_spr(diag_l, xyorig, yorig, xdest, ydest, image_angle + diag_angle, angorig);
 
-if (zang > zangleto0) //and
-if (zang < zangleto1) //and
-if (raycast_2d_spr(w, xorig, yorig, xdest, ydest, ang, angorig)) then ret = true;
+if (ray_is_in_angle)
+{
+    //Check horizontal plane (copied from raycast_box)
+    zi = zclose;
+    if (sin(degtorad(zangle)) != 0)
+    {
+        di = (zi + originz)/sin(degtorad(zangle));
+        xi = di * cos(degtorad(xyangle)) + originx;
+        yi = di * sin(degtorad(xyangle)) + originy;
+        if ((xi > min(x1, x2)) && (xi < max(x1, x2)) && (yi > min(y1, y2)) && (yi < max(y1, y2)))
+        {
+            ret[0] = true;
+            ret[1] = xi;
+            ret[2] = yi;
+            ret[3] = zi;
+            ret[4] = di;
+        }
+    }
+}
 
 return ret;
 
