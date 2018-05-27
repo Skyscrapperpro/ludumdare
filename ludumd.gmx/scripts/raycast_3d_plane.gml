@@ -23,9 +23,10 @@ if ((total_angle > 90) || ((total_angle < 0) && (total_angle > -90)))
 else
     ray_is_in_angle = raycast_2d_spr(diag_l, xorig, yorig, xdest, ydest, image_angle + diag_angle, angorig);
 
+var ret = false;
 if (ray_is_in_angle)
 {
-    //Check horizontal plane (copied from raycast_box)
+    /*//Check horizontal plane (copied from raycast_box)
     zi = zclose;
     if (sin(degtorad(zangle)) != 0)
     {
@@ -40,7 +41,7 @@ if (ray_is_in_angle)
             ret[3] = zi;
             ret[4] = di;
         }
-    }
+    }*/
 }
 
 return ret;
