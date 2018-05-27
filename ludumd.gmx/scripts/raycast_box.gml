@@ -1,3 +1,4 @@
+///raycast_box(x1,y1,z1,x2,y2,z2,camx,camy,camz,camanglexy,camanglez)
 //looks for the nearest point inside a box (or a plane) that's also in a 3d line defined from a point and two angles
 //returns an array: [bool,x,y,z,dist], where the bool indicates the presence of collision
 
