@@ -89,7 +89,7 @@ fog_spd = fog_start/12;
 in_angle = false;
 var rcast;
 
-rcast = raycast_box(x + cornerx, y + cornery, z, x - cornerx, y - cornery, z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
+rcast = raycast_planez(x + cornerx, y + cornery, z, x - cornerx, y - cornery, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
 
 if (rcast[0])
 {
