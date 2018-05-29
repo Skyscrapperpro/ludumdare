@@ -10,7 +10,7 @@ var y2 = argument4;
 var z2 = argument5;
 var originx = argument6;        //coordinates for the line origin ("camera")
 var originy = argument7;
-var originz = -argument8;
+var originz = argument8;
 var xyangle = -argument9 - 90;  //horizontal angle for the camera
 var zangle = argument10;        //vertical angle for the camera
 
@@ -22,7 +22,7 @@ ret[1] = 0;                     //intersection coordinates (x)
 ret[0] = false;                 //intersection bool
 
 var xclose,yclose,zclose;       //closest box coordinate to the camera (it doesn't make sense to actually check both)
-var xi,yi,zi,di;                //working variables for the return vector
+var xi,yi,zi,di;                //working variables for the return vector (make public for debug commenting this line)
 
 //---LOOK FOR THE CLOSEST COORDINATES TO THE CAMERA---
 

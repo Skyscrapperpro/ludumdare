@@ -55,7 +55,7 @@ sprite[0] = burger_grill0;
 
 timer_spr = burger_timer;
 h = sprite_get_height(sprite[0]) * BURGER_SCALE;
-zpos = grill_obj.zcast - h/4;
+zpos = grill_obj.zcast + h/4;
 ray_zpos = grill_obj.zcast - (5 * BURGER_SCALE);
 subi = 0;
 ray_w = 31 * BURGER_SCALE;

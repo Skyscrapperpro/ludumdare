@@ -36,7 +36,8 @@ w = sprite_get_width(sprite_index);
 l = sprite_get_height(sprite_index);
 z = w;
 z1 = z;
-
+cornerx=(cos(degtorad(image_angle))*w+sin(degtorad(image_angle))*l)/2;//corner distance to center
+cornery=(cos(degtorad(image_angle))*l+sin(degtorad(image_angle))*w)/2;
 </string>
           </argument>
         </arguments>
@@ -86,9 +87,9 @@ fog_spd = fog_start/12;
             <kind>1</kind>
             <string>/// Floor raycast
 in_angle = false;
-/*var rcast;
+var rcast;
 
-rcast = raycast_box(x + cornerx0, y + cornery0, -z, x + cornerx1, y + cornery1, -z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
+rcast = raycast_box(x + cornerx, y + cornery, z, x - cornerx, y - cornery, z1, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
 
 if (rcast[0])
 {
@@ -96,7 +97,7 @@ if (rcast[0])
     xcast = rcast[1];
     ycast = rcast[2];
     zcast = rcast[3];
-}*/
+}
 
 </string>
           </argument>
