@@ -25,8 +25,52 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Get draw angle
-d_angle = player_obj.angle;
+            <string>/// Initialize
+
+temp = 0;
+subi = 0;
+limit = sprite_get_number(burger_timer) - 0.5;
+divissor = limit/2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Sprites array
+
+sprite[2] = burger_grill2;
+sprite[1] = burger_grill1;
+sprite[0] = burger_grill0;
 
 </string>
           </argument>
@@ -48,22 +92,34 @@ d_angle = player_obj.angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Spawn
-sprite[2] = burger_grill2;
-sprite[1] = burger_grill1;
-sprite[0] = burger_grill0;
+            <string>/// Z update
 
-timer_spr = burger_timer;
-h = sprite_get_height(sprite[0]) * BURGER_SCALE;
-zpos = grill_obj.zcast + h/4;
-ray_zpos = grill_obj.zcast - (5 * BURGER_SCALE);
-subi = 0;
+z = (sprite_get_height(sprite[0]) * BURGER_SCALE)/4;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Raycast collider setup
+
 ray_w = 31 * BURGER_SCALE;
 ray_h = 11 * BURGER_SCALE;
-
-timer_end = (sprite_get_number(timer_spr) - 1);
-timer_half = timer_end/2;
-timer_ratio = timer_half/TIME_TO_COOK;
 
 </string>
           </argument>
@@ -88,17 +144,12 @@ timer_ratio = timer_half/TIME_TO_COOK;
           <argument>
             <kind>1</kind>
             <string>/// Heat
-/*if (x &gt; (grill_obj.x - grill_obj.w/2))
-if (x &lt; (grill_obj.x + grill_obj.w/2))
-if (y &gt; (grill_obj.y - grill_obj.h/2))
-if (y &lt; (grill_obj.y + grill_obj.h/2))*/
-if (temp &lt;= timer_end)
-    temp += timer_ratio;
 
-// Esto hay que regularlo
-if (temp &lt;= timer_half) cook = 0;
-else if (temp &lt;= timer_end) cook = 1;
-else cook = 2;
+if (temp &lt; limit)
+{
+    temp = subimg_animation(burger_timer, temp, sprite_get_speed(burger_timer));
+    cook = temp div divissor;
+}
 
 </string>
           </argument>
@@ -120,12 +171,9 @@ else cook = 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Animation
-var ratio = 0.125;
-var ilimit = sprite_get_number(sprite[cook]);
+            <string>/// Animation
 
-if ((subi + ratio) &lt; ilimit) then subi += ratio;
-else subi = 0;
+subi = subimg_animation(sprite[cook], subi, sprite_get_speed(sprite[cook]));
 
 </string>
           </argument>
@@ -147,37 +195,15 @@ else subi = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Get draw angle
-d_angle = player_obj.angle;
+            <string>/// Calculate raycast
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Hit me with 3D raycasts
-var xorig = player_obj.x;
-var yorig = player_obj.y;
-
-in_angle = false;
-if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
-if (raycast_3d_spr(ray_w, ray_h, xorig, yorig, -CAM_Z, x, y, ray_zpos, d_angle, d_angle, zreal(player_obj.zangle)))
-    in_angle = true;
+if (LEFTCLICK &amp;&amp; (global.handitem == 0))
+{
+    if (point_distance_sqr(global.pl_x, global.pl_y, x, y) &lt; ITEM_RANGE_SQR) //and
+    if (raycast_3d_spr(ray_w, ray_h, global.pl_x, global.pl_y, CAM_Z, x, y, z, global.pl_dangle, global.pl_rangle, global.pl_zangle))
+        in_angle = true;
+}
+else in_angle = false; //Reset raycast
 
 </string>
           </argument>
@@ -202,11 +228,10 @@ if (raycast_3d_spr(ray_w, ray_h, xorig, yorig, -CAM_Z, x, y, ray_zpos, d_angle, 
           <argument>
             <kind>1</kind>
             <string>/// Draw sprite
-if (ISPERSPECTIVE)
-{
-    draw_3dspr_angle(sprite[cook], subi, x, y, zpos, BURGER_SCALE, BURGER_SCALE, d_angle);
-    draw_3dspr_angle(timer_spr, floor(temp), x, y, zpos + h, 0.5, 0.5, d_angle);
-}
+
+draw_3dspr_angle(sprite[cook], subi, x, y, z, BURGER_SCALE, BURGER_SCALE, global.pl_dangle);
+draw_3dspr_angle(burger_timer, temp, x, y, ztimer, 0.5, 0.5, global.pl_dangle);
+if (!ISPERSPECTIVE) then draw_self();
 
 </string>
           </argument>

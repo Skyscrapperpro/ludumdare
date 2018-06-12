@@ -25,10 +25,57 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize
-arraypos = 0;
-burger[arraypos] = 0;
+            <string>/// Initialize
+
+burger = ds_list_create();
 finished = false;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Cuboid setup
+
+bak[5] = side_bgr;
+bak[4] = side_bgr;
+bak[3] = -1;
+bak[2] = side_bgr;
+bak[1] = -1;
+bak[0] = side_bgr;
+w = sprite_get_width(sprite_index);
+l = sprite_get_height(sprite_index);
+h = 25;
+z = h/2;
 
 </string>
           </argument>
@@ -50,17 +97,36 @@ finished = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Cuboid setup
-bak[5] = side_bgr;
-bak[4] = side_bgr;
-bak[3] = -1;
-bak[2] = side_bgr;
-bak[1] = -1;
-bak[0] = side_bgr;
-w = sprite_get_width(sprite_index);
-l = sprite_get_height(sprite_index);
-z = 25;
-z1 = z;
+            <string>/// Plate setup
+
+hplate = h + PLATE_ELEV;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Raycast collider setup
+
+ray_w = 32 * BURGER_SCALE;
+ray_h = sprite_get_height(ingredients) * BURGER_SCALE;
+
+ray_z = hplate + ray_h/2;
 
 </string>
           </argument>
@@ -83,17 +149,14 @@ z1 = z;
           <argument>
             <kind>1</kind>
             <string>/// Sprite setup
-bgr_plate = plate_bgr;
-spr = refrigerio;
-ing_spr = ingredients;
 
 xburg = x + rotating_point_relative(+w/4, 0, image_angle, false);
 yburg = y + rotating_point_relative(+w/4, 0, image_angle, true);
-zburg = z + PLATE_ELEV + 8;
+zburg = ray_z;
 
 xref = x + rotating_point_relative(-w/4, 0, image_angle, false);
 yref = y + rotating_point_relative(-w/4, 0, image_angle, true);
-zref = z + sprite_get_height(spr)/2;
+zref = hplate + sprite_get_height(refrigerio)/2;
 
 </string>
           </argument>
@@ -117,13 +180,27 @@ zref = z + sprite_get_height(spr)/2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Get draw angle
-d_angle = player_obj.angle;
+            <string>/// Calculate raycast
+
+if (LEFTCLICK &amp;&amp; (global.handitem != 2))
+{
+    if (point_distance_sqr(global.pl_x, global.pl_y, x, y) &lt; ITEM_RANGE_SQR)
+    {
+        //Raycasts check
+        if (raycast_3d_spr(ray_w, ray_h, global.pl_x, global.pl_y, CAM_Z, xburg, yburg, ray_z, global.pl_dangle, global.pl_rangle, global.pl_zangle))
+            in_angle = true;
+        else if (raycast_3d_plane(w, l, global.pl_x, global.pl_y, CAM_Z, x, y, h, image_angle, global.pl_rangle, global.pl_zangle))
+            in_angle = true;
+    }
+}
+else in_angle = false; //Reset raycast
 
 </string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="7" enumb="5">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -140,87 +217,9 @@ d_angle = player_obj.angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Reset raycast
-in_angle = false;
+            <string>/// Destroy list
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Raycast pre-setup
-var rz_angle = zreal(player_obj.zangle);
-var xorig = player_obj.x;
-var yorig = player_obj.y;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>point_distance(xorig, yorig, x, y)</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>ITEM_RANGE</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Calculate raycast
-if (raycast_3d_plane(w, l, xorig, yorig, CAM_Z, x, y, z + PLATE_ELEV, image_angle, d_angle, rz_angle))
-    in_angle = true;
-else if (raycast_3d_spr(16, 16, xorig, yorig, CAM_Z, xburg, yburg, zburg, d_angle, d_angle, rz_angle))
-    in_angle = true;
+ds_list_destroy(burger);
 
 </string>
           </argument>
@@ -259,14 +258,12 @@ else if (raycast_3d_spr(16, 16, xorig, yorig, CAM_Z, xburg, yburg, zburg, d_angl
           <argument>
             <kind>1</kind>
             <string>/// Draw
-draw_cuboid(x, y, z + PLATE_ELEV, w, l, 0, image_angle, bgr_plate);
-draw_3dspr_angle(spr, 0, xref, yref, zref, 1, 1, d_angle);
-if (arraypos &gt; 0)
-    for(var i = 0, zing; i &lt; array_length_1d(burger); i++)
-    {
-        zing = z + PLATE_ELEV + (ING_SEP * (i+1));
-        draw_3dspr_angle(ing_spr, burger[i], xburg, yburg - (0.1 * i), zing, 0.5, 0.5, d_angle);
-    }
+
+draw_cuboid(x, y, hplate, w, l, 0, image_angle, plate_bgr);
+draw_3dspr_angle(refrigerio, 0, xref, yref, zref, 1, 1, global.pl_dangle);
+if (ds_list_size(burger) &gt; 0)
+    for(var i = 0; i &lt; ds_list_size(burger); i++)
+        draw_3dspr_angle(ingredients, ds_list_find_value(burger, i), xburg, yburg - (0.1 * i), zburg + (ING_SEP * i), BURGER_SCALE, BURGER_SCALE, global.pl_dangle);
 
 </string>
           </argument>

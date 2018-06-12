@@ -6,9 +6,7 @@ var spd = argument2;
 if ((targetx != x) || (targety != y))
 {
     //Set angle
-    var m_angle = clamp_angle(point_direction(x, y, targetx, targety), ANGREF);
-    //if (m_angle != 0) then image_angle = m_angle + 90;
-    //This line breaks mask collision
+    var m_angle = point_direction(x, y, targetx, targety);
     
     //Set speed
     var xspeed = lengthdir_x(spd, m_angle);

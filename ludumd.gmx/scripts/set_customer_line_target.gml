@@ -1,8 +1,6 @@
-///set_customer_target(customer)
+///set_customer_line_target(customer)
 
-var obj = argument0;
-
-with (obj)
+with (argument0)
 {
     inittargety = table_obj.y - CUSTOMER_SEP_Y;
     repeat (last) inittargety -= CUSTOMER_SEP_Y;

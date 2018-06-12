@@ -3,12 +3,69 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>2</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Initialize
+
+generated = 0;
+partgentimer = 0;
+partgentim = PART_TIME;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Cries array
+
+cry[7] = zombie2_snd;
+cry[6] = zombie1_snd;
+cry[5] = zombie0_snd;
+cry[4] = cry4_snd;
+cry[3] = cry3_snd;
+cry[2] = cry3_snd;
+cry[1] = cry1_snd;
+cry[0] = cry0_snd;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>601</id>
@@ -66,32 +123,12 @@
           <argument>
             <kind>1</kind>
             <string>/// Globals
-global.play = false;
-global.isgameover = false;
-global.sh_sup = shaders_are_supported();
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Initialize level
+global.sh_sup = shaders_are_supported();
+global.play = false;
+global.scoreflt = 0;
 global.level = 0;
+global.oa = 0;
 
 </string>
           </argument>
@@ -114,6 +151,7 @@ global.level = 0;
           <argument>
             <kind>1</kind>
             <string>/// Arrays used in lines code
+
 for (var i = 0; i &lt; LINES_AMOUNT; i++)
     global.line_ids[i] = ds_list_create();
 
@@ -137,8 +175,28 @@ for (var i = 0; i &lt; LINES_AMOUNT; i++)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Start alarm
-zombie_marg = ZOMBIE_ACTIVATION;
+            <string>/// Room start
+
+//Start 3D drawing
+if (ISPERSPECTIVE) then d3d_start();
+draw_set_colour(c_white);
+d3d_set_hidden(true);
+d3d_set_culling(true);
+
+//Set alpha test
+draw_set_alpha_test(true);
+draw_set_alpha_test_ref_value(1);
+
+//Initialize texture page
+draw_texture_flush();
+draw_sprite(target_spr, 0, 0, 0);
+
+//Set font
+draw_set_font(font0);
+
+//Audio management
+audio_stop_all();
+//audio_play_sound(cooking_music, 0, true); //Must be added to press start event
 
 </string>
           </argument>
@@ -160,17 +218,74 @@ zombie_marg = ZOMBIE_ACTIVATION;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Room start
-if (ISPERSPECTIVE) then d3d_start();
-draw_texture_flush();
-draw_set_color(c_white);
-audio_stop_all();
-audio_play_sound(cooking_music, 0, true);
-draw_set_alpha_test(true);
-draw_set_alpha_test_ref_value(1);
-draw_set_font(font0);
-d3d_set_hidden(true);
-d3d_set_culling(true);
+            <string>/// GUI Size
+
+display_set_gui_size(view_wport, view_hport);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Title management
+
+titli=0;
+
+
+goindex = 0;
+gotimer = 0;
+alpgo = 0;
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Particle system creation
+
+titlepartsis = part_system_create();
+titleparttype = part_type_create();
+
+//Visuals for particles
+part_type_sprite(titleparttype, particle, false, false, false);
+part_type_scale(titleparttype, PIXEL_LENGTH, PIXEL_LENGTH);
+part_type_speed(titleparttype, 0, 0, 0, 0);
+part_type_gravity(titleparttype, PIXEL_LENGTH, 270);
+part_type_colour_mix(titleparttype, c_red, c_red);
+part_type_life(titleparttype, PART_LIFE, PART_LIFE);
+
+part_system_automatic_draw(titleparttype, false);
 
 </string>
           </argument>
@@ -194,18 +309,19 @@ d3d_set_culling(true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Generate customers
-if (!global.isgameover)
+            <string>/// Generate customers
+
+if (!instance_exists(game_over_obj))
 {
-    if (generated++ &lt; zombie_marg)
+    if (generated &lt; zombie_marg)
     {
-         //and
-        if (!instance_exists(zombie_obj))
-            instance_create(x, y, customer_obj);
+        if (!instance_exists(zombie_obj)) then instance_create(x, y, customer_obj);
+        generated++;
     }
     else
     {
         event_spawn_zombies();
+        audio_play_random(cry);
         zombie_marg = ZOMBIE_ACTIVATION;
         generated = 0;
     }
@@ -222,6 +338,48 @@ if (!global.isgameover)
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>global.play</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -236,8 +394,9 @@ if (!global.isgameover)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Press start
-if (!global.play) if (START) then event_initialize_manager(id);
+            <string>/// Press start
+
+if (START) then event_initialize_manager(id);
 
 </string>
           </argument>
@@ -259,14 +418,314 @@ if (!global.play) if (START) then event_initialize_manager(id);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///restart from game over
-if (global.isgameover)
+            <string>/// Animate title
+
+titli = cycle_value(-180, 180, titli, 5);
+titley = round(dsin(titli) * 2) * PIXEL_LENGTH;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Particle generation
+
+if (part_system_exists(titlepartsis))
 {
-    if (part_system_exists(player_obj.titlepartsis)) then part_system_clear(player_obj.titlepartsis);
-    if (RESTARTKEY)
+    partgentimer++;
+    if (partgentimer &gt;= partgentim)
     {
-        room_restart();
-        if (mouse_is_locked()) then mouse_unlock();
+        partgentimer = 0;
+        partgentim = PART_TIME;
+        switch(irandom(13))
+        {
+            case 0:
+                part_particles_create(titlepartsis,34*PIXEL_LENGTH,38*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 1:
+                part_particles_create(titlepartsis,49*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 2:
+                part_particles_create(titlepartsis,60*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 3:
+                part_particles_create(titlepartsis,79*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 4:
+                part_particles_create(titlepartsis,101*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 5:
+                part_particles_create(titlepartsis,116*PIXEL_LENGTH,35*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 6:
+                part_particles_create(titlepartsis,130*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 7:
+                part_particles_create(titlepartsis,40*PIXEL_LENGTH,74*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 8:
+                part_particles_create(titlepartsis,51*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 9:
+                part_particles_create(titlepartsis,66*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 10:
+                part_particles_create(titlepartsis,81*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 11:
+                part_particles_create(titlepartsis,90*PIXEL_LENGTH,77*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 12:
+                part_particles_create(titlepartsis,102*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            case 13:
+                part_particles_create(titlepartsis,121*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
+                break;
+            default:
+                part_particles_create(titlepartsis,34*PIXEL_LENGTH,38*PIXEL_LENGTH+titley,titleparttype,1);
+        }
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>421</id>
+        <kind>3</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Opening animation
+
+global.oa = var_to_target(global.oa, 1 + DISP_SPD, DISP_SPD);
+titley = -ceil(global.oa * 80) * PIXEL_LENGTH;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check if zombies are present and do noises
+
+if (instance_exists(zombie_obj) &amp;&amp; DO_CRY) then audio_play_random(cry);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Destroy particles
+
+if (part_type_exists(titleparttype)) then part_type_destroy(titleparttype);
+if (part_system_exists(titlepartsis)) then part_system_destroy(titlepartsis);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Destroy lists
+
+for (var i = 0; i &lt; LINES_AMOUNT; i++) ds_list_destroy(global.line_ids[i]);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw pixelated surface
+
+if (ISPERSPECTIVE) then pixelate(PIXEL_LENGTH);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw title
+
+//Draw catsoup
+if (!global.play) then draw_sprite_ext(catsoup, 0, 0, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+
+//Draw title sprite
+if (global.oa &lt;= 1) then draw_sprite_ext(title, 0, 0, titley, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+
+if (!global.play)
+{
+    //Draw particle system
+    if (part_system_exists(titlepartsis)) then part_system_drawit(titlepartsis);
+    
+    //Draw 'Press start' text
+    if (titli &gt; 0)
+    {
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
+        var c = c_olive;
+        draw_text_transformed_colour((view_wview * 0.5) + 4, view_hport - 24, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
+        var c = c_yellow;
+        draw_text_transformed_colour(view_wview * 0.5, view_hport - 28, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
     }
 }
 </string>
@@ -313,11 +772,12 @@ if (global.isgameover)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Quit / restart
-if (global.play) then room_restart();
-else game_end();
+            <string>/// Quit / restart
 
 if (mouse_is_locked()) then mouse_unlock();
+
+if (global.play) then room_restart();
+else game_end();
 
 </string>
           </argument>

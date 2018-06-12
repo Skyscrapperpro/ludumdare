@@ -1,19 +1,13 @@
-///var_to_target(moveable, target, speed)
+///var_to_target(moveable, target, ratio_per_frame)
 
 var moveable = argument0;
 var target = argument1;
-var ratio_per_frame = abs(argument2);
+var spd = abs(argument2);
 
 if (moveable < target)
-{
-    if ((moveable + ratio_per_frame) > target) { moveable = target; }
-    else moveable += ratio_per_frame;
-}
+    moveable = min(moveable + spd, target);
 else if (moveable > target)
-{
-    if ((moveable - ratio_per_frame) < target) { moveable = target; }
-    else moveable -= ratio_per_frame;
-}
+    moveable = max(moveable - spd, target);
 
 return moveable;
 

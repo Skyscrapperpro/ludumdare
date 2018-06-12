@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,12 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>/// Draw setup
-bgr_floor = floor_bgr;
-bgr_ceiling = ceiling_bgr;
-x1 = x + (background_get_width(bgr_floor) * FLOOR_WREP);
-y1 = y + (background_get_height(bgr_floor) * FLOOR_HREP);
-tex0 = background_get_texture(bgr_floor);
-tex1 = background_get_texture(bgr_ceiling);
+
+x1 = x + (background_get_width(floor_bgr) * FLOOR_WREP);
+y1 = y + (background_get_height(floor_bgr) * FLOOR_HREP);
+tex0 = background_get_texture(floor_bgr);
+tex1 = background_get_texture(ceiling_bgr);
 
 </string>
           </argument>
@@ -55,7 +54,8 @@ tex1 = background_get_texture(bgr_ceiling);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw
+            <string>/// Draw
+
 d3d_draw_floor(x1, y, 0, x, y1, 0, tex0,  FLOOR_WREP, FLOOR_HREP);   
 if (ISPERSPECTIVE) d3d_draw_floor(x, y, CEILING_H, x1, y1, CEILING_H, tex1, FLOOR_WREP, FLOOR_HREP);
 

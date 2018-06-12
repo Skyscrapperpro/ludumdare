@@ -1,4 +1,4 @@
-///raycast_3d_plane(width, length, xorig, yorig, zorig, x, y, z, rotation, horizontal_angle_orig, vertical_angle_orig)
+///raycast_3d_plane(width_x_to_angle, length_y_to_angle, xorig, yorig, zorig, x, y, z, rotation, horizontal_angle_orig, vertical_angle_orig)
 
 var w = argument0;
 var l = argument1;
@@ -12,36 +12,26 @@ var ang = argument8;
 var angorig = argument9;
 var zang = argument10;
 
-var total_angle = clamp_angle(ang + angorig, ANGREF);
-var diag_angle = point_direction(0, 0, w, l); //Should be defined at create event (actually even the sums below should)
-var diag_l = point_distance(0, 0, w, l); //Should be defined at create event
-var ray_is_in_angle;
-
-//Check top-down angle
-if ((total_angle > 90) || ((total_angle < 0) && (total_angle > -90)))
-    ray_is_in_angle = raycast_2d_spr(diag_l, xorig, yorig, xdest, ydest, image_angle - diag_angle, angorig);
-else
-    ray_is_in_angle = raycast_2d_spr(diag_l, xorig, yorig, xdest, ydest, image_angle + diag_angle, angorig);
-
 var ret = false;
-if (ray_is_in_angle)
+
+var angrel = angle_difference(angorig, ang);
+var dangrel = angle_difference(point_direction(xorig, yorig, xdest, ydest), ang);
+var dist = point_distance(xorig, yorig, xdest, ydest);
+var zrel = zdest - zorig;
+
+var zang_p = zangle_projection_x(zang, angrel);
+var distp = lengthdir_x(dist, dangrel);
+var a0 = darctan2(zrel, distp + w/2);
+var a1 = darctan2(zrel, distp - w/2);
+
+if ((zang_p < a0) && (zang_p > a1))
 {
-    /*//Check horizontal plane (copied from raycast_box)
-    zi = zclose;
-    if (sin(degtorad(zangle)) != 0)
-    {
-        di = (zi + originz)/sin(degtorad(zangle));
-        xi = di * cos(degtorad(xyangle)) + originx;
-        yi = di * sin(degtorad(xyangle)) + originy;
-        if ((xi > min(x1, x2)) && (xi < max(x1, x2)) && (yi > min(y1, y2)) && (yi < max(y1, y2)))
-        {
-            ret[0] = true;
-            ret[1] = xi;
-            ret[2] = yi;
-            ret[3] = zi;
-            ret[4] = di;
-        }
-    }*/
+    zang_p = zangle_projection_y(zang, angrel);
+    distp = -lengthdir_y(dist, dangrel);
+    a0 = darctan2(zrel, distp + l/2);
+    a1 = darctan2(zrel, distp - l/2);
+    
+    if ((zang_p < a0) && (zang_p > a1)) then ret = true;
 }
 
 return ret;

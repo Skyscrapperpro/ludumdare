@@ -36,6 +36,7 @@
       <sprite>sprites\editor_zombie</sprite>
       <sprite>sprites\editor_grill</sprite>
       <sprite>sprites\editor_trash</sprite>
+      <sprite>sprites\editor_trashplane</sprite>
       <sprite>sprites\editor_plates</sprite>
       <sprite>sprites\editor_gunitem</sprite>
       <sprite>sprites\editor_door</sprite>
@@ -72,6 +73,7 @@
       <sprite>sprites\money</sprite>
       <sprite>sprites\title</sprite>
       <sprite>sprites\catsoup</sprite>
+      <sprite>sprites\particle</sprite>
     </sprites>
     <sprites name="Shooter">
       <sprite>sprites\zombie</sprite>
@@ -87,6 +89,13 @@
       <sprite>sprites\burger_grill1</sprite>
       <sprite>sprites\burger_grill2</sprite>
       <sprite>sprites\burger_timer</sprite>
+      <sprite>sprites\trashcan_plane</sprite>
+    </sprites>
+    <sprites name="Miscelaneous">
+      <sprite>sprites\burgerposter_spr</sprite>
+      <sprite>sprites\borkposter_spr</sprite>
+      <sprite>sprites\burgersign_spr</sprite>
+      <sprite>sprites\door_spr</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -94,7 +103,6 @@
     <background>background\wall_bgr</background>
     <background>background\ceiling_bgr</background>
     <background>background\floor_bgr</background>
-    <background>background\door_bgr</background>
     <background>background\tabletop_bgr</background>
     <background>background\grilltop_bgr</background>
     <background>background\grillfront_bgr</background>
@@ -106,9 +114,6 @@
     <background>background\tomatobox_bgr</background>
     <background>background\trashcan_bgr</background>
     <background>background\plate_bgr</background>
-    <background>background\burgerposter_bgr</background>
-    <background>background\borkposter_bgr</background>
-    <background>background\burgersign_bgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -118,42 +123,52 @@
         <script>scripts\do_collision_move.gml</script>
         <script>scripts\cycle_value.gml</script>
       </scripts>
-      <script>scripts\var_to_target.gml</script>
-      <script>scripts\move_towards.gml</script>
+      <scripts name="Raycasts">
+        <script>scripts\raycast_2d_spr.gml</script>
+        <script>scripts\raycast_3d_spr.gml</script>
+        <script>scripts\raycast_3d_plane.gml</script>
+        <script>scripts\raycast_3d_plane_point.gml</script>
+        <script>scripts\raycast_box.gml</script>
+        <script>scripts\nearest_raycasted.gml</script>
+      </scripts>
+      <scripts name="3D drawing">
+        <script>scripts\draw_3dbgr_angle.gml</script>
+        <script>scripts\draw_3dspr_angle.gml</script>
+        <script>scripts\draw_3dtext_vertical.gml</script>
+        <script>scripts\draw_cuboid.gml</script>
+      </scripts>
       <script>scripts\mouse_x_speed.gml</script>
       <script>scripts\mouse_y_speed.gml</script>
       <script>scripts\pixelate.gml</script>
-      <script>scripts\draw_3dspr_angle.gml</script>
-      <script>scripts\draw_3dbgr_angle.gml</script>
-      <script>scripts\raycast_3d_spr.gml</script>
-      <script>scripts\raycast_3d_plane.gml</script>
-      <script>scripts\raycast_2d_spr.gml</script>
-      <script>scripts\raycast_planez.gml</script>
-      <script>scripts\raycast_box.gml</script>
-      <script>scripts\array_delete_element.gml</script>
-      <script>scripts\zreal.gml</script>
+      <script>scripts\move_towards.gml</script>
+      <script>scripts\var_to_target.gml</script>
+      <script>scripts\point_distance_sqr.gml</script>
       <script>scripts\rotating_point_relative.gml</script>
-      <script>scripts\nearest_raycast.gml</script>
-      <script>scripts\draw_3dtext_vertical.gml</script>
-      <script>scripts\draw_cuboid.gml</script>
       <script>scripts\subimg_animation.gml</script>
+      <script>scripts\zangle_projection_x.gml</script>
+      <script>scripts\zangle_projection_y.gml</script>
+      <script>scripts\zreal.gml</script>
+      <script>scripts\add_score.gml</script>
+      <script>scripts\draw_number_spr.gml</script>
+      <script>scripts\audio_play_random.gml</script>
+      <script>scripts\subimg_animation_end.gml</script>
     </scripts>
     <scripts name="Events">
       <script>scripts\event_game_over.gml</script>
       <script>scripts\event_auto_rotate.gml</script>
-      <script>scripts\event_customer_menu.gml</script>
+      <script>scripts\event_ask_customer.gml</script>
       <script>scripts\event_kill_zombie.gml</script>
       <script>scripts\event_kill_all_customers.gml</script>
       <script>scripts\event_kill_customer.gml</script>
+      <script>scripts\event_zombie_reset_target.gml</script>
       <script>scripts\event_last_zombie.gml</script>
       <script>scripts\event_grill_burger.gml</script>
       <script>scripts\event_place_ing.gml</script>
       <script>scripts\event_take_plate.gml</script>
       <script>scripts\event_putdown_plate.gml</script>
-      <script>scripts\event_ask_customer.gml</script>
+      <script>scripts\event_compare_burger.gml</script>
       <script>scripts\event_satisfy_customer.gml</script>
       <script>scripts\event_lose_life.gml</script>
-      <script>scripts\event_add_score.gml</script>
       <script>scripts\event_initialize_manager.gml</script>
       <script>scripts\event_delete_customer.gml</script>
       <script>scripts\event_grillfog.gml</script>
@@ -162,12 +177,13 @@
     <script>scripts\cust_array.gml</script>
     <script>scripts\sprite_get_speed.gml</script>
     <script>scripts\spat_to_burger.gml</script>
-    <script>scripts\check_line.gml</script>
-    <script>scripts\set_customer_target.gml</script>
+    <script>scripts\set_customer_line_target.gml</script>
     <script>scripts\music_switch.gml</script>
-    <script>scripts\draw_score.gml</script>
     <script>scripts\create_burger.gml</script>
     <script>scripts\burger_get_price.gml</script>
+    <script>scripts\check_nearest_customer.gml</script>
+    <script>scripts\away_or_towards_camera.gml</script>
+    <script>scripts\level_up.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pix.shader</shader>
@@ -177,45 +193,54 @@
     <font>fonts\font0</font>
   </fonts>
   <objects name="objects">
-    <objects name="Parents">
-      <object>objects\interactable_obj</object>
+    <object>objects\interactable_obj</object>
+    <objects name="Humanoids">
       <object>objects\humanoid_obj</object>
-      <object>objects\cuboid_obj</object>
-      <object>objects\generalbox_obj</object>
-    </objects>
-    <objects name="Static">
-      <object>objects\wall_obj</object>
-      <object>objects\floor_obj</object>
-      <object>objects\table_obj</object>
-      <object>objects\burgerposter_obj</object>
-      <object>objects\borkposter_obj</object>
-      <object>objects\burgersign_obj</object>
-    </objects>
-    <objects name="Used in shooter">
+      <object>objects\customer_obj</object>
       <object>objects\zombie_obj</object>
-      <object>objects\gunitem_obj</object>
     </objects>
-    <objects name="Used in burgers">
-      <object>objects\burgerbox_obj</object>
-      <object>objects\breadbox_obj</object>
-      <object>objects\lechugabox_obj</object>
-      <object>objects\cheesebox_obj</object>
-      <object>objects\tomatobox_obj</object>
+    <objects name="Cuboids">
+      <objects name="boxes">
+        <object>objects\generalbox_obj</object>
+        <object>objects\burgerbox_obj</object>
+        <object>objects\breadbox_obj</object>
+        <object>objects\lechugabox_obj</object>
+        <object>objects\cheesebox_obj</object>
+        <object>objects\tomatobox_obj</object>
+      </objects>
+      <object>objects\cuboid_obj</object>
       <object>objects\grill_obj</object>
       <object>objects\trashcan_obj</object>
       <object>objects\plates_obj</object>
-      <object>objects\taken_plate_obj</object>
+    </objects>
+    <objects name="Sprite items">
+      <object>objects\gunitem_obj</object>
       <object>objects\burger_obj</object>
+      <object>objects\trash_plane</object>
+    </objects>
+    <objects name="Scenery">
+      <objects name="Solid">
+        <object>objects\wall_obj</object>
+        <object>objects\table_obj</object>
+      </objects>
+      <objects name="Posters">
+        <object>objects\poster_obj</object>
+        <object>objects\burgerposter_obj</object>
+        <object>objects\borkposter_obj</object>
+        <object>objects\burgersign_obj</object>
+      </objects>
+      <object>objects\floor_obj</object>
+      <object>objects\door_obj</object>
     </objects>
     <object>objects\player_obj</object>
+    <object>objects\taken_plate_obj</object>
     <object>objects\room_manager_obj</object>
-    <object>objects\customer_obj</object>
-    <object>objects\door_obj</object>
+    <object>objects\game_over_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
-  <constants number="57">
+  <constants number="56">
     <constant name="LEFT">(keyboard_check(ord("A")) || (gamepad_axis_value(0, gp_axislh) &lt; -0.5))</constant>
     <constant name="RIGHT">(keyboard_check(ord("D")) || (gamepad_axis_value(0, gp_axislh) &gt; +0.5))</constant>
     <constant name="FORWARD">(keyboard_check(ord("W")) || (gamepad_axis_value(0, gp_axislv) &lt; -0.5))</constant>
@@ -226,7 +251,6 @@
     <constant name="START">(mouse_check_button_pressed(mb_left) || keyboard_check_pressed(vk_enter) || gamepad_button_check_pressed(0, gp_start))</constant>
     <constant name="MOUSESENS">0.06</constant>
     <constant name="ANGREF">180</constant>
-    <constant name="CAM_OBJ">player_obj</constant>
     <constant name="RESTARTKEY">(keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter) || gamepad_button_check_pressed(0, gp_start))</constant>
     <constant name="CURSOR">cr_none</constant>
     <constant name="HIGH_NUMBER">1000</constant>
@@ -241,9 +265,10 @@
     <constant name="MAX_ING">10</constant>
     <constant name="PRICE_INGREDIENT">0.5</constant>
     <constant name="PRICE_BURGER">1</constant>
+    <constant name="TIMER_HEIGHT">10</constant>
     <constant name="TIME_TO_COOK">60</constant>
-    <constant name="ITEM_RANGE">100</constant>
-    <constant name="CRY_FREQ">30</constant>
+    <constant name="ITEM_RANGE_SQR">10000</constant>
+    <constant name="DO_CRY">(irandom(30) == 1)</constant>
     <constant name="LINES_AMOUNT">3</constant>
     <constant name="FIRST_LINE_X">156</constant>
     <constant name="LINES_SEP">50</constant>
@@ -252,14 +277,14 @@
     <constant name="CUSTOMER_SEP_Y">random_range(18, 28)</constant>
     <constant name="CUSTOMER_ALARM">irandom_range(240, 300)</constant>
     <constant name="DIALOG_DIST_X">20</constant>
-    <constant name="DIALOG_DIST_Z">3</constant>
+    <constant name="DIALOG_DIST_Z">12</constant>
     <constant name="ZOMBIE_ACTIVATION">irandom_range(3, 6)</constant>
     <constant name="ZOMBIE_AMOUNT">irandom_range(4, 10)</constant>
     <constant name="ZOMBIE_SPD">0.5</constant>
     <constant name="ZOM_POS_VARIATION">random_range(-20, 20)</constant>
-    <constant name="ZOMBIE_ATTACK_RANGE">20</constant>
-    <constant name="BURGER_SCALE">0.3</constant>
-    <constant name="ING_SEP">3</constant>
+    <constant name="ZOMBIE_ATTACK_RANGE_SQR">400</constant>
+    <constant name="BURGER_SCALE">0.4</constant>
+    <constant name="ING_SEP">2.5</constant>
     <constant name="FLOOR_WREP">8</constant>
     <constant name="FLOOR_HREP">10</constant>
     <constant name="WALL_Z">32</constant>
@@ -269,10 +294,9 @@
     <constant name="PLATE_SEP">20</constant>
     <constant name="LIFE_SEP">10</constant>
     <constant name="GOBLINKRATE">25</constant>
-    <constant name="DISP_SPD">10</constant>
+    <constant name="DISP_SPD">0.1</constant>
     <constant name="PART_LIFE">30</constant>
-    <constant name="PART_TIME_VAR">0</constant>
-    <constant name="PART_TIME_MIN">10</constant>
+    <constant name="PART_TIME">irandom_range(10, 15)</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

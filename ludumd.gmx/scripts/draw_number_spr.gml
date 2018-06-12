@@ -1,12 +1,12 @@
-///draw_score(score, sprite, x, y, halign, text_color)
-var scoreval = string_format(argument0, 1, 2);
+///draw_number_spr(number, sprite, x, y, halign, text_color)
+var n = string_format(argument0, 1, 2);
 var spr = argument1;
 var xpos = argument2;
 var ypos = argument3;
 var ha = argument4;
 var col = argument5;
 
-var total_length = ((sprite_get_width(spr) + 2 + string_width(scoreval)) * PIXEL_LENGTH)
+var total_length = ((sprite_get_width(spr) + 2 + string_width(n)) * PIXEL_LENGTH)
 var total_height = ((sprite_get_height(spr) + 1) * PIXEL_LENGTH)
 
 var textx;
@@ -15,7 +15,7 @@ var sprx;
 switch(ha)
 {
     case fa_left:
-        textx = xpos + ((string_width(scoreval) + 1) * PIXEL_LENGTH);
+        textx = xpos + ((string_width(n) + 1) * PIXEL_LENGTH);
         break;
     case fa_center:
         textx = xpos + (total_length/2) - ((sprite_get_width(spr) + 1) * PIXEL_LENGTH);
@@ -30,8 +30,8 @@ draw_sprite_ext(spr, 0, sprx, ypos + total_height/2, PIXEL_LENGTH, PIXEL_LENGTH,
 draw_set_halign(fa_right);
 draw_set_valign(fa_top);
 draw_set_colour(c_dkgray);
-draw_text_transformed(textx + PIXEL_LENGTH, ypos + (-2 * PIXEL_LENGTH), scoreval, PIXEL_LENGTH, PIXEL_LENGTH, 0);
+draw_text_transformed(textx + PIXEL_LENGTH, ypos + (-2 * PIXEL_LENGTH), n, PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(col);
-draw_text_transformed(textx, ypos + (-3 * PIXEL_LENGTH), scoreval, PIXEL_LENGTH, PIXEL_LENGTH, 0);
+draw_text_transformed(textx, ypos + (-3 * PIXEL_LENGTH), n, PIXEL_LENGTH, PIXEL_LENGTH, 0);
 draw_set_colour(c_white);
 

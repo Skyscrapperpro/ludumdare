@@ -1,8 +1,6 @@
 ///event_kill_zombie(zombie)
 
-var ID = argument0;
-
-with (ID)
+with (argument0)
 {
     if (!dying)
     {

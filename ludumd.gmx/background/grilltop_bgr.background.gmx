@@ -14,7 +14,7 @@
     <TextureGroup1>0</TextureGroup1>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>64</width>
-  <height>64</height>
+  <width>55</width>
+  <height>54</height>
   <data>images\grilltop_bgr.png</data>
 </background>

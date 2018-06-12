@@ -1,9 +1,6 @@
 ///event_kill_customer(customer)
 
-var ID = argument0;
-
-
-with (ID)
+with (argument0)
 {
     if (!dying)
     {
@@ -16,7 +13,7 @@ with (ID)
         if (!satisf)
         {
             event_delete_customer(id);
-            event_lose_life();
+            event_lose_life(player_obj);
         }
     }
 }

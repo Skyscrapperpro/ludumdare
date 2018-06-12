@@ -1,31 +1,28 @@
 ///event_place_ing(plates_table, spatulaburger)
 
-var obj = argument0;
-var spat = spat_to_burger(argument1);
+var ID = argument0;
 
-if (!obj.finished)
+if (!ID.finished)
 {
-    if (spat == 2)
+    var spat = spat_to_burger(argument1);
+    var size = ds_list_size(ID.burger);
+    
+    //Add ingredient
+    if ((spat == 2) && (size > 0))
     {
-        with (obj)
-        {
-            if (arraypos > 0)
-            {
-                finished = true;
-                burger[arraypos] = 7;
-            }
-            else
-            {
-                burger[arraypos] = 2;
-                arraypos++;
-            }
-        }
+        ds_list_add(ID.burger, 7);
+        ID.finished = true;
     }
-    else
+    else ds_list_add(ID.burger, spat);
+    
+    //Update raycast heigth
+    with (ID)
     {
-        obj.burger[obj.arraypos] = spat;
-        obj.arraypos++;
+        ray_h += ING_SEP;
+        ray_z = hplate + ray_h/2;
     }
+    
+    //Return
     return true;
 }
 else return false;

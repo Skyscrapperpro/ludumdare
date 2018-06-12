@@ -1,7 +1,4 @@
-var ID = argument0;
+///event_grillfog(grill_id)
 
-with (ID)
-{
-    fog_range -= fog_spd;
-}
+with (argument0) fog_range -= fog_spd;
 

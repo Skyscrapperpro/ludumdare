@@ -11,6 +11,36 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Initialize
+
+spr_from_move_state = true;
+dying = false;
+subi = 0;
+targetx = x;
+targety = y;
+zpos = 32;
+sprite = walkf_spr;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>604</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -39,59 +69,35 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize (weird)
-zpos = 0;
-sprite = 0;
+            <string>/// Set direction
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Initialize
-spr_from_move_state = true;
-dying = false;
-subi = 0;
-targetx = x;
-targety = y;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Set direction
 dir = choose(-1, 1);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Do animation
+
+subi = subimg_animation(sprite, subi, sprite_get_speed(sprite));
 
 </string>
           </argument>
@@ -115,7 +121,7 @@ dir = choose(-1, 1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Set target and change sprite before</string>
+            <string>Set target or change sprite before</string>
           </argument>
         </arguments>
       </action>
@@ -175,45 +181,21 @@ dir = choose(-1, 1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set sprite
-if (!dying)
+            <string>/// Set sprite
+
+if (spr_from_move_state)
+switch(away_or_towards_camera())
 {
-    if (spr_from_move_state)
-    { 
-        if ((x != targetx) || (y != targety))
-        {
-            if (point_distance(CAM_OBJ.x, CAM_OBJ.y, x, y) &gt; point_distance(CAM_OBJ.x, CAM_OBJ.y, xprevious, yprevious))
-                sprite = walkb_spr;
-            else sprite = walkf_spr;
-        }
-        else sprite = stand_spr;
-    }
+    case 1:
+        sprite = walkf_spr;
+        break;
+    case -1:
+        sprite = walkb_spr;
+        break;
+    default:
+        sprite = stand_spr;
+        break;
 }
-
-zpos = sprite_get_height(sprite)/2;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Do animation
-subi = subimg_animation(sprite, subi, sprite_get_speed(sprite));
 
 </string>
           </argument>
@@ -253,8 +235,9 @@ subi = subimg_animation(sprite, subi, sprite_get_speed(sprite));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// draw_3dspr_angle
-draw_3dspr_angle(sprite, subi, x, y, zpos, dir, 1, d_angle);
+            <string>/// Draw sprite
+
+draw_3dspr_angle(sprite, subi, x, y, zpos, dir, 1, global.pl_dangle);
 
 </string>
           </argument>
@@ -304,7 +287,8 @@ draw_3dspr_angle(sprite, subi, x, y, zpos, dir, 1, d_angle);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw self from above
+            <string>/// Draw self from above
+
 draw_self();
 draw_sprite_ext(target_spr, 0, targetx, targety, 3, 3, 0, c_lime, 1);
 

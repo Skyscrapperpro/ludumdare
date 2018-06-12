@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Cuboid setup
+            <string>/// Cuboid setup
+
 bak[5] = side_bgr;
 bak[4] = -1;
 bak[3] = -1;
@@ -53,7 +54,8 @@ bak[0] = tomatobox_bgr;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Ingredient id
+            <string>/// Set ingredient id
+
 subi = 4;
 
 </string>

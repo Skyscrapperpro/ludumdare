@@ -1,27 +1,19 @@
-///event_grill_burger(grill)
+///event_grill_burger(grill, player)
 
 var obj = argument0;
+var player = argument1;
 
-if ((player_obj.spatulaburger == 1) || (player_obj.spatulaburger == 2) || (player_obj.spatulaburger == 3))
+if (player.spatulaburger == 1)
 {
     var burg = instance_create(obj.xcast, obj.ycast, burger_obj);
+    burg.z += obj.h;
     
     with (burg)
     {
-        cook = player_obj.spatulaburger - 1;
-        switch (cook)
-        {
-            case 1:
-                temp = timer_half;
-                break;
-            case 2:
-                temp = timer_end;
-                break;
-            default:
-                temp = 0;
-                break;
-        }
+        ztimer = z + TIMER_HEIGHT;
+        temp = 0;
+        cook = 0;
     }
-    with (player_obj) spatulaburger = 0;
+    with (player) spatulaburger = 0;
 }
 

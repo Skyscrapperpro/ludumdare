@@ -2,14 +2,12 @@
 
 var burger = argument0;
 
-var l = array_length_1d(burger);
+var l = array_length_1d(burger) - 1;
 var price = 0;
-for (var i = 0; i < l; i++)
+for (var i = 1; i < l; i++)
 {
     if (burger[i] == 3) then price += PRICE_BURGER;
-    else
-    if (burger[i] != 2) //and
-    if (burger[i] != 7) then price += PRICE_INGREDIENT;
+    else price += PRICE_INGREDIENT;
 }
 
 return price;

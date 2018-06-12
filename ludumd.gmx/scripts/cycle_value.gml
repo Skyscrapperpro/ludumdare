@@ -5,17 +5,10 @@ var end_pos = argument1;
 var moveable = argument2;
 var ratio_per_frame = abs(argument3);
 
-if (start_pos < end_pos)
-{
-    moveable += ratio_per_frame;
-    if (moveable >= end_pos) then moveable = start_pos + (moveable - end_pos);
-}
-else if (start_pos > end_pos)
-{
-    moveable -= ratio_per_frame;
-    if (moveable <= end_pos) then moveable = start_pos - (end_pos - moveable);
-}
-else moveable = start_pos;
+var dir = sign(end_pos - start_pos);
+
+moveable += dir * ratio_per_frame;
+if (dir * moveable >= dir * end_pos) then moveable = start_pos + dir * abs(moveable - end_pos);
 
 return moveable;
 

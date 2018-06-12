@@ -4,24 +4,27 @@ var w = argument0;
 var h = argument1;
 var xorig = argument2;
 var yorig = argument3;
-var zorig = argument4;
+var z0 = argument4;
 var xdest = argument5;
 var ydest = argument6;
-var zdest = argument7;
+var z1 = argument7;
 var ang = argument8;
 var angorig = argument9;
 var zang = argument10;
 
 var ret = false;
-var dist = point_distance(xorig, yorig, xdest, ydest);
-var z0 = zdest + h/2; //ToDo: this is not counting on sligth rotations of the object and perspective
-var z1 = zdest - h/2;
 
-var zangleto0 = clamp_angle(point_direction(0, zorig, dist, z0), ANGREF);
-var zangleto1 = clamp_angle(point_direction(0, zorig, dist, z1), ANGREF);
+//Reuse of variables for optimization
+//Could be improved
+z1 = z1 - z0; //z1 = relative height
+z0 = z1 + h/2; //z0 = point top
+z1 = z1 - h/2; //z1 = point bottom
+h = point_distance(xorig, yorig, xdest, ydest); //h = distance
 
-if (zang > zangleto0) //and
-if (zang < zangleto1) //and
+z0 = darctan2(z0, h); //z0 = angle top
+z1 = darctan2(z1, h); //z1 = angle bottom
+
+if ((zang < z0) && (zang > z1)) //and
 if (raycast_2d_spr(w, xorig, yorig, xdest, ydest, ang, angorig)) then ret = true;
 
 return ret;

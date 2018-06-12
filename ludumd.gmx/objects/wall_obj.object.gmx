@@ -26,9 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>/// Draw setup
-bgr = wall_bgr;
+
 z = CEILING_H/2;
 w = sprite_get_width(sprite_index);
+tex = background_get_texture(wall_bgr);
 
 </string>
           </argument>
@@ -52,9 +53,10 @@ w = sprite_get_width(sprite_index);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw plane
+            <string>/// Draw plane
+
+draw_3dbgr_angle(tex, x, y, z, w, CEILING_H, image_angle, image_xscale);
 if (!ISPERSPECTIVE) then draw_self();
-draw_3dbgr_angle(bgr, x, y, z, w, CEILING_H, image_angle, image_xscale);
 
 </string>
           </argument>
