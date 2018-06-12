@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Cuboid setup
+            <string>/// Cuboid setup
+
 bak[4] = side_bgr;
 bak[3] = -1;
 bak[2] = side_bgr;
@@ -52,7 +53,8 @@ bak[0] = burgerbox_bgr;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Ingredient id
+            <string>/// Set ingredient id
+
 subi = 0;
 
 </string>

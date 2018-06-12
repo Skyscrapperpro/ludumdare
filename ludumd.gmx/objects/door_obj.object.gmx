@@ -26,8 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Draw setup
-bgr = door_bgr;
-w = background_get_width(bgr);
+
+w = sprite_get_width(door_spr);
 
 </string>
           </argument>
@@ -50,7 +50,8 @@ w = background_get_width(bgr);
           <argument>
             <kind>1</kind>
             <string>/// Step setup
-maxw = background_get_width(bgr)/2;
+
+maxw = w/2;
 
 </string>
           </argument>
@@ -74,15 +75,12 @@ maxw = background_get_width(bgr)/2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Open doors
-open_amount = 0;
+            <string>/// Open doors
 
 var near = instance_nearest(x, y, humanoid_obj);
-if (near != noone)
-{
-    var dist = abs(y - near.y);
-    if (dist &lt; maxw) then open_amount = maxw - dist;
-}
+
+if (near != noone) then open_amount = max(maxw - abs(y - near.y), 0);
+else open_amount = 0;
 
 </string>
           </argument>
@@ -106,9 +104,10 @@ if (near != noone)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw plane
-draw_3dbgr_angle(bgr, x + w/2 + open_amount, y, CEILING_H/2, -w, -CEILING_H, image_angle, 1);
-draw_3dbgr_angle(bgr, x - w/2 - open_amount, y, CEILING_H/2, w, CEILING_H, image_angle, 1);
+            <string>/// Draw plane
+
+draw_3dspr_angle(door_spr, 0, x + w/2 + open_amount, y, CEILING_H/2, -1, 1.25, image_angle);
+draw_3dspr_angle(door_spr, 0, x - w/2 - open_amount, y, CEILING_H/2, 1, 1.25, image_angle);
 
 </string>
           </argument>

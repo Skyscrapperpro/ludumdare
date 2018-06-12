@@ -28,9 +28,7 @@
             <string>/// Sprites setup
 
 //Standard
-//stand_spr = zombie;
 walkf_spr = zombie;
-//walkb_spr = zombie;
 ded_spr = zombie_ded;
 
 //Extra
@@ -56,7 +54,8 @@ at_spr = zombie_attack;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Speed setup
+            <string>/// Speed setup
+
 move_spd = ZOMBIE_SPD;
 
 </string>
@@ -93,8 +92,9 @@ move_spd = ZOMBIE_SPD;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Raycast setup
-ray_w = 16;
+            <string>/// Raycast collider setup
+
+ray_w = 20;
 
 </string>
           </argument>
@@ -117,6 +117,7 @@ ray_w = 16;
           <argument>
             <kind>1</kind>
             <string>/// Spawn point variation
+
 x += ZOM_POS_VARIATION;
 y += ZOM_POS_VARIATION;
 
@@ -140,10 +141,9 @@ y += ZOM_POS_VARIATION;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Set targeted customer
-if (instance_exists(customer_obj))
-    target = instance_find(customer_obj, irandom(instance_number(customer_obj) - 1));
-else target = player_obj;
+            <string>/// Turn off standard movement-based animation
+
+spr_from_move_state = false;
 
 </string>
           </argument>
@@ -165,40 +165,56 @@ else target = player_obj;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Turn off standard movement-based animation
-spr_from_move_state = false;
-//Initialize
+            <string>/// Set initial sprite
+
 sprite = walkf_spr;
 
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>601</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>1</kind>
-            <string>/// Get draw angle
-d_angle = player_obj.angle;
-
-</string>
+            <kind>9</kind>
+            <script>event_zombie_reset_target</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>id</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>612</id>
@@ -257,68 +273,14 @@ d_angle = player_obj.angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Hit me with raycasts
+            <string>/// Set target
 
-if (LEFTCLICK)
-{
-    //Pre-setup
-    var xorig = player_obj.x;
-    var yorig = player_obj.y;
+if (target != player_obj) //and
+if (!instance_exists(target) || target.dying)
+    event_zombie_reset_target(id);
+else check_nearest_customer(id);
     
-    //Raycast check
-    in_angle = raycast_2d_spr(ray_w, xorig, yorig, x, y, d_angle, d_angle);
-}
-else in_angle = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Check target if one is killed
-//Change target after one is killed
-if (!instance_exists(target))
-{
-    if (instance_exists(customer_obj))
-        target = instance_find(customer_obj, irandom(instance_number(customer_obj) - 1));
-    else target = player_obj;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Get target position
+//Set target position
 targetx = target.x;
 targety = target.y;
 
@@ -342,19 +304,14 @@ targety = target.y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Switch to attack animation if target close and kill them
-if (point_distance(x, y, targetx, targety) &lt; ZOMBIE_ATTACK_RANGE) //and
-if (target.object_index == customer_obj)
+            <string>/// Attack
+
+if (sprite != at_spr)
 {
-    if (sprite != at_spr)
+    if (target != player_obj) //and
+    if (point_distance_sqr(x, y, targetx, targety) &lt; ZOMBIE_ATTACK_RANGE_SQR)
     {
         sprite = at_spr;
-        subi = 0;
-    }
-    else if (subi &gt; sprite_get_number(sprite) - 0.5)
-    {
-        event_kill_customer(target);
-        sprite = walkf_spr;
         subi = 0;
     }
 }
@@ -365,13 +322,39 @@ if (target.object_index == customer_obj)
       </action>
       <action>
         <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit me with raycasts
+
+if (global.shotframe)
+    in_angle = raycast_2d_spr(ray_w, global.pl_x, global.pl_y, x, y, global.pl_dangle, global.pl_rangle);
+else in_angle = false;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
@@ -379,8 +362,8 @@ if (target.object_index == customer_obj)
       </action>
       <action>
         <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
+        <id>424</id>
+        <kind>2</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>0</useapplyto>
@@ -407,30 +390,33 @@ if (target.object_index == customer_obj)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Death animation ended
-if (subi &gt; sprite_get_number(ded_spr) - 0.5)
+            <string>/// Animations end actions
+
+if (sprite != walkf_spr)
 {
-    event_last_zombie();
-    instance_destroy();
+    var s = sprite_get_speed(sprite);
+    if (subimg_animation_end(sprite, subi - s, s))
+    {
+        switch(sprite)
+        {
+            case ded_spr:
+                if (instance_number(zombie_obj) == 1) then event_last_zombie();
+                instance_destroy();
+                break;
+            case at_spr:
+                sprite = walkf_spr;
+                subi = 0;
+                if (target != player_obj) //and
+                if (point_distance_sqr(x, y, targetx, targety) &lt; ZOMBIE_ATTACK_RANGE_SQR)
+                    event_kill_customer(target);
+                break;
+        }
+    }
 }
 
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>604</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_inherited</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
   </events>

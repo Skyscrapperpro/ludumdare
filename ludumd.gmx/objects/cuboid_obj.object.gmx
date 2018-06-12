@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Draw cuboid
-draw_cuboid(x, y, z/2, w, l, z, image_angle, bak);
+
+draw_cuboid(x, y, z, w, l, h, image_angle, bak);
 
 </string>
           </argument>

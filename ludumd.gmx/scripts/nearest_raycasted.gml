@@ -1,4 +1,4 @@
-///nearest_raycast(obj_type)
+///nearest_raycasted(obj_type)
 
 //Requires each checked object to have an "in_angle" variable set to true if in raycast
 var obj = argument0;
@@ -9,6 +9,8 @@ if (num != noone)
 {
     var valid_ins, ins;
     var ind = 0;
+    
+    //Get in_angle instances
     for (var i = 0; i < num; i++)
     {
         ins = instance_find(obj, i);
@@ -19,13 +21,14 @@ if (num != noone)
         }
     }
     
+    //Get nearest in_angle instance
     if (ind > 0)
     {
         fins = valid_ins[0];
         for (var i = 1; i < array_length_1d(valid_ins); i++)
         {
             ins = valid_ins[i];
-            if (point_distance(x, y, ins.x, ins.y) < point_distance(x, y, fins.x, fins.y))
+            if (point_distance_sqr(x, y, ins.x, ins.y) < point_distance_sqr(x, y, fins.x, fins.y))
                 fins = ins;
         }
     }

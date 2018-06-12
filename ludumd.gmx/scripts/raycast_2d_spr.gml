@@ -1,7 +1,6 @@
 ///raycast_2d_spr(width, xorig, yorig, x, y, rotation, angle_orig)
 
-//var spr = argument0;
-var w = argument0;
+var halfw = argument0/2;
 var xorig = argument1;
 var yorig = argument2;
 var xdest = argument3;
@@ -9,28 +8,36 @@ var ydest = argument4;
 var ang = argument5;
 var angorig = argument6;
 
-var ret = false;
-var difx = lengthdir_x(w, ang)/2; //Could be improved
-var dify = lengthdir_y(w, ang)/2;
-var x0 = xdest + difx;
-var y0 = ydest + dify;
-var x1 = xdest - difx;
-var y1 = ydest - dify;
-
-var angleto0 = clamp_angle(point_direction(xorig, yorig, x0, y0) - 90, ANGREF);
-var angleto1 = clamp_angle(point_direction(xorig, yorig, x1, y1) - 90, ANGREF);
-var anglemin = min(angleto0, angleto1);
-var anglemax = max(angleto0, angleto1);
-var target = clamp_angle(point_direction(xorig, yorig, xdest, ydest) - 90, ANGREF);
-
-if ((target > anglemin) && (target < anglemax))
+var ret;
+if (ang + 90 == angorig)
 {
-    if (angorig > anglemin) //and
-    if (angorig < anglemax)
-        ret = true;
+    var midang = clamp_angle(point_direction(xorig, yorig, xdest, ydest), ANGREF);
+    angorig = abs(angle_difference(angorig, midang));
+    
+    xdest = xdest + lengthdir_x(halfw, ang);
+    ydest = ydest + lengthdir_y(halfw, ang);
+    ang = abs(angle_difference(point_direction(xorig, yorig, xdest, ydest), midang));
+    
+    if (angorig < ang) then ret = true;
+    else ret = false;
 }
-else if ((angorig < anglemin) || (angorig > anglemax))
-    ret = true;
+else
+{
+    var midang = clamp_angle(point_direction(xorig, yorig, xdest, ydest), ANGREF);
+    angorig = angle_difference(angorig, midang);
+    var difx = lengthdir_x(halfw, ang);
+    var dify = lengthdir_y(halfw, ang);
+    
+    var tempx = xdest + difx;
+    var tempy = ydest + dify;
+    var a0 = angle_difference(point_direction(xorig, yorig, tempx, tempy), midang);
+    tempx = xdest - difx;
+    tempy = ydest - dify;
+    var a1 = angle_difference(point_direction(xorig, yorig, tempx, tempy), midang);
+    
+    if ((angorig > min(a0, a1)) && (angorig < max(a0, a1))) then ret = true;
+    else ret = false;
+}
      
 return ret;
 

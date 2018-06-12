@@ -25,23 +25,146 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Setup draw
-z = 30;
-tex_plate = background_get_texture(plate_bgr);
-spr = refrigerio;
-ing_spr = ingredients;
-zpos = -z - sprite_get_height(spr)/2;
-w = sprite_get_width(sprite_index);
-h = sprite_get_height(sprite_index);
+            <string>/// Draw setup
 
-leftx = rotating_point_relative(+w/2, -h/2, image_angle, false);
-lefty = rotating_point_relative(+w/2, -h/2, image_angle, true);
-rightx = rotating_point_relative(-w/2, -h/2, image_angle, false);
-righty = rotating_point_relative(-w/2, -h/2, image_angle, true);
-cornerx0 = rotating_point_relative(+w/2, -h, image_angle, false);
-cornery0 = rotating_point_relative(+w/2, -h, image_angle, true);
-cornerx1 = rotating_point_relative(-w/2, 0, image_angle, false);
-cornery1 = rotating_point_relative(-w/2, 0, image_angle, true);
+z = 32;
+w = sprite_get_width(sprite_index);
+l = sprite_get_height(sprite_index);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Sprite setup
+
+zburg = z + (sprite_get_height(ingredients) * BURGER_SCALE/2);
+zref = z + sprite_get_height(refrigerio)/2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get relative position
+
+x = global.pl_x + rotating_point_relative(l/2 + PLATE_SEP, 0, global.pl_rangle, false);
+y = global.pl_y + rotating_point_relative(l/2 + PLATE_SEP, 0, global.pl_rangle, true);
+image_angle = global.pl_dangle;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Sprite update
+
+xburg = x + rotating_point_relative(-w/4, 0, image_angle, false);
+yburg = y + rotating_point_relative(-w/4, 0, image_angle, true);
+
+xref = x + rotating_point_relative(+w/4, 0, image_angle, false);
+yref = y + rotating_point_relative(+w/4, 0, image_angle, true);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get relative position
+
+x = global.pl_x + rotating_point_relative(l/2 + PLATE_SEP, 0, global.pl_rangle, false);
+y = global.pl_y + rotating_point_relative(l/2 + PLATE_SEP, 0, global.pl_rangle, true);
+image_angle = global.pl_dangle;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Sprite update
+
+xburg = x + rotating_point_relative(-w/4, 0, image_angle, false);
+yburg = y + rotating_point_relative(-w/4, 0, image_angle, true);
+
+xref = x + rotating_point_relative(+w/4, 0, image_angle, false);
+yref = y + rotating_point_relative(+w/4, 0, image_angle, true);
 
 </string>
           </argument>
@@ -65,49 +188,14 @@ cornery1 = rotating_point_relative(-w/2, 0, image_angle, true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Angle calculations
-leftx = rotating_point_relative(-w/2, -h/2, image_angle, 0);
-lefty = rotating_point_relative(-w/2, -h/2, image_angle, 1);
-rightx = rotating_point_relative(+w/2, -h/2, image_angle, 0);
-righty = rotating_point_relative(+w/2, -h/2, image_angle, 1);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// Draw
-d3d_transform_set_identity();
-d3d_transform_add_rotation_z(image_angle);
-d3d_transform_add_translation(x, y,  z + PLATE_ELEV);
-d3d_draw_floor(cornerx1, cornery0, 0, cornerx0, cornery1, 0, tex_plate, 1, 1);
-d3d_transform_set_identity();
 
-draw_3dspr_angle(spr, 0, x + leftx/2, y + lefty/2, zpos, 1, 1, player_obj.angle);
-if (arraypos &gt; 0)
-    for(var i = 0, zburg; i &lt; array_length_1d(burger); i++)
-    {
-        var ytoplayer;
-        if (player_obj.y &lt; y) then ytoplayer = - (0.1 * i);
-        else ytoplayer = + (0.1 * i);
-        zburg = -z - PLATE_ELEV - (ING_SEP * (i+1));
-        draw_3dspr_angle(ing_spr, burger[i], x + rightx/2, y + righty/2 + ytoplayer, zburg, 0.5, 0.5, player_obj.angle);
-    }
+draw_cuboid(x, y, z, w, l, 0, image_angle, plate_bgr);
+draw_3dspr_angle(refrigerio, 0, xref, yref, zref, 1, 1, global.pl_dangle);
+var dir = sign(global.pl_y - y);
+if (ds_list_size(burger) &gt; 0)
+    for(var i = 0; i &lt; ds_list_size(burger); i++)
+        draw_3dspr_angle(ingredients, ds_list_find_value(burger, i), xburg, yburg + (dir * 0.1 * i), zburg + (ING_SEP * i), BURGER_SCALE, BURGER_SCALE, global.pl_dangle);
 
 </string>
           </argument>

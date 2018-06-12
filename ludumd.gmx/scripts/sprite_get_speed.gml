@@ -1,6 +1,6 @@
 ///sprite_get_speed(sprite)
 
-var spd = 1;
+var spd;
 var spr = argument0;
 
 switch (spr)
@@ -69,7 +69,11 @@ switch (spr)
         
     //Timer
     case burger_timer:
-        spd = ((sprite_get_number(spr) - 1)/2)/TIME_TO_COOK;
+        spd = (sprite_get_number(spr)/2)/TIME_TO_COOK;
+        break;
+
+    default:
+        spd = 1;
         break;
 }
 

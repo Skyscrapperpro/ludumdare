@@ -14,7 +14,7 @@ d3d_transform_add_rotation_x(90);
 d3d_transform_add_rotation_z(ang);
 d3d_transform_add_translation(xpos, ypos, zpos);
 
-if (global.sh_sup)
+if ((global.sh_sup) && ((sclx * scly) < 0))
 {
     var uvs = sprite_get_uvs(sprite, subi);
     var uvx = (uvs[0] + uvs[2]) * (sclx < 0);

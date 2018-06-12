@@ -11,152 +11,6 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Cuboid setup
-bak[5] = side_bgr;
-bak[4] = side_bgr;
-bak[3] = -1;
-bak[2] = grillfront_bgr;
-bak[1] = -1;
-bak[0] = grilltop_bgr;
-w = sprite_get_width(sprite_index);
-l = sprite_get_height(sprite_index);
-z = w;
-z1 = z;
-cornerx=(cos(degtorad(image_angle))*w+sin(degtorad(image_angle))*l)/2;//corner distance to center
-cornery=(cos(degtorad(image_angle))*l+sin(degtorad(image_angle))*w)/2;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Fog setup
-fog_start = 500;
-fog_range = fog_start;
-fog_spd = fog_start/12;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Floor raycast
-in_angle = false;
-var rcast;
-
-rcast = raycast_planez(x + cornerx, y + cornery, z, x - cornerx, y - cornery, player_obj.x, player_obj.y, CAM_Z, player_obj.angle, player_obj.zangle );
-
-if (rcast[0])
-{
-    in_angle = true;
-    xcast = rcast[1];
-    ycast = rcast[2];
-    zcast = rcast[3];
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Fog range calculation
-if (fog_range &lt; fog_start)
-{
-    if ((fog_range - fog_spd) &gt; -fog_start) then fog_range -= fog_spd;
-    else fog_range = fog_start;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Color
-d3d_set_fog(true, c_white, abs(fog_range) - 100, abs(fog_range));
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>604</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -185,7 +39,243 @@ d3d_set_fog(true, c_white, abs(fog_range) - 100, abs(fog_range));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Reset color
+            <string>/// Cuboid setup
+
+bak[5] = side_bgr;
+bak[4] = side_bgr;
+bak[3] = -1;
+bak[2] = -1;
+bak[1] = -1;
+bak[0] = -1;
+w = sprite_get_width(sprite_index);
+l = sprite_get_height(sprite_index);
+h = 28;
+z = h/2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Fog setup
+
+fog_start = 500;
+fog_range = fog_start;
+fog_spd = 2000/15;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Corner calculation for raycast
+xpos = x + rotating_point_relative(0, -l/2, image_angle, false);
+ypos = y + rotating_point_relative(0, -l/2, image_angle, true);
+cornerx = rotating_point_relative(w/2, l/2, image_angle, false);
+cornery = rotating_point_relative(w/2, l/2, image_angle, true);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Floor raycast
+
+if (LEFTCLICK &amp;&amp; (global.handitem == 0))
+{
+    var rcast = raycast_3d_plane_point(xpos + cornerx, ypos + cornery, h, xpos - cornerx, ypos - cornery, global.pl_x, global.pl_y, CAM_Z, global.pl_rangle, global.pl_zangle);
+    if (is_array(rcast) &amp;&amp; (sqr(rcast[2]) &lt; ITEM_RANGE_SQR))
+    {
+        in_angle = true;
+        ycast = rcast[1];
+        xcast = rcast[0];
+    }
+}
+else in_angle = false;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Fog range calculation
+
+if (fog_range &lt; fog_start) then fog_range = cycle_value(fog_start, -fog_start, fog_range, fog_spd);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Color
+
+var fog = abs(fog_range);
+d3d_set_fog(true, c_white, fog - 100, fog);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw cuboid with offseted graphics
+
+//Top
+d3d_transform_set_identity();
+d3d_transform_add_rotation_z(image_angle);
+d3d_transform_add_translation(xpos, ypos, z + h/2);
+draw_background_stretched(grilltop_bgr, -w/2, -4.6 - l/2, w, l + 4.6);
+d3d_transform_set_identity();
+
+//Front
+d3d_transform_set_identity();
+d3d_transform_add_rotation_x(90);
+d3d_transform_add_rotation_z(180);
+d3d_transform_add_translation(0, -l/2, 0);
+d3d_transform_add_rotation_z(image_angle);
+d3d_transform_add_translation(xpos, ypos, z);
+draw_background_stretched(grillfront_bgr, -w/2, -2.9 - h/2, w, h + 2.9);
+d3d_transform_set_identity();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw cuboid
+
+draw_cuboid(xpos, ypos, z, w, l, h, image_angle, bak);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Reset color
+
 d3d_set_fog(false, c_white, 0, 0);
 
 </string>

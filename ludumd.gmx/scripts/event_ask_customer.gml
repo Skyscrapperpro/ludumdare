@@ -1,19 +1,11 @@
-///event_ask_customer(customer, given_plate)
+///event_ask_customer(customer)
 
-var obj = argument0;
-var given_plate = argument1;
-
-var ret = true;
-var len = array_length_1d(obj.burger_asked);
-if (len == array_length_1d(given_plate.burger))
+with (argument0)
 {
-    for(var i = 0; i < len; i++)
-    {
-        if (obj.burger_asked[i] != given_plate.burger[i])
-            ret = false;
-    }
+    selected_menu = true;
+    xburg = x + lengthdir_x(DIALOG_DIST_X, global.pl_dangle);
+    yburg = y + lengthdir_y(DIALOG_DIST_X, global.pl_dangle);
+    talki += 0.5;
+    audio_play_sound(talk_snd, 2, false);
 }
-else ret = false;
-
-return ret;
 

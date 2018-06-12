@@ -3,7 +3,7 @@
   <spriteName>editor_player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>2</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,60 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set depth
+            <string>/// Initialize
+
+taken_plate = noone;
 if (!ISPERSPECTIVE) depth = -1;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Cries array
-cry[7] = zombie2_snd;
-cry[6] = zombie1_snd;
-cry[5] = zombie0_snd;
-cry[4] = cry4_snd;
-cry[3] = cry3_snd;
-cry[2] = cry3_snd;
-cry[1] = cry1_snd;
-cry[0] = cry0_snd;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Speed variables
+auto_rotation = false;
+zangle = 0;
 xspeed = 0;
 yspeed = 0;
 
@@ -102,10 +54,28 @@ yspeed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create camera data
-zangle = 0;
-angle = 0;
-auto_rotation = false;
+            <string>/// Initialize GUI
+
+//Lives
+lives = STARTING_LIFE;
+for (var i = 0; i &lt; lives; i++) lifei[i] = 0;
+
+//GUI Variables
+spatulaburger = 0; //0 = no, 1 = uncooked, 2 = cooked, 3 = burn
+spatmove = false;
+subi = 0;
+sclfocus = (view_wport/sprite_get_width(focus));
+alpfocus = 0;
+lifehid = 16;
+spathid = 33;
+scorehid = 60;
+gun_x = view_wport/2;
+gun_y = view_hport;
+spat_x = view_wport * 0.8;
+spat_y = view_hport + ((spathid - 5) * PIXEL_LENGTH);
+score_x = view_wport + (scorehid * PIXEL_LENGTH);
+spat_d = spat_y;
+score_d = score_x;
 
 </string>
           </argument>
@@ -127,100 +97,44 @@ auto_rotation = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set camera
+            <string>/// Globals
+
+global.handitem = 0; //0 = spatula, 1 = plate, 2 = gun
+global.shotframe = false;
+global.pl_dangle = 0;
+global.pl_rangle = 90;
+global.pl_zangle = 0;
+global.pl_x = x;
+global.pl_y = y;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set camera
+
 if (ISPERSPECTIVE)
 {
-    xf = x + cos(degtorad(angle));
-    yf = y - sin(degtorad(angle));
-    zf = CAM_Z - sin(degtorad(zangle));
+    xf = global.pl_x - dsin(global.pl_dangle);
+    yf = global.pl_y - dcos(global.pl_dangle);
+    zf = CAM_Z + dsin(zangle);
 }
-else
-{
-    //view_wview *= 1.5;
-    //view_hview *= 1.5;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// GUI control
-guni = 0;
-gunlimit = (sprite_get_number(gunshot) - 1);
-spati = 0;
-spatlimit = (sprite_get_number(spatula) - 1);
-handitem = 0; //0 = spatula, 1 = gun
-spatulaburger = 0; //0 = no, 1 = uncooked, 2 = cooked, 3 = burn
-alp = 0;
-
-taken_plate = -1;
-
-lifeval = STARTING_LIFE;
-scoreval = 0;
-goindex = 0;
-gotimer = 0;
-alpgo = 0;
-
-for (var i = 0; i &lt; STARTING_LIFE; i++) lifei[i] = 0;
-
-sdisplacement = 100;
-
-//Title
-titli=0;
-titllimit = (sprite_get_number(title) - 1);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Particle system creation
-titlepartsis=part_system_create();
-titleparttype=part_type_create();
-
-//visuals for parts
-part_type_shape(titleparttype,pt_shape_pixel);
-part_type_scale(titleparttype,PIXEL_LENGTH,PIXEL_LENGTH);
-part_type_speed(titleparttype,0,0,0,0);
-part_type_gravity(titleparttype,PIXEL_LENGTH,270);
-part_type_colour_mix(titleparttype,c_red,c_red);
-part_type_life(titleparttype,PART_LIFE,PART_LIFE);
-
-part_system_automatic_draw(titleparttype,false);
-
-//particle vars
-partgentimer=0;
-partgentim=PART_TIME_MIN+irandom(PART_TIME_VAR);
 
 </string>
           </argument>
@@ -245,114 +159,115 @@ partgentim=PART_TIME_MIN+irandom(PART_TIME_VAR);
           <argument>
             <kind>1</kind>
             <string>/// Raycasts checking
-if (guni == (sprite_get_number(gunshot)/2)) //Gun shot
+if (global.shotframe || (LEFTCLICK &amp;&amp; (global.handitem != 2)))
 {
-    audio_play_sound(shot_snd, 2, false);
-    
-    var obj_shot = nearest_raycast(humanoid_obj);
-    
-    if (obj_shot != noone) 
-    switch (obj_shot.object_index)
-    {
-        case zombie_obj:
-            event_kill_zombie(obj_shot);
-            break;
-        case customer_obj:
-            event_kill_customer(obj_shot);
-            break;
-    }
-}
-else if (LEFTCLICK) //and
-if (player_obj.handitem == 0) //No gun
-{
-    var obj_shot = nearest_raycast(interactable_obj);
+    var obj_shot = nearest_raycasted(interactable_obj);
     if (obj_shot != noone)
+    switch (global.handitem)
     {
-        switch (obj_shot.object_index)
+        case 0:
+//------------Spatula--------------//
+if (LEFTCLICK) switch (obj_shot.object_index)
+{
+    case gunitem_obj:
+        global.handitem = 2;
+        instance_deactivate_object(gunitem_obj);
+        break;
+    case customer_obj:
+        if (!instance_exists(zombie_obj) &amp;&amp; !obj_shot.satisf &amp;&amp; !obj_shot.dying)
+            event_ask_customer(obj_shot);
+        break;
+    case trashcan_obj:
+        spatulaburger = 0;
+        break;
+    case trash_plane:
+        spatulaburger = 0;
+        break;
+    case burger_obj:
+        if (spatulaburger == 0)
         {
-            case gunitem_obj:
-                if (taken_plate != -1)
-                {
-                    event_putdown_plate(plates_obj, taken_plate);
-                    taken_plate = -1;
-                }
-                handitem = 1;
-                instance_deactivate_object(gunitem_obj);
-                break;
-            case customer_obj:
-                if (!instance_exists(zombie_obj)) //and
-                if (!obj_shot.satisf) //and
-                if (!obj_shot.dying)
-                {
-                    if (taken_plate == -1) then event_customer_menu(obj_shot);
-                    else
-                    {
-                        if (event_ask_customer(obj_shot, taken_plate))
-                        {
-                            event_satisfy_customer(obj_shot);
-                            with (taken_plate) instance_destroy();
-                            taken_plate = -1;
-                        }
-                        else
-                        {
-                            event_kill_customer(obj_shot);
-                            with (taken_plate) instance_destroy();
-                            taken_plate = -1;
-                        }
-                    }
-                }
-                break;
-            case trashcan_obj:
-                if (taken_plate == -1) then spatulaburger = 0;
-                else
-                {
-                    with (taken_plate) instance_destroy();
-                    taken_plate = -1;
-                }
-                break;
-            case burger_obj:
-                if (spatulaburger == 0)
-                {
-                    spatulaburger = obj_shot.cook + 1;
-                    with (obj_shot) instance_destroy();
-                }
-                break;
-            case grill_obj:
-                event_grill_burger(obj_shot);
-                break;
-            case burgerbox_obj:
-                if (spatulaburger == 0) then spatulaburger = 1;
-                event_grillfog(grill_obj);
-                break;
-            case breadbox_obj:
-                if (spatulaburger == 0) then spatulaburger = 4;
-                break;
-            case cheesebox_obj:
-                if (spatulaburger == 0) then spatulaburger = 5;
-                break;
-            case lechugabox_obj:
-                if (spatulaburger == 0) then spatulaburger = 6;
-                break;
-            case tomatobox_obj:
-                if (spatulaburger == 0) then spatulaburger = 7;
-                break;
-            case plates_obj:
-                if (taken_plate != -1)
-                {
-                    event_putdown_plate(obj_shot, taken_plate);
-                    taken_plate = -1;
-                }
-                else
-                {
-                    if (spatulaburger != 0)
-                    {
-                        if event_place_ing(obj_shot, spatulaburger)
-                        spatulaburger = 0;
-                    }
-                    else taken_plate = event_take_plate(obj_shot);
-                }
-                break;
+            spatulaburger = obj_shot.cook + 1;
+            with (obj_shot) instance_destroy();
         }
+        break;
+    case grill_obj:
+        event_grill_burger(obj_shot, id);
+        break;
+    case burgerbox_obj:
+        if (spatulaburger == 0) then spatulaburger = 1;
+        event_grillfog(grill_obj);
+        break;
+    case breadbox_obj:
+        if (spatulaburger == 0) then spatulaburger = 4;
+        break;
+    case cheesebox_obj:
+        if (spatulaburger == 0) then spatulaburger = 5;
+        break;
+    case lechugabox_obj:
+        if (spatulaburger == 0) then spatulaburger = 6;
+        break;
+    case tomatobox_obj:
+        if (spatulaburger == 0) then spatulaburger = 7;
+        break;
+    case plates_obj:
+        if (spatulaburger != 0)
+        {
+            if event_place_ing(obj_shot, spatulaburger) then spatulaburger = 0;
+        }
+        else taken_plate = event_take_plate(obj_shot);
+        break;
+}
+break;
+        case 1:
+//------------Plate--------------//
+if (LEFTCLICK) switch (obj_shot.object_index)
+{
+    case gunitem_obj:
+        event_putdown_plate(plates_obj, taken_plate);
+        global.handitem = 2;
+        instance_deactivate_object(gunitem_obj);
+        break;
+    case customer_obj:
+        if (!instance_exists(zombie_obj) &amp;&amp; !obj_shot.satisf &amp;&amp; !obj_shot.dying)
+        {
+            if (event_compare_burger(obj_shot, taken_plate))
+                event_satisfy_customer(obj_shot);
+            else event_kill_customer(obj_shot);
+                
+            with (taken_plate)
+            {
+                ds_list_destroy(burger);
+                instance_destroy();
+            } global.handitem = 0;
+        }
+        break;
+    case trashcan_obj:
+        with (taken_plate) instance_destroy();
+        global.handitem = 0;
+        break;
+    case trash_plane:
+        with (taken_plate) instance_destroy();
+        global.handitem = 0;
+        break;
+    case plates_obj:
+        event_putdown_plate(obj_shot, taken_plate);
+        global.handitem = 0;
+        break;
+}
+break;
+        case 2:
+//------------Gun--------------//
+if (global.shotframe) switch (obj_shot.object_index)
+{
+    case zombie_obj:
+        event_kill_zombie(obj_shot);
+        break;
+    case customer_obj:
+        event_kill_customer(obj_shot);
+        break;
+}
+break;
+//-----------------------------//
     }
 }
 
@@ -361,476 +276,7 @@ if (player_obj.handitem == 0) //No gun
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Check if zombies are present and do noises
-if instance_exists(zombie_obj) //and
-if (irandom(CRY_FREQ) == 1)
-    audio_play_sound(cry[irandom(array_length_1d(cry) - 1)], 2, false);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Alpha check
-if (instance_exists(zombie_obj))
-{
-    if ((alp + 0.1) = 1)
-    {
-        audio_play_sound(cry[irandom(array_length_1d(cry) - 1)], 2, false);
-        alp += 0.1;
-    }
-    else if (alp &lt; 1) alp += 0.1;
-}
-else if (alp &gt; 0) then alp -= 0.1;
-
-if (global.isgameover)
-{
-    if ((alpgo + 0.1) = 1)
-    {
-        //audio_play_sound(go_snd, 2, false);
-        alpgo += 0.1;
-    }
-    else if (alpgo &lt; 1) alpgo += 0.1;
-}
-else if (alpgo &gt; 0) then alpgo -= 0.1;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Animations
-if (global.play)
-{
-    if (handitem == 1) //If you got the gun
-    {
-        spati = spatulaburger;
-        var ratio = 0.25;
-        if (guni &gt; 0)
-        {
-            if ((guni + ratio) &lt; gunlimit) then guni += ratio;
-            else guni = 0;
-        }
-        else if (LEFTCLICK) guni = ratio;
-    }
-    else //If you got the spatula
-    {
-        guni = 0;
-        var ratio = 1;
-        if (spati &gt; 7)
-        {
-            if ((spati + ratio) &lt; spatlimit) then spati += ratio;
-            else spati = spatulaburger;
-        }
-        else if (LEFTCLICK) spati = 8;
-    }
-    
-    // for game over screen
-    if (global.isgameover)
-    {
-        gotimer++;
-        if (gotimer==GOBLINKRATE)
-        {
-            gotimer=0;
-            goindex=!goindex;
-        }
-    }
-    
-    // Lives animation
-    for (var i = 0, ratio = 0.125; i &lt; STARTING_LIFE; i++)
-        if (lifei[i] &gt; 0) //and
-        if (lifei[i] &lt; (sprite_get_number(life) - 1)) lifei[i] += ratio;
-}
-else
-{
-    /*var ratio = 0.125;
-    if ((titli + ratio) &lt; titllimit) then titli += ratio;
-    else titli = 0;*/
-    var ratio = 5;
-    if ((titli + ratio) &lt; 180) then titli += ratio;
-    else titli = -180;
-    titlsin = sin(degtorad(titli)) * 2;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Get rotation
-//Reset mouse position
-if (mouse_is_locked())
-{
-    mouse_lock_update();//display_mouse_set(display_get_width()/2, display_get_height()/2);
-    window_set_cursor(CURSOR);
-}
-else window_set_cursor(cr_default);
-
-//Check mouse active
-if (global.play)
-if (MIDDLECLICK)
-{
-    if (mouse_is_locked()) then mouse_unlock();
-    else mouse_lock();
-}
-
-//Get angle
-if (!auto_rotation)
-{
-    if (global.play)
-    {
-        //Horizontal movement
-        var mspeed = mouse_x_speed();
-        angle = clamp_angle(angle - mspeed, ANGREF);
-    
-        //Vertical movement
-        if (ISPERSPECTIVE)
-        if (handitem != 1)
-        {
-            var mvspeed = mouse_y_speed();
-            zangle = clamp((zangle + mvspeed), -90, 90);
-        }
-        else zangle = var_to_target(zangle, 0, AUTOCAM_SPD);
-    }
-}
-else //Auto rotation
-{
-    //Rotate
-    angle = var_to_target(angle, 0, AUTOCAM_SPD);
-    zangle = var_to_target(zangle, 0, AUTOCAM_SPD);
-    
-    //Check if rotation has finished
-    if (angle == 0) //and
-    if (zangle == 0)
-        auto_rotation = false;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Get position
-var xspeed_targ = 0;
-var yspeed_targ = 0;
-
-if (global.play)
-{
-    //Get input angle
-    var move_angle = clamp_angle(angle + point_direction(0, 0, RIGHT-LEFT, BACKWARDS-FORWARD), ANGREF);
-    
-    //Set speed if you are moving
-    if (RIGHT||LEFT||FORWARD||BACKWARDS)
-    {
-        xspeed_targ = lengthdir_x(CHAR_SPD, move_angle);
-        yspeed_targ = lengthdir_y(CHAR_SPD, move_angle);
-    }
-}
-
-//Acceleration
-xspeed = var_to_target(xspeed, xspeed_targ, CHAR_ACC);
-yspeed = var_to_target(yspeed, yspeed_targ, CHAR_ACC);
-
-///Collisions
-do_collision_move(xspeed, yspeed);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Set camera
-if (ISPERSPECTIVE)
-{
-    xf = x - sin(degtorad(angle));
-    yf = y - cos(degtorad(angle));
-    zf = CAM_Z - sin(degtorad(zangle));
-}
-else
-{
-    view_angle = 360 - angle;
-    view_xview = x - view_wview/2;
-    view_yview = y - view_hview/2;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Set plate position
-if (taken_plate != -1)
-{
-    taken_plate.x = x - sin(degtorad(angle)) * PLATE_SEP;
-    taken_plate.y = y - cos(degtorad(angle)) * PLATE_SEP;
-    taken_plate.image_angle = angle;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///starting animation
-if (sdisplacement&gt;0)
-{
-    if (global.play=true)
-    {
-        sdisplacement -= DISP_SPD;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Particle generation
-if (!global.play)
-if (part_system_exists(player_obj.titlepartsis))
-{
-    partgentimer++;
-    if (partgentimer&gt;=partgentim)
-    {
-        partgentimer=0;
-        partgentim=PART_TIME_MIN+irandom(PART_TIME_VAR);
-        switch(irandom(13))
-        {
-            case 0:
-                part_particles_create(titlepartsis,34*PIXEL_LENGTH,38*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 1:
-                part_particles_create(titlepartsis,49*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 2:
-                part_particles_create(titlepartsis,60*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 3:
-                part_particles_create(titlepartsis,79*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 4:
-                part_particles_create(titlepartsis,101*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 5:
-                part_particles_create(titlepartsis,116*PIXEL_LENGTH,35*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 6:
-                part_particles_create(titlepartsis,130*PIXEL_LENGTH,37*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 7:
-                part_particles_create(titlepartsis,40*PIXEL_LENGTH,74*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 8:
-                part_particles_create(titlepartsis,51*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 9:
-                part_particles_create(titlepartsis,66*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 10:
-                part_particles_create(titlepartsis,81*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 11:
-                part_particles_create(titlepartsis,90*PIXEL_LENGTH,77*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 12:
-                part_particles_create(titlepartsis,102*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            case 13:
-                part_particles_create(titlepartsis,121*PIXEL_LENGTH,75*PIXEL_LENGTH+titley,titleparttype,1);
-                break;
-            default:
-                part_particles_create(titlepartsis,34*PIXEL_LENGTH,38*PIXEL_LENGTH+titley,titleparttype,1);
-        }
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///GUI Size
-display_set_gui_size(view_wport, view_hport);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw pixelated surface.
-if (ISPERSPECTIVE) then pixelate(PIXEL_LENGTH);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
+    <event eventtype="3" enumb="1">
       <action>
         <libid>1</libid>
         <id>612</id>
@@ -861,6 +307,20 @@ if (ISPERSPECTIVE) then pixelate(PIXEL_LENGTH);
       </action>
       <action>
         <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -875,49 +335,47 @@ if (ISPERSPECTIVE) then pixelate(PIXEL_LENGTH);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw GUI
-//Draw hold item
-var gun_x = view_wport/2;
-var gun_y = view_hport;
+            <string>/// Alpha focus animation
 
-var spat_x = view_wport * 0.8;
-var spat_y = view_hport - (PIXEL_LENGTH * 5);
+alpfocus = var_to_target(alpfocus, instance_exists(zombie_obj), 0.1);
 
-if (handitem == 1)
-    draw_sprite_ext(gunshot, floor(guni), gun_x, gun_y, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-else if (handitem == 0)
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Item animations
+
+switch (global.handitem)
 {
-    draw_sprite_ext(spatula, floor(spati), spat_x, spat_y + ((sdisplacement * 40) div 100) * PIXEL_LENGTH, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-    //Target sprite
-    draw_sprite_ext(target_spr, floor(guni), view_wport/2, view_hport/2, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-}
-
-//Draw alpha effect
-var scl = (view_wport/sprite_get_width(focus));
-if (alp &gt; 0) then draw_sprite_ext(focus, 0, 0, 0, scl, scl, 0, -1, alp);
-
-//Draw life
-for (var i = 0; i &lt; STARTING_LIFE; i++)
-    draw_sprite_ext(life, floor(lifei[i]), floor((i - (i+1) * (sdisplacement * 0.01)) * LIFE_SEP) * PIXEL_LENGTH, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-
-//Draw score
-draw_score(scoreval, money, view_wport + ((sdisplacement div 3) * PIXEL_LENGTH), 0, fa_right, c_green);
-
-//Draw game over
-if (global.isgameover)
-{
-    var sclgo = (view_wport/sprite_get_width(gameover));
-    draw_sprite_ext(gameover, goindex, 0, 0, sclgo, sclgo, 0, -1, alpgo);
-    
-    var earnedy = view_hport/2 + 32;
-    draw_set_alpha(alpgo);
-    draw_set_halign(fa_center);
-    draw_set_colour(c_dkgray);
-    draw_text_transformed(view_wport/2 + PIXEL_LENGTH, earnedy + PIXEL_LENGTH, "You earned:", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0);
-    draw_set_colour(c_lime);
-    draw_text_transformed(view_wport/2, earnedy, "You earned:", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0);
-    draw_score(scoreval, money, view_wport/2, earnedy + 40, fa_center, c_lime);
-    draw_set_alpha(1);
+    case 0: //Spatula
+        if (spatmove)
+        {
+            if (subimg_animation_end(spatula_move, subi, sprite_get_speed(spatula_move))) then spatmove = false;
+            subi = subimg_animation(spatula_move, subi, sprite_get_speed(spatula_move));
+        }
+        else if (LEFTCLICK) then spatmove = true;
+        break;
+    case 2: //Gun
+        if (subi &gt; 0) then subi = subimg_animation(gunshot, subi, sprite_get_speed(gunshot));
+        else if (LEFTCLICK) then subi += sprite_get_speed(gunshot);
+        global.shotframe = (subi == (sprite_get_number(gunshot)/2));
+        break;
 }
 
 </string>
@@ -940,37 +398,418 @@ if (global.isgameover)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw Title
-titley = round(titlsin - (100-sdisplacement)) * PIXEL_LENGTH;
-draw_set_halign(fa_center);
-if (!global.play)
-{
-    draw_sprite_ext(catsoup, 0, 0, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-    //draw_set_valign(fa_top);
-    //draw_text_transformed(view_wport/2, 0, "F11: Switch fullscreen mode", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0)
-}
-else
-{
-    if (part_system_exists(titlepartsis))
-    {
-        part_system_clear(titlepartsis);
-    }
-}
-draw_sprite_ext(title, 0, 0, titley, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+            <string>/// Lives animation
 
-if (!global.play)
-if (titli &gt; 0)
-{
-    draw_set_valign(fa_middle);
-    var c = c_olive;
-    draw_text_transformed_colour((view_wview * 0.5) + 4, view_hport - 24, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
-    var c = c_yellow;
-    draw_text_transformed_colour(view_wview * 0.5, view_hport - 28, "PRESS START", PIXEL_LENGTH/2, PIXEL_LENGTH/2, 0, c, c, c, c, 1);
-    part_system_drawit(titlepartsis);
-}
+for (var i = 0; i &lt; STARTING_LIFE; i++) if (lifei[i] &gt; 0)
+    lifei[i] = var_to_target(lifei[i], sprite_get_number(life), sprite_get_speed(life));
+
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Displacement animation
+
+if ((global.oa &lt;= 1) &amp;&amp; (global.oa &gt; 0))
+{
+    spat_d = spat_y - (ceil(global.oa * spathid) * PIXEL_LENGTH);
+    score_d = score_x - (ceil(global.oa * scorehid) * PIXEL_LENGTH);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Mouse lock management
+
+//Check mouse active
+if (MIDDLECLICK)
+{
+    if (mouse_is_locked()) then mouse_unlock();
+    else mouse_lock();
+}
+
+//Reset mouse position
+if (mouse_is_locked())
+{
+    mouse_lock_update();
+    window_set_cursor(CURSOR);
+}
+else window_set_cursor(cr_default);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get rotation
+
+if (!auto_rotation)
+{
+    //Horizontal movement
+    global.pl_dangle = clamp_angle(global.pl_dangle - mouse_x_speed(), ANGREF);
+
+    //Vertical movement
+    if (ISPERSPECTIVE)
+    if (global.handitem != 2) then zangle = clamp((zangle - mouse_y_speed()), -90, 90);
+}
+else //Auto rotation
+{
+    //Rotate
+    global.pl_dangle = var_to_target(global.pl_dangle, 0, AUTOCAM_SPD);
+    zangle = var_to_target(zangle, 0, AUTOCAM_SPD);
+    
+    //Check if rotation has finished
+    if ((global.pl_dangle == 0) &amp;&amp; (zangle == 0))
+        auto_rotation = false;
+}
+
+//Get real angle and real zangle
+global.pl_rangle = clamp_angle(global.pl_dangle + 90, ANGREF);
+global.pl_zangle = zreal(zangle);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Get position
+var xspeed_targ = 0;
+var yspeed_targ = 0;
+
+//Set speed if you are moving
+if (RIGHT||LEFT||FORWARD||BACKWARDS)
+{
+    var move_angle = global.pl_dangle + darctan2(FORWARD - BACKWARDS, RIGHT - LEFT);
+    xspeed_targ = lengthdir_x(CHAR_SPD, move_angle);
+    yspeed_targ = lengthdir_y(CHAR_SPD, move_angle);
+}
+
+//Acceleration
+xspeed = var_to_target(xspeed, xspeed_targ, CHAR_ACC);
+yspeed = var_to_target(yspeed, yspeed_targ, CHAR_ACC);
+
+//Collisions
+do_collision_move(xspeed, yspeed);
+
+//Update global state
+global.pl_x = x;
+global.pl_y = y;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set camera
+
+if (ISPERSPECTIVE)
+{
+    xf = global.pl_x - dsin(global.pl_dangle);
+    yf = global.pl_y - dcos(global.pl_dangle);
+    zf = CAM_Z + dsin(zangle);
+}
+else
+{
+    view_angle = 360 - global.pl_dangle;
+    view_xview = global.pl_x - view_wview/2;
+    view_yview = global.pl_y - view_hview/2;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>global.play</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>global.oa</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>2</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw hold item
+
+switch (global.handitem)
+{
+    case 0:
+        if (spatmove) then draw_sprite_ext(spatula_move, subi, spat_x, spat_d, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+        else draw_sprite_ext(spatula, spatulaburger, spat_x, spat_d, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+        //Target sprite
+        draw_sprite_ext(target_spr, 0, view_wport/2, view_hport/2, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+        break;
+    case 1:
+        //Target sprite
+        draw_sprite_ext(target_spr, 0, view_wport/2, view_hport/2, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+        break;
+    case 2:
+        draw_sprite_ext(gunshot, subi, gun_x, gun_y, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+        break;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw focus effect
+
+if (alpfocus &gt; 0) then draw_sprite_ext(focus, 0, 0, 0, sclfocus, sclfocus, 0, -1, alpfocus);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw lives
+
+for (var i = 0, disp; i &lt; STARTING_LIFE; i++) if (lifei[i] &lt; sprite_get_number(life))
+{
+    disp = floor((global.oa * (lifehid + (LIFE_SEP * i))) - lifehid - 1) * PIXEL_LENGTH;
+    draw_sprite_ext(life, lifei[i], disp, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw score
+
+draw_number_spr(global.scoreflt, money, score_d, 0, fa_right, c_green);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="8" enumb="0">
@@ -990,9 +829,10 @@ if (titli &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw camera
-if (ISPERSPECTIVE) d3d_set_projection(x, y, CAM_Z, xf, yf, zf, 0, 0, 1);
-else draw_sprite_ext(sprite_index, 0, x, y, 1, 1, angle, -1, 1);
+            <string>/// Draw camera
+
+if (ISPERSPECTIVE) d3d_set_projection(global.pl_x, global.pl_y, CAM_Z, xf, yf, zf, 0, 0, 1);
+else draw_sprite_ext(sprite_index, 0, global.pl_x, global.pl_y, 1, 1, global.pl_dangle, -1, 1);
 
 </string>
           </argument>

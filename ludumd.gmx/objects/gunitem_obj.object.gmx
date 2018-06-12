@@ -11,6 +11,20 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -25,11 +39,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Raycast and draw setup
-spr = gunitem;
-ray_w = 25; //gunitem_collider;
+            <string>/// Raycast collider setup
+
+ray_w = 25;
 ray_h = 15;
-zpos = TABLE_Z + sprite_get_height(spr)/2;
+zpos = TABLE_Z + sprite_get_height(gunitem)/2;
 
 </string>
           </argument>
@@ -51,7 +65,8 @@ zpos = TABLE_Z + sprite_get_height(spr)/2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Deactivate
+            <string>/// Deactivate
+
 instance_deactivate_object(id);
 
 </string>
@@ -76,38 +91,15 @@ instance_deactivate_object(id);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Get draw angle
-d_angle = player_obj.angle;
+            <string>/// Calculate raycast
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Hit me with 3D raycasts
-var xorig = player_obj.x;
-var yorig = player_obj.y;
-
-in_angle = false;
-if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE) //and
-//if (raycast_3d_spr(ray_w, ray_h, xorig, yorig, CAM_Z, x, y, zpos, d_angle, d_angle, zreal(player_obj.zangle)))
-if (raycast_2d_spr(ray_w, xorig, yorig, x, y, d_angle, d_angle))
-    in_angle = true;
+if (LEFTCLICK &amp;&amp; (global.handitem != 2))
+{
+    if (point_distance_sqr(global.pl_x, global.pl_y, x, y) &lt; ITEM_RANGE_SQR) //and
+    if (raycast_3d_spr(ray_w, ray_h, global.pl_x, global.pl_y, CAM_Z, x, y, zpos, global.pl_dangle, global.pl_rangle, global.pl_zangle))
+        in_angle = true;
+}
+else in_angle = false; //Reset raycast
 
 </string>
           </argument>
@@ -131,60 +123,10 @@ if (raycast_2d_spr(ray_w, xorig, yorig, x, y, d_angle, d_angle))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw
-if (!ISPERSPECTIVE) then draw_self();
-draw_3dspr_angle(spr, 0, x, y, zpos, 0.7, 0.7, d_angle);
+            <string>/// Draw gun
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>ISPERSPECTIVE</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>false</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw self from above
-draw_self();
+draw_3dspr_angle(gunitem, 0, x, y, zpos, 1, 1, global.pl_dangle);
+if (!ISPERSPECTIVE) then draw_self();
 
 </string>
           </argument>

@@ -1,13 +1,10 @@
-///event_lose_life()
+///event_lose_life(player)
 
-with (player_obj)
+if (lives > 0)
 {
-    if (lifeval > 0)
-    {
-        lifei[lifeval - 1]++;
-        lifeval--;
-        if (lifeval < 1) then event_game_over();
-        audio_play_sound(lifelost_snd, 2, false);
-    }
+    argument0.lifei[lives - 1]++;
+    lives--;
+    if (lives < 1) then event_game_over();
+    audio_play_sound(lifelost_snd, 2, false);
 }
 

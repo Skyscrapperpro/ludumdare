@@ -39,10 +39,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Cuboid setup
+            <string>/// Cuboid setup
+
 w = sprite_get_width(sprite_index);
 l = sprite_get_height(sprite_index);
-z = TABLE_Z;
+h = TABLE_Z;
+z = h/2;
 
 </string>
           </argument>
@@ -64,11 +66,34 @@ z = TABLE_Z;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Sprite setup
-spr = chunks;
-ray_w = 16; //chunks_collider;
-ray_h = 16;
-zpos = TABLE_Z + sprite_get_height(spr)/2;
+            <string>/// Sprite setup
+
+zpos = TABLE_Z + sprite_get_height(chunks)/2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Raycast collider setup
+
+spr_w = 16;
+spr_h = 16;
 
 </string>
           </argument>
@@ -92,44 +117,16 @@ zpos = TABLE_Z + sprite_get_height(spr)/2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Get draw angle
-d_angle = player_obj.angle;
+            <string>/// Calculate raycast
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Calculate raycast
-
-if (LEFTCLICK)
+if (LEFTCLICK &amp;&amp; (global.handitem == 0))
 {
-    //Pre-setup
-    var rz_angle = zreal(player_obj.zangle);
-    var xorig = player_obj.x;
-    var yorig = player_obj.y;
-    
-    //Raycasts check
-    if (point_distance(xorig, yorig, x, y) &lt; ITEM_RANGE)
+    if (point_distance_sqr(global.pl_x, global.pl_y, x, y) &lt; ITEM_RANGE_SQR)
     {
-        if (raycast_3d_plane(w, l, xorig, yorig, CAM_Z, x, y, z, image_angle, d_angle, rz_angle))
+        //Raycasts check
+        if (raycast_3d_spr(spr_w, spr_h, global.pl_x, global.pl_y, CAM_Z, x, y, zpos, global.pl_dangle, global.pl_rangle, global.pl_zangle))
             in_angle = true;
-        else if (raycast_3d_spr(ray_w, ray_h, xorig, yorig, CAM_Z, x, y, zpos, d_angle, d_angle, zreal(player_obj.zangle)))
+        else if (raycast_3d_plane(w, l, global.pl_x, global.pl_y, CAM_Z, x, y, h, image_angle, global.pl_rangle, global.pl_zangle))
             in_angle = true;
     }
 }
@@ -172,7 +169,8 @@ else in_angle = false; //Reset raycast
           <argument>
             <kind>1</kind>
             <string>/// Draw
-draw_3dspr_angle(spr, subi, x, y, zpos, 1, 1, d_angle);
+
+draw_3dspr_angle(chunks, subi, x, y, zpos, 1, 1, global.pl_dangle);
 
 </string>
           </argument>
