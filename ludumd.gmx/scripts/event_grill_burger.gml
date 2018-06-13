@@ -14,6 +14,10 @@ if (player.spatulaburger == 1)
         temp = 0;
         cook = 0;
     }
-    with (player) spatulaburger = 0;
+    with (player) 
+    {
+        spatulaburger = 0;
+        grillfogbool = false;
+    }
 }
 
