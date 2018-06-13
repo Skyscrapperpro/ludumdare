@@ -34,6 +34,7 @@ zangle = 0;
 xspeed = 0;
 yspeed = 0;
 
+grillfogbool = true;
 </string>
           </argument>
         </arguments>
@@ -195,7 +196,8 @@ if (LEFTCLICK) switch (obj_shot.object_index)
         break;
     case burgerbox_obj:
         if (spatulaburger == 0) then spatulaburger = 1;
-        event_grillfog(grill_obj);
+        if grillfogbool
+            event_grillfog(grill_obj);
         break;
     case breadbox_obj:
         if (spatulaburger == 0) then spatulaburger = 4;
