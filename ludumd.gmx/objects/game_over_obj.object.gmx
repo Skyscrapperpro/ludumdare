@@ -31,6 +31,7 @@ go_scl = (view_wport/sprite_get_width(gameover));
 go_alp = 0;
 earnedy = view_hport/2 + 32;
 
+titli=0;
 </string>
           </argument>
         </arguments>
@@ -134,7 +135,7 @@ titli = subimg_animation(gameover, titli, sprite_get_speed(gameover));
             <string>/// Draw Game Over
 
 //Game Over sprite
-draw_sprite_ext(gameover, goi, 0, 0, go_scl, go_scl, 0, -1, go_alp);
+draw_sprite_ext(gameover, titli, 0, 0, go_scl, go_scl, 0, -1, go_alp);
 
 //Draw texts
 draw_set_alpha(go_alp);
