@@ -257,14 +257,18 @@ if (LEFTCLICK) switch (obj_shot.object_index)
 break;
         case 2:
 //------------Gun--------------//
-if (global.shotframe) switch (obj_shot.object_index)
+if (global.shotframe)
 {
-    case zombie_obj:
-        event_kill_zombie(obj_shot);
-        break;
-    case customer_obj:
-        event_kill_customer(obj_shot);
-        break;
+    audio_play_sound(shot_snd, 2, false);
+    switch (obj_shot.object_index)
+    {
+        case zombie_obj:
+            event_kill_zombie(obj_shot);
+            break;
+        case customer_obj:
+            event_kill_customer(obj_shot);
+            break;
+    }
 }
 break;
 //-----------------------------//
@@ -498,6 +502,7 @@ if (!auto_rotation)
     //Vertical movement
     if (ISPERSPECTIVE)
     if (global.handitem != 2) then zangle = clamp((zangle - mouse_y_speed()), -90, 90);
+    else zangle = var_to_target(zangle, 0, AUTOCAM_SPD);
 }
 else //Auto rotation
 {
@@ -768,8 +773,8 @@ if (lifei[i] &lt; sprite_get_number(life))
 {
     disp = floor((global.oa * (lifehid + (LIFE_SEP * i))) - lifehid - 1) * PIXEL_LENGTH;
     draw_sprite_ext(life, lifei[i], disp, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-
 }
+
 </string>
           </argument>
         </arguments>
