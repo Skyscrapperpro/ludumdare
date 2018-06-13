@@ -763,12 +763,13 @@ if (alpfocus &gt; 0) then draw_sprite_ext(focus, 0, 0, 0, sclfocus, sclfocus, 0,
             <kind>1</kind>
             <string>/// Draw lives
 
-for (var i = 0, disp; i &lt; STARTING_LIFE; i++) if (lifei[i] &lt; sprite_get_number(life))
+for (var i = 0, disp; i &lt; STARTING_LIFE; i++) 
+if (lifei[i] &lt; sprite_get_number(life))
 {
     disp = floor((global.oa * (lifehid + (LIFE_SEP * i))) - lifehid - 1) * PIXEL_LENGTH;
     draw_sprite_ext(life, lifei[i], disp, 0, PIXEL_LENGTH, PIXEL_LENGTH, 0, -1, 1);
-}
 
+}
 </string>
           </argument>
         </arguments>
