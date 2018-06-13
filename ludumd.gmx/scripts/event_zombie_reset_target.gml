@@ -2,7 +2,7 @@
 
 with (argument0)
 {
-    var valid_ins;
+    var valid_ins = 0;
     
     //Get !dying instances
     for (var i = 0, ind = 0, ins; i < instance_number(customer_obj); i++)
