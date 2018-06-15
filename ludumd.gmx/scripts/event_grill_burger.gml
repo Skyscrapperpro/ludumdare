@@ -1,23 +1,13 @@
-///event_grill_burger(grill, player)
+///event_grill_burger(grill)
 
-var obj = argument0;
-var player = argument1;
+var ins = argument0;
+var burg = instance_create(ins.xcast, ins.ycast, burger_obj);
+burg.z += ins.h;
 
-if (player.spatulaburger == 1)
+with (burg)
 {
-    var burg = instance_create(obj.xcast, obj.ycast, burger_obj);
-    burg.z += obj.h;
-    
-    with (burg)
-    {
-        ztimer = z + TIMER_HEIGHT;
-        temp = 0;
-        cook = 0;
-    }
-    with (player) 
-    {
-        spatulaburger = 0;
-        grillfogbool = false;
-    }
+    ztimer = z + TIMER_HEIGHT;
+    temp = 0;
+    cook = 0;
 }
 

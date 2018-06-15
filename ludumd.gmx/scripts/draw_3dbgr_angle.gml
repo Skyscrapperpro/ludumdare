@@ -1,15 +1,18 @@
-///draw_3dbgr_angle(texture, x, y, z, width, height, rotation, x_repetitions)
+///draw_3dbgr_angle(bgr, x, y, z, width, height, rotation_z, rotation_x, repetitions_x, repetitions_y)
 
-var xpos = argument1;
-var ypos = argument2;
-var zpos = argument3;
+var w = argument4;
 var h = argument5;
-var ang = argument6;
-var sclx = argument7;
-var whalf = (argument4/2) * sclx;
+var sclx = argument8/2;
+var scly = argument9/2;
 
-var difx = lengthdir_x(whalf, ang);
-var dify = lengthdir_y(whalf, ang);
+d3d_transform_set_identity();
+d3d_transform_add_rotation_x(argument7);
+d3d_transform_add_rotation_z(argument6);
+d3d_transform_add_translation(argument1, argument2, argument3);
 
-d3d_draw_wall(xpos + difx, ypos + dify, zpos + (h/2), xpos - difx, ypos - dify, zpos - (h/2), argument0, sclx, 1);
+for(var i = -sclx; i < sclx; i++)
+    for(var j = -scly; j < scly; j++)
+        draw_background_stretched(argument0, i * w, j * h, w, h)
+
+d3d_transform_set_identity();
 

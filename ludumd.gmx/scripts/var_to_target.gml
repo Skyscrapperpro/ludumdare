@@ -2,12 +2,9 @@
 
 var moveable = argument0;
 var target = argument1;
-var spd = abs(argument2);
 
-if (moveable < target)
-    moveable = min(moveable + spd, target);
-else if (moveable > target)
-    moveable = max(moveable - spd, target);
+if (moveable < target) then moveable = min(moveable + abs(argument2), target);
+else if (moveable > target) moveable = max(moveable - abs(argument2), target);
 
 return moveable;
 

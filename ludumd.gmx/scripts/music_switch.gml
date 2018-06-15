@@ -1,8 +1,6 @@
 ///music_switch(track_number)
 
-var musicID = argument0;
-
-switch (musicID)
+switch (argument0)
 {
     case 0:
         if (audio_is_playing(zombies_music)) then audio_stop_sound(zombies_music);

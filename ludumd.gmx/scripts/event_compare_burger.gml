@@ -1,4 +1,4 @@
-///event_compare_burger(customer)
+///event_compare_burger(customer, plate)
 
 var cust = argument0;
 var given_plate = argument1;

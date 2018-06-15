@@ -17,11 +17,10 @@ d3d_transform_add_translation(xpos, ypos, zpos);
 if ((global.sh_sup) && ((sclx * scly) < 0))
 {
     var uvs = sprite_get_uvs(sprite, subi);
-    var uvx = (uvs[0] + uvs[2]) * (sclx < 0);
-    var uvy = (uvs[1] + uvs[3]) * (scly < 0);
-    var uniform = shader_get_uniform(flip_shd, "uvs_sum");
     shader_set(flip_shd);
-    shader_set_uniform_f(uniform, uvx, uvy);
+    shader_set_uniform_f(shader_get_uniform(flip_shd, "uvs_sum"),
+        (uvs[0] + uvs[2]) * (sclx < 0),
+        (uvs[1] + uvs[3]) * (scly < 0));
     draw_sprite_ext(sprite, subi, 0, 0, abs(sclx), abs(scly), 0, -1, 1);
     shader_reset();
 }

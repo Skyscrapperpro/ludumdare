@@ -422,7 +422,7 @@ else in_angle = false;
             <string>/// Extra animations
 
 //Talk
-if (talki &gt; 0) then talki = subimg_animation(talk_spr, talki, sprite_get_speed(talk_spr));
+if ((selected_menu) &amp;&amp; (talki &gt; 0)) then talki = subimg_animation(talk_spr, talki, sprite_get_speed(talk_spr));
 
 //Price effect
 if (pr_alp &lt; 5) then pr_alp = var_to_target(pr_alp, 0, 0.1);

@@ -2,12 +2,7 @@
 
 var xpos = argument0;
 var ypos = argument1;
-var angle = argument2;
-var ret = argument3;
 
-var d = point_distance(0, 0, xpos, ypos);
-var r = darctan2(-ypos, xpos) + angle;
-
-if (ret) then return lengthdir_y(d, r);
-else return lengthdir_x(d, r);
+if (argument3) then return lengthdir_y(point_distance(0, 0, xpos, ypos), darctan2(-ypos, xpos) + argument2);
+else return lengthdir_x(point_distance(0, 0, xpos, ypos), darctan2(-ypos, xpos) + argument2);
 

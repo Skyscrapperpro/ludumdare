@@ -10,7 +10,6 @@ with (ID)
     ds_list_clear(burger);
     ray_h = sprite_get_height(ingredients) * BURGER_SCALE;
     ray_z = hplate + ray_h/2;
-    finished = false;
 }
 
 global.handitem = 1;

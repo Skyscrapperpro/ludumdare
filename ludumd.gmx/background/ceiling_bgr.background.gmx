@@ -13,8 +13,8 @@
     <TextureGroup0>0</TextureGroup0>
     <TextureGroup1>0</TextureGroup1>
   </TextureGroups>
-  <For3D>-1</For3D>
-  <width>32</width>
-  <height>32</height>
+  <For3D>0</For3D>
+  <width>16</width>
+  <height>16</height>
   <data>images\ceiling_bgr.png</data>
 </background>

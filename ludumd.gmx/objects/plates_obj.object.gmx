@@ -25,10 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Initialize
+            <string>/// Initialize burger list
 
 burger = ds_list_create();
-finished = false;
 
 </string>
           </argument>

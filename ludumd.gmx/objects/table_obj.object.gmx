@@ -27,10 +27,8 @@
             <kind>1</kind>
             <string>/// Draw setup
 
-w = sprite_get_width(sprite_index) * image_xscale;
+w = sprite_get_width(sprite_index);
 h = sprite_get_height(sprite_index);
-tex0 = background_get_texture(tabletop_bgr);
-tex1 = background_get_texture(table_bgr);
 
 </string>
           </argument>
@@ -56,8 +54,8 @@ tex1 = background_get_texture(table_bgr);
             <kind>1</kind>
             <string>/// Draw
 
-d3d_draw_floor(x - w/2, y + h/2, TABLE_Z, x + w/2, y - h/2, TABLE_Z, tex0, image_xscale, image_yscale);
-draw_3dbgr_angle(tex1, x, y + h/2, TABLE_Z/2, h, TABLE_Z, image_angle, image_xscale);
+draw_3dbgr_angle(tabletop_bgr, x, y, TABLE_Z, w, h, image_angle, 0, image_xscale, image_yscale);
+draw_3dbgr_angle(table_bgr, x, y + (h * image_yscale)/2, TABLE_Z/2, h, TABLE_Z, image_angle, 90, image_xscale, 1);
 
 </string>
           </argument>

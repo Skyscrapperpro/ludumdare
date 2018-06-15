@@ -396,7 +396,13 @@ if (!instance_exists(game_over_obj))
             <kind>1</kind>
             <string>/// Press start
 
-if (START) then event_initialize_manager(id);
+if (START)
+{
+    global.play = true;
+    if (!gamepad_button_check_pressed(0, gp_start)) then mouse_lock();
+    music_switch(0);
+    event_initialize_manager(id);
+}
 
 </string>
           </argument>
