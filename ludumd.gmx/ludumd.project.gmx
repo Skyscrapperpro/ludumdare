@@ -3,6 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
     <Config>Configs\PerspectiveOff</Config>
+    <Config>Configs\GrillLightOff</Config>
   </Configs>
   <NewExtensions>
     <extension index="0">extensions\PointerLock</extension>
@@ -241,7 +242,7 @@
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
-  <constants number="54">
+  <constants number="55">
     <constant name="LEFT">(keyboard_check(ord("A")) || (gamepad_axis_value(0, gp_axislh) &lt; -0.5))</constant>
     <constant name="RIGHT">(keyboard_check(ord("D")) || (gamepad_axis_value(0, gp_axislh) &gt; +0.5))</constant>
     <constant name="FORWARD">(keyboard_check(ord("W")) || (gamepad_axis_value(0, gp_axislv) &lt; -0.5))</constant>
@@ -296,6 +297,7 @@
     <constant name="DISP_SPD">0.1</constant>
     <constant name="PART_LIFE">30</constant>
     <constant name="PART_TIME">irandom_range(10, 15)</constant>
+    <constant name="GRILL_LIGHT">true</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
