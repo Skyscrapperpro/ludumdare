@@ -45,7 +45,7 @@ switch (spr)
         
     //Zombies
     case zombie:
-        return 0.125;
+        return 0.15;
         break;
     case zombie_ded:
         return 0.25;
