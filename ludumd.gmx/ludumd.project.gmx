@@ -153,6 +153,7 @@
       <script>scripts\subimg_animation.gml</script>
       <script>scripts\subimg_animation_end.gml</script>
       <script>scripts\var_to_target.gml</script>
+      <script>scripts\zigzag_to_target.gml</script>
       <script>scripts\zreal.gml</script>
     </scripts>
     <scripts name="Events">
