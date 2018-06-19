@@ -311,11 +311,11 @@ part_system_automatic_draw(titleparttype, false);
             <kind>1</kind>
             <string>/// Generate customers
 
-if (!instance_exists(game_over_obj))
+if (!instance_exists(game_over_obj) &amp;&amp; !instance_exists(zombie_obj))
 {
     if (generated &lt; zombie_marg)
     {
-        if (!instance_exists(zombie_obj)) then instance_create(x, y, customer_obj);
+        instance_create(x, y, customer_obj);
         generated++;
     }
     else
@@ -402,7 +402,12 @@ if (START)
     if (!gamepad_button_check_pressed(0, gp_start)) then mouse_lock();
     music_switch(0);
     event_initialize_manager(id);
+    
+    //Destroy particles
+    if (part_type_exists(titleparttype)) then part_type_destroy(titleparttype);
+    if (part_system_exists(titlepartsis)) then part_system_destroy(titlepartsis);
 }
+
 
 </string>
           </argument>

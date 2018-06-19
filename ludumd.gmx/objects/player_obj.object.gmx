@@ -192,17 +192,16 @@ if (LEFTCLICK) switch (obj_shot.object_index)
         }
         break;
     case grill_obj:
-        if (spatulaburger == 1)
+        if ((spatulaburger == 1) || (spatulaburger == 2))
         {
-            event_grill_burger(obj_shot);
+            event_grill_burger(obj_shot, spatulaburger);
             spatulaburger = 0;
             grillfogbool = false;
         }
         break;
     case burgerbox_obj:
         if (spatulaburger == 0) then spatulaburger = 1;
-        if grillfogbool
-            event_grillfog(grill_obj);
+        if (grillfogbool) then event_grillfog(grill_obj);
         break;
     case breadbox_obj:
         if (spatulaburger == 0) then spatulaburger = 4;
