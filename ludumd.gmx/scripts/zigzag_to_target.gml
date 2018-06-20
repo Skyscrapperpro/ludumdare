@@ -24,7 +24,7 @@ if ((point_direction(x2,y2,x1,y1)>90+ang)&&(point_direction(x2,y2,x1,y1)<270-ang
 {
     dirx = 1;
 }
-
+else
 if ((point_direction(x2,y2,x1,y1)<90-ang)||(point_direction(x2,y2,x1,y1)>270+ang))
 {
     dirx = -1;
