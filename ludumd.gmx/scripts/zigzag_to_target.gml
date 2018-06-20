@@ -1,4 +1,6 @@
 ///zigzag_to_target(target x, target y, x speed, y speed, cone angle, (initial xfactor))
+
+//VARIABLE ASIGNMENT
 var x1 = x;
 var y1 = y;
 var x2 = argument[0];
@@ -13,6 +15,29 @@ else
     var xf=choose(-1,1);
 
 var dirx = sign(x1-xprevious);
+var diry = sign(y2-y1);
 
 
-if place_free(
+//X DIR
+
+if ((point_direction(x2,y2,x1,y1)>90+ang)&&(point_direction(x2,y2,x1,y1)<270-ang))
+{
+    dirx = 1;
+}
+
+if ((point_direction(x2,y2,x1,y1)<90-ang)||(point_direction(x2,y2,x1,y1)>270+ang))
+{
+    dirx = -1;
+}
+
+if (not(place_free(x+xs*dirx,y))) //wall collisions
+    dirx=-dirx;
+
+//Y DIR
+
+if (not(place_free(x+xs*dirx,y+ys*ydir))) //wall collisions
+    diry=-diry;
+
+//MOVEMENT
+x=x+xs*dirx;
+y=y+ys*ydir;
