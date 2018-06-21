@@ -1,7 +1,10 @@
-Este documento recoge los puntos propuestos para la próxima reunión 
-(creado por jimmy un poco por independiente, si a alguien le molesta que lo borre y np)
+Este documento recoge los puntos propuestos para la próxima reunión.
 Contiene toda la información referente a esa reunión propuesta hasta la fecha, y, si se
 utiliza, consiste en un guión básico para el acta de la misma.
+
+
+
+Fecha, hora y lugar de la reunión: aún por determinar
 
 Punto 1: Organización
 	-Revisión de los estatutos del grupo, ratificación de Carmen como líder (en su caso)
@@ -12,11 +15,18 @@ Punto 2: Mejoras en el sistema de juego
 	Sección 1: mejoras que afectan a la rejugabilidad (objetivo: más tiempo de juego)
 
 		-Sistema de logros
-			*Basado en puntuación
+			*Basado en puntuación (medallas, letras, estrellas...?)
 			*Basado en contenido
 			*Combinación de ambos
 
-	Sección 2: mejoras que afectan a la monotonía
+	Sección 2: mejoras que afectan a la duración de una partida
+		
+		-Cambios en curva de dificultad:
+			*Revisión de la dificultad global (es facil? es dificil? cómo varía?)
+			*Disminución de la subida de dificultad para niveles mas altos (para
+				contrarrestar un poco el incremento logarítmico si es necesario)
+
+	Sección 3: mejoras que afectan a la monotonía
 
 		-Introducción de nuevos personajes
 			*nuevos clientes
