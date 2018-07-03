@@ -237,7 +237,7 @@ switch(away_or_towards_camera())
             <kind>1</kind>
             <string>/// Draw sprite
 
-draw_3dspr_angle(sprite, subi, x, y, zpos, dir, 1, global.pl_dangle);
+draw_3dspr_angle(sprite, subi, x, y, zpos, dir, 1, global.pl_dangle, global.sh_sup);
 
 </string>
           </argument>

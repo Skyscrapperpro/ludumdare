@@ -1,13 +1,13 @@
 ///burger_get_price(burger)
 
-var burger = argument0;
+var _burger = argument0;
 
-var price = 0;
-for (var i = 1; i < (array_length_1d(burger) - 1); i++)
+var _price = 0;
+for (var i = 1; i < (array_length_1d(_burger) - 1); i++)
 {
-    if (burger[i] == 3) then price += PRICE_BURGER;
-    else price += PRICE_INGREDIENT;
+    if (_burger[i] == 3) then _price += PRICE_BURGER;
+    else _price += PRICE_INGREDIENT;
 }
 
-return price;
+return _price;
 

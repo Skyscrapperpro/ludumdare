@@ -1,16 +1,16 @@
 ///event_compare_burger(customer, plate)
 
-var cust = argument0;
-var given_plate = argument1;
+var _cust = argument0;
+var _given_plate = argument1;
 
-var ret = true;
-var len = array_length_1d(cust.burger_asked);
-if (len != ds_list_size(given_plate.burger)) then ret = false;
-else for(var i = 0; i < len; i++)
+var _ret = true;
+var _len = array_length_1d(_cust.burger_asked);
+if (_len != ds_list_size(_given_plate.burger)) then _ret = false;
+else for(var i = 0; i < _len; i++)
 {
-    if (cust.burger_asked[i] != ds_list_find_value(given_plate.burger, i))
-        ret = false;
+    if (_cust.burger_asked[i] != ds_list_find_value(_given_plate.burger, i))
+        _ret = false;
 }
 
-return ret;
+return _ret;
 

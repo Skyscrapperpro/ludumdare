@@ -229,8 +229,8 @@ else in_angle = false; //Reset raycast
             <kind>1</kind>
             <string>/// Draw sprite
 
-draw_3dspr_angle(sprite[cook], subi, x, y, z, BURGER_SCALE, BURGER_SCALE, global.pl_dangle);
-draw_3dspr_angle(burger_timer, temp, x, y, ztimer, 0.5, 0.5, global.pl_dangle);
+draw_3dspr_angle(sprite[cook], subi, x, y, z, BURGER_SCALE, BURGER_SCALE, global.pl_dangle, global.sh_sup);
+draw_3dspr_angle(burger_timer, temp, x, y, ztimer, 0.5, 0.5, global.pl_dangle, global.sh_sup);
 if (!ISPERSPECTIVE) then draw_self();
 
 </string>

@@ -1,18 +1,18 @@
 ///event_place_ing(plates_table, spatulaburger)
 
-var ID = argument0;
-var size = ds_list_size(ID.burger);
+var _ID = argument0;
+var _size = ds_list_size(_ID.burger);
 
-if (ds_list_find_value(ID.burger, size - 1) != 7)
+if (ds_list_find_value(_ID.burger, _size - 1) != 7)
 {
-    var spat = spat_to_burger(argument1);
+    var _spat = spat_to_burger(argument1);
     
     //Add ingredient
-    if ((spat == 2) && (size > 0)) then spat = 7;
-    ds_list_add(ID.burger, spat);
+    if ((_spat == 2) && (_size > 0)) then _spat = 7;
+    ds_list_add(_ID.burger, _spat);
     
     //Update raycast heigth
-    with (ID)
+    with (_ID)
     {
         ray_h += ING_SEP;
         ray_z = hplate + ray_h/2;

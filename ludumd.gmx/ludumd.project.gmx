@@ -141,7 +141,7 @@
         <script>scripts\draw_3dtext_vertical.gml</script>
         <script>scripts\draw_cuboid.gml</script>
       </scripts>
-      <script>scripts\add_score.gml</script>
+      <script>scripts\approach.gml</script>
       <script>scripts\audio_play_random.gml</script>
       <script>scripts\draw_number_spr.gml</script>
       <script>scripts\mouse_x_speed.gml</script>
@@ -152,7 +152,6 @@
       <script>scripts\rotating_point_relative.gml</script>
       <script>scripts\subimg_animation.gml</script>
       <script>scripts\subimg_animation_end.gml</script>
-      <script>scripts\var_to_target.gml</script>
       <script>scripts\zigzag_to_target.gml</script>
       <script>scripts\zreal.gml</script>
     </scripts>
@@ -177,6 +176,7 @@
       <script>scripts\event_take_plate.gml</script>
       <script>scripts\event_zombie_reset_target.gml</script>
     </scripts>
+    <script>scripts\add_score.gml</script>
     <script>scripts\away_or_towards_camera.gml</script>
     <script>scripts\burger_get_price.gml</script>
     <script>scripts\check_nearest_customer.gml</script>

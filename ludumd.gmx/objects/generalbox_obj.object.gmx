@@ -170,7 +170,7 @@ else in_angle = false; //Reset raycast
             <kind>1</kind>
             <string>/// Draw
 
-draw_3dspr_angle(chunks, subi, x, y, zpos, 1, 1, global.pl_dangle);
+draw_3dspr_angle(chunks, subi, x, y, zpos, 1, 1, global.pl_dangle, global.sh_sup);
 
 </string>
           </argument>

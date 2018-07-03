@@ -1,6 +1,6 @@
 ///zangle_projection_x(zangle, angle);
-var zang = argument0;
-var xyang = argument1;
+var _zang = argument0;
+var _xyang = argument1;
 
-return darctan2(dsin(zang), dcos(xyang) * dcos(zang));
+return darctan2(dsin(_zang), dcos(_xyang) * dcos(_zang));
 

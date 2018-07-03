@@ -84,7 +84,7 @@ if (RESTARTKEY)
             <kind>1</kind>
             <string>/// Game Over alpha
 
-go_alp = var_to_target(go_alp, 1, 0.1);
+go_alp = approach(go_alp, 1, 0.1);
 
 </string>
           </argument>

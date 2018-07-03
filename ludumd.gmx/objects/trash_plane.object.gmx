@@ -111,7 +111,7 @@ else in_angle = false; //Reset raycast
             <kind>1</kind>
             <string>/// Draw sprite
 
-draw_3dspr_angle(trashcan_plane, 0, x, y, z, scl, scl, image_angle);
+draw_3dspr_angle(trashcan_plane, 0, x, y, z, scl, scl, image_angle, global.sh_sup);
 if (!ISPERSPECTIVE) then draw_self();
 
 </string>

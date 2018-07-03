@@ -1,11 +1,11 @@
 ///event_take_plate(plates_table)
 
-var ID = argument0;
-var given_plate = instance_create(x, y, taken_plate_obj);
-given_plate.burger = ds_list_create();
-ds_list_copy(given_plate.burger, ID.burger);
+var _ID = argument0;
+var _given_plate = instance_create(x, y, taken_plate_obj);
+_given_plate.burger = ds_list_create();
+ds_list_copy(_given_plate.burger, _ID.burger);
 
-with (ID)
+with (_ID)
 {
     ds_list_clear(burger);
     ray_h = sprite_get_height(ingredients) * BURGER_SCALE;
@@ -13,5 +13,5 @@ with (ID)
 }
 
 global.handitem = 1;
-return given_plate;
+return _given_plate;
 

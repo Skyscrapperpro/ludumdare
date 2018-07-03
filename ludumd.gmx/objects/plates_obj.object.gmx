@@ -259,10 +259,10 @@ ds_list_destroy(burger);
             <string>/// Draw
 
 draw_cuboid(x, y, hplate, w, l, 0, image_angle, plate_bgr);
-draw_3dspr_angle(refrigerio, 0, xref, yref, zref, 1, 1, global.pl_dangle);
+draw_3dspr_angle(refrigerio, 0, xref, yref, zref, 1, 1, global.pl_dangle, global.sh_sup);
 if (ds_list_size(burger) &gt; 0)
     for(var i = 0; i &lt; ds_list_size(burger); i++)
-        draw_3dspr_angle(ingredients, ds_list_find_value(burger, i), xburg, yburg - (0.1 * i), zburg + (ING_SEP * i), BURGER_SCALE, BURGER_SCALE, global.pl_dangle);
+        draw_3dspr_angle(ingredients, ds_list_find_value(burger, i), xburg, yburg - (0.1 * i), zburg + (ING_SEP * i), BURGER_SCALE, BURGER_SCALE, global.pl_dangle, global.sh_sup);
 
 </string>
           </argument>

@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// Draw sprite
 
-draw_3dspr_angle(sprite, 0, x, y, z, 1, 1, image_angle);
+draw_3dspr_angle(sprite, 0, x, y, z, 1, 1, image_angle, global.sh_sup);
 if (!ISPERSPECTIVE) draw_self();
 
 </string>

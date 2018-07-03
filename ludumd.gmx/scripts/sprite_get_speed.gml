@@ -1,7 +1,7 @@
 ///sprite_get_speed(sprite)
 
-var spr = argument0;
-switch (spr)
+var _spr = argument0;
+switch (_spr)
 {
     //Customer animations
     case customer_walk:
@@ -67,7 +67,7 @@ switch (spr)
         
     //Timer
     case burger_timer:
-        return (sprite_get_number(spr)/2)/TIME_TO_COOK;
+        return (sprite_get_number(_spr)/2)/TIME_TO_COOK;
         break;
 
     default:

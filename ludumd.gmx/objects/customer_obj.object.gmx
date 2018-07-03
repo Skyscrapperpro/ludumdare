@@ -425,7 +425,7 @@ else in_angle = false;
 if ((selected_menu) &amp;&amp; (talki &gt; 0)) then talki = subimg_animation(talk_spr, talki, sprite_get_speed(talk_spr));
 
 //Price effect
-if (pr_alp &lt; 5) then pr_alp = var_to_target(pr_alp, 0, 0.1);
+if (pr_alp &lt; 5) then pr_alp = approach(pr_alp, 0, 0.1);
 
 </string>
           </argument>
@@ -602,7 +602,7 @@ if (subimg_animation_end(ded_spr, subi - s, s)) then instance_destroy();
             <kind>1</kind>
             <string>/// Draw talking/crying face
 
-if ((talki &gt; 0) &amp;&amp; (sprite != walkb_spr)) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, dir, 1, global.pl_dangle);
+if ((talki &gt; 0) &amp;&amp; (sprite != walkb_spr)) then draw_3dspr_angle(talk_spr, talki, x, y + 0.1, zpos, dir, 1, global.pl_dangle, global.sh_sup);
 
 </string>
           </argument>
@@ -628,9 +628,9 @@ if ((talki &gt; 0) &amp;&amp; (sprite != walkb_spr)) then draw_3dspr_angle(talk_
 
 if (selected_menu)
 {
-    draw_3dspr_angle(customer_dialog, 0, x, y + 0.2, zpos, 1, 1, global.pl_dangle);
+    draw_3dspr_angle(customer_dialog, 0, x, y + 0.2, zpos, 1, 1, global.pl_dangle, global.sh_sup);
     for (var i= 0; i &lt; array_length_1d(burger_asked); i++)
-        draw_3dspr_angle(ingredients, burger_asked[i], xburg, yburg + 0.3 + (0.1 * i), zburg + (ING_SEP * i), BURGER_SCALE, BURGER_SCALE, global.pl_dangle);
+        draw_3dspr_angle(ingredients, burger_asked[i], xburg, yburg + 0.3 + (0.1 * i), zburg + (ING_SEP * i), BURGER_SCALE, BURGER_SCALE, global.pl_dangle, global.sh_sup);
 }
 
 </string>

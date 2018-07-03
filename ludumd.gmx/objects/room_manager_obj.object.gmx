@@ -577,7 +577,7 @@ if (part_system_exists(titlepartsis))
             <kind>1</kind>
             <string>/// Opening animation
 
-global.oa = var_to_target(global.oa, 1 + DISP_SPD, DISP_SPD);
+global.oa = approach(global.oa, 1 + DISP_SPD, DISP_SPD);
 titley = -ceil(global.oa * 80) * PIXEL_LENGTH;
 
 </string>

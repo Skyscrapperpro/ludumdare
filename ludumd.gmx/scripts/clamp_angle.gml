@@ -1,10 +1,10 @@
 ///clamp_angle(angle, format)
 
 //Returns angle in the range (limit - 359, limit)
-var scr_angle = argument0;
-var limit = argument1;
+var _scr_angle = argument0;
+var _limit = argument1;
 
-scr_angle += floor((limit - scr_angle) / 360) * 360;
+_scr_angle += floor((_limit - _scr_angle) / 360) * 360;
 
-return scr_angle;
+return _scr_angle;
 

@@ -348,7 +348,7 @@ break;
             <kind>1</kind>
             <string>/// Alpha focus animation
 
-alpfocus = var_to_target(alpfocus, instance_exists(zombie_obj), 0.1);
+alpfocus = approach(alpfocus, instance_exists(zombie_obj), 0.1);
 
 </string>
           </argument>
@@ -412,7 +412,7 @@ switch (global.handitem)
             <string>/// Lives animation
 
 for (var i = 0; i &lt; STARTING_LIFE; i++) if (lifei[i] &gt; 0)
-    lifei[i] = var_to_target(lifei[i], sprite_get_number(life), sprite_get_speed(life));
+    lifei[i] = approach(lifei[i], sprite_get_number(life), sprite_get_speed(life));
 
 </string>
           </argument>
@@ -509,13 +509,13 @@ if (!auto_rotation)
     //Vertical movement
     if (ISPERSPECTIVE)
     if (global.handitem != 2) then zangle = clamp((zangle - mouse_y_speed()), -90, 90);
-    else zangle = var_to_target(zangle, 0, AUTOCAM_SPD);
+    else zangle = approach(zangle, 0, AUTOCAM_SPD);
 }
 else //Auto rotation
 {
     //Rotate
-    global.pl_dangle = var_to_target(global.pl_dangle, 0, AUTOCAM_SPD);
-    zangle = var_to_target(zangle, 0, AUTOCAM_SPD);
+    global.pl_dangle = approach(global.pl_dangle, 0, AUTOCAM_SPD);
+    zangle = approach(zangle, 0, AUTOCAM_SPD);
     
     //Check if rotation has finished
     if ((global.pl_dangle == 0) &amp;&amp; (zangle == 0))
@@ -564,8 +564,8 @@ else
 }
 
 //Acceleration
-xspeed = var_to_target(xspeed, xspeed_targ, CHAR_ACC);
-yspeed = var_to_target(yspeed, yspeed_targ, CHAR_ACC);
+xspeed = approach(xspeed, xspeed_targ, CHAR_ACC);
+yspeed = approach(yspeed, yspeed_targ, CHAR_ACC);
 
 //Collisions
 do_collision_move(point_distance(0, 0, xspeed, yspeed), darctan2(-yspeed, xspeed), MOVE_ERROR);

@@ -106,8 +106,8 @@ else open_amount = 0;
             <kind>1</kind>
             <string>/// Draw plane
 
-draw_3dspr_angle(door_spr, 0, x + w/2 + open_amount, y, CEILING_H/2, -1, 1.25, image_angle);
-draw_3dspr_angle(door_spr, 0, x - w/2 - open_amount, y, CEILING_H/2, 1, 1.25, image_angle);
+draw_3dspr_angle(door_spr, 0, x + w/2 + open_amount, y, CEILING_H/2, -1, 1.25, image_angle, global.sh_sup);
+draw_3dspr_angle(door_spr, 0, x - w/2 - open_amount, y, CEILING_H/2, 1, 1.25, image_angle, global.sh_sup);
 
 </string>
           </argument>

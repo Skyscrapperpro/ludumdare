@@ -125,7 +125,7 @@ else in_angle = false; //Reset raycast
             <kind>1</kind>
             <string>/// Draw gun
 
-draw_3dspr_angle(gunitem, 0, x, y, zpos, 1, 1, global.pl_dangle);
+draw_3dspr_angle(gunitem, 0, x, y, zpos, 1, 1, global.pl_dangle, global.sh_sup);
 if (!ISPERSPECTIVE) then draw_self();
 
 </string>
