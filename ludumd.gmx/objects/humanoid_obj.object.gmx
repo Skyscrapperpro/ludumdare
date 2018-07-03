@@ -157,7 +157,7 @@ subi = subimg_animation(sprite, subi, sprite_get_speed(sprite));
           </argument>
           <argument>
             <kind>0</kind>
-            <string></string>
+            <string>MOVE_ERROR</string>
           </argument>
           <argument>
             <kind>0</kind>

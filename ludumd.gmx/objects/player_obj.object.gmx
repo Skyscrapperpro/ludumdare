@@ -35,6 +35,7 @@ xspeed = 0;
 yspeed = 0;
 
 grillfogbool = true;
+
 </string>
           </argument>
         </arguments>
@@ -546,15 +547,20 @@ global.pl_zangle = zreal(zangle);
           <argument>
             <kind>1</kind>
             <string>/// Get position
-var xspeed_targ = 0;
-var yspeed_targ = 0;
 
-//Set speed if you are moving
+var xspeed_targ, yspeed_targ;
+
+//Set speed target if you are moving
 if (RIGHT||LEFT||FORWARD||BACKWARDS)
 {
     var move_angle = global.pl_dangle + darctan2(FORWARD - BACKWARDS, RIGHT - LEFT);
     xspeed_targ = lengthdir_x(CHAR_SPD, move_angle);
     yspeed_targ = lengthdir_y(CHAR_SPD, move_angle);
+}
+else
+{
+    xspeed_targ = 0;
+    yspeed_targ = 0;
 }
 
 //Acceleration
@@ -562,7 +568,7 @@ xspeed = var_to_target(xspeed, xspeed_targ, CHAR_ACC);
 yspeed = var_to_target(yspeed, yspeed_targ, CHAR_ACC);
 
 //Collisions
-do_collision_move(xspeed, yspeed);
+do_collision_move(point_distance(0, 0, xspeed, yspeed), darctan2(-yspeed, xspeed), MOVE_ERROR);
 
 //Update global state
 global.pl_x = x;

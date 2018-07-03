@@ -1,22 +1,20 @@
-///move_towards(target_x, target_y, speed)
-var targetx = argument0;
-var targety = argument1;
-var spd = argument2;
+///move_towards(target_x, target_y, speed, sweep_interval)
+var _targetx = argument0;
+var _targety = argument1;
+var _mtspd = argument2;
 
-if ((targetx != x) || (targety != y))
+if ((_targetx != x) || (_targety != y))
 {
     //Set angle
-    var m_angle = point_direction(x, y, targetx, targety);
+    var _m_angle = point_direction(x, y, _targetx, _targety);
     
     //Set speed
-    var xspeed = lengthdir_x(spd, m_angle);
-    var yspeed = lengthdir_y(spd, m_angle);
     //If it's going to surpass the target
     //then set speed to exact target difference
-    if (sign(targetx - x) != sign(targetx - (x + xspeed))) then xspeed = targetx - x;
-    if (sign(targety - y) != sign(targety - (y + yspeed))) then yspeed = targety - y;
+    var _dist = point_distance(x, y, _targetx, _targety);
+    if (_mtspd > _dist) then _mtspd = _dist;
     
     //Move
-    do_collision_move(xspeed, yspeed);
+    do_collision_move(_mtspd, _m_angle, argument3);
 }
 
