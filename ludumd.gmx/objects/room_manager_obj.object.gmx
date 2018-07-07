@@ -128,6 +128,7 @@ global.sh_sup = shaders_are_supported();
 global.play = false;
 global.scoreflt = 0;
 global.level = 0;
+global.wave = 0;
 global.oa = 0;
 
 </string>

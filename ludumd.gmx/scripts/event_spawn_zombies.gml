@@ -1,5 +1,6 @@
 ///event_spawn_zombies()
 
+global.wave += 1;
 music_switch(1);
 event_auto_rotate();
 if (global.handitem != 2) then instance_activate_object(gunitem_obj);
