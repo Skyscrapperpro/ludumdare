@@ -78,10 +78,17 @@
       <sprite>sprites\particle</sprite>
     </sprites>
     <sprites name="Shooter">
-      <sprite>sprites\zombie</sprite>
-      <sprite>sprites\zombie_ded</sprite>
-      <sprite>sprites\zombie_attack</sprite>
       <sprite>sprites\gunitem</sprite>
+      <sprites name="zombie">
+        <sprite>sprites\zombie</sprite>
+        <sprite>sprites\zombie_attack</sprite>
+        <sprite>sprites\zombie_ded</sprite>
+      </sprites>
+      <sprites name="kidz">
+        <sprite>sprites\kidz</sprite>
+        <sprite>sprites\kidz_attack</sprite>
+        <sprite>sprites\kidz_ded</sprite>
+      </sprites>
     </sprites>
     <sprites name="Burgers">
       <sprite>sprites\ingredients</sprite>
