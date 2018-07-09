@@ -127,6 +127,7 @@ switch (kind)
     {
     case 1:
     //kid
+    move_spd = ZOMBIE_SPD;
     move_spdx = ZOMBIE_CHILD_SPD_X;
     move_spdy = ZOMBIE_CHILD_SPD_Y;
     break;
@@ -445,23 +446,27 @@ switch (kind)
 {
     case 1: //kid override zombie movement with their own, but keep the sprite setting
     //movement
-    zigzag_to_target(targetx, targety, move_spdx, move_spdy, ZOMBIE_CHILD_ANGLE);
+    if (y &gt; door_obj.y)
+    {
+        zigzag_to_target(targetx, targety, move_spdx, move_spdy, ZOMBIE_CHILD_ANGLE);
     
     //set sprite
-    if (spr_from_move_state)
-    switch(away_or_towards_camera())
-    {
-        case 1:
-            sprite = walkf_spr;
-            break;
-        case -1:
-            sprite = walkb_spr;
-            break;
-        default:
-            sprite = stand_spr;
-            break;
+        if (spr_from_move_state)
+        switch(away_or_towards_camera())
+        {
+            case 1:
+                sprite = walkf_spr;
+                break;
+            case -1:
+                sprite = walkb_spr;
+                break;
+            default:
+                sprite = stand_spr;
+                break;
+        }
     }
-
+    else event_inherited(); //keep the inherited event until crossing the door
+    
     break;
     
     default:
