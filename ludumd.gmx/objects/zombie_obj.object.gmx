@@ -30,32 +30,7 @@
 //Zombie kinds so far:
 //normal=0, kid=1, fat=2
 
-//Generation of array with all the kinds
-var kindchancearray;
-
-kindchancearray[0] = ZOMBIE_NORM_CHANCE - 1; //so the chances go from 0 to n-1 instead of 1 to n
-
-if (global.wave &gt; ZOMBIE_CHILD_WAVE)
-{
-    kindchancearray[1] = kindchancearray[0] + ZOMBIE_CHILD_CHANCE;
-}
-else kindchancearray[1] = kindchancearray[0];
-
-if (global.wave &gt; ZOMBIE_FAT_WAVE)
-{
-    kindchancearray[2] = kindchancearray[1] + ZOMBIE_FAT_CHANCE;
-}
-else kindchancearray[2] = kindchancearray[1];
-
-//Generation of random kind
-var kindchance = irandom(kindchancearray[2]);
-
-//Read kind and save to object variable
-kind = 0; //in case something went wrong, zombie will default to normal
-
-if (kindchance &lt;= kindchancearray[2]) kind = 2;
-if (kindchance &lt;= kindchancearray[1]) kind = 1;
-if (kindchance &lt;= kindchancearray[0]) kind = 0;
+kind=weighted_choose(global.wave, ZOMBIE_NORM_CHANCE, ZOMBIE_CHILD_WAVE, ZOMBIE_CHILD_CHANCE, ZOMBIE_FAT_WAVE, ZOMBIE_FAT_CHANCE);
 </string>
           </argument>
         </arguments>
