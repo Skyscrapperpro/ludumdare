@@ -53,6 +53,16 @@ switch (_spr)
     case zombie_attack:
         return 0.25;
         break;
+    
+    case kidz:
+        return 0.15;
+        break;
+    case kidz_ded:
+        return 0.25;
+        break;
+    case kidz_attack:
+        return 0.25;
+        break;
         
     //Burgers
     case burger_grill0:
