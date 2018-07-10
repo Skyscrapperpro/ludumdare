@@ -256,7 +256,7 @@
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
-  <constants number="64">
+  <constants number="65">
     <constant name="LEFT">(keyboard_check(ord("A")) || (gamepad_axis_value(0, gp_axislh) &lt; -0.5))</constant>
     <constant name="RIGHT">(keyboard_check(ord("D")) || (gamepad_axis_value(0, gp_axislh) &gt; +0.5))</constant>
     <constant name="FORWARD">(keyboard_check(ord("W")) || (gamepad_axis_value(0, gp_axislv) &lt; -0.5))</constant>
@@ -302,6 +302,7 @@
     <constant name="ZOMBIE_CHILD_WAVE">0</constant>
     <constant name="ZOMBIE_FAT_CHANCE">10</constant>
     <constant name="ZOMBIE_FAT_WAVE">0</constant>
+    <constant name="ZOMBIE_FAT_LIVES">2</constant>
     <constant name="ZOMBIE_CHILD_SPD_X">0.5</constant>
     <constant name="ZOMBIE_CHILD_SPD_Y">0.5</constant>
     <constant name="ZOMBIE_CHILD_ANGLE">60</constant>
