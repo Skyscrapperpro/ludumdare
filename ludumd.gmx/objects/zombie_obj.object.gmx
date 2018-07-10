@@ -65,6 +65,17 @@ switch (kind)
     at_spr = kidz_attack;
     break;
     
+     case 2:
+    //Fat
+
+    //Standard
+    walkf_spr = fatz;
+    ded_spr = fatz_ded;
+
+    //Extra
+    at_spr = fatz_attack;
+    break;
+    
     default:
     //Normal
 

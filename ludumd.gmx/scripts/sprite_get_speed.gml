@@ -64,6 +64,16 @@ switch (_spr)
         return 0.25;
         break;
         
+    case fatz:
+        return 0.15;
+        break;
+    case fatz_ded:
+        return 0.25;
+        break;
+    case fatz_attack:
+        return 0.25;
+        break;
+        
     //Burgers
     case burger_grill0:
         return 0.125;

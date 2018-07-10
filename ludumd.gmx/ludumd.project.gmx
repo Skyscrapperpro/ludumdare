@@ -89,6 +89,11 @@
         <sprite>sprites\kidz_attack</sprite>
         <sprite>sprites\kidz_ded</sprite>
       </sprites>
+      <sprites name="fatz">
+        <sprite>sprites\fatz</sprite>
+        <sprite>sprites\fatz_attack</sprite>
+        <sprite>sprites\fatz_ded</sprite>
+      </sprites>
     </sprites>
     <sprites name="Burgers">
       <sprite>sprites\ingredients</sprite>
