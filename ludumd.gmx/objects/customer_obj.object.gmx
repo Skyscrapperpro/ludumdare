@@ -25,10 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Sprites from array
+            <string>/// Sprites from array and choose custID
 
 //Get random customer id
-var custID = irandom(array_length_1d(global.cust_stand) - 1);
+custID = weighted_choose(global.scoreflt,10,0,10);
 
 //Standard
 stand_spr = global.cust_stand[custID];
